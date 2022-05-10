@@ -1,0 +1,87 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\newcommand{\xy}[2]{({(#1) - 0.5*(#2)}, {0.866*(#2)})}
+\pgfmathsetmacro{\n}{9}
+\pgfmathsetmacro{\a}{4}
+\pgfmathsetmacro{\b}{5}
+\pgfmathsetmacro{\c}{7}
+\pgfmathsetmacro{\d}{9}
+% \title{Proof without words: There are $\binom{n+2}{4}$ equilateral triangles
+% with vertices in the size $n$ triangular grid.}
+% \author{Peter Kagey}
+% \date{}
+\begin{document}
+% \maketitle
+% \noindent
+% Suppose $0 \leq A < B < C < D \leq n+1$.
+
+% \noindent
+% (Illustrated for $n=10$, $A = 4$, $B = 5$, $C=8$, $D=10$.)
+
+% \vspace{1cm}
+\begin{tikzpicture}
+  \foreach \alpha in {1,...,\b} {
+    \foreach \beta [
+      evaluate={\x using \alpha - \beta/2},
+      evaluate={\y using {0.866*\beta}},
+    ]
+    in {1,...,\alpha} {
+      \fill[gray] (\x,\y) circle (0.1);
+    }
+  }
+  \foreach \alpha [
+    evaluate={\betaupperbound using {\alpha - \b}}
+  ] in {6,...,11} {
+    \foreach \beta [
+      evaluate={\x using \alpha - \beta/2},
+      evaluate={\y using {0.866*\beta}},
+    ]
+    in {1,...,\betaupperbound} {
+      \fill[gray] (\x,\y) circle (0.1);
+    }
+  }
+  \draw[thick, gray, dashed] \xy{\b+1}{1} -- \xy{\n+2}{\n+2-\b} -- \xy{\n+2}{1};
+  \draw[ultra thick, red, dotted]
+    \xy{\b}{\b} circle (0.2)
+    \xy{\b-0.2}{\b-0.2} -- \xy11 -- \xy{\b}1 -- \xy{\b}{\b-0.2};
+  \draw[fill=blue!50, line width=3] \xy{\a}{1} -- \xy{\b}{\a} -- \xy{2}{2} -- cycle;
+
+  \draw[ultra thick, red, dotted]
+    \xy{\c}1 -- \xy{\d-0.2}{\d-\c+1-0.2}
+    \xy{\d}{\d-\c+1} circle (0.2)
+    \xy{\d}1 -- \xy{\d}{\d-\c+1-0.2}
+  ;
+  \path \xy{\a}1 -- ++(0,-0.3) node { $A$ };
+  \path \xy{(\a+\b)/2}1 -- ++(0,-0.3) node { $\cdots$ };
+  \path \xy{\b}1 -- ++(0,-0.3) node { $B$ };
+  \path \xy{(\b+\c)/2}1 -- ++(0,-0.3) node { $\cdots$ };
+  \path \xy{\c}1 -- ++(0,-0.3) node { $C$ };
+  \path \xy{(\c+\d)/2}1 -- ++(0,-0.3) node { $\cdots$ };
+  \path \xy{\d}1 -- ++(0,-0.3) node { $D$ };
+  \path \xy{1}1 -- ++(0,-0.3) node { $1$ };
+  \path \xy{2}1 -- ++(0,-0.3) node { $2$ };
+  \path \xy{3}1 -- ++(0,-0.3) node { $\cdots$ };
+  \path \xy{(\n+2+\d)/2}1 -- ++(0,-0.3) node { $\cdots$ };
+  \path \xy{\n + 2}1 -- ++(0,-0.3) node { $n + 2$ };
+  % -- \xy{\d}1;
+  % \draw[ultra thick, red, dotted] \xy{\d}{\d-\c+1} circle (0.2);
+  % \draw[ultra thick, decorate,decoration={brace,amplitude=10pt},xshift=0pt,yshift=-0.25cm]
+  %   \xy{\d-3}{1} -- \xy{3}{1}
+  %   node [rectangle,draw,fill=white,midway,anchor=north,xshift=0cm, yshift=-0.5cm] {$B$}
+  % ;
+  % \draw[ultra thick, decorate,decoration={brace,amplitude=10pt},xshift=0.2165cm,yshift=0.125cm]
+  %   \xy{\d-3}{5} -- \xy{\d-3}{1}
+  %   node [rectangle,draw,fill=white,midway,anchor=west,xshift=0.433cm, yshift=0.25cm] {$A$}
+  % ;
+  % \draw[ultra thick, decorate,decoration={brace,amplitude=10pt},xshift=-0.2165cm,yshift=-0.125cm]
+  %   \xy{\d-3}{6} -- \xy{\d-3}{8}
+  %   node [rectangle,draw,fill=white,midway,anchor=east,xshift=-0.433cm, yshift=-0.25cm] {$C-B-1$}
+  % ;
+  % \draw[ultra thick, decorate,decoration={brace,amplitude=10pt},xshift=0.2165cm,yshift=-0.125cm]
+  %   \xy{9}{7} -- \xy{\d-3}{6}
+  %   node [rectangle,draw,fill=white,midway,anchor=west,xshift=0.433cm, yshift=-0.25cm] {$n + 2 - D$}
+  % ;
+\end{tikzpicture}
+\end{document}

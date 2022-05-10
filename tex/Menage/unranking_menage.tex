@@ -1,0 +1,667 @@
+\chapter{Deranking Menage}
+\label{cha:UnrankingMenage}
+TODO
+
+\section{TODO}
+\begin{enumerate}
+  \item Introduction
+  \item We can also *rank* a given permutation
+  \item Define \textbf{derived} complementary board $B_\alpha^c$?
+  \item If we do a cyclic rotation of the rows of a chessboard, we get
+    essentially the same thing.
+  \item Move code to Appendix.
+  \item Define $B_\alpha$ and $\overline{B}_\alpha^c$.
+  \item Do we want to talk about parking functions?
+  \item Is it worthwhile to discuss prefix functions for compositions, etc.?
+\end{enumerate}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section 1
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Overview and History}
+
+In January 2020, Richard Arratia sent out an email announcing a talk he was
+going to give on de-ranking derangements.
+
+By January 2021, he announced a \$100 prize for solving the analogous problem
+with m\'enage permutations. I solved that too.
+
+Richard was interested in a more general question, which I found contagious:
+Given some family of combinatorial objects that can be quickly counted
+(say unlabelled simple graphs on $n$ vertices)
+and some total ordering on them,
+when is it possible to \textbf{derank} the collection in some computationally
+efficient way?
+
+Of course, we can usually create an algorithm to give the $i$-th object without
+simply enumerating all of the objects explicitly? We want to ``jump in'' to a
+specific place on the list. Another interesting question:
+what if you get to supply both the total order and the deranking algorithm?
+
+In this chapter we're going to explore that idea. We're going to show a general
+theory that allows us to de-rank
+permutations in lexicographic order,
+derangements in lexicographic order,
+partitions and compositions of $n$ in lexicographic order,
+labeled trees by lexicographic order of Pr\"ufer code,
+Lyndon words \cite{Kociumaka2014} (de Bruijn Sequences?),
+Dyck path in lexicographic order?
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section 2
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Overarching Theory (count with prefixes)}
+If we can efficiently count how many objects in
+$[n]^k$ start with a given prefix
+(in $O(T(n,k))$ time),
+then we can just walk down the possible letters until
+we get to the right spot ($O(nkT(n,k))$).
+
+\subsection{Counting Words With a Given Prefix}
+TODO: We can reduce this problem to counting words with a given prefix.
+\begin{lemma}
+  Let $\mathcal{W}_k \subseteq [n]^k$ be an ordered collection of words of
+  length $k$ on an alphabet of size $n$, and denote the set of nonempty candidate
+  prefixes by
+  $\mathcal{P}_k = [n] \cup [n]^2 \cup \dots \cup [n]^k$
+  Then given a function
+  $\#\operatorname{prefix}\colon \mathcal{P}_k \rightarrow \mathbb{N}$ that
+  counts the number of words that begin with a given prefix, the $i$-th word
+  in $\mathcal{W}_k$ when written in lexicographic order is \[
+    \operatorname{derank}_i((1), 0)
+  \] which can be computed explictly with $nk$ or fewer recursive calls:
+\begin{equation}
+  \operatorname{derank}_i(\alpha, b) = \begin{cases}
+    \alpha
+      & i \in (b, b + \#\operatorname{prefix}(\alpha)] \text{ and } \alpha \in \mathcal{W}_k \\
+    \operatorname{derank}_i(\alpha', b)
+      & i \in (b, b + \#\operatorname{prefix}(\alpha)] \text{ and } \operatorname{len}(\alpha) < k \\
+    \operatorname{derank}_i(\alpha'', b + \#\operatorname{prefix}(\alpha))
+      & \text{otherwise},
+  \end{cases}
+\end{equation}
+where
+$\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$,
+$\alpha' = (\alpha_1, \alpha_2, \dots, \alpha_\ell, 1)$,
+$\alpha'' = (\alpha_1, \alpha_2, \dots, \alpha_{k-1}, \alpha_\ell + 1)$,
+and $b$ denotes the number of words in $\mathcal{W}_k$ that occur strictly
+\textbf{before} $\alpha$.
+\end{lemma}
+\begin{proof}
+  TODO (sketch)
+  The second line appends a letter, which can happen at most $n$ times.
+  The third line increments the last letter, which can happen at most $k$ times
+  per position.
+\end{proof}
+
+By choosing the appropriate counting function $\#\operatorname{prefix}$, this
+translates the problem from the domain of deranking objects to the domain of
+counting the number of objects with a given prefix. This technique works
+when we can write our objects as a word in $[n]^k$, and we order the objects
+by the lexicographic order of the words. In the case that our objects cannot be
+written as words, or we are interested in an order other than lexicographic order,
+a different technique must be used.
+
+\subsection{Ranking words}
+TODO: We can also take a word $w \in \mathcal{W}_k$ and quickly determine its
+rank.
+
+\subsection{Basic Notions of Rook Theory}
+In the case of deranking derangements and permutations, it is useful to use
+ideas from Rook Theory.
+Rook Theory was introduced by Kaplansky \cite{Kaplansky1946} Riordan \cite{Riordan1980}
+in their 1946 paper \textit{The Problem of the Rooks and its Applications}. In
+it, they discuss problems of restricted permutations in the language of rooks
+placed on a chessboard.
+We begin by introducing some preliminary ideas in this theory.
+
+\begin{figure}
+  \center
+  \begin{tikzpicture}[scale = 0.8]
+    \foreach \i/\j in {1/3,2/4,3/8,4/1,5/2,6/7,7/5,8/6} {
+      \node at (\j - 0.5, 8.5 - \i) {\huge\symrook};
+      \node at (8.5, 8.5-\i) {\huge\j};
+    }
+    \draw (0,0) grid (8,8);
+  \end{tikzpicture}
+  \caption{
+    An illustration of the rook placement corresponding to the permutation
+    $34812756 \in S_8$. A rook is placed in square $(i, \pi(i))$ for each $i$.
+  }
+\end{figure}
+
+\begin{definition}
+  A \textit{board} $B$ is a subset of $[n] \times [n]$ which represents the
+  squares of a $n \times n$ chessboard that rooks are allowed to be placed on.
+  Every board $B$ has a \textit{complementary board}
+  $B^c = ([n] \times [n]) \setminus B$, which consists of all of the
+  squares of $B$ that a rook cannot be placed on.
+\end{definition}
+
+To each board, we can associate a generating polynomial that keeps track of the
+number of ways to place a given number of rooks on the valid squares in such a
+way that no two rooks are in the same row or column.
+
+\begin{definition}
+  The \textit{rook polynomial} associated with a board $B$,
+  \[
+    p_B(x) = r_0 + r_1 x + r_2 x^2 + \dots + r_n x^n,
+  \]
+  is a generating polynomial where $r_k$ denotes the number of $k$-element subsets
+  of $B$ such that no two elements share an $x$-coordinate or a $y$-coordinate.
+\end{definition}
+
+In the context of permutations, we're typically interested in $r_n$, the number
+of ways to place $n$ rooks on a restricted $n \times n$ board.
+However, it turns out that a naive application of the techniques from
+rook theory do not immediately allow us to count the number of
+restricted permutations with a given prefix.
+Computing the number of such permutations is known to be computationally hard
+for a board with arbitrary restrictions.
+We can see this by encoding a board $B$ as a $(0,1)$-matrix and computing the matrix
+permanent. (In fact, Shevelev \cite{Shevelev1992} claims that
+``the theory of enumerating the permutations with restricted positions
+stimulated the development of the theory of the permanent.'')
+
+\begin{lemma}
+  Let $M_B = \{a_{ij}\}$ be an $n \times n$ matrix where \[
+    a_{ij} = \begin{cases}
+      1 & (i,j) \in B \\
+      0 & (i,j) \not\in B
+    \end{cases}.
+  \]
+  Then the coefficient of $x^n$ in $p_B(x)$ is given by the matrix permanent
+  \[
+    \operatorname{perm}(M_B) = \sum_{\sigma \in S_n} \prod_{i=1}^n a_{i\sigma(i)}.
+  \]
+\end{lemma}
+
+Now is the perfect time to recall Valiant's Theorem.
+
+\begin{theorem}[Valiant's Theorem \cite{Valiant1979}]
+  Computing the permanent of a (0,1)-matrix is \#P-complete.
+\end{theorem}
+
+\begin{corollary}
+  Computing the number of rook placements on an arbitrary $n \times n$ board is
+  \#P-hard.
+\end{corollary}
+
+Therefore, in order to compute the number of permutations, we must exploit some
+additional structure of the restrictions.
+
+\subsection{Techniques of Rook Theory}
+Rook polynomials can be computed recursively. The base case is that
+for an empty board $B = \emptyset$, the corresponding rook polynomial is
+$p_\emptyset(x) = 1$, because there is one way to place no rooks, and no way
+to place one or more rooks.
+\begin{lemma}[\cite{Riordan1980}]
+  Given a board, $B$, then for any square $(x,y) \in B$, we can define
+  the resulting boards if we include or exclude the square respectively
+  \begin{align}
+    B_i &= \{(x',y') \in B : x \neq x' \text{ and } y \neq y'\} \\
+    B_e &= B \setminus {(x,y)}.
+  \end{align}
+  Then we can write the rook polynomial for $B$ in terms of this decomposition.
+  \[
+    p_B(x) = xp_{B_i}(x) + p_{B_e}(x).
+  \]
+  \label{lemma:rookPolynomialRecursion}
+\end{lemma}
+
+If we want to compute a rook polynomial using this construction, we can end
+up adding up lots of smaller rook polynomials---a number that is exponential in
+the size of $B$.
+However, when the number of squares in $B^c$ is small in some sense, it can be
+easier to compute the rook polynomial $p_{B^c}$ and use the principle of
+inclusion/exclusion on it's coefficients to determine the rook polynomial for
+the original board, $B$.
+
+In the case of derangements and m\'enage permutations, this is the strategy
+we'll use.
+Start by finding the resulting board from a given prefix,
+find the rook polynomial of the complementary board, and
+use the principle of inclusion/exclusion to determine the number of ways to
+place rooks in the resulting board.
+
+\section{Deranking Derangements}
+
+In January 2020, Richard Arratia sent out an email proposing a seminar talk.
+The title describes the first ``\$100 problem'':
+\begin{problem}
+``For $100$ dollars, what is the $500$ quadrillion-th derangement on $n=20$?''
+\end{problem}
+
+\begin{answer}
+The computer program in Appendix TODO computed the answer in less than ten
+milliseconds. When written as words in lexicographic order, the
+derangement in $S_{20}$ with rank $5 \times 10^{17}$ is \[
+  12\ 14\ 2\ 9\ 13\ 20\ 6\ 3\ 1\ 17\ 5\ 11\ 19\ 15\ 10\ 18\ 8\ 7\ 4\ 16.
+\]
+\end{answer}
+
+Arratia's question focused on deranking derangements where the rank was
+based on the total ordering that comes from writing the
+permutations as words in lexicographic order.
+Other authors have looked at deranking derangements based on other total
+orderings. In particular, Mikawa and Tanaka \cite{Mikawa2014} give an algorithm
+to rank/unrank derangements
+with respect to \textit{lexicographic ordering in cycle notation}.
+
+In this section we will develop an algorithm for ranking and deranking with
+respect to their lexicographic ordering as words. The technique that we use will
+broadly be re-used in the next section.
+It is worthwhile to begin by recalling the definition of a derangement.
+\begin{definition}
+  A \textit{derangement} is a permutation $\pi \in S_n$ such that $\pi$ has no
+  fixed points. That is, the set of derangements is \[
+    \{\pi \in S_n : \pi(i) \neq i\ \forall i \in [n]\}.
+  \]
+\end{definition}
+
+\subsection{The complementary board.}
+In order to compute the number of derangements with a given prefix, it is
+useful to look at the board that results after placing $k$ rooks according to
+these positions, as illustrated in Figure \ref{fig:derangementPrefix}.
+
+\input{assets/fig_derangementPrefix.tex}
+
+\begin{definition}
+  If $B$ is an $n \times n$ board, and
+  $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$ is a valid prefix of length
+  $\ell$, then \textit{derived complementary board} of $B$ from $\alpha$, denoted $B^c_\alpha$,
+  is $B$ with the appropriate rows and columns removed and reindexed in such
+  a way that $B^c_\alpha \subseteq [n - \ell] \times [n - \ell]$.
+  % \[
+  %   B^c_\alpha \cup \{(x, y) : x \in [n], y \in [\ell]\} \cup \{(x, y) : x \in \alpha, y \in [n]\}
+  % \]
+  % the \textit{derived complementary board} of $B$ from $\alpha$, denoted
+  % $B^c_\alpha \subset [n-k]^2$ consisting of a subset of $B^c$, relabeled to
+  % reflect ... TODO
+\end{definition}
+\begin{lemma}
+  Given a valid $\ell$ letter prefix $(\alpha_1, \alpha_2, \dots, \alpha_\ell)$
+  of a word on $n$ letters,
+  the number of squares in the resulting complementary board is \[
+    |B_\alpha^c| = n - \ell - |\{\ell+1, \ell+2, \dots, n\} \cap \{\alpha_1, \alpha_2, \dots, \alpha_\ell\}|,
+  \] and no two of these squares are in the same row or column.
+\end{lemma}
+\begin{proof}
+  TODO
+  % Recall that $B^c = \{(1,1), (2,2), \dots, (n,n)\}$, so no square shares its
+  % first or second coordinate with another square.
+  % Because $B^c_\alpha$ is the result of deleting and relabeling the squares of
+  % $B^c$, $B^c_\alpha$ also has two squares with with same first or second
+  % coordinate.
+  % In order to
+  % Because the prefix is of length $\ell$, all of the squares in $B_\alpha^c$ must
+  % have a first coordinate greater than $\ell$, that is,
+  % $B_\alpha^c \subseteq \{(\ell+1, \ell+1), (\ell+2, \ell+2), \dots, (n, n)\}$.
+  % Then, we can count how many of these remaining squares are in the same row or
+  % column as a rook in the prefix. This number is the size of the intersection
+  % $|\{\ell+1, \ell+2, \dots, N\} \cap \{\alpha_1, \alpha_2, \dots, \alpha_p\}|$.
+\end{proof}
+
+\subsection{Derangements with a given prefix}
+Now that we have a way of quickly computing $|B_\alpha^c|$, we can compute the
+number of ways to place $j$ rooks on the complementary board. We can use this
+to compute the number of derangements that begin with the prefix $\alpha$.
+
+\begin{lemma}
+  The rook polynomial for the complementary board $B_\alpha^c$ is \begin{equation}
+    p_{B_\alpha^c}(x) = \sum_{j = 0}^{|B_\alpha^c|} \binom{|B_\alpha^c|}{j}x^j.
+  \end{equation}
+\end{lemma}
+\begin{proof}
+  No two squares in $B^c$ (and thus $B^c_\alpha$) are in the same row or column.
+  Thus the number of ways to place $j$ rooks is equivalent to selecting $j$
+  cells from $|B^c_\alpha|$.
+\end{proof}
+
+Now we introduce a lemma of Stanley \cite{Stanley2011EC1} to compute the number
+of TODO from a complementary board.
+
+\begin{lemma}[\cite{Stanley2011EC1}]
+  The number of ways, $N_0$, of placing $n$ nonattacking rooks on a board
+  $B \subseteq [n] \times [n]$ is given by \[
+    N_0 = \sum_{k=0}^n (-1)^k r_k (n-k)!,
+  \] where $P_{B^c}(x) = \sum_{k=0}^n r_k x^k$.
+  \label{lemma:CountsFromComplementaryPolynomials}
+\end{lemma}
+
+\begin{corollary}
+  The number of derangements with prefix
+  $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$
+  is given by \[
+    \#\operatorname{prefix}(\alpha)
+    = \sum_{j=0}^{|B_\alpha^c|} (-1)^j \binom{|B_\alpha^c|}{j}(n-\ell-j)!,
+  \] which is $\operatorname{A047920}(n-\ell, |B_\alpha^c|)$ in
+  the On-Line Encyclopedia of Integer Sequences \cite{oeis}.
+\end{corollary}
+
+\begin{example}
+  For example, for $N = 14$, we wish to count the number of derangements that
+  start with the prefix $6\,1$. Since the prefix has two letters, $p = 2$ and
+  $n = 14 - 2 = 12$. The only crossed-out cell that is deleted by the prefix in the
+  remaining board is the cell that was in position $6$:
+  in particular, $\{3,4,\dots,14\} \cap \{6, 1\} = 6$.
+  Thus $k = 12 - 1 = 11$.
+  Thus there are $A047920(12,11) = 190\,899\,411$ derangements that start
+  with $6\,1$.
+\end{example}
+\begin{figure}
+\center
+\begin{tabular}{|l|r|l|c|l|}
+  \hline
+  $\alpha$ (prefix)   & $\operatorname{\#prefix}(\alpha)$ & index range & $|B_\alpha^c|$ & $\operatorname{derank}_i(\alpha, \ell)$ \\
+  \hline
+  $1       $ & $0$    & $(0,0]$           & $-$ & $\operatorname{derank}_{1000}(1, 0)$          \\
+  $2       $ & $2119$ & $(0,2119]$        & $6$ & $\operatorname{derank}_{1000}(2, 0)$          \\
+  \hline
+  $21      $ & $265$  & $(0, 265]$        & $6$ & $\operatorname{derank}_{1000}(21, 0)$         \\
+  $22      $ & $0$    & $(265, 265]$      & $-$ & $\operatorname{derank}_{1000}(22, 265)$       \\
+  $23      $ & $309$  & $(265, 574]$      & $5$ & $\operatorname{derank}_{1000}(23, 265)$       \\
+  $24      $ & $309$  & $(574, 883]$      & $5$ & $\operatorname{derank}_{1000}(24, 574)$       \\
+  $25      $ & $309$  & $(883, 1192]$     & $5$ & $\operatorname{derank}_{1000}(25, 883)$       \\
+  \hline
+  $251     $ & $53$   & $(883, 936]$      & $4$ & $\operatorname{derank}_{1000}(251, 883)$      \\
+  $253     $ & $0$    & $(936, 936]$      & $-$ & $\operatorname{derank}_{1000}(253, 936)$      \\
+  $254     $ & $64$   & $(936, 1000]$     & $3$ & $\operatorname{derank}_{1000}(254, 936)$      \\
+  \hline
+  $2541    $ & $11$   & $(936, 947]$      & $3$ & $\operatorname{derank}_{1000}(2541, 936)$     \\
+  $2543    $ & $11$   & $(947, 958]$      & $3$ & $\operatorname{derank}_{1000}(2543, 947)$     \\
+  $2546    $ & $14$   & $(958, 972]$      & $2$ & $\operatorname{derank}_{1000}(2546, 958)$     \\
+  $2547    $ & $14$   & $(972, 986]$      & $2$ & $\operatorname{derank}_{1000}(2547, 972)$     \\
+  $2548    $ & $14$   & $(986, 1000]$     & $2$ & $\operatorname{derank}_{1000}(2548, 986)$     \\
+  \hline
+  $25481   $ & $3$    & $(986, 989]$      & $2$ & $\operatorname{derank}_{1000}(25481, 986)$    \\
+  $25483   $ & $3$    & $(989, 992]$      & $2$ & $\operatorname{derank}_{1000}(25483, 989)$    \\
+  $25486   $ & $4$    & $(992, 996]$      & $1$ & $\operatorname{derank}_{1000}(25486, 992)$    \\
+  $25487   $ & $4$    & $(996, 1000]$     & $1$ & $\operatorname{derank}_{1000}(25487, 996)$    \\
+  \hline
+  $254871   $ & $2$   & $(996, 998]$      & $0$ & $\operatorname{derank}_{1000}(254871, 996)$   \\
+  $254873   $ & $2$   & $(998, 1000]$     & $0$ & $\operatorname{derank}_{1000}(254873, 998)$   \\
+  \hline
+  $2548731  $ & $1$   & $(998, 999]$      & $0$ & $\operatorname{derank}_{1000}(2548731, 998)$  \\
+  $2548736  $ & $1$   & $(999, 1000]$     & $0$ & $\operatorname{derank}_{1000}(2548736, 999)$  \\
+  \hline
+  $25487361 $ & $1$   & $(999, 1000]$     & $0$ & $\operatorname{derank}_{1000}(25487361, 999)$ \\
+  \hline
+
+
+  % $351     $ & $24$  & $(946, 970]$       & $(0,2,5)$       \\
+  % $\cdots$   & $0$   & $(970,970]$        & $-$             \\
+  % % $352     $ & $0$   & $(970, 970]$       & $?$           \\
+  % % $353     $ & $0$   & $(970, 970]$       & $?$           \\
+  % $354     $ & $34$  & $(970, 1004]$      & $(0,5)$         \\ \hline
+  % $3541    $ & $5$   & $(970,975]$        & $(0,5)$         \\
+  % $3542    $ & $5$   & $(975,980]$        & $(0,5)$         \\
+  % $\cdots$   & $0$   & $(980,980]$        & $-$             \\
+  % % $3543    $ & $0$   & $(980,980]$        & $?$           \\
+  % % $3544    $ & $0$   & $(980,980]$        & $?$           \\
+  % % $3545    $ & $0$   & $(980,980]$        & $?$           \\
+  % $3546    $ & $8$   & $(980,988]$        & $(0,3)$         \\
+  % $3547    $ & $10$  & $(988,998]$        & $(0,2,1)$       \\
+  % $3548    $ & $6$   & $(998,1004]$       & $(0,4)$         \\ \hline
+  % $35481   $ & $1$   & $(998,999]$        & $(0,4)$         \\
+  % $35482   $ & $1$   & $(999,1000]$       & $(0,4)$         \\ \hline
+  % $354821  $ & $0$   & $(999,999]$        & $(3)$           \\
+  % $\cdots$   & $0$   & $(999,999]$        & $-$             \\
+  % $354827  $ & $1$   & $(999,1000]$       & $(0,1)$         \\ \hline
+  % $3548271 $ & $1$   & $(999,1000]$       & $(0)$           \\ \hline
+  % $35482716$ & $1$   & $(999,1000]$       & $()$            \\ \hline
+\end{tabular}
+\caption{There are $A000166(8) = 14833$ derangements on $8$ letters.
+This algorithm finds the derangement at index $1000$.}
+\end{figure}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section 3
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Deranking M\'enage Permutations}
+A M\'enage permutation comes from the \textit{problème des ménages}. % https://en.wikipedia.org/wiki/M%C3%A9nage_problem
+Here we will define it as
+\begin{definition}
+  A \textit{m\'enage permutation} is a permutation $\pi \in S_n$ such that for
+  all $i \in [n]$,
+  $\pi(i) \neq i$ and
+  $\pi(i) + 1 \not\equiv i \bmod n$.
+\end{definition}
+
+We can use the prefix to get a new board, which is block diagonal
+(whenever the prefix is non-empty), if we know the number of cells in each
+block, we can compute the number of valid boards. This gives us the number of
+m\'enage permutations with a given prefix.
+
+Prefix $\Rightarrow$ grouped columns $\Rightarrow$ partition/multiset $\Rightarrow$ complementary polynomial $\Rightarrow$ count
+
+\subsection{Block diagonal decomposition}
+When we look at Figure TODO, it appears that placing rooks according to a prefix
+results in a derived complementary board where the squares can be grouped into
+sub-boards that don't share any rows or columns. We will see that this property
+holds more generally, and we can exploit this in order to describe the number
+of m\'enage permutations with a given prefix.
+
+It is useful to begin by formalizing this notion of grouping squares.
+\begin{definition}
+  Two boards $B$ and $B'$ are called \textbf{disjoint} if no squares of $B$ are
+  in the same row or column as any square in $B'$.
+\end{definition}
+
+The reason that we care about decomposing a board into disjoint parts
+is because that perspective allows us to factor the rook polynomial.
+\begin{lemma}[\cite{Kaplansky1946}]
+  If $B$ can be partitioned into disjoint boards $b_1, b_2, \dots, b_m$,
+  then the rook polynomial of $B$ is the product of the rook polynomials of
+  the $b_i$s \[
+    p_B(x) = \prod_{i=1}^m p_{b_i}(x).
+  \]
+\end{lemma}
+
+The key insight is that after placing rooks in valid positions in
+the top $1 \leq k \leq n-1$ rows, we get block-diagonal boards,
+with three possible shapes, shown in Figure \ref{fig:blockShape}.
+\begin{lemma}
+  For $\ell \geq 1$, and prefix $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$
+  the derived complementary board $B_\alpha^c$ can be partitioned into boards
+  of one of three shapes.
+  \begin{enumerate}
+    \item (TODO Figure \ref{fig:blockShape}, left)
+    \item (TODO Figure \ref{fig:blockShape}, middle)
+    \item (TODO Figure \ref{fig:blockShape}, right)
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  The proof proceeds by induction.
+  Base case:
+  because of the m\'enage restriction, $\pi(1) \in \{2, 3, \dots, n-1\}$,
+  and so the resulting board is split into a part of size
+  $2\pi(1) - 3$ and $2n - 2\pi(1) - 1$ parts respectively.
+  Inductive step: TODO
+\end{proof}
+
+\input{assets/fig_blockShape.tex}
+\input{assets/fig_menage.tex} % TODO: I'm not sure that this figure adds much, other than perhaps a base case of a proof.
+
+\subsection{Rook polynomials of blocks}
+Recall that the goal of partitioning $B$ into disjoint boards $b_1, b_2, \dots, b_m$
+is so that we can factor $p_B(x)$ in terms of $p_{b_i}(x)$. Of course, this is
+only helpful if we can describe $p_{b_i}(x)$, which is the goal of this section.
+Thankfully, the rook polynomial of each $b_i$ will turn out to depend only on the
+number of squares, $|b_i|$, which can be computed easily because of its structure.
+
+We will begin by defining a family of polynomials that, suggestively, will turn
+out to be the rook polynomials that we are looking for. This family is nearly
+described by OEIS sequence A011973 \cite{oeis}.
+\begin{definition}
+  For $j \geq 0$, the $j$th \textbf{Fibonacci polynomial} $F_{j}(x)$ is defined recursively as:
+  \begin{align}
+    F_0(x) &= 1 \\
+    F_1(x) &= 1 + x \\
+    F_n(x) &= F_{n-1}(x) + xF_{n-2}(x).
+  \end{align}
+\end{definition}
+
+\begin{lemma}
+  Given a board $B$ that consists of a single block with $k$ crossed out cells,
+  it's complementary board $B^c$ has rook polynomial $p_{B^c}(x) = F_{k + 1}(x)$.
+\end{lemma}
+\begin{proof}
+  We will recall Lemma \ref{lemma:rookPolynomialRecursion}, and proceed by
+  induction on the upper-left square.
+
+  TODO (See Figure \ref{fig:blockShape}, boards A, B, C)
+
+  Base case:
+  If we have a board of type $C$ and size $0$, it has a rook polynomial of $1$.
+  If we have a board of type $A$ (or $B$) and size $1$, it has a rook polynomial of $1 + x$.
+
+  Suppose our inductive hypothesis holds for boards with up to $s$ squares. Then
+  \begin{enumerate}
+    \item $B_i$ for $A_{2n-1}$ is equal to $A_{2n-3}$. $B_e$ is $C_{2n-2}$.
+    \item $B_i$ for $B_{2n-1}$ is equal to $B_{2n-3}$. $B_e$ is a flip of $C_{2n-2}$ along antidiagonal.
+    \item $B_i$ for $C_{2n-2}$ is equal to $C_{2n-4}$. $B_e$ is $A_{2n-3}$ along antidiagonal.
+  \end{enumerate}
+\end{proof}
+
+\subsection{Prefix to blocks}
+Here's the idea: we group the uncrossed columns.
+
+\begin{lemma}
+  Given a prefix $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$
+  and $i \not\in \alpha$,
+  the number of cells of $B^c$ in column $i$ that do not have
+  a first coordinate in $[\ell]$
+  is given by the rule:
+  \begin{equation}
+    c_i = \begin{cases}
+      0 & i < \ell \\
+      1 & i = k \text{ or } i = n \\
+      2 & \ell < i < n
+    \end{cases}
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  TODO: This almost follows from the description?
+\end{proof}
+
+Now we can put these column counts together based on the continuous blocks.
+
+\begin{lemma}
+  TODO:
+  Partition $[n] \setminus \alpha$ into contiguous parts.
+  This naturally partitions $B^c_\alpha$ into disjoint boards.
+  The size of these boards is $\sum_{x \in \textrm{part}} c_x$.
+  (this is what I've been calling our ``composition'')
+\end{lemma}
+
+% \input{assets/fig_partitionFromPrefix.tex}
+
+\subsection{Complementary polynomials to m\'enage permutations with a given prefix}
+Recap: We've taken a prefix, used it to find contiguous regions, used these to
+find disjoint sub-boards related to $B_\alpha^c$, whose rook polynomials we know.
+Now it's time to take these to count our number of m\'enage permutations with
+the aforementioned prefix.
+\begin{lemma}
+  Given a board $B_\alpha^c$ that is partitioned into disjoint boards
+  $b_1, b_2, \dots, b_m$, the rook polynomial of $B_\alpha^c$ is \[
+    p_{B_\alpha^c}(x) = \prod_{i = 1}^m F_{b_i}(x).
+  \]
+\end{lemma}
+\begin{proof}
+  This follows directly from Lemma (TODO: rook polynomials of blocks)
+  and Lemma (TODO: product of blocks is whole thing).
+\end{proof}
+
+Now that we know $p_{B_\alpha^c}$, we can use Lemma
+(TODO: Complementary to original) to determine how many
+m\'enage permutations there are with a given prefix. Because of Lemma
+(TODO: all we need is the prefix to derank), we have an algorithm to derank.
+
+\subsection{Proof of concept (The \$100 answer!)}
+\begin{problem}
+  For $n=20$ there are $A000179(20) = 312\,400\,218\,671\,253\,762 > 3.1\cdot 10^{17}$
+  m\'enage permutations.
+  Determine the $10^{17}$-th such permutation when listed in lexicographic order.
+\end{problem}
+\begin{answer}
+  The desired permutation is \begin{equation}
+    7\ 16\ 19\ 12\ 2\ 8\ 15\ 1\ 18\ 14\ 3\ 9\ 20\ 10\ 5\ 17\ 13\ 4\ 11\ 6.
+  \end{equation}
+\end{answer}
+
+\begin{example}
+  Illustrating this particular example is too big to be of much interest, so
+  here's a smaller example. There are $A000179(8) = 4738$ m\'enage
+  permutations on $8$ letters. We'll use this algorithm to find the one
+  at index $1000$.
+  \begin{figure}
+  \center
+  \begin{tabular}{|l|r|l|c|l|}
+    \hline
+    prefix   & starting with prefix & index range & composition & $\operatorname{derank}_{i}(\alpha, \ell)$\\ \hline
+    $1       $ & $0$   & $(0,0]$            & $-$       & $\operatorname{derank}_{1000}(1,0)$          \\
+    $2       $ & $787$ & $(0,787]$          & $(1,11)$  & $\operatorname{derank}_{1000}(2,0)$          \\
+    $3       $ & $791$ & $(787, 1578]$      & $(3,9)$   & $\operatorname{derank}_{1000}(3,787)$        \\ \hline
+    $31      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{derank}_{1000}(31,787)$       \\
+    $32      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{derank}_{1000}(32,787)$       \\
+    $33      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{derank}_{1000}(33,787)$       \\
+    $34      $ & $159$ & $(787, 946]$       & $(1,7)$   & $\operatorname{derank}_{1000}(34,787)$       \\
+    $35      $ & $166$ & $(946, 1112]$      & $(1,2,5)$ & $\operatorname{derank}_{1000}(35,946)$       \\ \hline
+    $351     $ & $24$  & $(946, 970]$       & $(0,2,5)$ & $\operatorname{derank}_{1000}(351,946)$      \\
+    $\cdots$   & $0$   & $(970,970]$        & $-$       & \\
+    $354     $ & $34$  & $(970, 1004]$      & $(0,5)$   & $\operatorname{derank}_{1000}(354,970)$      \\ \hline
+    $3541    $ & $5$   & $(970,975]$        & $(0,5)$   & $\operatorname{derank}_{1000}(3541,970)$     \\
+    $3542    $ & $5$   & $(975,980]$        & $(0,5)$   & $\operatorname{derank}_{1000}(3542,975)$     \\
+    $\cdots$   & $0$   & $(980,980]$        & $-$       & \\
+    $3546    $ & $8$   & $(980,988]$        & $(0,3)$   & $\operatorname{derank}_{1000}(3546,980)$     \\
+    $3547    $ & $10$  & $(988,998]$        & $(0,2,1)$ & $\operatorname{derank}_{1000}(3547,988)$     \\
+    $3548    $ & $6$   & $(998,1004]$       & $(0,4)$   & $\operatorname{derank}_{1000}(3548,998)$     \\ \hline
+    $35481   $ & $1$   & $(998,999]$        & $(0,4)$   & $\operatorname{derank}_{1000}(35481,998)$    \\
+    $35482   $ & $1$   & $(999,1000]$       & $(0,4)$   & $\operatorname{derank}_{1000}(35482,999)$    \\ \hline
+    $354821  $ & $0$   & $(999,999]$        & $(3)$     & $\operatorname{derank}_{1000}(354821,999)$   \\
+    $\cdots$   & $0$   & $(999,999]$        & $-$       & \\
+    $354827  $ & $1$   & $(999,1000]$       & $(0,1)$   & $\operatorname{derank}_{1000}(354827,999)$   \\ \hline
+    $3548271 $ & $1$   & $(999,1000]$       & $(0)$     & $\operatorname{derank}_{1000}(3548271,999)$  \\ \hline
+    $35482716$ & $1$   & $(999,1000]$       & $()$      & $\operatorname{derank}_{1000}(35482716,999)$ \\ \hline
+  \end{tabular}
+  \end{figure}
+\end{example}
+
+\section{Generalizations and Open Questions}
+\subsection{Other restricted permutations}
+Doron Zeilberger considers a more general family of restricted permutations.
+\begin{definition}[\cite{Zeilberger2014}]
+  Let $S \subset \mathbb Z$, then a \textit{$S$-avoiding permutation} is a
+  permutation $\pi \in S_n$ such that \[
+    \pi(i) - i - s \not\equiv 0 \bmod n \text{ for all } i \in [n] \text{ and } s \in S.
+  \]
+\end{definition}
+
+\begin{example}
+  Ordinary permutations are $\emptyset$-avoiding permutations,
+  derangements are $\{0\}$-avoiding permutations, and
+  we've defined menag\'e permutations as $\{-1,0\}$-avoiding permutations.
+
+  The results in this paper generalize pretty easily to $\{i,i+1\}$-avoiding
+  permutations for all $i$.
+\end{example}
+
+\subsection{Observation about Lyndon Words after? a given prefix}
+\begin{definition}
+  A \textit{Lyndon word} is a string that is the unique minimum with respect
+  to all of its rotations.
+\end{definition}
+\begin{example}
+  $00101$ is a Lyndon word because
+  $00101 = \min\{00101, 01010, 10100, 01001, 10010\}$ is the unique minimum of
+  all of its rotations.
+
+  $011011$ is not a Lyndon word because while $011011 = \min\{011011, 110110, 101101, 011011, 110110, 101101\}$,
+  it is not the \textbf{unique} minimum.
+\end{example}
+\begin{conjecture}
+  Let $\mathcal{E}^{-1}$ denote the inverse Euler transform.
+  Then the number of length $n+1$ Lyndon words that start with a prefix
+  $\alpha$ follows a ``simple'' linear recurrence for sufficiently large $n$.
+\end{conjecture}

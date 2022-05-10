@@ -1,0 +1,523 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{conger}{article}{}
+      \name{author}{1}{}{%
+        {{hash=adab1db1f1e8818ff2a5f11447f0165e}{%
+           family={Conger},
+           familyi={C\bibinitperiod},
+           given={Mark},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{adab1db1f1e8818ff2a5f11447f0165e}
+      \strng{fullhash}{adab1db1f1e8818ff2a5f11447f0165e}
+      \strng{bibnamehash}{adab1db1f1e8818ff2a5f11447f0165e}
+      \strng{authorbibnamehash}{adab1db1f1e8818ff2a5f11447f0165e}
+      \strng{authornamehash}{adab1db1f1e8818ff2a5f11447f0165e}
+      \strng{authorfullhash}{adab1db1f1e8818ff2a5f11447f0165e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Ars Combinatoria}
+      \field{month}{04}
+      \field{title}{A refinement of the {E}ulerian numbers, and the joint distribution of $\pi(1)$ and $\operatorname{Des}(\pi)$ in ${S}_n$.}
+      \field{volume}{95}
+      \field{year}{2010}
+    \endentry
+    \entry{oeis}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=6393f998c5344ccb18062c696cecd966}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={OEIS\bibnamedelima Foundation},
+           giveni={O\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{6393f998c5344ccb18062c696cecd966}
+      \strng{fullhash}{6393f998c5344ccb18062c696cecd966}
+      \strng{bibnamehash}{6393f998c5344ccb18062c696cecd966}
+      \strng{authorbibnamehash}{6393f998c5344ccb18062c696cecd966}
+      \strng{authornamehash}{6393f998c5344ccb18062c696cecd966}
+      \strng{authorfullhash}{6393f998c5344ccb18062c696cecd966}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{The On-Line Encyclopedia of Integer Sequences}}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://oeis.org/
+      \endverb
+      \verb{url}
+      \verb https://oeis.org/
+      \endverb
+    \endentry
+    \entry{goncharov}{article}{}
+      \name{author}{1}{}{%
+        {{hash=06dac6cbaeb0eb5542335bdf472ea180}{%
+           family={V.\bibnamedelimi Goncharov},
+           familyi={V\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{06dac6cbaeb0eb5542335bdf472ea180}
+      \strng{fullhash}{06dac6cbaeb0eb5542335bdf472ea180}
+      \strng{bibnamehash}{06dac6cbaeb0eb5542335bdf472ea180}
+      \strng{authorbibnamehash}{06dac6cbaeb0eb5542335bdf472ea180}
+      \strng{authornamehash}{06dac6cbaeb0eb5542335bdf472ea180}
+      \strng{authorfullhash}{06dac6cbaeb0eb5542335bdf472ea180}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{1}
+      \field{journaltitle}{Izv. Akad. Nauk SSSR Ser. Mat.}
+      \field{title}{Du domaine de l'analyse combinatoire}
+      \field{volume}{8}
+      \field{year}{1944}
+      \field{pages}{3\bibrangedash 48}
+      \range{pages}{46}
+      \verb{urlraw}
+      \verb http://mi.mathnet.ru/izv3716
+      \endverb
+      \verb{url}
+      \verb http://mi.mathnet.ru/izv3716
+      \endverb
+    \endentry
+    \entry{arratia}{article}{}
+      \name{author}{2}{}{%
+        {{hash=896e3efc5c43352481a1bec00538f504}{%
+           family={Arratia},
+           familyi={A\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=197c820c18cedd85ebe1d06a783fc9c3}{%
+           family={Tavare},
+           familyi={T\bibinitperiod},
+           given={Simon},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Institute of Mathematical Statistics}%
+      }
+      \strng{namehash}{eb2cac532ec06fcb179e1abfb609a547}
+      \strng{fullhash}{eb2cac532ec06fcb179e1abfb609a547}
+      \strng{bibnamehash}{eb2cac532ec06fcb179e1abfb609a547}
+      \strng{authorbibnamehash}{eb2cac532ec06fcb179e1abfb609a547}
+      \strng{authornamehash}{eb2cac532ec06fcb179e1abfb609a547}
+      \strng{authorfullhash}{eb2cac532ec06fcb179e1abfb609a547}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00911798}
+      \field{journaltitle}{The Annals of Probability}
+      \field{number}{3}
+      \field{title}{The Cycle Structure of Random Permutations}
+      \field{volume}{20}
+      \field{year}{1992}
+      \field{pages}{1567\bibrangedash 1591}
+      \range{pages}{25}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/2244659
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/2244659
+      \endverb
+    \endentry
+    \entry{assaf}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1ed4370dbc7033f443e4699b298898cc}{%
+           family={Assaf},
+           familyi={A\bibinitperiod},
+           given={Sami\bibnamedelima H},
+           giveni={S\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+      }
+      \strng{namehash}{1ed4370dbc7033f443e4699b298898cc}
+      \strng{fullhash}{1ed4370dbc7033f443e4699b298898cc}
+      \strng{bibnamehash}{1ed4370dbc7033f443e4699b298898cc}
+      \strng{authorbibnamehash}{1ed4370dbc7033f443e4699b298898cc}
+      \strng{authornamehash}{1ed4370dbc7033f443e4699b298898cc}
+      \strng{authorfullhash}{1ed4370dbc7033f443e4699b298898cc}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Electronic Journal of Combinatorics}
+      \field{number}{R163}
+      \field{title}{Cyclic Derangements}
+      \field{volume}{17}
+      \field{year}{2010}
+    \endentry
+    \entry{FindStat}{misc}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{2}{}{%
+        {{hash=44d9e45cb6d89e08679829f879c7fc1f}{%
+           family={Rubey},
+           familyi={R\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=7785e93600f41e31048ce679d5922032}{%
+           family={Stump},
+           familyi={S\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{af4e0f9b5b2230213a9353cb4ff58f48}
+      \strng{fullhash}{af4e0f9b5b2230213a9353cb4ff58f48}
+      \strng{bibnamehash}{af4e0f9b5b2230213a9353cb4ff58f48}
+      \strng{authorbibnamehash}{af4e0f9b5b2230213a9353cb4ff58f48}
+      \strng{authornamehash}{af4e0f9b5b2230213a9353cb4ff58f48}
+      \strng{authorfullhash}{af4e0f9b5b2230213a9353cb4ff58f48}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://www.FindStat.org}}
+      \field{note}{Accessed: \today}
+      \field{title}{{FindStat} - {T}he combinatorial statistics database}
+      \verb{urlraw}
+      \verb http://www.FindStat.org
+      \endverb
+      \verb{url}
+      \verb http://www.FindStat.org
+      \endverb
+    \endentry
+    \entry{Foata}{inproceedings}{}
+      \name{author}{1}{}{%
+        {{hash=8699132f451f67b2e79f797ce855b740}{%
+           family={Foata},
+           familyi={F\bibinitperiod},
+           given={Dominique},
+           giveni={D\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=ef95611aaa6551f2a39bf2efea6ee471}{%
+           family={Aigner},
+           familyi={A\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Dordrecht}%
+      }
+      \list{publisher}{1}{%
+        {Springer Netherlands}%
+      }
+      \strng{namehash}{8699132f451f67b2e79f797ce855b740}
+      \strng{fullhash}{8699132f451f67b2e79f797ce855b740}
+      \strng{bibnamehash}{8699132f451f67b2e79f797ce855b740}
+      \strng{authorbibnamehash}{8699132f451f67b2e79f797ce855b740}
+      \strng{authornamehash}{8699132f451f67b2e79f797ce855b740}
+      \strng{authorfullhash}{8699132f451f67b2e79f797ce855b740}
+      \strng{editorbibnamehash}{ef95611aaa6551f2a39bf2efea6ee471}
+      \strng{editornamehash}{ef95611aaa6551f2a39bf2efea6ee471}
+      \strng{editorfullhash}{ef95611aaa6551f2a39bf2efea6ee471}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Les nombres eulériens An,k (n ≥ 1, 1 ≤ k ≤ n) sont définis par la relation de recurrence(1){\$}{\$}{\backslash}begin{\{}gathered{\}}{\{}A{\_}{\{}1,1{\}}{\}} = 1{\{}{\backslash}text{\{} {\}}{\}}{\{}A{\_}{\{}1,k{\}}{\}} = 0{\{}{\backslash}text{\{} pour k{\}}{\}} {\backslash}ne {\{}{\backslash}text{\{}1{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n,k{\}}{\}} = {\{}{\backslash}text{\{}k {\}}{\}}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n - 1,k{\}}{\}} + {\{}{\backslash}text{\{}(n - k + 1){\}}{\}}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n - 1,k - 1{\}}{\}}{\{}{\backslash}text{\{} pour n {\}}{\}} {\backslash}geqslant {\{}{\backslash}text{\{}2 et{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\{}{\backslash}text{\{}1{\}}{\}} {\backslash}leqslant {\{}{\backslash}text{\{}k{\}}{\}} {\backslash}leqslant {\{}{\backslash}text{\{}n{\}}{\}}{\{}{\backslash}text{\{}.{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\backslash}end{\{}gathered{\}} {\$}{\$}}
+      \field{booktitle}{Higher Combinatorics}
+      \field{isbn}{978-94-010-1220-1}
+      \field{title}{Distributions Euleriennes et Mahoniennes sur le Groupe des Permutations}
+      \field{year}{1977}
+      \field{pages}{27\bibrangedash 49}
+      \range{pages}{23}
+    \endentry
+    \entry{Kociumaka2014}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=c70c19c5c6f2a440b47c842cc44fd36a}{%
+           family={Kociumaka},
+           familyi={K\bibinitperiod},
+           given={Tomasz},
+           giveni={T\bibinitperiod}}}%
+        {{hash=b9f9d74e62bde7b7cdbdafe64df63113}{%
+           family={Radoszewski},
+           familyi={R\bibinitperiod},
+           given={Jakub},
+           giveni={J\bibinitperiod}}}%
+        {{hash=69d2cd82599f6ceb669cf76a54c6b12f}{%
+           family={Rytter},
+           familyi={R\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{fullhash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{bibnamehash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{authorbibnamehash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{authornamehash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{authorfullhash}{dfbc2d513bd436ac089affb012d361f8}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Combinatorial Pattern Matching}
+      \field{isbn}{978-3-319-07566-2}
+      \field{title}{Computing k-th Lyndon Word and Decoding Lexicographically Minimal de Bruijn Sequence}
+      \field{year}{2014}
+      \field{pages}{202\bibrangedash 211}
+      \range{pages}{10}
+    \endentry
+    \entry{Kaplansky1946}{article}{}
+      \name{author}{2}{}{%
+        {{hash=f21a937cde34af7b3489bde1d52b0b2f}{%
+           family={Kaplansky},
+           familyi={K\bibinitperiod},
+           given={Irving},
+           giveni={I\bibinitperiod}}}%
+        {{hash=545658b3ea930cbc8b9bf12d5f8225c9}{%
+           family={Riordan},
+           familyi={R\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Duke University Press}%
+      }
+      \strng{namehash}{bb47d35a0ad4408aaf087a4afe43b741}
+      \strng{fullhash}{bb47d35a0ad4408aaf087a4afe43b741}
+      \strng{bibnamehash}{bb47d35a0ad4408aaf087a4afe43b741}
+      \strng{authorbibnamehash}{bb47d35a0ad4408aaf087a4afe43b741}
+      \strng{authornamehash}{bb47d35a0ad4408aaf087a4afe43b741}
+      \strng{authorfullhash}{bb47d35a0ad4408aaf087a4afe43b741}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Duke Mathematical Journal}
+      \field{number}{2}
+      \field{title}{{The problem of the rooks and its applications}}
+      \field{volume}{13}
+      \field{year}{1946}
+      \field{pages}{259\bibrangedash 268}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1215/S0012-7094-46-01324-5
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1215/S0012-7094-46-01324-5
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1215/S0012-7094-46-01324-5
+      \endverb
+    \endentry
+    \entry{Riordan1980}{book}{}
+      \name{author}{1}{}{%
+        {{hash=545658b3ea930cbc8b9bf12d5f8225c9}{%
+           family={Riordan},
+           familyi={R\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {USA}%
+      }
+      \list{publisher}{1}{%
+        {Princeton University Press}%
+      }
+      \strng{namehash}{545658b3ea930cbc8b9bf12d5f8225c9}
+      \strng{fullhash}{545658b3ea930cbc8b9bf12d5f8225c9}
+      \strng{bibnamehash}{545658b3ea930cbc8b9bf12d5f8225c9}
+      \strng{authorbibnamehash}{545658b3ea930cbc8b9bf12d5f8225c9}
+      \strng{authornamehash}{545658b3ea930cbc8b9bf12d5f8225c9}
+      \strng{authorfullhash}{545658b3ea930cbc8b9bf12d5f8225c9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781400854332}
+      \field{title}{An Introduction to Combinatorial Analysis}
+      \field{year}{1980}
+    \endentry
+    \entry{Shevelev1992}{article}{}
+      \name{author}{1}{}{%
+        {{hash=fc1982e4969186630a3cd013022eb2d1}{%
+           family={Shevelev},
+           familyi={S\bibinitperiod},
+           given={V.\bibnamedelimi S.},
+           giveni={V\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{fc1982e4969186630a3cd013022eb2d1}
+      \strng{fullhash}{fc1982e4969186630a3cd013022eb2d1}
+      \strng{bibnamehash}{fc1982e4969186630a3cd013022eb2d1}
+      \strng{authorbibnamehash}{fc1982e4969186630a3cd013022eb2d1}
+      \strng{authornamehash}{fc1982e4969186630a3cd013022eb2d1}
+      \strng{authorfullhash}{fc1982e4969186630a3cd013022eb2d1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{We sketch the circle of fundamental ideas and trends in the development of one of the important branches of combinatorial analysis---the theory of enumerating the permutations with restricted positions, which dates back to Euler, Monmort, Lucas, Cayley, and other classical authors. We devote a great deal of attention to new and up-to-date trends of the theory, some of which are still in the formative stage. We state 10 conjectures and problems.}
+      \field{issn}{1573-8795}
+      \field{journaltitle}{Journal of Soviet Mathematics}
+      \field{month}{9}
+      \field{number}{4}
+      \field{title}{Some problems of the theory of enumerating the permutations with restricted positions}
+      \field{volume}{61}
+      \field{year}{1992}
+      \field{pages}{2272\bibrangedash 2317}
+      \range{pages}{46}
+      \verb{doi}
+      \verb 10.1007/BF01104103
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF01104103
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF01104103
+      \endverb
+    \endentry
+    \entry{Valiant1979}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ebcdecb3264d74c439b7eba5e14bbb35}{%
+           family={Valiant},
+           familyi={V\bibinitperiod},
+           given={L.G.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{ebcdecb3264d74c439b7eba5e14bbb35}
+      \strng{fullhash}{ebcdecb3264d74c439b7eba5e14bbb35}
+      \strng{bibnamehash}{ebcdecb3264d74c439b7eba5e14bbb35}
+      \strng{authorbibnamehash}{ebcdecb3264d74c439b7eba5e14bbb35}
+      \strng{authornamehash}{ebcdecb3264d74c439b7eba5e14bbb35}
+      \strng{authorfullhash}{ebcdecb3264d74c439b7eba5e14bbb35}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{It is shown that the permanent function of (0, 1)-matrices is a complete problem for the class of counting problems associated with nondeterministic polynomial time computations. Related counting problems are also considered. The reductions used are characterized by their nontrivial use of arithmetic.}
+      \field{issn}{0304-3975}
+      \field{journaltitle}{Theoretical Computer Science}
+      \field{number}{2}
+      \field{title}{The complexity of computing the permanent}
+      \field{volume}{8}
+      \field{year}{1979}
+      \field{pages}{189\bibrangedash 201}
+      \range{pages}{13}
+      \verb{doi}
+      \verb https://doi.org/10.1016/0304-3975(79)90044-6
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/0304397579900446
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/0304397579900446
+      \endverb
+    \endentry
+    \entry{Mikawa2014}{article}{}
+      \name{author}{2}{}{%
+        {{hash=b59caa62d73e413a6bdf866d85f42e06}{%
+           family={Mikawa},
+           familyi={M\bibinitperiod},
+           given={Kenji},
+           giveni={K\bibinitperiod}}}%
+        {{hash=9b3016397bde6ebbef378f715f91fb43}{%
+           family={Tanaka},
+           familyi={T\bibinitperiod},
+           given={Ken},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{4e6ada7102b167edef04a80faeb39ab5}
+      \strng{fullhash}{4e6ada7102b167edef04a80faeb39ab5}
+      \strng{bibnamehash}{4e6ada7102b167edef04a80faeb39ab5}
+      \strng{authorbibnamehash}{4e6ada7102b167edef04a80faeb39ab5}
+      \strng{authornamehash}{4e6ada7102b167edef04a80faeb39ab5}
+      \strng{authorfullhash}{4e6ada7102b167edef04a80faeb39ab5}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Discret. Appl. Math.}
+      \field{title}{Lexicographic ranking and unranking of derangements in cycle notation}
+      \field{volume}{166}
+      \field{year}{2014}
+      \field{pages}{164\bibrangedash 169}
+      \range{pages}{6}
+    \endentry
+    \entry{Stanley2011EC1}{book}{}
+      \name{author}{1}{}{%
+        {{hash=a61a7c4d8f4b467437038b8bc2aee208}{%
+           family={Stanley},
+           familyi={S\bibinitperiod},
+           given={Richard\bibnamedelima P.},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {USA}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{fullhash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{bibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authorbibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authornamehash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \strng{authorfullhash}{a61a7c4d8f4b467437038b8bc2aee208}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{isbn}{1107602629}
+      \field{title}{Enumerative Combinatorics: Volume 1}
+      \field{year}{2011}
+    \endentry
+    \entry{Zeilberger2014}{article}{}
+      \name{author}{1}{}{%
+        {{hash=96d80a8e65b1c29cb1c6faac4c31d3be}{%
+           family={Zeilberger},
+           familyi={Z\bibinitperiod},
+           given={Doron},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{96d80a8e65b1c29cb1c6faac4c31d3be}
+      \strng{fullhash}{96d80a8e65b1c29cb1c6faac4c31d3be}
+      \strng{bibnamehash}{96d80a8e65b1c29cb1c6faac4c31d3be}
+      \strng{authorbibnamehash}{96d80a8e65b1c29cb1c6faac4c31d3be}
+      \strng{authornamehash}{96d80a8e65b1c29cb1c6faac4c31d3be}
+      \strng{authorfullhash}{96d80a8e65b1c29cb1c6faac4c31d3be}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Séminaire Lotharingien de Combinatoire}
+      \field{number}{B71a}
+      \field{title}{Automatic Enumeration of Generalized Ménage Numbers}
+      \field{volume}{71}
+      \field{year}{2014}
+    \endentry
+  \enddatalist
+  \missing{Ehrenborg1995}
+  \missing{FiveThirtyEight}
+  \missing{Gardner1979Problem}
+  \missing{Gardner1979Solution}
+  \missing{Rabinovich2022}
+  \missing{Winkler2004}
+  \missing{Winkler2021}
+  \missing{Yehuda1993}
+\endrefsection
+\endinput
+

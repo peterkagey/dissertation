@@ -1,0 +1,66 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{decorations.pathreplacing}
+\newcommand{\xy}[2]{({(#1) - (#2)/2}, {0.866*(#2)})}
+\pgfmathsetmacro{\n}{9}
+\pgfmathsetmacro{\a}{4}
+\pgfmathsetmacro{\b}{5}
+\pgfmathsetmacro{\c}{7}
+\pgfmathsetmacro{\d}{9}
+% \title{Proof without words: There are $\binom{n+2}{4}$ equilateral triangles
+% with vertices in the size $n$ triangular grid.}
+% \author{Peter Kagey}
+% \date{}
+\begin{document}
+% \maketitle
+% \noindent
+% Suppose $0 \leq A < B < C < D \leq n+1$.
+
+% \noindent
+% (Illustrated for $n=10$, $A = 4$, $B = 5$, $C=8$, $D=10$.)
+
+% \vspace{1cm}
+\begin{tikzpicture}
+  \foreach \a in {0,...,\n} {
+    \foreach \b [
+      evaluate={\x using \a - \b/2},
+      evaluate={\y using {0.866*\b}},
+    ]
+    in {0,...,\a} {
+      \fill[gray] (\x,\y) circle (0.1);
+    }
+  }
+  \draw[thick, gray, dashed] \xy{0}{0} -- \xy{\n}{0} -- \xy{\n}{\n} -- cycle;
+  % \draw[ultra thick, red, dotted] \xy31 -- \xy{\d-3}1 -- \xy{\d-3}6 -- cycle;
+  \draw[ultra thick, red, dotted]
+    \xy{\d-2}{\d-\c+\b-1} circle (0.2) % top \xy{\d-2}{\d-\c+\b-1}
+    \xy{\d-2-0.2}{\d-\c+\b-1-0.2} -- % top left
+    \xy{\d-\b-1}{\d-\c} -- % bottom left
+    \xy{\d-2}{\d-\c} -- % bottom right
+    \xy{\d-2}{\d-\c+\b-1-0.2} % top right
+  ;
+  \draw[fill=blue, fill opacity=0.5, line width=3]
+    \xy{\d-\b+\a-2}{\d-\c} -- % bottom
+    \xy{\d-2}{\d-\c+\a-1} --  % right
+    \xy{\d-\b-1+\b-\a}{\d-\c+\b-\a} -- % left
+    cycle
+  ;
+  \draw[ultra thick, decorate,decoration={brace,amplitude=10pt},xshift=0pt,yshift=-0.25cm]
+    \xy{\d-2}{\d-\c} -- \xy{\d-\b-1}{\d-\c}
+    node [rectangle,draw,fill=white,midway,anchor=north,xshift=0cm, yshift=-0.5cm] {$B$}
+  ;
+  \draw[ultra thick, decorate,decoration={brace,amplitude=10pt},xshift=0.2165cm,yshift=0.125cm]
+    \xy{\d-2}{\d-\c+\a-1} -- \xy{\d-2}{\d-\c}
+    node [rectangle,draw,fill=white,midway,anchor=west,xshift=0.433cm, yshift=0.25cm] {$A$}
+  ;
+  \draw[ultra thick, decorate,decoration={brace,amplitude=10pt},xshift=-0.2165cm,yshift=-0.125cm]
+    \xy{\d-2}{\d-\c+\b-1} -- \xy{\d-2}{\d-2}
+    node [rectangle,draw,fill=white,midway,anchor=east,xshift=-0.433cm, yshift=-0.25cm] {$C - B + 1$}
+  ;
+  \draw[ultra thick, decorate,decoration={brace,amplitude=10pt},xshift=0.2165cm,yshift=-0.125cm]
+    \xy{\n}{\d-\c+\b-1+\n+2-\d} -- \xy{\d-2}{\d-\c+\b-1}
+    node [rectangle,draw,fill=white,midway,anchor=west,xshift=0.433cm, yshift=-0.25cm] {$n + 3 - D$}
+  ;
+\end{tikzpicture}
+\end{document}
