@@ -20,6 +20,10 @@ What this paper does:
   \item Example for third reduction. (Theorem \ref{thm:SpinReduction2})
   \item Define/discuss minimal switching strategies?
   \item Mention conjecture that most groups are $2$-groups
+  \item Infinite switching strategy?
+    $\mathbb{Z} \wr C_2$ or $\mathbb{Z}_2^\infty \wr C_2$. \\
+    (By $\mathbb{Z}_2^\infty$, I mean something isomorphic to the integers under
+    XOR: $(\mathbb{Z}, \oplus)$.)
 \end{enumerate}
 
 \section{Overview and Preliminaries}
@@ -38,12 +42,13 @@ He wrote that he learned of the puzzle from Robert Tappay of Toronto who
 ``believes it comes from the U.S.S.R.''
 
 The version under consideration in this paper is first hinted at in 1993
-\cite{Yehuda1993}.
+by Yehuda and collaborators \cite{Yehuda1993}.
 Ehrenborg and Skinner consider something very similar, which they call the
 "Blind Bartender with Boxing Gloves" \cite{Ehrenborg1995}.
-
 This was re-popularized in 2019 when it appeared in ``The Riddler'' from
 FiveThirtyEight \cite{FiveThirtyEight}.
+Sidana \cite{Sidana2020} provides a detailed overview of the history of this
+and related problems.
 
 My preferred version appears in Peter Winkler's 2004 book
 \textit{Mathematical Puzzles A Connoisseur's Collection}
@@ -57,19 +62,50 @@ My preferred version appears in Peter Winkler's 2004 book
   at most some fixed number of steps. \cite{Winkler2004}
 \end{quote}
 
-TODO: Sidana paper has nice history.
-
 \subsection{Generalizing Switches}
 ``The problem can also be generalized by replacing glasses with objects that
 have more than two positions. Hence the rotating table leads into deep
 combinatorial questions that as far as I know have not yet been explored.''
 \cite{Gardner1979Solution}
 
-Switches that instead behave like $n$-state roulettes with a single on position
-are considered by Yehuda, Etzionn, and Moran in 1993 \cite{Yehuda1993}.
-Yuri Rabinovich \cite{Rabinovich2022} goes further by considering collections of switches that behave
-like vector spaces over finite fields. I go further still by considering
-switches that behave like arbitrary finite groups---or more generally still, finite quasigroups with identity.
+Two kinds of switches are considered by Yehuda, Etzionn, and Moran in 1993
+\cite{Yehuda1993}: switches with a single ``on'' position that behave like
+$n$-state roulettes ($\mathbb Z_n$) and switches that behave like
+the finite field $\mathbb F_q$.
+Yuri Rabinovich \cite{Rabinovich2022} goes further by considering collections
+of switches that behave like arbitrary finite dimensional vector spaces over
+finite fields.
+We can generalize this notion further by considering
+switches that behave like arbitrary finite groups.
+
+For example, one could imagine a switch that behaves like the symmetric
+group $S_3$, consisting of three identical-looking parts that need to be
+arranged in a particular order in order for the switch to be on,
+as illustrated in Figure \ref{fig:S3Switch}.
+
+Groups are a useful model for switches because they share many properties of a
+desirable switch \begin{enumerate}
+  \item Closure. Every change we make to a switch leaves it in a valid state.
+  \item Identity. We can ``do nothing'' to a switch and leave it in whatever
+    state it is in.
+  \item Inverses. No matter what state a switch is in, we can move it to the
+    on state.
+  \item Associativity. This is not strictly necessary, but it allows us to
+    model things better.
+    (In Subsection \ref{sub:quasigroupSwitches}, we briefly discuss dropping
+    this assumption by considering switches that behave like quasigroups with
+    identity.)
+\end{enumerate}
+
+% In a similar vein, we could construct a switch that behaves like the dihedral
+% group of the square. Perhaps the switch is a thin square prism that fits into a
+% square slot in such a way that only one orientation of the prism completes the
+% circuit. See Figure \ref{fig:D8Switch} for a simple schematic.
+% [A schematic for a switch that looks like $D_4$.]
+% Or one could imagine a switch that behaves like the dihedral group of the square,
+% $D_8$ where the square has a single, unique orientation that completes the circuit.
+% Or abstractly, one could think of each switch as an abstract group element,
+% where Player B can multiply by anything they like.
 
 \begin{figure}
 \center{
@@ -142,50 +178,39 @@ switches that behave like arbitrary finite groups---or more generally still, fin
   completes the circuit. All other configurations fail to
   complete the circuit (e.g. (c)).
 }
+\label{fig:S3Switch}
 \end{figure}
 
-[A schematic for a switch that looks like $D_4$.]
-
-
 \subsection{Generalizing Spinning}
-We can also consider different ways of rearranging the switches.
-In a 1995 paper \cite{Ehrenborg1995}, Ehrenborg and Skinner provide a criterion
-for which permutations of ordinary, 2-way switches yield a winning strategy.
-Rabinovich \cite{Rabinovich2022} settles the problem for switches in a
-finite vector space.
-
-For example, one could imagine a ``switch'' that behaves like the symmetric
-group $S_3$, consisting of three identical-looking parts that need to be
-arranged in a particular order in order for the switch to be on.
-
-Or one could imagine a switch that behaves like the dihedral group of the square,
-$D_8$ where the square has a single, unique orientation that completes the circuit.
-Or abstractly, one could think of each switch as an abstract group element,
-where Player B can multiply by anything they like.
+We can also consider generalizations of ``spinning'' the switches.
+In particular, we will adopt the generalization from
+Ehrenborg and Skinner's \cite{Ehrenborg1995} 1995 paper, which use
+arbitrary finite group actions to permute the switches.
+In particular, they provide a criterion that determines which group actions
+yield a winning strategy in the case of a given number of ``ordinary'' switches
+(those that behave like $\mathbb Z_2$).
+Rabinovich \cite{Rabinovich2022} stretches these results a bit further and
+looks at certain group actions on collections of switches that behave like
+a finite dimensional vector space over a finite field. We build on this result
+in the context of more general switches.
 
 \section{The Wreath Product Model}
 \label{sec:WreathModel}
 Remind you of the definition of a wreath product, and give examples of how it
 models the spinning switches puzzle.
-\begin{definition}
-  [Literally copied from Rotman]
-  Let $D$ and $Q$ be groups,
-  let $\Omega$ be a finite $Q$-set, and
-  let $K = \prod_{\omega \in \Omega} D_\omega$, where $D_\omega \cong D$
+\subsection{Modeling Generalized Spinning Switches Puzzles}
+\begin{definition}[\cite{TODORotmanGroupTheoryFIXME}]
+  Let $G$ and $H$ be groups,
+  let $\Omega$ be a finite $H$-set, and
+  let $K = \prod_{\omega \in \Omega} G_\omega$, where $G_\omega \cong G$
   for all $\omega \in \Omega$.
-  Then the \textbf{wreath product} of $D$ by $Q$ denoted by $D \wr Q$,
-  is the semidirect product of $K$ by $Q$,
-  where $Q$ acts on $K$ by $q \cdot (d_\omega) = d_{q\omega}$ for $q \in Q$ and
-  $(d_\omega) \in \prod_{\omega \in \Omega} D_\omega$.
-  The normal subgroup $K$ of $D \wr Q$ is called
+  Then the \textbf{wreath product} of $G$ by $H$ denoted by $G \wr H$,
+  is the semidirect product of $K$ by $H$,
+  where $H$ acts on $K$ by $h \cdot (d_\omega) = d_{h^{-1}\omega}$ for $g \in H$ and
+  $(g_\omega) \in \prod_{\omega \in \Omega} G_\omega$.
+  The normal subgroup $K$ of $G \wr H$ is called
   the \textbf{base} of the wreath product.
-  % Suppose you have two finite groups $G$ and $H$, and a $H$-set $\Omega$,
-  % which together form a wreath product $G \wr_\Omega H$ with base \[
-  %   K = \prod_{\omega \in \Omega} g_\omega.
-  % \]
 \end{definition}
-
-TODO: I prefer the Wikipedia version where $q \cdot (d_\omega) = d_{q^{-1}\omega}$
 
 The reason this definition is used is because it models the game well, where
 $G$ models the behavior of the switches, $\Omega$ models the switches themselves,
@@ -208,16 +233,16 @@ and then Player A chooses $k$ to indicate how they want to permute the switches.
 
   Consider the following two turns:
   \begin{enumerate}
-    \item Turn 1: $((1,0,1,0), 90^\circ) \in \mathbb Z_2 \wr C_4$.
-    \begin{enumerate}
-      \item Player B toggles the upper-left and lower-right switches.
-      \item Player A rotates the table $90^\circ$ clockwise.
-    \end{enumerate}
-    \item Turn 2: $((1,0,0,0), 180^\circ) \in \mathbb Z_2 \wr C_4$.
-    \begin{enumerate}
-      \item Player B toggles the upper-left switch.
-      \item Player A rotates the table $90^\circ$ clockwise.
-    \end{enumerate}
+    \item During the first turn,
+    Player B toggles the upper-left and lower-right switches, and
+    Player A rotates the table $90^\circ$ clockwise.
+    This is represented by the element
+    $((1,0,1,0), 90^\circ) \in \mathbb Z_2 \wr C_4$.
+    \item During the second turn,
+    Player B toggles the upper-left switch, and
+    Player A rotates the table $90^\circ$ clockwise.
+    This is represented by the element
+    $((1,0,0,0), 180^\circ) \in \mathbb Z_2 \wr C_4$.
   \end{enumerate}
 
   As illustrated in Figure \ref{fig:WreathProduct},
@@ -266,9 +291,11 @@ and then Player A chooses $k$ to indicate how they want to permute the switches.
     \label{fig:WreathProduct}
   \end{figure}
 
-  The multiplication under the wreath product agrees with this: \[
-    ((1,0,1,0), 90^\circ) \cdot ((1,0,0,0), 180^\circ) = ((1,0,1,1), 270^\circ)
-  \]
+  The multiplication under the wreath product agrees with this: \begin{align*}
+    ((1,0,1,0), 90^\circ) \cdot ((1,0,0,0), 180^\circ)
+    &= ((1,0,1,0) + 90^\circ \cdot (1,0,0,0), 90^\circ + 180^\circ) \\
+    &= ((1,0,1,1), 270^\circ)
+  \end{align*}
 \end{example}
 
 Occasionally it is useful to designate a particular state of the switches as the
@@ -277,6 +304,8 @@ given for this. However, the existence of a winning strategy does not depend on
 a particular choice in the winning state; instead, a winning strategy is
 equivalent to a choice of moves that will walk over all of the possible
 configuration states, regardless of the choice of the adversaries spin.
+
+\subsection{Switching Strategy}
 
 \begin{definition}
   A \textbf{switching strategy} is a finite sequence, $\{k_i \in K\}_{i=1}^N$,
@@ -298,10 +327,30 @@ terms. It is also useful because it abstracts away the initial state of the
 switches: regardless of the initial state $k \in K$, a existence of a switching strategy
 means that its inverse $k^{-1} \in K$ appears in the sequence.
 
+\begin{lemma}
+  A sequence of moves is guaranteed to ``turn on the lightbulb'' if and only if
+  it is a switching strategy.
+\end{lemma}
+\begin{proof}
+  Without loss of generality, say that the ``on'' setting for the switches is
+  $\mathrm{id}_K$.
+  In the puzzle, we have an initial (hidden) state, $k$.
+  Thus, after the $i$-th move, the wreath product
+  element that represents the state of the switches is \[
+    p\left((k, \mathrm{id}_H)\cdot(k_1, h_1)\cdot(k_2, h_2)\cdots(c_i, h_i)\right)
+    = k \cdot p\left((k_1, h_1)\cdot(k_2, h_2)\cdots(c_i, h_i)\right),
+  \] by associativity, where we can factor out the first term because
+  the ``spin'' is $\mathrm{id}_H$, which acts trivially.
+
+  Thus, by considering different initial states, we see that in order
+  to reach the on state, there must exist some $i$, such that
+  $p\left((k_1, h_1)\cdot(k_2, h_2)\cdots(c_i, h_i)\right) = k^{-1}$ for all
+  $k$ and adversarial sequences $\{h_i\}_{i=1}^N$.
+\end{proof}
+
 It's also worth noting that this model can be thought of as a random model or an
 adversarial model: the sequence $\{h_i \in H\}$ can be chosen after the sequence
-$\{k_i \in K\}$ in a deterministic way randomly.
-
+$\{k_i \in K\}$ in a deterministic way or randomly.
 
 \begin{enumerate}
   \item Random model to adversarial model
@@ -309,6 +358,14 @@ $\{k_i \in K\}$ in a deterministic way randomly.
   \item Spin
   \item Proves lower bound of number of moves
 \end{enumerate}
+
+\begin{lemma}
+  Every switching strategy $\{k_i \in K\}_{i=1}^{N}$ is a sequence of
+  length at least $|K| - 1$.
+\end{lemma}
+\begin{proof}
+  By the pigeonhole principle, if
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -436,6 +493,9 @@ doesn't work where $\Omega'$ is any orbit under $N$?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Switching Strategies on \texorpdfstring{$p$}{p}-Groups}
 \label{sec:pGroupStrategy}
+In this section, we'll develop a broad family of switching strategies,
+namely those on $p$-groups.
+
 \begin{theorem}
   The wreath product $G \wr H$ has a switching strategy if there exists a
   normal subgroup $N \trianglelefteq G$ such that both $N \wr H$ and
@@ -511,8 +571,29 @@ Of course, if $H = \textbf{1}$ is the trivial group, then
 $G \wr \mathbf{1} \cong G$ has a switching strategy even if $G$ is not a $p$-group.
 (In fact, it has $(|G|-1)!$ switching strategies!)
 
-\subsection{\texorpdfstring{$S_3 \wr C_2$}{Two copies of the symmetric group on three letters}}
-Here's an example.
+\subsection{\texorpdfstring{$S_n \wr C_2$}{Two copies of the symmetric group on three letters}}
+\begin{theorem}
+  $S_n \wr C_2$ has a switching strategy.
+\end{theorem}
+
+We'll construct a switching strategy.
+Now our switching strategy has two parts: the first is that we ensure that
+the two switches have every possible difference. The second is that we show
+that we can get either of the switches to take on every possible value without
+disturbing the difference.
+
+\begin{proof}
+  We start with the observation that the symmetric group can be generated by
+  transpositions: $S_n = \langle t_1, t_2, \dots, t_N\rangle$.
+  This means that there is a sequence of transpositions $t'_1, t'_2, \dots, t'_M$
+  such that $\{\mathrm{id}, t'_1, t'_1t'_2, \dots, t'_1t'_2\dots t'_M\} = S_n$.
+
+  Strategy A: ($S_2$)
+
+  Strategy B: ($S_1$)
+
+  Combined: $S_2 \circledast S_1$
+\end{proof}
 \begin{example}
   If $a \in S_3$, let $a_1$ mean multiplying one of the two copies by $a$ and
   $a_2$ mean multiplying both of the copies by $a$. Then the following is
@@ -556,6 +637,7 @@ I'm interested in the answer even in the case of $G \wr \mathrm{1} \equiv G$.
 (\href{https://math.stackexchange.com/q/3706654/121988}{MSE})
 
 \subsection{Quasigroup switches}
+\label{sub:quasigroupSwitches}
 In the paper we modeled switches as groups.
 This is because groups have desirable properties: \begin{enumerate}
   \item Closure. Regardless of which state a switch is in, modifying the state is the set of states.
@@ -631,7 +713,7 @@ Player B says what moves (positionally) they want to make.
 Player A rotates the board however they see fit \textit{then} applies Player
 B's move.
 \begin{conjecture}
-  Player B can always win by repeatedly choosing the inverse of the board.
+  If $G$ is abelian, Player B can always win by repeatedly choosing the inverse of the board.
 \end{conjecture}
 
 \begin{example} This strategy works for $\mathbb Z_2 \wr C_4$. Here's one example.

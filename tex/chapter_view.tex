@@ -1,0 +1,130 @@
+% USC Dissertation/Thesis LaTeX Template
+% Edited by Ruda Zhang, 2020-10-08.
+% -----------------------------------------------------------------------------
+%	PACKAGES AND DOCUMENT CONFIGURATION
+%-----------------------------------------------------------------------------
+
+% Use `report` class with `USCthesis` package (style file) by Brian P. Gerkey
+% Font size should be 11 or 12 points for regular paragraph text.
+\documentclass[letterpaper,12pt]{report}
+% [options] can be any of these default/alternative flag:
+%   dissertation/thesis, final/proposal, copyright/nocopyright,
+%   fussy/sloppy, flushbottom/raggedbottom, clref/opref.
+\usepackage[dissertation]{USCthesis}
+
+% Packages required by `USCthesis.sty`.
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{tabularx}
+
+% Line spacing and margins in compliance with USC graduate school guidelines.
+\usepackage[margin=1in,footskip=.5in]{geometry}
+\doublespacing
+
+% Optional packages: mathematical fonts and symbols
+% You may comment this section out if you don't need them.
+\usepackage{mathptmx} % set font to Times Roman
+\usepackage[OT1]{fontenc} % font encoding for xelatex
+\usepackage{mathtools}
+\usepackage{amsmath, amssymb, amsthm}
+
+% Optional packages: graphics
+
+\usepackage{listings} % For code
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,positioning} % For graphics in Permutation Statistics paper
+\usetikzlibrary{decorations.pathreplacing} % For graphics in Spinning Switches
+\usepackage{skak} % For chess pieces: \symrook.
+\usepackage[subnum]{cases} % For labeling parts of cases in Permutation Statistics paper
+\usepackage[shortlabels]{enumitem} % For numbering enum
+\usepackage{multirow} % For multirow in Permutation Statistics paper
+\newcommand{\n}[1]{\multicolumn{1}{|c|}{#1}} % For Permutation Statistics tables
+\newcommand{\nW}[2]{\tikz[remember picture,anchor=base, baseline,inner xsep=0pt]{\node[box](#2){\vphantom{$\int$}$\underline{#1}$};}}
+\newcommand{\nS}[1]{\tikz[remember picture,anchor=base, baseline,inner xsep=0pt]{\node[box](#1){\vphantom{$\int$}\textvisiblespace};}}
+\newcommand{\bm}{\boldsymbol}
+\pgfmathsetmacro{\myinnersep}{2}% inner sep in mm
+\tikzset{
+box/.style={
+    inner sep=0,%
+    outer sep=0,%
+    minimum height=5mm,%
+    align=center}
+}
+
+% You can use the "demo" option while editing to avoid compiling figures.
+% \usepackage[demo]{graphicx}
+% You can add absolute paths as well.
+\graphicspath{{./}{../}{figures/}{../figures/}}
+
+% Optional packages: bibliography with BibLaTeX.
+% Comment this section out if you prefer BibTeX.
+\usepackage[
+    style=nature,
+    sorting=none,
+    isbn=false,
+    url=false,
+    doi=true,
+    eprint=false,
+    date=year,
+    maxnames=6,
+    minnames=6
+]{biblatex}
+\AtEveryBibitem{\clearfield{eventtitle}}
+\AtEveryCitekey{\clearfield{eventtitle}}
+\AtEveryBibitem{\clearfield{pagetotal}}
+\AtEveryCitekey{\clearfield{pagetotal}}
+\addbibresource{references.bib}
+
+% Filler text for formatting. Comment these lines out for real writing.
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{note}[theorem]{Note}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{todo}[theorem]{To Do}
+\newtheorem*{problem}{\$100 Problem}
+\newtheorem*{answer}{\$100 Answer}
+\begin{document}
+
+%-----------------------------------------------------------------------------
+%	TITLE PAGE
+%-----------------------------------------------------------------------------
+
+% Volume name could be added as option, e.g. `[Volume I]`.
+\title{\textbf{\Large{Statistics, Spinning Switches, Squares, Seating, and Solids}}}
+
+\author{Peter O. Kagey}
+
+% Committee list is only shown in `proposal` layout.
+\committee{A.~Adams & (Chair)\\*
+           B.~Bell\\*
+           C.~Clausius\\*
+           D.~Dirichlet\\*
+           E.~Emory & (Outside Member)}
+
+% Submission information is only shown in `final` layout.
+\majorfield{Mathematics}
+\submitdate{June 2022}  % Must be one of the three dates allowed in the guideline
+
+% Make sure everything, specially your title page, exactly follows the guideline:
+% https://graduateschool.usc.edu/wp-content/themes/fictional-university-theme/assets/doc/Manuscript_Formatting_and_Documentation_Styles.pdf
+
+\tableofcontents
+\include{SpinningSwitches/spinning_switches}
+% \include{PermutationStatistics/permutation_statistics}
+% \include{TrianglesInTriangles/triangles_in_triangles}
+% \include{RonGraham/ron_grahams_sequence}
+% \include{Menage/unranking_menage}
+% \include{ClassifyingPolyhedra/classifying_polyhedra}
+
+% Conclusion and ongoing work
+% \include{Conclusion}
+
+\end{document}
