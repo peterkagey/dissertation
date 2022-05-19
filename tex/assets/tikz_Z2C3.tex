@@ -1,0 +1,48 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usepackage{amsfonts}
+
+\begin{document}
+  \begin{tikzpicture}
+    \draw % x marks the spot!
+    (-0.1,-0.1)--(0.1,0.1)
+    (-0.1,0.1)--(0.1,-0.1)
+  ;
+  \path (-3.2,0)--(3.2,0); % Set left/right padding
+  \foreach \t in {90,210,...,360} {
+    \node at ({2*cos(\t)},{2*sin(\t)}) {$\mathbb Z_6$};
+    \node (A\t) at ({2.8*cos(\t+10)},{2.8*sin(\t+10)}) {};
+    \node (B\t) at ({2.8*cos(\t+110)},{2.8*sin(\t+110)}) {};
+    \draw[thick] ({3.2*cos(\t)},{3.2*sin(\t)}) -- ({3.2*cos(\t + 120)},{3.2*sin(\t + 120)});
+    \foreach \th in {0, 60, ..., 300} {
+      \draw[thick, ->] ({2*cos(\t)+cos(\th)*0.5},{2*sin(\t)+sin(\th)*0.5}) arc (\th:\th+60:0.5);
+    }
+  }
+
+  \draw[xshift=20em, thick, ->] (B90) to[out=150-40, looseness=0.8, in=90+100] (A90);
+  \draw[xshift=20em, thick, ->] (B210) to[out=270-40, looseness=0.8, in=210+100] (A210);
+  \draw[xshift=20em, thick, ->] (B330) to[out=30-40, looseness=0.8, in=330+100] (A330);
+
+ % -------------------
+
+  \draw[xshift=20em] % x marks the spot!
+    (-0.1,-0.1)--(0.1,0.1)
+    (-0.1,0.1)--(0.1,-0.1)
+  ;
+  \path[xshift=20em] (-3.2,0)--(3.2,0); % Set left/right padding
+  \foreach \t in {90,210,...,360} {
+    \node[xshift=20em] at ({2*cos(\t)},{2*sin(\t)}) {$\mathbb Z_2$};
+    \node[xshift=20em] (A\t) at ({2.8*cos(\t+10)},{2.8*sin(\t+10)}) {};
+    \node[xshift=20em] (B\t) at ({2.8*cos(\t+110)},{2.8*sin(\t+110)}) {};
+    \draw[xshift=20em, thick] ({3.2*cos(\t)},{3.2*sin(\t)}) -- ({3.2*cos(\t + 120)},{3.2*sin(\t + 120)});
+    \foreach \th in {0, 180} {
+      \draw[xshift=20em, thick, ->] ({2*cos(\t)+cos(\th)*0.5},{2*sin(\t)+sin(\th)*0.5}) arc (\th:\th+180:0.5);
+    }
+  }
+
+  \draw[xshift=20em, thick, ->] (B90) to[out=150-40, looseness=0.8, in=90+100] (A90);
+  \draw[xshift=20em, thick, ->] (B210) to[out=270-40, looseness=0.8, in=210+100] (A210);
+  \draw[xshift=20em, thick, ->] (B330) to[out=30-40, looseness=0.8, in=330+100] (A330);
+
+  \end{tikzpicture}
+\end{document}
