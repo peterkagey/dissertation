@@ -60,13 +60,83 @@
       \verb http://www.jstor.org/stable/24965105
       \endverb
     \endentry
-    \entry{Yehuda1993}{article}{}
+    \entry{Winkler2004}{book}{}
+      \name{author}{1}{}{%
+        {{hash=6fa0bd56ef1e47c0f7749a5650d86324}{%
+           family={Winkler},
+           familyi={W\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Natick, Mass}%
+      }
+      \list{publisher}{1}{%
+        {AK Peters}%
+      }
+      \strng{namehash}{6fa0bd56ef1e47c0f7749a5650d86324}
+      \strng{fullhash}{6fa0bd56ef1e47c0f7749a5650d86324}
+      \strng{bibnamehash}{6fa0bd56ef1e47c0f7749a5650d86324}
+      \strng{authorbibnamehash}{6fa0bd56ef1e47c0f7749a5650d86324}
+      \strng{authornamehash}{6fa0bd56ef1e47c0f7749a5650d86324}
+      \strng{authorfullhash}{6fa0bd56ef1e47c0f7749a5650d86324}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1568812014}
+      \field{title}{Mathematical Puzzles: A Connoisseur's Collection}
+      \field{year}{2004}
+    \endentry
+    \entry{Gardner1979Solution}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3124882705abf7cca548c58eb9240b39}{%
+           family={Gardner},
+           familyi={G\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Scientific American, a division of Nature America, Inc.}%
+      }
+      \strng{namehash}{3124882705abf7cca548c58eb9240b39}
+      \strng{fullhash}{3124882705abf7cca548c58eb9240b39}
+      \strng{bibnamehash}{3124882705abf7cca548c58eb9240b39}
+      \strng{authorbibnamehash}{3124882705abf7cca548c58eb9240b39}
+      \strng{authornamehash}{3124882705abf7cca548c58eb9240b39}
+      \strng{authorfullhash}{3124882705abf7cca548c58eb9240b39}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00368733, 19467087}
+      \field{journaltitle}{Scientific American}
+      \field{number}{3}
+      \field{title}{MATHEMATICAL GAMES}
+      \field{urlday}{20}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{volume}{240}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \field{pages}{21\bibrangedash 31}
+      \range{pages}{11}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/24965144
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/24965144
+      \endverb
+    \endentry
+    \entry{BarYehuda1993}{article}{}
       \name{author}{3}{}{%
-        {{hash=84cafff7525e59b4b7db8ddacd93f161}{%
-           family={Bar-Yehuda},
-           familyi={B\bibinithyphendelim Y\bibinitperiod},
-           given={Reuven},
-           giveni={R\bibinitperiod}}}%
+        {{hash=1709524d11773209e421880863a3fa23}{%
+           family={Yehuda},
+           familyi={Y\bibinitperiod},
+           given={Reuven\bibnamedelima Bar},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
         {{hash=6a22a08bbb825c8b7a4a083e33da919f}{%
            family={Etzion},
            familyi={E\bibinitperiod},
@@ -78,14 +148,14 @@
            given={Shlomo},
            giveni={S\bibinitperiod}}}%
       }
-      \strng{namehash}{acfbe1287f9d5db4b14f65306cd7532e}
-      \strng{fullhash}{acfbe1287f9d5db4b14f65306cd7532e}
-      \strng{bibnamehash}{acfbe1287f9d5db4b14f65306cd7532e}
-      \strng{authorbibnamehash}{acfbe1287f9d5db4b14f65306cd7532e}
-      \strng{authornamehash}{acfbe1287f9d5db4b14f65306cd7532e}
-      \strng{authorfullhash}{acfbe1287f9d5db4b14f65306cd7532e}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \strng{namehash}{b0524d515ff23181bc222a4aca0a2dec}
+      \strng{fullhash}{b0524d515ff23181bc222a4aca0a2dec}
+      \strng{bibnamehash}{b0524d515ff23181bc222a4aca0a2dec}
+      \strng{authorbibnamehash}{b0524d515ff23181bc222a4aca0a2dec}
+      \strng{authornamehash}{b0524d515ff23181bc222a4aca0a2dec}
+      \strng{authorfullhash}{b0524d515ff23181bc222a4aca0a2dec}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Theor. Comput. Sci.}
@@ -114,8 +184,8 @@
       \strng{authorbibnamehash}{0b3fed904e175cff0d3a329d6f1fee66}
       \strng{authornamehash}{0b3fed904e175cff0d3a329d6f1fee66}
       \strng{authorfullhash}{0b3fed904e175cff0d3a329d6f1fee66}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We present a two-player game with restricted information for one of the players. The game takes place on a transitive group action. The winning strategies depend on chains of structures in the group action. We also study a modification of the game with further restrictions on one of the players.}
@@ -154,8 +224,8 @@
       \strng{authorbibnamehash}{f8d387007936e063ba0c5efd7b5dede1}
       \strng{authornamehash}{f8d387007936e063ba0c5efd7b5dede1}
       \strng{authorfullhash}{f8d387007936e063ba0c5efd7b5dede1}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{FiveThirtyEight}
@@ -189,42 +259,13 @@
       \strng{authorbibnamehash}{bc2255ef7a61da8713e1321be8940c01}
       \strng{authornamehash}{bc2255ef7a61da8713e1321be8940c01}
       \strng{authorfullhash}{bc2255ef7a61da8713e1321be8940c01}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Constacyclic codes over finite commutative chain rings}
       \field{type}{phdthesis}
       \field{year}{2020}
-    \endentry
-    \entry{Winkler2004}{book}{}
-      \name{author}{1}{}{%
-        {{hash=6fa0bd56ef1e47c0f7749a5650d86324}{%
-           family={Winkler},
-           familyi={W\bibinitperiod},
-           given={Peter},
-           giveni={P\bibinitperiod}}}%
-      }
-      \list{location}{1}{%
-        {Natick, Mass}%
-      }
-      \list{publisher}{1}{%
-        {AK Peters}%
-      }
-      \strng{namehash}{6fa0bd56ef1e47c0f7749a5650d86324}
-      \strng{fullhash}{6fa0bd56ef1e47c0f7749a5650d86324}
-      \strng{bibnamehash}{6fa0bd56ef1e47c0f7749a5650d86324}
-      \strng{authorbibnamehash}{6fa0bd56ef1e47c0f7749a5650d86324}
-      \strng{authornamehash}{6fa0bd56ef1e47c0f7749a5650d86324}
-      \strng{authorfullhash}{6fa0bd56ef1e47c0f7749a5650d86324}
-      \field{extraname}{1}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{isbn}{978-1568812014}
-      \field{title}{Mathematical Puzzles: A Connoisseur's Collection}
-      \field{year}{2004}
     \endentry
     \entry{Rabinovich2022}{article}{}
       \name{author}{1}{}{%
@@ -240,8 +281,8 @@
       \strng{authorbibnamehash}{be69a75eb5c416e6787856ef047fbe80}
       \strng{authornamehash}{be69a75eb5c416e6787856ef047fbe80}
       \strng{authorfullhash}{be69a75eb5c416e6787856ef047fbe80}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We study a generalization of a well-known two player game with partial information. Using an approach different from those appearing in the literature, and introducing group-theoretic methods, a full characterization of the settings where a winning strategy exists is obtained.}
@@ -262,47 +303,6 @@
       \verb https://www.sciencedirect.com/science/article/pii/S0020019021001484
       \endverb
       \keyw{Combinatorial games,Partial information games,Winning strategy,Groups}
-    \endentry
-    \entry{Gardner1979Solution}{article}{}
-      \name{author}{1}{}{%
-        {{hash=3124882705abf7cca548c58eb9240b39}{%
-           family={Gardner},
-           familyi={G\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Scientific American, a division of Nature America, Inc.}%
-      }
-      \strng{namehash}{3124882705abf7cca548c58eb9240b39}
-      \strng{fullhash}{3124882705abf7cca548c58eb9240b39}
-      \strng{bibnamehash}{3124882705abf7cca548c58eb9240b39}
-      \strng{authorbibnamehash}{3124882705abf7cca548c58eb9240b39}
-      \strng{authornamehash}{3124882705abf7cca548c58eb9240b39}
-      \strng{authorfullhash}{3124882705abf7cca548c58eb9240b39}
-      \field{extraname}{2}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{00368733, 19467087}
-      \field{journaltitle}{Scientific American}
-      \field{number}{3}
-      \field{title}{MATHEMATICAL GAMES}
-      \field{urlday}{20}
-      \field{urlmonth}{4}
-      \field{urlyear}{2022}
-      \field{volume}{240}
-      \field{year}{1979}
-      \field{urldateera}{ce}
-      \field{pages}{21\bibrangedash 31}
-      \range{pages}{11}
-      \verb{urlraw}
-      \verb http://www.jstor.org/stable/24965144
-      \endverb
-      \verb{url}
-      \verb http://www.jstor.org/stable/24965144
-      \endverb
     \endentry
     \entry{Rotman1999}{book}{}
       \name{author}{1}{}{%
@@ -330,6 +330,33 @@
       \field{labeltitlesource}{title}
       \field{title}{An Introduction to the Theory of Groups}
       \field{year}{1999}
+    \endentry
+    \entry{oeis}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=6393f998c5344ccb18062c696cecd966}{%
+           family={Inc.},
+           familyi={I\bibinitperiod},
+           given={OEIS\bibnamedelima Foundation},
+           giveni={O\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{6393f998c5344ccb18062c696cecd966}
+      \strng{fullhash}{6393f998c5344ccb18062c696cecd966}
+      \strng{bibnamehash}{6393f998c5344ccb18062c696cecd966}
+      \strng{authorbibnamehash}{6393f998c5344ccb18062c696cecd966}
+      \strng{authornamehash}{6393f998c5344ccb18062c696cecd966}
+      \strng{authorfullhash}{6393f998c5344ccb18062c696cecd966}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{The On-Line Encyclopedia of Integer Sequences}}
+      \field{year}{2021}
+      \verb{urlraw}
+      \verb https://oeis.org/
+      \endverb
+      \verb{url}
+      \verb https://oeis.org/
+      \endverb
     \endentry
     \entry{Winkler2021}{book}{}
       \name{author}{1}{}{%
