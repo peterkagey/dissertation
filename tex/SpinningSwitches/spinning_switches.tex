@@ -832,34 +832,37 @@ where the switches do not behave like $p$-groups.
 % Switching strategies on permutations
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Switching Strategies on Other Wreath Products}
+\section{Switching strategies on other wreath products}
 \label{sec:OtherSwitchingStrategies}
 
-So far, the literature has only contained examples of spinning strategies on
-wreath products that are themselves $p$-groups:
+Other authors have given switching strategies for various configurations of
+generalized spinning switches strategies, but in all of these examples,
+the wreath products themselves $p$-groups:
 $|G \wr_\Omega H| = |G|^{|\Omega|} \cdot |H|$, where $H$ acts faithfully.
+In this section we introduce two families of wreath products that have switching
+strategies, but are not $p$-groups.
 
 \subsection{\texorpdfstring{$G \wr \mathbf{1}$}{The trivial wreath product}}
-
-The first example of a wreath product $G \wr H$ that has switching strategy
-but where $G$ is not a $p$-group occurs when
-$H = \textbf{1}$ is the trivial group.
-In this case, player $B$ cannot ``spin'' the switches at all, so player $A$ has
+The simplest---and least interesting---way to construct a wreath product with
+a switching strategy is to remove the adversary (or randomness) altogether,
+by letting the spinning group be the trivial group $H = \mathbf{1}$.
+Additionally we will consider the case where $|\Omega| = 1$, so there is only
+one switch.
+Because the adversary cannot ``spin'' the switches at all, the puzzle-solver has
 perfect information the entire time.
-Thus, $G \wr \mathbf{1} \cong G$ has a switching strategy for all finite groups
-$G$. In fact, $G \wr \mathbf{1}$ has many switching strategies.
+We will see that whenever $G$ is a finite group,
+$G \wr \mathbf{1} \cong G$ has not just one switching strategy, but many.
 
 \begin{proposition}
   The wreath product $G \wr \mathbf{1}$ has $(|G|-1)!$ minimal switching
   strategies.
 \end{proposition}
 \begin{proof}
-  There are $(|G| - 1)!$ permutations of $G \setminus \{\mathrm{id}_G\}$, and each
-  one corresponds to a minimal switching strategy.
-
-  Suppose that $(k_1, k_2, \dots, k_{|G|-1})$ is such a permutation, then
-  define a switching strategy as $\{k'_i\}_{i=1}^{|G|-1}$ where $k'_1 = k_1$ and
-  $k'_i = k_{i-1}^{-1}k_i$.
+  There are $(|G| - 1)!$ permutations of $G \setminus \{\mathrm{id}_G\}$, and
+  we claim each one corresponds to a minimal switching strategy. Namely,
+  if $(k_1, k_2, \dots, k_{|G|-1})$ is such a permutation, then
+  the sequence $\{k'_i\}_{i=1}^{|G|-1}$ where $k'_1 = k_1$ and
+  $k'_i = k_{i-1}^{-1}k_i$ is a switching strategy on $G \wr \mathbf{1}$.
 
   Then we claim by induction that
   $(k'_1, \mathrm{id})\cdot(k'_2, \mathrm{id})\cdots(k'_j, \mathrm{id}) = (k_j, \mathrm{id})$.
