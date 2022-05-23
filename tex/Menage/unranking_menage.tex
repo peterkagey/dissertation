@@ -510,79 +510,102 @@ It is useful to begin by formalizing this notion of grouping squares.
 
 The reason that we care about decomposing a board into disjoint parts
 is because that perspective allows us to factor the rook polynomial.
-\begin{lemma}[\cite{Kaplansky1946}]
+\begin{theorem}[\cite{Kaplansky1946}]
   If $B$ can be partitioned into disjoint boards $b_1, b_2, \dots, b_m$,
   then the rook polynomial of $B$ is the product of the rook polynomials of
   the $b_i$s \[
     p_B(x) = \prod_{i=1}^m p_{b_i}(x).
   \]
-\end{lemma}
+\end{theorem}
 
-The key insight is that after placing rooks in valid positions in
-the top $1 \leq k \leq n-1$ rows, we get block-diagonal boards,
-with three possible shapes, shown in Figure \ref{fig:blockShape}.
+This disjoint decomposition is useful for this context because,
+as Figure \ref{fig:menageSinglePlacement} suggests, the derived
+complementary board for a nonempty prefix is block-diagonal,
+with well-understood blocks.
+
+\input{assets/Menage/fig_menageSinglePlacement.tex}
+
+Now we will give a name to these blocks,
+which are illustrated in Figure \ref{fig:blockShape}.
+
+\begin{definition}
+  A board is called \textbf{staircase-shaped} if it matches one of the
+  following four shapes:
+  \begin{alignat*}{2}
+    \mathcal{O}_{2n-1}           &= \{(i,i) : i \in [n]\}    &&\cup\ \{(i,i+1) : i \in [n-1]\} \\
+    \mathcal{O}_{2n-1}^\intercal &= \{(i,i) : i \in [n]\}    &&\cup\ \{(i+1,i) : i \in [n-1]\} \\
+    \mathcal{E}_{2n-2}           &= \{(i,i) : i \in [n-1]\}\ &&\cup\ \{(i+1,i) : i \in [n-1]\} \\
+    \mathcal{E}_{2n-2}^\intercal &= \{(i,i) : i \in [n-1]\}\ &&\cup\ \{(i,i+1) : i \in [n-1]\},
+  \end{alignat*}
+  the subscripts represent the number of cells, and the names represent their
+  parity.
+  \label{def:staircaseShaped}
+\end{definition}
+
 \begin{lemma}
   For $\ell \geq 1$, and prefix $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$
-  the derived complementary board $B_\alpha^c$ can be partitioned into boards
-  of one of four shapes.
-  \begin{alignat*}{2}
-    A_n      &= \{(i,i) : i \in [n]\}   &\cup\ \{(i,i+1) : i \in [n-1]\} \\ % (TODO Figure \ref{fig:blockShape}, left)
-    A^\top_n &= \{(i,i) : i \in [n]\}   &\cup\ \{(i+1,i) : i \in [n-1]\} \\ % (TODO Figure \ref{fig:blockShape}, middle)
-    B_n      &= \{(i,i) : i \in [n-1]\}\ &\cup\ \{(i+1,i) : i \in [n-1]\} \\ % (TODO Figure \ref{fig:blockShape}, right)
-    B^\top_n &= \{(i,i) : i \in [n-1]\}\ &\cup\ \{(i,i+1) : i \in [n-1]\} % (TODO Figure \ref{fig:blockShape}, right)
-  \end{alignat*}
+  the derived complementary board $B_\alpha^c$ can be partitioned into
+  disjoint staircase-shaped boards.
+  \label{lemma:boardShape}
 \end{lemma}
 \begin{proof}
   The proof proceeds by induction on the length of the prefix.
 
-  To establish the base case, consider a prefix of length $1$.
+  To establish the base case, consider a prefix of length $\ell = 1$.
   Because of the m\'enage restriction,
-  $\alpha_1 \in \{2, 3, \dots, n-1\}$.
-  It is quick to check that the resulting board is split into a part of shape
-  $A_{\pi(1) - 1}$ and $A^\top_{n - \pi(1)}$.
+  $\alpha_1 \in \{2, 3, \dots, n-1\}$, and
+  the derived complimentary board $B_{(\alpha_1)}^c$
+  can be partitioned into two disjoint blocks with shapes
+  $A_{\alpha_1 - 1}$ and $A^\intercal_{n - \alpha_1}$.
+  (This is illustrated for the case of $n = 7$ and $\alpha_1$ in Figure \ref{fig:menageSinglePlacement}.)
 
-  Now, assume that all blocks have shape $A_{n_1}$, $A^\top_{n_2}$,
-  $B_{n_3}$ or $B^\top_{n_4}$. Placing a rook can remove a top row or a column
-  or both in a given block. We will go block-by-block and consider each
-  possibility.
+  The inductive hypothesis is that the derived complimentary board for
+  a prefix of length $\ell - 1$ consists of blocks with shape
+  $A_{n_1}$, $A^\intercal_{n_2}$, $B_{n_3}$, or $B^\intercal_{n_4}$.
+  Placing a rook in row $\ell$ can remove a top row or a column or both in a
+  given block.
+  Table \ref{table:rooksInBlocks} below
+  shows the resulting blocks after placing a rook in
+  $\ell$-th row of $B$,
+  which may be in the top row or the $i$-th column of a given block.
 
-  \begin{table}
-    \begin{tabular}{|l|l|l|l|l|}
-    \hline
-    Rook placement & $A_n$ & $A^\top_n$ & $B_n$ & $B^\top_n$ \\
-    \hline
-    Top row                & x    & x              & x & x \\
-    Column $i$             & x    & x              & x & x \\
-    Top row and column $i$ & x    & x              & x & x \\
-    \hline
-    \end{tabular}
-  \end{table}
-  \begin{enumerate}
-    \item $A_n      \rightarrow A_{n-1}$
-    \item $A^\top_n \rightarrow B^\top_{n}$
-    \item $B_n      \rightarrow A_{n-1}$
-    \item $B^\top_n \rightarrow B^\top_{n}$
-  \end{enumerate}
-
-  The $i$-th column: \begin{enumerate}
-    \item $A_n      \rightarrow (A_{i-1}, B_{n-i})$
-    \item $A^\top_n \rightarrow (B_i,     A^\top_{n-i})$
-    \item $B_n      \rightarrow (B_i,     B_{n-i})$
-    \item $B^\top_n \rightarrow (A_{i-1}, B^\top_{n-i})$
-  \end{enumerate}
-
-  The top row and $i$-th column: \begin{enumerate}
-    \item $A_n      \rightarrow (A_{i-2}, B_{n-i})$
-    \item $A^\top_n \rightarrow (A_{i-1}, A^\top_{n-i})$
-    \item $B_n      \rightarrow (A_{i-1}, B_{n-i})$
-    \item $B^\top_n \rightarrow (A_{i-2}, B^\top_{n-i})$
-  \end{enumerate}
-
-  Of course, if neither a row or column is deleted, each board goes to itself.
+  \begin{tabular}{|l|l|l|l|l|}
+  \hline
+  Rook placement
+    & $\mathcal{O}_{2n-1}$
+    & $\mathcal{O}_{2n-1}^\intercal$
+    & $\mathcal{E}_{2n-2}$
+    & $\mathcal{E}_{2n-2}$
+  \\ \hline
+  Row $1$
+    & $\mathcal{O}_{2n-3}$
+    & $\mathcal{E}_{2n-2}^\intercal$
+    & $\mathcal{O}_{2n-3}$
+    & $\mathcal{E}_{2n-4}^\intercal$
+  \\
+  Column $i$
+    & $\mathcal{O}_{2i-3}$, $\mathcal{E}_{2n-2i}$
+    & $\mathcal{E}_{2i-2}$, $\mathcal{O}_{2n-2i-1}^\intercal$
+    & $\mathcal{E}_{2i-2}$, $\mathcal{E}_{2n-2i-2}$
+    & $\mathcal{O}_{2i-3}$, $\mathcal{O}_{2n-2i-1}^\intercal$
+  \\
+  Row $1$, column $i$
+    & $\mathcal{O}_{2i-5}$, $\mathcal{E}_{2n-2i}$
+    & $\mathcal{O}_{2i-3}$, $\mathcal{O}_{2n-2i-1}^\intercal$
+    & $\mathcal{O}_{2i-3}$, $\mathcal{E}_{2n-2i-2}$
+    & $\mathcal{O}_{2i-5}$, $\mathcal{O}_{2n-2i-1}^\intercal$
+  \\ \hline
+  \end{tabular}
+  \captionof{table}{
+    The results of placing a rook in the first row, $i$-th column, or both
+    for all staircase-shaped boards.
+  }
+  \label{table:rooksInBlocks}
+  Therefore placing any number of rooks in the first $\ell$ results in a board
+  of one of the four described shapes.
 \end{proof}
 
 \input{assets/Menage/fig_blockShape.tex}
-\input{assets/Menage/fig_menageSinglePlacement.tex}
 
 \subsection{Rook polynomials of blocks}
 Recall that the goal of partitioning $B$ into disjoint boards $b_1, b_2, \dots, b_m$
@@ -604,28 +627,75 @@ described by OEIS sequence A011973 \cite{oeis}.
 \end{definition}
 
 \begin{lemma}
-  Given a board $B$ that consists of a single block with $k$ crossed out cells,
-  it's complementary board $B^c$ has rook polynomial $p_{B^c}(x) = F_{k + 1}(x)$.
+  If $B$ is a staircase-shaped board with $k$ squares, then
+  $B$ has rook polynomial $p_{B}(x) = F_{k}(x)$ which agrees with the $k$-th
+  Fibonacci polynomial.
 \end{lemma}
 \begin{proof}
-  We will recall Lemma \ref{lemma:rookPolynomialRecursion}, and proceed by
-  induction on the upper-left square.
+  We will recall the recursive construction of rook polynomials from
+  Lemma \ref{lemma:rookPolynomialRecursion}, and proceed by
+  induction on the number of squares, always choosing to include or exclude
+  the upper-left square.
 
-  TODO (See Figure \ref{fig:blockShape}, boards A, B, C)
+  Since the reflections of board has the same rook polynomial as the
+  unreflected board, without loss of generality, we
+  will compute the rook polynomials for
+  $\mathcal{O}_{2n-1}$ and $\mathcal{E}_{2n-2}$ respectively.
 
-  Base case:
-  If we have a board of type $C$ and size $0$, it has a rook polynomial of $1$.
-  If we have a board of type $A$ (or $B$) and size $1$, it has a rook polynomial of $1 + x$.
+  % $A_n$ as our choice for the odd case and
+  % $B_n$ as our choice for the even case.
 
-  Suppose our inductive hypothesis holds for boards with up to $s$ squares. Then
-  \begin{enumerate}
-    \item $B_i$ for $A_{2n-1}$ is equal to $A_{2n-3}$. $B_e$ is $C_{2n-2}$.
-    \item $B_i$ for $B_{2n-1}$ is equal to $B_{2n-3}$. $B_e$ is a flip of $C_{2n-2}$ along antidiagonal.
-    \item $B_i$ for $C_{2n-2}$ is equal to $C_{2n-4}$. $B_e$ is $A_{2n-3}$ along antidiagonal.
-  \end{enumerate}
+  To establish a base case, consider the rook polynomials when $n = 1$, so
+  the even board has $|\mathcal{E}_{0}| = 0$ squares and
+  the odd board has $|\mathcal{O}_{1}| = 1$ square.
+  We can see the corresponding rook polynomials directly. There is $1$ way to
+  place $0$ rooks on $\mathcal{E}_{0}$ and no ways to place more rooks;
+  similarly there is
+  $1$ way to place $0$ rooks on $\mathcal{O}_{1}$,
+  $1$ way to place $1$ rooks on $\mathcal{O}_{1}$, and
+  no ways to place more than one rook. Thus \begin{alignat}{2}
+    p_{\mathcal{E}_{0}}(x) &= 1     &&= F_0(x), \text{ and} \\
+    p_{\mathcal{O}_{1}}(x) &= 1 + x &&= F_1(x).
+  \end{alignat}
+
+  With the base case established, our inductive hypothesis is that
+  $p_{B}(x) = F_{h}(x)$ for
+  whenever $B$ is a
+  staircase-shaped boards with $h < k$ squares.
+
+
+
+  % Even case
+  Assume that we have $k$ squares where $k$ is even, so our board looks like
+  $\mathcal{E}_{k}$. We can either place a rook or not in the upper-left square.
+  If we include the square, then $(\mathcal{E}_{k})_i \cong \mathcal{E}_{k-2}$,
+  if we exclude the square, then $(\mathcal{E}_{k})_e \cong \mathcal{O}_{k-1}$.
+  Thus by Lemma \ref{lemma:rookPolynomialRecursion}, the rook polynomial of
+  $\mathcal{E}_{k}$ is
+  \begin{align}
+    p_{\mathcal{E}_{k}}(x)
+    &= xp_{\mathcal{E}_{k-2}}(x) + p_{\mathcal{O}_{k-1}}(x) \\
+    &= xF_{k-2}(x) + F_{k-1}(x) \\
+    &= F_{k}(x).
+  \end{align}
+
+  % Odd case
+  The case where $k$ is odd proceeds in almost the same way.
+  Here our board looks like $\mathcal{O}_{k}$.
+  We can either place a rook or not in the upper-left square.
+  If we include the square, then $(\mathcal{O}_{k})_i \cong \mathcal{O}_{k-2}$,
+  if we exclude the square, then $(\mathcal{O}_{k})_e \cong \mathcal{E}_{k-1}$.
+  Again by Lemma \ref{lemma:rookPolynomialRecursion}, the rook polynomial
+  of $\mathcal{O}_{k}$ is
+  \begin{align}
+    p_{\mathcal{O}_{k}}(x)
+    &= xp_{\mathcal{O}_{k-2}}(x) + p_{\mathcal{E}_{k-1}}(x) \\
+    &= xF_{k-2}(x) + F_{k-1}(x) \\
+    &= F_{k}(x).
+  \end{align}
 \end{proof}
 
-\subsection{Prefix to blocks}
+\subsection{Prefix to block sizes}
 Here's the idea: we group the uncrossed columns.
 
 \begin{lemma}
