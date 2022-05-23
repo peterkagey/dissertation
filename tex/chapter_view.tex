@@ -78,12 +78,14 @@ box/.style={
 
 % Filler text for formatting. Comment these lines out for real writing.
 \usepackage[english]{babel}
+\usepackage{csquotes}
 \usepackage{blindtext}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{note}[theorem]{Note}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{openquestion}[theorem]{Open Question}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{example}[theorem]{Example}
@@ -117,11 +119,11 @@ box/.style={
 % https://graduateschool.usc.edu/wp-content/themes/fictional-university-theme/assets/doc/Manuscript_Formatting_and_Documentation_Styles.pdf
 
 \tableofcontents
-\include{SpinningSwitches/spinning_switches}
+% \include{SpinningSwitches/spinning_switches}
 % \include{PermutationStatistics/permutation_statistics}
 % \include{TrianglesInTriangles/triangles_in_triangles}
+\include{Menage/unranking_menage}
 % \include{RonGraham/ron_grahams_sequence}
-% \include{Menage/unranking_menage}
 % \include{ClassifyingPolyhedra/classifying_polyhedra}
 
 % Conclusion and ongoing work

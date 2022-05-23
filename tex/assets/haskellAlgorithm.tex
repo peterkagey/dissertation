@@ -7,16 +7,16 @@
   type PrefixCount = Prefix -> Integer
 
   rookCount :: Int -> Integer -> Prefix
-  rookCount n = derank n n (rookPrefixCount n)
+  rookCount n = unrank n n (rookPrefixCount n)
 
-  -- derank from alphabet of size n with k letters
+  -- unrank from alphabet of size n with k letters
   -- and a way of counting the number of words with a given prefix
-  derank :: Int ->                 -- Alphabet of n letters
+  unrank :: Int ->                 -- Alphabet of n letters
             Int ->                 -- Words of length k
             (Prefix -> Integer) -> -- #prefix function
-            Integer ->             -- Derank at targetIndex
+            Integer ->             -- Unrank at targetIndex
             Prefix                 -- Word at rank targetIndex
-  derank n k prefixCounter targetIndex = recurse (0, 0) 1 [] where
+  unrank n k prefixCounter targetIndex = recurse (0, 0) 1 [] where
     recurse :: (Integer, Integer) -> -- index range with given prefix (a, b]
                Int ->                -- candidate for current letter
                Prefix ->             -- established prefix

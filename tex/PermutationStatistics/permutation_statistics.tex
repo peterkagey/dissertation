@@ -133,7 +133,7 @@ which agrees with the type B derangement numbers,
 sequence A000354 in the On-Line Encyclopedia of Integer Sequences (OEIS) \cite{oeis}.
 In other words, the denominators in the table appear to be related to
 the symmetries of the hypercube that move every facet.
-\begin{figure}[!ht]
+\begin{table}
   \[
   \begin{array}{|ll|l|l|l|l|l|l|l|l|l|l|}
   \hline
@@ -155,13 +155,13 @@ the symmetries of the hypercube that move every facet.
   & \n{13} & 7/1          & 7/1        & 7/1      & 7/1    & 7/1  & 7/1 & 7/1 \\ \hline
   \end{array}
   \]
-  \caption{
+  \caption[The expected value of $\pi(1)$ for $\pi \in S_n$ with $m$ $2$-cycles.]{
     A table of the expected value of the first letter of $\pi \in S_n$ with
     exactly $m$ $2$-cycles,
     ${\mathbb{E}[\pi(1)\, |\, \pi \in S_n \text{ has exactly } m\ 2 \text{-cycles}\,]}$.
   }
   \label{fig:twoCyclesTable}
-\end{figure}
+\end{table}
 \section{Structure of permutations with \texorpdfstring{$m$}{m} \texorpdfstring{$k$}{k}-cycles}
 \label{section:recursiveStructure}
 This section is about connecting the number of permutations with a given number of
@@ -776,10 +776,12 @@ $i$-th letter of these permutations.
       \node[fill=white, circle] at (2,1) {4}; % right
       % \node[draw, yscale=-1, rotate=90] at (1,1) {$D_8$}; % right
     \end{tikzpicture}
-    \caption{The $2^{2}2! = 8$ symmetries of a square with fixed sides circled.
+    \caption[Facet derangements of a square.]{
+      The $2^{2}2! = 8$ symmetries of a square with fixed sides circled.
       The square ($2$-dimensional hypercube) has symmetry group
       $S(2,2) = (\mathbb{Z}/2\mathbb{Z}) \wr \mathbb S_2$ and $D(2,2) = 5$ of these
-      symmetries are derangements, meaning that they do not fix any sides.}
+      symmetries are derangements, meaning that they do not fix any sides.
+    }
     \label{fig:squareDerangements}
   \end{figure}
 \end{example}

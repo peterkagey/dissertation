@@ -358,6 +358,214 @@
       \verb https://oeis.org/
       \endverb
     \endentry
+    \entry{Mazurov2003}{article}{}
+      \name{author}{1}{}{%
+        {{hash=1ac50b3fcef63cef0972d4b3a923ef41}{%
+           family={Mazurov},
+           familyi={M\bibinitperiod},
+           given={V.\bibnamedelimi D.},
+           giveni={V\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{1ac50b3fcef63cef0972d4b3a923ef41}
+      \strng{fullhash}{1ac50b3fcef63cef0972d4b3a923ef41}
+      \strng{bibnamehash}{1ac50b3fcef63cef0972d4b3a923ef41}
+      \strng{authorbibnamehash}{1ac50b3fcef63cef0972d4b3a923ef41}
+      \strng{authornamehash}{1ac50b3fcef63cef0972d4b3a923ef41}
+      \strng{authorfullhash}{1ac50b3fcef63cef0972d4b3a923ef41}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1573-9260}
+      \field{journaltitle}{Siberian Mathematical Journal}
+      \field{month}{1}
+      \field{number}{1}
+      \field{title}{On Generation of Sporadic Simple Groups by Three Involutions Two of Which Commute}
+      \field{volume}{44}
+      \field{year}{2003}
+      \field{pages}{160\bibrangedash 164}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1023/A:1022028807652
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1023/A:1022028807652
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1023/A:1022028807652
+      \endverb
+    \endentry
+    \entry{Nuzhin1992}{article}{}
+      \name{author}{1}{}{%
+        {{hash=f49e41575eedfaa0b93fc98e3fe1ebc9}{%
+           family={Nuzhin},
+           familyi={N\bibinitperiod},
+           given={Ya.\bibnamedelimi N.},
+           giveni={Y\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{fullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{bibnamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authorbibnamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1573-8876}
+      \field{journaltitle}{Mathematical Notes}
+      \field{month}{4}
+      \field{number}{4}
+      \field{title}{Generating triples of involutions of alternating groups}
+      \field{volume}{51}
+      \field{year}{1992}
+      \field{pages}{389\bibrangedash 392}
+      \range{pages}{4}
+      \verb{doi}
+      \verb 10.1007/BF01250552
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF01250552
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF01250552
+      \endverb
+    \endentry
+    \entry{Nuzhin0}{article}{}
+      \name{author}{1}{}{%
+        {{hash=f49e41575eedfaa0b93fc98e3fe1ebc9}{%
+           family={Nuzhin},
+           familyi={N\bibinitperiod},
+           given={Ya.\bibnamedelimi N.},
+           giveni={Y\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{fullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{bibnamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authorbibnamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \field{extraname}{2}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0373-9252}
+      \field{journaltitle}{Algebra i Logika}
+      \field{number}{2}
+      \field{title}{Generating triples of involutions of {C}hevalley groups over a finite field of characteristic {$2$}}
+      \field{volume}{29}
+      \field{year}{1990}
+      \field{pages}{192\bibrangedash 206\bibrangessep 261}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1007/BF02001358
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF02001358
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF02001358
+      \endverb
+    \endentry
+    \entry{Nuzhin1}{article}{}
+      \name{author}{1}{}{%
+        {{hash=f49e41575eedfaa0b93fc98e3fe1ebc9}{%
+           family={Nuzhin},
+           familyi={N\bibinitperiod},
+           given={Ya.\bibnamedelimi N.},
+           giveni={Y\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{fullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{bibnamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authorbibnamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \field{extraname}{3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0373-9252}
+      \field{journaltitle}{Algebra i Logika}
+      \field{number}{1}
+      \field{title}{Generating triples of involutions of {L}ie-type groups over a finite field of odd characteristic. {I}}
+      \field{volume}{36}
+      \field{year}{1997}
+      \field{pages}{77\bibrangedash 96\bibrangessep 118}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1007/BF02671953
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1007/BF02671953
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1007/BF02671953
+      \endverb
+    \endentry
+    \entry{Nuzhin2}{article}{}
+      \name{author}{1}{}{%
+        {{hash=f49e41575eedfaa0b93fc98e3fe1ebc9}{%
+           family={Nuzhin},
+           familyi={N\bibinitperiod},
+           given={Ya.\bibnamedelimi N.},
+           giveni={Y\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \strng{namehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{fullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{bibnamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authorbibnamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
+      \field{extraname}{4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0373-9252}
+      \field{journaltitle}{Algebra i Logika}
+      \field{number}{4}
+      \field{title}{Generating triples of involutions of {L}ie-type groups over a finite field of odd characteristic. {II}}
+      \field{volume}{36}
+      \field{year}{1997}
+      \field{pages}{422\bibrangedash 440\bibrangessep 479}
+      \range{pages}{20}
+    \endentry
+    \entry{MSELoop}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b1547f40a38197ddef6b651bd57b956f}{%
+           family={(https://math.stackexchange.com/users/155629/travis-willse)},
+           familyi={(\bibinithyphendelim w\bibinitperiod},
+           given={Travis\bibnamedelima Willse},
+           giveni={T\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \strng{namehash}{b1547f40a38197ddef6b651bd57b956f}
+      \strng{fullhash}{b1547f40a38197ddef6b651bd57b956f}
+      \strng{bibnamehash}{b1547f40a38197ddef6b651bd57b956f}
+      \strng{authorbibnamehash}{b1547f40a38197ddef6b651bd57b956f}
+      \strng{authornamehash}{b1547f40a38197ddef6b651bd57b956f}
+      \strng{authorfullhash}{b1547f40a38197ddef6b651bd57b956f}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Mathematics Stack Exchange}
+      \field{note}{URL:https://math.stackexchange.com/q/1216907 (version: 2018-12-27)}
+      \field{title}{The unique loop (quasigroup with unit) $L$ of order $5$ satisfying $x^2 = 1$ for all $x \in L$}
+      \verb{eprint}
+      \verb https://math.stackexchange.com/q/1216907
+      \endverb
+      \verb{urlraw}
+      \verb https://math.stackexchange.com/q/1216907
+      \endverb
+      \verb{url}
+      \verb https://math.stackexchange.com/q/1216907
+      \endverb
+    \endentry
     \entry{Winkler2021}{book}{}
       \name{author}{1}{}{%
         {{hash=6fa0bd56ef1e47c0f7749a5650d86324}{%
@@ -376,8 +584,8 @@
       \strng{authornamehash}{6fa0bd56ef1e47c0f7749a5650d86324}
       \strng{authorfullhash}{6fa0bd56ef1e47c0f7749a5650d86324}
       \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Mathematical Puzzles}
@@ -397,8 +605,8 @@
       \strng{authorbibnamehash}{adab1db1f1e8818ff2a5f11447f0165e}
       \strng{authornamehash}{adab1db1f1e8818ff2a5f11447f0165e}
       \strng{authorfullhash}{adab1db1f1e8818ff2a5f11447f0165e}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Ars Combinatoria}
@@ -606,8 +814,8 @@
       \strng{authorbibnamehash}{dfbc2d513bd436ac089affb012d361f8}
       \strng{authornamehash}{dfbc2d513bd436ac089affb012d361f8}
       \strng{authorfullhash}{dfbc2d513bd436ac089affb012d361f8}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Combinatorial Pattern Matching}
@@ -639,8 +847,8 @@
       \strng{authorbibnamehash}{bb47d35a0ad4408aaf087a4afe43b741}
       \strng{authornamehash}{bb47d35a0ad4408aaf087a4afe43b741}
       \strng{authorfullhash}{bb47d35a0ad4408aaf087a4afe43b741}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Duke Mathematical Journal}
@@ -680,8 +888,8 @@
       \strng{authorbibnamehash}{545658b3ea930cbc8b9bf12d5f8225c9}
       \strng{authornamehash}{545658b3ea930cbc8b9bf12d5f8225c9}
       \strng{authorfullhash}{545658b3ea930cbc8b9bf12d5f8225c9}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{9781400854332}
@@ -702,8 +910,8 @@
       \strng{authorbibnamehash}{fc1982e4969186630a3cd013022eb2d1}
       \strng{authornamehash}{fc1982e4969186630a3cd013022eb2d1}
       \strng{authorfullhash}{fc1982e4969186630a3cd013022eb2d1}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We sketch the circle of fundamental ideas and trends in the development of one of the important branches of combinatorial analysis---the theory of enumerating the permutations with restricted positions, which dates back to Euler, Monmort, Lucas, Cayley, and other classical authors. We devote a great deal of attention to new and up-to-date trends of the theory, some of which are still in the formative stage. We state 10 conjectures and problems.}
@@ -836,8 +1044,8 @@
       \strng{authorbibnamehash}{96d80a8e65b1c29cb1c6faac4c31d3be}
       \strng{authornamehash}{96d80a8e65b1c29cb1c6faac4c31d3be}
       \strng{authorfullhash}{96d80a8e65b1c29cb1c6faac4c31d3be}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Séminaire Lotharingien de Combinatoire}

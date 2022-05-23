@@ -31,6 +31,7 @@
 % Optional packages: graphics
 
 \usepackage{listings} % For code
+\usepackage{caption} % For captioning tables?
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,positioning} % For graphics in Permutation Statistics paper
@@ -85,6 +86,7 @@ box/.style={
 \newtheorem{note}[theorem]{Note}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{openquestion}[theorem]{OpenQuestion}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{example}[theorem]{Example}
@@ -125,20 +127,23 @@ box/.style={
 \begin{preface}
 
   % Dedication Page, which is truly unnecessary.
-  \prefacesection[Dedication]{}
-  \input{dedication}
+  % % TODO: uncomment dedication
+  % \prefacesection[Dedication]{}
+  % \input{dedication}
 
   % Acknowledgement Page, which is also unnecessary for proposals.
-  \prefacesection{Acknowledgements}
-  \input{acknowledgements}
+  % % TODO: uncomment acknowledgements
+  % \prefacesection{Acknowledgements}
+  % \input{acknowledgements}
 
   \tableofcontents
   \listoftables   % Comment this out if you don't have tables
   \listoffigures
 
   % Abstract Page
-  \prefacesection{Abstract}
-  \input{abstract}
+  % % TODO: uncomment abstract
+  % \prefacesection{Abstract}
+  % \input{abstract}
 \end{preface}
 
 %-----------------------------------------------------------------------------
@@ -146,17 +151,19 @@ box/.style={
 %-----------------------------------------------------------------------------
 
 % Better to separate LaTeX structure and content
-\include{Introduction}
+% TODO, uncomment introduction
+% \include{Introduction}
 
 \include{SpinningSwitches/spinning_switches}
 \include{PermutationStatistics/permutation_statistics}
-\include{TrianglesInTriangles/triangles_in_triangles}
-% \include{RonGraham/ron_grahams_sequence}
 \include{Menage/unranking_menage}
+% \include{TrianglesInTriangles/triangles_in_triangles}
+% \include{RonGraham/ron_grahams_sequence}
 % \include{ClassifyingPolyhedra/classifying_polyhedra}
 
 % Conclusion and ongoing work
-\include{Conclusion}
+% TODO, uncomment conclusion
+% \include{Conclusion}
 
 % Using single-space for reference list.
 \begin{singlespace}
@@ -171,18 +178,19 @@ box/.style={
 % \bibliography{references}
 \end{singlespace}
 
-% Appendices
-\phantomsection
-\addcontentsline{toc}{chapter}{Appendices}%
-\markboth{Appendices}{Appendices}%
-\chapter*{Appendices}
-\renewcommand\thesection{\Alph{section}}
-\renewcommand*{\thesubsection}{\Alph{section}.\arabic{subsection}}
-\begingroup
-\numberwithin{equation}{section}
-% Appendix source files
-\input{appendix_proof}
-\endgroup
+% TODO uncomment appendices
+% % Appendices
+% \phantomsection
+% \addcontentsline{toc}{chapter}{Appendices}%
+% \markboth{Appendices}{Appendices}%
+% \chapter*{Appendices}
+% \renewcommand\thesection{\Alph{section}}
+% \renewcommand*{\thesubsection}{\Alph{section}.\arabic{subsection}}
+% \begingroup
+% \numberwithin{equation}{section}
+% % Appendix source files
+% \input{appendix_proof}
+% \endgroup
 
 % In case your dissertation has multiple volumes.
 % \addvolumecontents{thesis_part2}

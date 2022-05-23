@@ -1,11 +1,10 @@
-\chapter{Deranking Menage}
+\chapter{Unranking Restricted Permutations}
 \label{cha:UnrankingMenage}
 TODO
 
 \section{TODO}
 \begin{enumerate}
   \item Introduction
-  \item We can also *rank* a given permutation
   \item Define \textbf{derived} complementary board $B_\alpha^c$?
   \item If we do a cyclic rotation of the rows of a chessboard, we get
     essentially the same thing.
@@ -13,6 +12,8 @@ TODO
   \item Define $B_\alpha$ and $\overline{B}_\alpha^c$.
   \item Do we want to talk about parking functions?
   \item Is it worthwhile to discuss prefix functions for compositions, etc.?
+  \item Make sure ``derank'' doesn't occur anywhere.
+  \item Gives a way of sampling uniformly at random.
 \end{enumerate}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,13 +31,36 @@ Richard was interested in a more general question, which I found contagious:
 Given some family of combinatorial objects that can be quickly counted
 (say unlabelled simple graphs on $n$ vertices)
 and some total ordering on them,
-when is it possible to \textbf{derank} the collection in some computationally
+when is it possible to \textbf{unrank} the collection in some computationally
 efficient way?
 
-Of course, we can usually create an algorithm to give the $i$-th object without
-simply enumerating all of the objects explicitly? We want to ``jump in'' to a
-specific place on the list. Another interesting question:
-what if you get to supply both the total order and the deranking algorithm?
+\begin{definition}
+  Let $\mathcal C$ be a totally ordered finite set, and
+  let $\{c_i\}_{i=1}^{|\mathcal C|}$ be the unique sequence of elements in
+  $\mathcal{C}$ such that $c_i < c_{i+1}$ for all $1 \leq i < |\mathcal{C}|$.
+
+  The \textbf{ranking map} is the map
+  $\operatorname{rank}_{\mathcal{C}} \colon \mathcal{C} \rightarrow \mathbb N_{>0}$
+  which sends $c_i \mapsto i$.
+
+  The \textbf{unranking map} is the inverse map
+  $\operatorname{unrank}_{\mathcal{C}} \colon \mathbb N_{>0} \rightarrow \mathcal{C}$
+  which sends $i \mapsto c_i$.
+\end{definition}
+
+In abstract terms, these maps are not particularly interesting, but in practical
+terms it can be quite difficult to efficiently compute a given ranking or
+unranking from a given totally ordered set. After all, when these sets
+grow in exponential time or worse, explicitly constructing the sequence and
+doing a search is not computationally feasible.
+
+In Appendix TODO, we will provide examples of total orders on combinatorial
+objects $\mathcal{C}$ for which constructing efficient
+
+% Of course, we can usually create an algorithm to give the $i$-th object without
+% simply enumerating all of the objects explicitly? We want to ``jump in'' to a
+% specific place on the list. Another interesting question:
+% what if you get to supply both the total order and the unranking algorithm?
 
 In this chapter we're going to explore that idea. We're going to show a general
 theory that allows us to de-rank
@@ -49,42 +73,79 @@ Dyck path in lexicographic order?
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 2
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Overarching Theory (count with prefixes)}
-If we can efficiently count how many objects in
-$[n]^k$ start with a given prefix
-(in $O(T(n,k))$ time),
-then we can just walk down the possible letters until
-we get to the right spot ($O(nkT(n,k))$).
+\section{Prefix Counting and Word Ranking}
+
+% If we can efficiently count how many objects in
+% $[n]^k$ start with a given prefix
+% (in $O(T(n,k))$ time),
+% then we can just walk down the possible letters until
+% we get to the right spot ($O(nkT(n,k))$).
+
+\begin{lemma}
+  If we have
+  an efficient way to compute the unranking map,
+  an efficient way to compare two elements in the total order,
+  and an efficient way of computing the number of objects at hand, $|\mathcal C|$,
+  then we can efficiently compute the ranking map.
+  \label{lemma:unrankToRank}
+\end{lemma}
+\begin{proof}
+  We can do a binary search. (TODO: write pseudo-code algorithm?)
+\end{proof}
 
 \subsection{Counting Words With a Given Prefix}
-TODO: We can reduce this problem to counting words with a given prefix.
+In both the case of unranking derangements and menage permutations
+(and in many other applications) our combinatorial objects are
+words and our total order is lexicographic order.
+
+\begin{definition}
+  \textbf{Lexicographic order} is a total ordering on words where $w < v$ ... TODO
+\end{definition}
+
+\begin{definition}
+  A finite \textbf{word} $w$ over an alphabet $\mathcal A$ is a finite sequence
+  $\{w_i \in \mathcal A\}_{i=1}^N$.
+
+  The collection of finite words over the alphabet $\mathcal A$ is denoted by
+  $\mathcal{W}_\mathcal{A}$, or just $\mathcal{W}$ when the alphabet is
+  implicit from context.
+\end{definition}
+
+\begin{definition}
+  A word $w = \{w_i \in \mathcal A\}_{i=1}^N$ is said to begin with a
+  \textbf{prefix} $\alpha = \{\alpha_i \in \mathcal A\}_{i=1}^M$ if
+  $M \leq N$ and $w_i = \alpha_i$ for all $i \leq M$.
+\end{definition}
+
 \begin{lemma}
-  Let $\mathcal{W}_k \subseteq [n]^k$ be an ordered collection of words of
-  length $k$ on an alphabet of size $n$, and denote the set of nonempty candidate
-  prefixes by
-  $\mathcal{P}_k = [n] \cup [n]^2 \cup \dots \cup [n]^k$
-  Then given a function
-  $\#\operatorname{prefix}\colon \mathcal{P}_k \rightarrow \mathbb{N}$ that
-  counts the number of words that begin with a given prefix, the $i$-th word
-  in $\mathcal{W}_k$ when written in lexicographic order is \[
-    \operatorname{derank}_i((1), 0)
-  \] which can be computed explictly with $nk$ or fewer recursive calls:
-\begin{equation}
-  \operatorname{derank}_i(\alpha, b) = \begin{cases}
+  Let $\mathcal{W}$ be the set of words of any length on the alphabet $[n]$,
+  and let $\mathcal C \subsetneq \mathcal{W}$ be a finite subset of words
+  on this alphabet, with a total order equal to its lexicographic order.
+
+  Then let
+  $\#\operatorname{prefix}_{\mathcal C}\colon \mathcal{W} \rightarrow \mathcal{C}$
+  be the function that counts the number of words in $\mathcal C$ that begin
+  with a given prefix.
+
+  Then the unranking function can be computed recursively by \[
+    \operatorname{unrank}_\mathcal{C}(i) = f^{\mathcal C}_i((1), 0)
+  \] where
+  \begin{equation}
+  f^{\mathcal C}_i(\alpha, j) = \begin{cases}
     \alpha
-      & i \in (b, b + \#\operatorname{prefix}(\alpha)] \text{ and } \alpha \in \mathcal{W}_k \\
-    \operatorname{derank}_i(\alpha', b)
-      & i \in (b, b + \#\operatorname{prefix}(\alpha)] \text{ and } \operatorname{len}(\alpha) < k \\
-    \operatorname{derank}_i(\alpha'', b + \#\operatorname{prefix}(\alpha))
+      & i \in (j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)] \text{ and } \alpha \in \mathcal{C} \\
+    f^{\mathcal C}_i(\alpha', j)
+      & i \in (j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)] \text{ and } \alpha \not\in \mathcal{C} \\
+    f^{\mathcal C}_i(\alpha'', j + \#\operatorname{prefix}_\mathcal{C}(\alpha))
       & \text{otherwise},
   \end{cases}
 \end{equation}
 where
 $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$,
 $\alpha' = (\alpha_1, \alpha_2, \dots, \alpha_\ell, 1)$,
-$\alpha'' = (\alpha_1, \alpha_2, \dots, \alpha_{k-1}, \alpha_\ell + 1)$,
-and $b$ denotes the number of words in $\mathcal{W}_k$ that occur strictly
-\textbf{before} $\alpha$.
+$\alpha'' = (\alpha_1, \alpha_2, \dots, \alpha_{\ell-1}, 1 + \alpha_\ell)$,
+and $j$ denotes the number of words in $\mathcal{C}$ that occur strictly
+before $\alpha$.
 \end{lemma}
 \begin{proof}
   TODO (sketch)
@@ -93,41 +154,48 @@ and $b$ denotes the number of words in $\mathcal{W}_k$ that occur strictly
   per position.
 \end{proof}
 
-By choosing the appropriate counting function $\#\operatorname{prefix}$, this
-translates the problem from the domain of deranking objects to the domain of
-counting the number of objects with a given prefix. This technique works
-when we can write our objects as a word in $[n]^k$, and we order the objects
-by the lexicographic order of the words. In the case that our objects cannot be
-written as words, or we are interested in an order other than lexicographic order,
-a different technique must be used.
+This shows that if we can construct a function
+$\#\operatorname{prefix}_\mathcal{C}$ that efficiently counts the number of
+elements of $\mathcal{C}$ with a given prefix, then we can efficiently rank and
+unrank the elements of $\mathcal{C}$ in lexicographic order.
+% This technique works when we can write our objects as a word in $[n]^k$, and
+% we order the objects
+% by the lexicographic order of the words. In the case that our objects cannot be
+% written as words, or we are interested in an order other than lexicographic order,
+% a different technique must be used.
 
 \subsection{Ranking words}
-TODO: We can also take a word $w \in \mathcal{W}_k$ and quickly determine its
-rank.
+In Lemma \ref{lemma:unrankToRank}, we showed that given an efficient algorithm
+to compute $\operatorname{unrank}_\mathcal{C}$, we can derive an efficient
+algorithm to compute $\operatorname{rank}_\mathcal{C}$, on the order of
+$O(\log(|\mathcal{C}|\operatorname{unrank}_\mathcal{C}(n)))$
+(TODO: make the size of the input explicit.)
 
-\subsection{Basic Notions of Rook Theory}
-In the case of deranking derangements and permutations, it is useful to use
-ideas from Rook Theory.
-Rook Theory was introduced by Kaplansky \cite{Kaplansky1946} Riordan \cite{Riordan1980}
+However, we can provide a faster algorithm via another recursive function:
+$\operatorname{rank}_\mathcal{C}(w) = g_w(1,1,0)$ where
+\begin{equation}
+  g_w(i, \ell, c) = \begin{cases}
+    c + 1 & \ell = w_i \text{ and } i = |w| \\
+    g_w(i + 1, 1, c) & \ell = w_i \text{ and } i < |w| \\
+    g_w(i, \ell + 1, c + \#\operatorname{prefix}_\mathcal{C}(w')) & \ell < w_i,
+  \end{cases}
+\end{equation}
+where $w' = (w_1, w_2, \dots, w_{i-1}, \ell)$.
+
+\section{Basic Notions of Rook Theory}
+Because we have showed that we can ... TODO
+In the case of unranking derangements and permutations, it is useful to use
+ideas from rook theory, which provides a theory for understanding
+position-restricted permutations.
+Rook Theory was introduced by Kaplansky and Riordan \cite{Kaplansky1946}
 in their 1946 paper \textit{The Problem of the Rooks and its Applications}. In
 it, they discuss problems of restricted permutations in the language of rooks
 placed on a chessboard.
-We begin by introducing some preliminary ideas in this theory.
 
-\begin{figure}
-  \center
-  \begin{tikzpicture}[scale = 0.8]
-    \foreach \i/\j in {1/3,2/4,3/8,4/1,5/2,6/7,7/5,8/6} {
-      \node at (\j - 0.5, 8.5 - \i) {\huge\symrook};
-      \node at (8.5, 8.5-\i) {\huge\j};
-    }
-    \draw (0,0) grid (8,8);
-  \end{tikzpicture}
-  \caption{
-    An illustration of the rook placement corresponding to the permutation
-    $34812756 \in S_8$. A rook is placed in square $(i, \pi(i))$ for each $i$.
-  }
-\end{figure}
+\input{assets/Menage/fig_permutationFromRooks.tex}
+
+\subsection{Definitions in rook theory}
+We begin by introducing some preliminary ideas from rook theory.
 
 \begin{definition}
   A \textit{board} $B$ is a subset of $[n] \times [n]$ which represents the
@@ -175,7 +243,7 @@ stimulated the development of the theory of the permanent.'')
   \]
 \end{lemma}
 
-Now is the perfect time to recall Valiant's Theorem.
+Now is an appropriate time to recall Valiant's Theorem.
 
 \begin{theorem}[Valiant's Theorem \cite{Valiant1979}]
   Computing the permanent of a (0,1)-matrix is \#P-complete.
@@ -223,7 +291,7 @@ find the rook polynomial of the complementary board, and
 use the principle of inclusion/exclusion to determine the number of ways to
 place rooks in the resulting board.
 
-\section{Deranking Derangements}
+\section{Unranking Derangements}
 
 In January 2020, Richard Arratia sent out an email proposing a seminar talk.
 The title describes the first ``\$100 problem'':
@@ -239,15 +307,15 @@ derangement in $S_{20}$ with rank $5 \times 10^{17}$ is \[
 \]
 \end{answer}
 
-Arratia's question focused on deranking derangements where the rank was
+Arratia's question focused on unranking derangements where the rank was
 based on the total ordering that comes from writing the
 permutations as words in lexicographic order.
-Other authors have looked at deranking derangements based on other total
+Other authors have looked at unranking derangements based on other total
 orderings. In particular, Mikawa and Tanaka \cite{Mikawa2014} give an algorithm
 to rank/unrank derangements
 with respect to \textit{lexicographic ordering in cycle notation}.
 
-In this section we will develop an algorithm for ranking and deranking with
+In this section we will develop an algorithm for ranking and unranking with
 respect to their lexicographic ordering as words. The technique that we use will
 broadly be re-used in the next section.
 It is worthwhile to begin by recalling the definition of a derangement.
@@ -268,7 +336,8 @@ these positions, as illustrated in Figure \ref{fig:derangementPrefix}.
 \begin{definition}
   If $B$ is an $n \times n$ board, and
   $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$ is a valid prefix of length
-  $\ell$, then \textit{derived complementary board} of $B$ from $\alpha$, denoted $B^c_\alpha$,
+  $\ell$, then \textbf{derived complementary board} of $B$ from $\alpha$,
+  denoted $B^c_\alpha$,
   is $B$ with the appropriate rows and columns removed and reindexed in such
   a way that $B^c_\alpha \subseteq [n - \ell] \times [n - \ell]$.
   % \[
@@ -348,76 +417,68 @@ of TODO from a complementary board.
   Thus there are $A047920(12,11) = 190\,899\,411$ derangements that start
   with $6\,1$.
 \end{example}
-\begin{figure}
-\center
+\begin{table}
 \begin{tabular}{|l|r|l|c|l|}
   \hline
-  $\alpha$ (prefix)   & $\operatorname{\#prefix}(\alpha)$ & index range & $|B_\alpha^c|$ & $\operatorname{derank}_i(\alpha, \ell)$ \\
+  $\alpha$ (prefix)   & $\operatorname{\#prefix}(\alpha)$ & index range & $|B_\alpha^c|$ & $f^{\mathcal{D}}_i(\alpha, \ell)$ \\
   \hline
-  $1       $ & $0$    & $(0,0]$           & $-$ & $\operatorname{derank}_{1000}(1, 0)$          \\
-  $2       $ & $2119$ & $(0,2119]$        & $6$ & $\operatorname{derank}_{1000}(2, 0)$          \\
+  $1       $ & $0$    & $(0,0]$           & $-$ & $f^{\mathcal{D}}_{1000}(1, 0)$          \\
+  $2       $ & $2119$ & $(0,2119]$        & $6$ & $f^{\mathcal{D}}_{1000}(2, 0)$          \\
   \hline
-  $21      $ & $265$  & $(0, 265]$        & $6$ & $\operatorname{derank}_{1000}(21, 0)$         \\
-  $22      $ & $0$    & $(265, 265]$      & $-$ & $\operatorname{derank}_{1000}(22, 265)$       \\
-  $23      $ & $309$  & $(265, 574]$      & $5$ & $\operatorname{derank}_{1000}(23, 265)$       \\
-  $24      $ & $309$  & $(574, 883]$      & $5$ & $\operatorname{derank}_{1000}(24, 574)$       \\
-  $25      $ & $309$  & $(883, 1192]$     & $5$ & $\operatorname{derank}_{1000}(25, 883)$       \\
+  $21      $ & $265$  & $(0, 265]$        & $6$ & $f^{\mathcal{D}}_{1000}(21, 0)$         \\
+  $22      $ & $0$    & $(265, 265]$      & $-$ & $f^{\mathcal{D}}_{1000}(22, 265)$       \\
+  $23      $ & $309$  & $(265, 574]$      & $5$ & $f^{\mathcal{D}}_{1000}(23, 265)$       \\
+  $24      $ & $309$  & $(574, 883]$      & $5$ & $f^{\mathcal{D}}_{1000}(24, 574)$       \\
+  $25      $ & $309$  & $(883, 1192]$     & $5$ & $f^{\mathcal{D}}_{1000}(25, 883)$       \\
   \hline
-  $251     $ & $53$   & $(883, 936]$      & $4$ & $\operatorname{derank}_{1000}(251, 883)$      \\
-  $253     $ & $0$    & $(936, 936]$      & $-$ & $\operatorname{derank}_{1000}(253, 936)$      \\
-  $254     $ & $64$   & $(936, 1000]$     & $3$ & $\operatorname{derank}_{1000}(254, 936)$      \\
+  $251     $ & $53$   & $(883, 936]$      & $4$ & $f^{\mathcal{D}}_{1000}(251, 883)$      \\
+  $253     $ & $0$    & $(936, 936]$      & $-$ & $f^{\mathcal{D}}_{1000}(253, 936)$      \\
+  $254     $ & $64$   & $(936, 1000]$     & $3$ & $f^{\mathcal{D}}_{1000}(254, 936)$      \\
   \hline
-  $2541    $ & $11$   & $(936, 947]$      & $3$ & $\operatorname{derank}_{1000}(2541, 936)$     \\
-  $2543    $ & $11$   & $(947, 958]$      & $3$ & $\operatorname{derank}_{1000}(2543, 947)$     \\
-  $2546    $ & $14$   & $(958, 972]$      & $2$ & $\operatorname{derank}_{1000}(2546, 958)$     \\
-  $2547    $ & $14$   & $(972, 986]$      & $2$ & $\operatorname{derank}_{1000}(2547, 972)$     \\
-  $2548    $ & $14$   & $(986, 1000]$     & $2$ & $\operatorname{derank}_{1000}(2548, 986)$     \\
+  $2541    $ & $11$   & $(936, 947]$      & $3$ & $f^{\mathcal{D}}_{1000}(2541, 936)$     \\
+  $2543    $ & $11$   & $(947, 958]$      & $3$ & $f^{\mathcal{D}}_{1000}(2543, 947)$     \\
+  $2546    $ & $14$   & $(958, 972]$      & $2$ & $f^{\mathcal{D}}_{1000}(2546, 958)$     \\
+  $2547    $ & $14$   & $(972, 986]$      & $2$ & $f^{\mathcal{D}}_{1000}(2547, 972)$     \\
+  $2548    $ & $14$   & $(986, 1000]$     & $2$ & $f^{\mathcal{D}}_{1000}(2548, 986)$     \\
   \hline
-  $25481   $ & $3$    & $(986, 989]$      & $2$ & $\operatorname{derank}_{1000}(25481, 986)$    \\
-  $25483   $ & $3$    & $(989, 992]$      & $2$ & $\operatorname{derank}_{1000}(25483, 989)$    \\
-  $25486   $ & $4$    & $(992, 996]$      & $1$ & $\operatorname{derank}_{1000}(25486, 992)$    \\
-  $25487   $ & $4$    & $(996, 1000]$     & $1$ & $\operatorname{derank}_{1000}(25487, 996)$    \\
+  $25481   $ & $3$    & $(986, 989]$      & $2$ & $f^{\mathcal{D}}_{1000}(25481, 986)$    \\
+  $25483   $ & $3$    & $(989, 992]$      & $2$ & $f^{\mathcal{D}}_{1000}(25483, 989)$    \\
+  $25486   $ & $4$    & $(992, 996]$      & $1$ & $f^{\mathcal{D}}_{1000}(25486, 992)$    \\
+  $25487   $ & $4$    & $(996, 1000]$     & $1$ & $f^{\mathcal{D}}_{1000}(25487, 996)$    \\
   \hline
-  $254871   $ & $2$   & $(996, 998]$      & $0$ & $\operatorname{derank}_{1000}(254871, 996)$   \\
-  $254873   $ & $2$   & $(998, 1000]$     & $0$ & $\operatorname{derank}_{1000}(254873, 998)$   \\
+  $254871   $ & $2$   & $(996, 998]$      & $0$ & $f^{\mathcal{D}}_{1000}(254871, 996)$   \\
+  $254873   $ & $2$   & $(998, 1000]$     & $0$ & $f^{\mathcal{D}}_{1000}(254873, 998)$   \\
   \hline
-  $2548731  $ & $1$   & $(998, 999]$      & $0$ & $\operatorname{derank}_{1000}(2548731, 998)$  \\
-  $2548736  $ & $1$   & $(999, 1000]$     & $0$ & $\operatorname{derank}_{1000}(2548736, 999)$  \\
+  $2548731  $ & $1$   & $(998, 999]$      & $0$ & $f^{\mathcal{D}}_{1000}(2548731, 998)$  \\
+  $2548736  $ & $1$   & $(999, 1000]$     & $0$ & $f^{\mathcal{D}}_{1000}(2548736, 999)$  \\
   \hline
-  $25487361 $ & $1$   & $(999, 1000]$     & $0$ & $\operatorname{derank}_{1000}(25487361, 999)$ \\
+  $25487361 $ & $1$   & $(999, 1000]$     & $0$ & $f^{\mathcal{D}}_{1000}(25487361, 999)$ \\
   \hline
-
-
-  % $351     $ & $24$  & $(946, 970]$       & $(0,2,5)$       \\
-  % $\cdots$   & $0$   & $(970,970]$        & $-$             \\
-  % % $352     $ & $0$   & $(970, 970]$       & $?$           \\
-  % % $353     $ & $0$   & $(970, 970]$       & $?$           \\
-  % $354     $ & $34$  & $(970, 1004]$      & $(0,5)$         \\ \hline
-  % $3541    $ & $5$   & $(970,975]$        & $(0,5)$         \\
-  % $3542    $ & $5$   & $(975,980]$        & $(0,5)$         \\
-  % $\cdots$   & $0$   & $(980,980]$        & $-$             \\
-  % % $3543    $ & $0$   & $(980,980]$        & $?$           \\
-  % % $3544    $ & $0$   & $(980,980]$        & $?$           \\
-  % % $3545    $ & $0$   & $(980,980]$        & $?$           \\
-  % $3546    $ & $8$   & $(980,988]$        & $(0,3)$         \\
-  % $3547    $ & $10$  & $(988,998]$        & $(0,2,1)$       \\
-  % $3548    $ & $6$   & $(998,1004]$       & $(0,4)$         \\ \hline
-  % $35481   $ & $1$   & $(998,999]$        & $(0,4)$         \\
-  % $35482   $ & $1$   & $(999,1000]$       & $(0,4)$         \\ \hline
-  % $354821  $ & $0$   & $(999,999]$        & $(3)$           \\
-  % $\cdots$   & $0$   & $(999,999]$        & $-$             \\
-  % $354827  $ & $1$   & $(999,1000]$       & $(0,1)$         \\ \hline
-  % $3548271 $ & $1$   & $(999,1000]$       & $(0)$           \\ \hline
-  % $35482716$ & $1$   & $(999,1000]$       & $()$            \\ \hline
 \end{tabular}
-\caption{There are $A000166(8) = 14833$ derangements on $8$ letters.
-This algorithm finds the derangement at index $1000$.}
-\end{figure}
+\caption[Steps for computing the $1000$th derangement in $S_8$]{
+  There are $A000166(8) = 14833$ derangements on $8$ letters.
+  This algorithm finds the derangement at index $1000$.
+}
+\end{table}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 3
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Deranking M\'enage Permutations}
+\section{Unranking M\'enage Permutations}
+
+\subsection{Proof of concept (The \$100 answer!)}
+In February 2020, Richard Arratia offered
+\begin{problem}
+  For $n=20$ there are $A000179(20) = 312\,400\,218\,671\,253\,762 > 3.1\cdot 10^{17}$
+  m\'enage permutations.
+  Determine the $10^{17}$-th such permutation when listed in lexicographic order.
+\end{problem}
+\begin{answer}
+  The desired permutation is \begin{equation}
+    7\ 16\ 19\ 12\ 2\ 8\ 15\ 1\ 18\ 14\ 3\ 9\ 20\ 10\ 5\ 17\ 13\ 4\ 11\ 6.
+  \end{equation}
+\end{answer}
+
 A M\'enage permutation comes from the \textit{problème des ménages}. % https://en.wikipedia.org/wiki/M%C3%A9nage_problem
 Here we will define it as
 \begin{definition}
@@ -463,24 +524,65 @@ with three possible shapes, shown in Figure \ref{fig:blockShape}.
 \begin{lemma}
   For $\ell \geq 1$, and prefix $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$
   the derived complementary board $B_\alpha^c$ can be partitioned into boards
-  of one of three shapes.
-  \begin{enumerate}
-    \item (TODO Figure \ref{fig:blockShape}, left)
-    \item (TODO Figure \ref{fig:blockShape}, middle)
-    \item (TODO Figure \ref{fig:blockShape}, right)
-  \end{enumerate}
+  of one of four shapes.
+  \begin{alignat*}{2}
+    A_n      &= \{(i,i) : i \in [n]\}   &\cup\ \{(i,i+1) : i \in [n-1]\} \\ % (TODO Figure \ref{fig:blockShape}, left)
+    A^\top_n &= \{(i,i) : i \in [n]\}   &\cup\ \{(i+1,i) : i \in [n-1]\} \\ % (TODO Figure \ref{fig:blockShape}, middle)
+    B_n      &= \{(i,i) : i \in [n-1]\}\ &\cup\ \{(i+1,i) : i \in [n-1]\} \\ % (TODO Figure \ref{fig:blockShape}, right)
+    B^\top_n &= \{(i,i) : i \in [n-1]\}\ &\cup\ \{(i,i+1) : i \in [n-1]\} % (TODO Figure \ref{fig:blockShape}, right)
+  \end{alignat*}
 \end{lemma}
 \begin{proof}
-  The proof proceeds by induction.
-  Base case:
-  because of the m\'enage restriction, $\pi(1) \in \{2, 3, \dots, n-1\}$,
-  and so the resulting board is split into a part of size
-  $2\pi(1) - 3$ and $2n - 2\pi(1) - 1$ parts respectively.
-  Inductive step: TODO
+  The proof proceeds by induction on the length of the prefix.
+
+  To establish the base case, consider a prefix of length $1$.
+  Because of the m\'enage restriction,
+  $\alpha_1 \in \{2, 3, \dots, n-1\}$.
+  It is quick to check that the resulting board is split into a part of shape
+  $A_{\pi(1) - 1}$ and $A^\top_{n - \pi(1)}$.
+
+  Now, assume that all blocks have shape $A_{n_1}$, $A^\top_{n_2}$,
+  $B_{n_3}$ or $B^\top_{n_4}$. Placing a rook can remove a top row or a column
+  or both in a given block. We will go block-by-block and consider each
+  possibility.
+
+  \begin{table}
+    \begin{tabular}{|l|l|l|l|l|}
+    \hline
+    Rook placement & $A_n$ & $A^\top_n$ & $B_n$ & $B^\top_n$ \\
+    \hline
+    Top row                & x    & x              & x & x \\
+    Column $i$             & x    & x              & x & x \\
+    Top row and column $i$ & x    & x              & x & x \\
+    \hline
+    \end{tabular}
+  \end{table}
+  \begin{enumerate}
+    \item $A_n      \rightarrow A_{n-1}$
+    \item $A^\top_n \rightarrow B^\top_{n}$
+    \item $B_n      \rightarrow A_{n-1}$
+    \item $B^\top_n \rightarrow B^\top_{n}$
+  \end{enumerate}
+
+  The $i$-th column: \begin{enumerate}
+    \item $A_n      \rightarrow (A_{i-1}, B_{n-i})$
+    \item $A^\top_n \rightarrow (B_i,     A^\top_{n-i})$
+    \item $B_n      \rightarrow (B_i,     B_{n-i})$
+    \item $B^\top_n \rightarrow (A_{i-1}, B^\top_{n-i})$
+  \end{enumerate}
+
+  The top row and $i$-th column: \begin{enumerate}
+    \item $A_n      \rightarrow (A_{i-2}, B_{n-i})$
+    \item $A^\top_n \rightarrow (A_{i-1}, A^\top_{n-i})$
+    \item $B_n      \rightarrow (A_{i-1}, B_{n-i})$
+    \item $B^\top_n \rightarrow (A_{i-2}, B^\top_{n-i})$
+  \end{enumerate}
+
+  Of course, if neither a row or column is deleted, each board goes to itself.
 \end{proof}
 
-\input{assets/fig_blockShape.tex}
-\input{assets/fig_menage.tex} % TODO: I'm not sure that this figure adds much, other than perhaps a base case of a proof.
+\input{assets/Menage/fig_blockShape.tex}
+\input{assets/Menage/fig_menageSinglePlacement.tex}
 
 \subsection{Rook polynomials of blocks}
 Recall that the goal of partitioning $B$ into disjoint boards $b_1, b_2, \dots, b_m$
@@ -555,7 +657,7 @@ Now we can put these column counts together based on the continuous blocks.
   (this is what I've been calling our ``composition'')
 \end{lemma}
 
-% \input{assets/fig_partitionFromPrefix.tex}
+\input{assets/fig_partitionFromPrefix.tex}
 
 \subsection{Complementary polynomials to m\'enage permutations with a given prefix}
 Recap: We've taken a prefix, used it to find contiguous regions, used these to
@@ -576,56 +678,47 @@ the aforementioned prefix.
 Now that we know $p_{B_\alpha^c}$, we can use Lemma
 (TODO: Complementary to original) to determine how many
 m\'enage permutations there are with a given prefix. Because of Lemma
-(TODO: all we need is the prefix to derank), we have an algorithm to derank.
-
-\subsection{Proof of concept (The \$100 answer!)}
-\begin{problem}
-  For $n=20$ there are $A000179(20) = 312\,400\,218\,671\,253\,762 > 3.1\cdot 10^{17}$
-  m\'enage permutations.
-  Determine the $10^{17}$-th such permutation when listed in lexicographic order.
-\end{problem}
-\begin{answer}
-  The desired permutation is \begin{equation}
-    7\ 16\ 19\ 12\ 2\ 8\ 15\ 1\ 18\ 14\ 3\ 9\ 20\ 10\ 5\ 17\ 13\ 4\ 11\ 6.
-  \end{equation}
-\end{answer}
+(TODO: all we need is the prefix to unrank), we have an algorithm to unrank.
 
 \begin{example}
   Illustrating this particular example is too big to be of much interest, so
   here's a smaller example. There are $A000179(8) = 4738$ m\'enage
   permutations on $8$ letters. We'll use this algorithm to find the one
   at index $1000$.
-  \begin{figure}
-  \center
-  \begin{tabular}{|l|r|l|c|l|}
-    \hline
-    prefix   & starting with prefix & index range & composition & $\operatorname{derank}_{i}(\alpha, \ell)$\\ \hline
-    $1       $ & $0$   & $(0,0]$            & $-$       & $\operatorname{derank}_{1000}(1,0)$          \\
-    $2       $ & $787$ & $(0,787]$          & $(1,11)$  & $\operatorname{derank}_{1000}(2,0)$          \\
-    $3       $ & $791$ & $(787, 1578]$      & $(3,9)$   & $\operatorname{derank}_{1000}(3,787)$        \\ \hline
-    $31      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{derank}_{1000}(31,787)$       \\
-    $32      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{derank}_{1000}(32,787)$       \\
-    $33      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{derank}_{1000}(33,787)$       \\
-    $34      $ & $159$ & $(787, 946]$       & $(1,7)$   & $\operatorname{derank}_{1000}(34,787)$       \\
-    $35      $ & $166$ & $(946, 1112]$      & $(1,2,5)$ & $\operatorname{derank}_{1000}(35,946)$       \\ \hline
-    $351     $ & $24$  & $(946, 970]$       & $(0,2,5)$ & $\operatorname{derank}_{1000}(351,946)$      \\
-    $\cdots$   & $0$   & $(970,970]$        & $-$       & \\
-    $354     $ & $34$  & $(970, 1004]$      & $(0,5)$   & $\operatorname{derank}_{1000}(354,970)$      \\ \hline
-    $3541    $ & $5$   & $(970,975]$        & $(0,5)$   & $\operatorname{derank}_{1000}(3541,970)$     \\
-    $3542    $ & $5$   & $(975,980]$        & $(0,5)$   & $\operatorname{derank}_{1000}(3542,975)$     \\
-    $\cdots$   & $0$   & $(980,980]$        & $-$       & \\
-    $3546    $ & $8$   & $(980,988]$        & $(0,3)$   & $\operatorname{derank}_{1000}(3546,980)$     \\
-    $3547    $ & $10$  & $(988,998]$        & $(0,2,1)$ & $\operatorname{derank}_{1000}(3547,988)$     \\
-    $3548    $ & $6$   & $(998,1004]$       & $(0,4)$   & $\operatorname{derank}_{1000}(3548,998)$     \\ \hline
-    $35481   $ & $1$   & $(998,999]$        & $(0,4)$   & $\operatorname{derank}_{1000}(35481,998)$    \\
-    $35482   $ & $1$   & $(999,1000]$       & $(0,4)$   & $\operatorname{derank}_{1000}(35482,999)$    \\ \hline
-    $354821  $ & $0$   & $(999,999]$        & $(3)$     & $\operatorname{derank}_{1000}(354821,999)$   \\
-    $\cdots$   & $0$   & $(999,999]$        & $-$       & \\
-    $354827  $ & $1$   & $(999,1000]$       & $(0,1)$   & $\operatorname{derank}_{1000}(354827,999)$   \\ \hline
-    $3548271 $ & $1$   & $(999,1000]$       & $(0)$     & $\operatorname{derank}_{1000}(3548271,999)$  \\ \hline
-    $35482716$ & $1$   & $(999,1000]$       & $()$      & $\operatorname{derank}_{1000}(35482716,999)$ \\ \hline
-  \end{tabular}
-  \end{figure}
+  \begin{table}
+    \center
+    \begin{tabular}{|l|r|l|c|l|}
+      \hline
+      $\alpha$ & $\#\operatorname{prefix}(\alpha)$ & index range & composition & $\operatorname{unrank}_{i}(\alpha, \ell)$\\ \hline
+      $1       $ & $0$   & $(0,0]$            & $-$       & $\operatorname{unrank}_{1000}(1,0)$          \\
+      $2       $ & $787$ & $(0,787]$          & $(1,11)$  & $\operatorname{unrank}_{1000}(2,0)$          \\
+      $3       $ & $791$ & $(787, 1578]$      & $(3,9)$   & $\operatorname{unrank}_{1000}(3,787)$        \\ \hline
+      $31      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{unrank}_{1000}(31,787)$       \\
+      $32      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{unrank}_{1000}(32,787)$       \\
+      $33      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{unrank}_{1000}(33,787)$       \\
+      $34      $ & $159$ & $(787, 946]$       & $(1,7)$   & $\operatorname{unrank}_{1000}(34,787)$       \\
+      $35      $ & $166$ & $(946, 1112]$      & $(1,2,5)$ & $\operatorname{unrank}_{1000}(35,946)$       \\ \hline
+      $351     $ & $24$  & $(946, 970]$       & $(0,2,5)$ & $\operatorname{unrank}_{1000}(351,946)$      \\
+      $\cdots$   & $0$   & $(970,970]$        & $-$       & \\
+      $354     $ & $34$  & $(970, 1004]$      & $(0,5)$   & $\operatorname{unrank}_{1000}(354,970)$      \\ \hline
+      $3541    $ & $5$   & $(970,975]$        & $(0,5)$   & $\operatorname{unrank}_{1000}(3541,970)$     \\
+      $3542    $ & $5$   & $(975,980]$        & $(0,5)$   & $\operatorname{unrank}_{1000}(3542,975)$     \\
+      $\cdots$   & $0$   & $(980,980]$        & $-$       & \\
+      $3546    $ & $8$   & $(980,988]$        & $(0,3)$   & $\operatorname{unrank}_{1000}(3546,980)$     \\
+      $3547    $ & $10$  & $(988,998]$        & $(0,2,1)$ & $\operatorname{unrank}_{1000}(3547,988)$     \\
+      $3548    $ & $6$   & $(998,1004]$       & $(0,4)$   & $\operatorname{unrank}_{1000}(3548,998)$     \\ \hline
+      $35481   $ & $1$   & $(998,999]$        & $(0,4)$   & $\operatorname{unrank}_{1000}(35481,998)$    \\
+      $35482   $ & $1$   & $(999,1000]$       & $(0,4)$   & $\operatorname{unrank}_{1000}(35482,999)$    \\ \hline
+      $354821  $ & $0$   & $(999,999]$        & $(3)$     & $\operatorname{unrank}_{1000}(354821,999)$   \\
+      $\cdots$   & $0$   & $(999,999]$        & $-$       & \\
+      $354827  $ & $1$   & $(999,1000]$       & $(0,1)$   & $\operatorname{unrank}_{1000}(354827,999)$   \\ \hline
+      $3548271 $ & $1$   & $(999,1000]$       & $(0)$     & $\operatorname{unrank}_{1000}(3548271,999)$  \\ \hline
+      $35482716$ & $1$   & $(999,1000]$       & $()$      & $\operatorname{unrank}_{1000}(35482716,999)$ \\ \hline
+    \end{tabular}
+    \caption[Steps for computing the $1000$th m\'enage permutation in $S_8$.]{
+      The recursive computation of the 1000th m\'enage permutation.
+    }
+  \end{table}
 \end{example}
 
 \section{Generalizations and Open Questions}
