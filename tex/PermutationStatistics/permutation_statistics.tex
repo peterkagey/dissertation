@@ -1,7 +1,7 @@
-\chapter{Permutation Statistics}
+\chapter{Permutations with a given number of \texorpdfstring{$k$}{k}-cycles}
 \label{cha:PermutationStatistics}
 
-In this paper, we study permutations $\pi \in S_n$ with exactly $m$ transpositions.
+In this chapter, we study permutations $\pi \in S_n$ with exactly $m$ transpositions.
 In particular, we are interested in the expected value of $\pi(1)$ when such
 permutations are chosen uniformly at random. When $n$ is even, this expected value
 is approximated closely by $(n+1)/2$, with an error term that is related to the number isometries
@@ -24,12 +24,12 @@ which we construct.
 In 2010, Mark Conger \cite{conger} proved that a permutation
 with $k$ descents has an expected first letter of $\pi(1) = k + 1$,
 independent of $n$.
-This paper has the same premise, but with a different permutation statistic:
+This chapter has the same premise, but with a different permutation statistic:
 the number of $k$-cycles of a permutation.
 
 This section, (Section \ref{section:background}) provides an overview of where
 we're headed, and includes an critical example that will hopefully spark the
-reader's curiosity and motivate the remainder of the paper.
+reader's curiosity and motivate the remainder of the chapter.
 
 Section \ref{section:recursiveStructure} establishes some recurrence relations for
 the number of permutations in $S_n$ with a given number of $k$-cycles.
@@ -54,7 +54,7 @@ number of $k$-cycles whenever $k \nmid N$. Section \ref{section:bijection}
 constructs such a bijection explicitly, and proves that it has the desired
 properties.
 
-\subsection{Motivating Examples}
+\subsection{Motivating examples}
 
 In support of the first examples, we start by defining the first bit of notation.
 \begin{definition}
@@ -1113,7 +1113,7 @@ $(\operatorname{stat}_1, \operatorname{stat}_2)$, does the map
 
 \subsection{FindStat database}
 The result by Conger gives the expected value of $\pi(1)$ given
-$\operatorname{des}(\pi)$, and this paper gave the expected value of
+$\operatorname{des}(\pi)$, and this chapter gave the expected value of
 $\pi(1)$ given the number of $k$-cycles of $\pi$. Of course, it would be
 interesting to do analogous analysis with other permutations. In particular,
 the FindStat permutation statistics database \cite{FindStat} contains over

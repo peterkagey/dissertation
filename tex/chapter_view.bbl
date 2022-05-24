@@ -313,6 +313,38 @@
       \field{volume}{71}
       \field{year}{2014}
     \endentry
+    \entry{Sloane1995}{book}{}
+      \name{author}{2}{}{%
+        {{hash=adf65a690d5b6aa0aea1f34fe6da7869}{%
+           family={Sloane},
+           familyi={S\bibinitperiod},
+           given={N.\bibnamedelimi J.\bibnamedelimi A.\bibnamedelimi (Neil\bibnamedelimb James\bibnamedelima Alexander)},
+           giveni={N\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim (\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=49ab69cf8d7fe557da93a1aebf1f9212}{%
+           family={Plouffe},
+           familyi={P\bibinitperiod},
+           given={Simon.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {San Diego}%
+      }
+      \list{publisher}{1}{%
+        {Academic Press}%
+      }
+      \strng{namehash}{41531fa7f9e27b2955b0ce13b9554044}
+      \strng{fullhash}{41531fa7f9e27b2955b0ce13b9554044}
+      \strng{bibnamehash}{41531fa7f9e27b2955b0ce13b9554044}
+      \strng{authorbibnamehash}{41531fa7f9e27b2955b0ce13b9554044}
+      \strng{authornamehash}{41531fa7f9e27b2955b0ce13b9554044}
+      \strng{authorfullhash}{41531fa7f9e27b2955b0ce13b9554044}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Encyclopedia of Integer Sequences}
+      \field{year}{1995}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

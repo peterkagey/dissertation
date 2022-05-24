@@ -1,0 +1,35 @@
+\begin{table}
+  \center
+  \begin{tabular}{|l|r|l|c|l|}
+    \hline
+    $\alpha$ & $\#\operatorname{prefix}(\alpha)$ & index range & composition & $\operatorname{unrank}_{i}(\alpha, \ell)$\\ \hline
+    $1       $ & $0$   & $(0,0]$            & $-$       & $\operatorname{unrank}_{1000}(1,0)$          \\
+    $2       $ & $787$ & $(0,787]$          & $(1,11)$  & $\operatorname{unrank}_{1000}(2,0)$          \\
+    $3       $ & $791$ & $(787, 1578]$      & $(3,9)$   & $\operatorname{unrank}_{1000}(3,787)$        \\ \hline
+    $31      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{unrank}_{1000}(31,787)$       \\
+    $32      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{unrank}_{1000}(32,787)$       \\
+    $33      $ & $0$   & $(787, 787]$       & $-$       & $\operatorname{unrank}_{1000}(33,787)$       \\
+    $34      $ & $159$ & $(787, 946]$       & $(1,7)$   & $\operatorname{unrank}_{1000}(34,787)$       \\
+    $35      $ & $166$ & $(946, 1112]$      & $(1,2,5)$ & $\operatorname{unrank}_{1000}(35,946)$       \\ \hline
+    $351     $ & $24$  & $(946, 970]$       & $(0,2,5)$ & $\operatorname{unrank}_{1000}(351,946)$      \\
+    $\cdots$   & $0$   & $(970,970]$        & $-$       & \\
+    $354     $ & $34$  & $(970, 1004]$      & $(0,5)$   & $\operatorname{unrank}_{1000}(354,970)$      \\ \hline
+    $3541    $ & $5$   & $(970,975]$        & $(0,5)$   & $\operatorname{unrank}_{1000}(3541,970)$     \\
+    $3542    $ & $5$   & $(975,980]$        & $(0,5)$   & $\operatorname{unrank}_{1000}(3542,975)$     \\
+    $\cdots$   & $0$   & $(980,980]$        & $-$       & \\
+    $3546    $ & $8$   & $(980,988]$        & $(0,3)$   & $\operatorname{unrank}_{1000}(3546,980)$     \\
+    $3547    $ & $10$  & $(988,998]$        & $(0,2,1)$ & $\operatorname{unrank}_{1000}(3547,988)$     \\
+    $3548    $ & $6$   & $(998,1004]$       & $(0,4)$   & $\operatorname{unrank}_{1000}(3548,998)$     \\ \hline
+    $35481   $ & $1$   & $(998,999]$        & $(0,4)$   & $\operatorname{unrank}_{1000}(35481,998)$    \\
+    $35482   $ & $1$   & $(999,1000]$       & $(0,4)$   & $\operatorname{unrank}_{1000}(35482,999)$    \\ \hline
+    $354821  $ & $0$   & $(999,999]$        & $(3)$     & $\operatorname{unrank}_{1000}(354821,999)$   \\
+    $\cdots$   & $0$   & $(999,999]$        & $-$       & \\
+    $354827  $ & $1$   & $(999,1000]$       & $(0,1)$   & $\operatorname{unrank}_{1000}(354827,999)$   \\ \hline
+    $3548271 $ & $1$   & $(999,1000]$       & $(0)$     & $\operatorname{unrank}_{1000}(3548271,999)$  \\ \hline
+    $35482716$ & $1$   & $(999,1000]$       & $()$      & $\operatorname{unrank}_{1000}(35482716,999)$ \\ \hline
+  \end{tabular}
+  \caption[Steps for computing the $1000$th m\'enage permutation in $S_8$.]{
+    The recursive computation of the 1000th m\'enage permutation.
+  }
+\label{table:unrankMenage}
+\end{table}

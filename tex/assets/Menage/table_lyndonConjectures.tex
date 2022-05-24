@@ -1,0 +1,146 @@
+\begin{table}
+  \center
+  \begin{tabular}{|c|r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r@{\hspace{0.24cm}}r|@{\,}l@{\,}|@{\,}l@{\,}|}
+    \multicolumn{1}{c}{$\alpha$}
+      & \multicolumn{12}{c}{$\mathcal{L}_\alpha$ and $\mathcal{E}(\mathcal{L}_\alpha)$}
+      & \multicolumn{1}{c}{Recurrence}
+      & \multicolumn{1}{c}{}
+    \\ \hline
+
+    \multirow{2}{*}{$0$}
+      & 1 & 1 & 2 & 3 & 6 & 9 & 18 & 30 & 56 & 99 & 186 & 335
+      & \multirow{2}{*}{$a_{n+1} = 2a_{n}$}
+      & \multirow{2}{*}{$n \geq 2$} \\
+      & 1 & 1 & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256 & 512 & 1024
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$00$}
+      & 0 & 0 & 1 & 2 & 4 & 7 & 14 & 25 & 48 & 88 & 168 & 310
+      & \multirow{2}{*}{$a_{n+1} = 2a_{n}$}
+      & \multirow{2}{*}{$n \geq 4$} \\
+      & 1 & 0 & 0 & 1 & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$01$}
+      & 0 & 1 & 1 & 1 & 2 & 2 & 4 & 5 & 8 & 11 & 18 & 25
+      & \multirow{2}{*}{$a_{n+2} = a_{n+1} + a_{n}$}
+      & \multirow{2}{*}{$n \geq 1$} \\
+      & 1 & 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & 34 & 55
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$000$}
+      & 0 & 0 & 0 & 1 & 2 & 4 & 8 & 15 & 30 & 57 & 112 & 214
+      & \multirow{2}{*}{$a_{n+1} = 2a_{n}$}
+      & \multirow{2}{*}{$n \geq 5$} \\
+      & 1 & 0 & 0 & 0 & 1 & 2 & 4 & 8 & 16 & 32 & 64 & 128
+      & &
+
+      \\ \hline
+
+    \multirow{2}{*}{$001$}
+      & 0 & 0 & 1 & 1 & 2 & 3 & 6 & 10 & 18 & 31 & 56 & 96
+      & \multirow{2}{*}{$a_{n+3} = a_{n+2} + a_{n+1} + a_{n}$}
+      & \multirow{2}{*}{$n \geq 1$} \\
+      & 1 & 0 & 0 & 1 & 1 & 2 & 4 & 7 & 13 & 24 & 44 & 81
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$010$}
+      & 0 & 0 & 0 & 0 & 1 & 1 & 2 & 3 & 5 & 7 & 12 & 18
+      & \multirow{2}{*}{$a_{n+2} = a_{n+1} + a_{n}$}
+      & \multirow{2}{*}{$n \geq 5$} \\
+      & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$011$}
+      & 0 & 0 & 1 & 1 & 1 & 1 & 2 & 2 & 3 & 4 & 6 & 7
+      & \multirow{2}{*}{$a_{n+3} = a_{n+2} + a_{n}$}
+      & \multirow{2}{*}{$n \geq 1$} \\
+      & 1 & 0 & 0 & 1 & 1 & 1 & 2 & 3 & 4 & 6 & 9 & 13
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$0000$}
+      & 0 & 0 & 0 & 0 & 1 & 2 & 4 & 8 & 16 & 31 & 62 & 121
+      & \multirow{2}{*}{$a_{n+1} = 2a_{n}$}
+      & \multirow{2}{*}{$n \geq 6$} \\
+      & 1 & 0 & 0 & 0 & 0 & 1 & 2 & 4 & 8 & 16 & 32 & 64
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$0001$}
+      & 0 & 0 & 0 & 1 & 1 & 2 & 4 & 7 & 14 & 26 & 50 & 93
+      & \multirow{2}{*}{$a_{n+4} = a_{n+3} + a_{n+2} + a_{n+1} + a_{n}$}
+      & \multirow{2}{*}{$n \geq 1$} \\
+      & 1 & 0 & 0 & 0 & 1 & 1 & 2 & 4 & 8 & 15 & 29 & 56
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$0010$}
+      & 0 & 0 & 0 & 0 & 1 & 1 & 3 & 5 & 9 & 16 & 30 & 53
+      & \multirow{2}{*}{$a_{n+3} = a_{n+2} + a_{n+1} + a_{n}$}
+      & \multirow{2}{*}{$n \geq 6$} \\
+      & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 3 & 5 & 9 & 17 & 31
+      & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$0011$}
+    & 0 & 0 & 0 & 1 & 1 & 2 & 3 & 5 & 9 & 15 & 26 & 43
+    & \multirow{2}{*}{$a_{n+4} = a_{n+3} + a_{n + 2} + a_{n}$}
+    & \multirow{2}{*}{$n \geq 1$} \\
+    & 1 & 0 & 0 & 0 & 1 & 1 & 2 & 3 & 6 & 10 & 18 & 31
+    & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$0101$}
+    & 0 & 0 & 0 & 0 & 1 & 1 & 2 & 3 & 5 & 7 & 12 & 18
+    & \multirow{2}{*}{$a_{n+2} = a_{n+1} + a_{n}$}
+    & \multirow{2}{*}{$n \geq 5$} \\
+    & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 2 & 3 & 5 & 8 & 13
+    & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$0110$}
+    & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 2 & 3 & 4
+    & \multirow{2}{*}{$a_{n+3} = a_{n+2} + a_{n}$}
+    & \multirow{2}{*}{$n \geq 6$} \\
+    & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 2 & 3
+    & &
+
+    \\ \hline
+
+    \multirow{2}{*}{$0111$}
+    & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 2 & 2 & 3 & 3
+    & \multirow{2}{*}{$a_{n+4} = a_{n+3} + a_{n}$}
+    & \multirow{2}{*}{$n \geq 1$} \\
+    & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 2 & 3 & 4 & 5
+    & &
+
+    \\ \hline
+  \end{tabular}
+  \caption[Conjectures about the number of Lyndon words with a given prefix]{
+    A table of conjectures about the number of Lyndon words of length $n$ and prefix $\alpha$.
+    Each row contains
+    a prefix $\alpha$
+    a sequence counting Lyndon words with $\alpha$ ($\mathcal{L}_\alpha$),
+    the Euler transformation of that sequence ($\mathcal{C}(\mathcal{L}_\alpha)$),
+    a conjectured recurrence for the Euler-transformed sequence, and
+    the valid range for the conjectured recurrence.
+  }
+  \label{table:lyndonConjectures}
+\end{table}
