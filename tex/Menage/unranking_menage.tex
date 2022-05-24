@@ -12,7 +12,7 @@
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 1
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Overview and History}
+\section{Overview and history}
 
 In January 2020, Richard Arratia sent out an email announcing a talk he was
 going to give on de-ranking derangements.
@@ -66,7 +66,7 @@ Dyck path in lexicographic order?
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 2
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Prefix Counting and Word Ranking}
+\section{Prefix counting and word ranking}
 
 % If we can efficiently count how many objects in
 % $[n]^k$ start with a given prefix
@@ -86,7 +86,7 @@ Dyck path in lexicographic order?
   We can do a binary search. (TODO: write pseudo-code algorithm?)
 \end{proof}
 
-\subsection{Counting Words With a Given Prefix}
+\subsection{Counting words with a given prefix}
 In both the case of unranking derangements and menage permutations
 (and in many other applications) our combinatorial objects are
 words and our total order is lexicographic order.
@@ -176,7 +176,7 @@ $\operatorname{rank}_\mathcal{C}(w) = g_w(1,1,0)$ where
 \end{equation}
 where $w' = (w_1, w_2, \dots, w_{i-1}, \ell)$.
 
-\section{Basic Notions of Rook Theory}
+\section{Basic notions of rook theory}
 Because we have showed that we can ... TODO
 In the case of unranking derangements and permutations, it is useful to use
 ideas from rook theory, which provides a theory for understanding
@@ -251,7 +251,7 @@ Now is an appropriate time to recall Valiant's Theorem.
 Therefore, in order to compute the number of permutations, we must exploit some
 additional structure of the restrictions.
 
-\subsection{Techniques of Rook Theory}
+\subsection{Techniques of rook theory}
 Rook polynomials can be computed recursively. The base case is that
 for an empty board $B = \emptyset$, the corresponding rook polynomial is
 $p_\emptyset(x) = 1$, because there is one way to place no rooks, and no way
@@ -285,7 +285,7 @@ find the rook polynomial of the complementary board, and
 use the principle of inclusion/exclusion to determine the number of ways to
 place rooks in the resulting board.
 
-\section{Unranking Derangements}
+\section{Unranking derangements}
 
 In January 2020, Richard Arratia sent out an email proposing a seminar talk.
 The title describes the first ``\$100 problem'':
@@ -320,7 +320,7 @@ It is worthwhile to begin by recalling the definition of a derangement.
   \]
 \end{definition}
 
-\subsection{The complementary board.}
+\subsection{The complementary board}
 In order to compute the number of derangements with a given prefix, it is
 useful to look at the board that results after placing $k$ rooks according to
 these positions, as illustrated in Figure \ref{fig:derangementPrefix}.
@@ -504,7 +504,7 @@ Table \ref{table:unrankDerangement}.
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 3
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Unranking M\'enage Permutations}
+\section{Unranking m\'enage permutations}
 \label{sec:unrankingMenage}
 After claiming a prize for unranking derangements, the conversation shifted to
 how this technique could be extended. A natural next step seemed to be to look
@@ -521,7 +521,7 @@ use the following definition for simplicity.
   $\pi(i) + 1 \not\equiv i \bmod n$.
 \end{definition}
 
-\subsection{Proof of concept (The \$100 answer!)}
+\subsection{Proof of concept (the \$100 answer!)}
 By February 2020, it appeared that the techniques for unranking derangements
 would not directly translate to the context of m\'enage permutations. In
 response, Richard Arratia upped the stakes, offering another prize for
@@ -910,7 +910,7 @@ Lemma \ref{lemma:unrankFromPrefix} to unrank derangements.
 
 \input{assets/Menage/table_menage1000}
 
-\section{Generalizations and Open Questions}
+\section{Generalizations and open questions}
 
 There are a number of different directions and potential generalizations of
 unranking problems for derangements and m\'enage permutations.
