@@ -19,44 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global}
-    \entry{Kociumaka2014}{inproceedings}{}
-      \name{author}{3}{}{%
-        {{hash=c70c19c5c6f2a440b47c842cc44fd36a}{%
-           family={Kociumaka},
-           familyi={K\bibinitperiod},
-           given={Tomasz},
-           giveni={T\bibinitperiod}}}%
-        {{hash=b9f9d74e62bde7b7cdbdafe64df63113}{%
-           family={Radoszewski},
-           familyi={R\bibinitperiod},
-           given={Jakub},
-           giveni={J\bibinitperiod}}}%
-        {{hash=69d2cd82599f6ceb669cf76a54c6b12f}{%
-           family={Rytter},
-           familyi={R\bibinitperiod},
-           given={Wojciech},
-           giveni={W\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer International Publishing}%
-      }
-      \strng{namehash}{dfbc2d513bd436ac089affb012d361f8}
-      \strng{fullhash}{dfbc2d513bd436ac089affb012d361f8}
-      \strng{bibnamehash}{dfbc2d513bd436ac089affb012d361f8}
-      \strng{authorbibnamehash}{dfbc2d513bd436ac089affb012d361f8}
-      \strng{authornamehash}{dfbc2d513bd436ac089affb012d361f8}
-      \strng{authorfullhash}{dfbc2d513bd436ac089affb012d361f8}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Combinatorial Pattern Matching}
-      \field{isbn}{978-3-319-07566-2}
-      \field{title}{Computing k-th Lyndon Word and Decoding Lexicographically Minimal de Bruijn Sequence}
-      \field{year}{2014}
-      \field{pages}{202\bibrangedash 211}
-      \range{pages}{10}
-    \endentry
     \entry{Kaplansky1946}{article}{}
       \name{author}{2}{}{%
         {{hash=f21a937cde34af7b3489bde1d52b0b2f}{%
@@ -79,8 +41,8 @@
       \strng{authorbibnamehash}{bb47d35a0ad4408aaf087a4afe43b741}
       \strng{authornamehash}{bb47d35a0ad4408aaf087a4afe43b741}
       \strng{authorfullhash}{bb47d35a0ad4408aaf087a4afe43b741}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Duke Mathematical Journal}
@@ -114,8 +76,8 @@
       \strng{authorbibnamehash}{fc1982e4969186630a3cd013022eb2d1}
       \strng{authornamehash}{fc1982e4969186630a3cd013022eb2d1}
       \strng{authorfullhash}{fc1982e4969186630a3cd013022eb2d1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We sketch the circle of fundamental ideas and trends in the development of one of the important branches of combinatorial analysis---the theory of enumerating the permutations with restricted positions, which dates back to Euler, Monmort, Lucas, Cayley, and other classical authors. We devote a great deal of attention to new and up-to-date trends of the theory, some of which are still in the formative stage. We state 10 conjectures and problems.}
@@ -152,8 +114,8 @@
       \strng{authorbibnamehash}{ebcdecb3264d74c439b7eba5e14bbb35}
       \strng{authornamehash}{ebcdecb3264d74c439b7eba5e14bbb35}
       \strng{authorfullhash}{ebcdecb3264d74c439b7eba5e14bbb35}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{It is shown that the permanent function of (0, 1)-matrices is a complete problem for the class of counting problems associated with nondeterministic polynomial time computations. Related counting problems are also considered. The reductions used are characterized by their nontrivial use of arithmetic.}
@@ -195,8 +157,8 @@
       \strng{authorbibnamehash}{545658b3ea930cbc8b9bf12d5f8225c9}
       \strng{authornamehash}{545658b3ea930cbc8b9bf12d5f8225c9}
       \strng{authorfullhash}{545658b3ea930cbc8b9bf12d5f8225c9}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{9781400854332}
@@ -222,8 +184,8 @@
       \strng{authorbibnamehash}{4e6ada7102b167edef04a80faeb39ab5}
       \strng{authornamehash}{4e6ada7102b167edef04a80faeb39ab5}
       \strng{authorfullhash}{4e6ada7102b167edef04a80faeb39ab5}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Discret. Appl. Math.}
@@ -253,8 +215,8 @@
       \strng{authorbibnamehash}{a61a7c4d8f4b467437038b8bc2aee208}
       \strng{authornamehash}{a61a7c4d8f4b467437038b8bc2aee208}
       \strng{authorfullhash}{a61a7c4d8f4b467437038b8bc2aee208}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{edition}{2nd}
@@ -276,8 +238,8 @@
       \strng{authorbibnamehash}{6393f998c5344ccb18062c696cecd966}
       \strng{authornamehash}{6393f998c5344ccb18062c696cecd966}
       \strng{authorfullhash}{6393f998c5344ccb18062c696cecd966}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{{The On-Line Encyclopedia of Integer Sequences}}
@@ -307,11 +269,49 @@
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Séminaire Lotharingien de Combinatoire}
+      \field{journaltitle}{Séminaire Lo\-tha\-rin\-gien de Combinatoire}
       \field{number}{B71a}
       \field{title}{Automatic Enumeration of Generalized Ménage Numbers}
       \field{volume}{71}
       \field{year}{2014}
+    \endentry
+    \entry{Kociumaka2014}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=c70c19c5c6f2a440b47c842cc44fd36a}{%
+           family={Kociumaka},
+           familyi={K\bibinitperiod},
+           given={Tomasz},
+           giveni={T\bibinitperiod}}}%
+        {{hash=b9f9d74e62bde7b7cdbdafe64df63113}{%
+           family={Radoszewski},
+           familyi={R\bibinitperiod},
+           given={Jakub},
+           giveni={J\bibinitperiod}}}%
+        {{hash=69d2cd82599f6ceb669cf76a54c6b12f}{%
+           family={Rytter},
+           familyi={R\bibinitperiod},
+           given={Wojciech},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing}%
+      }
+      \strng{namehash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{fullhash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{bibnamehash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{authorbibnamehash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{authornamehash}{dfbc2d513bd436ac089affb012d361f8}
+      \strng{authorfullhash}{dfbc2d513bd436ac089affb012d361f8}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Combinatorial Pattern Matching}
+      \field{isbn}{978-3-319-07566-2}
+      \field{title}{Computing k-th Lyndon Word and Decoding Lexicographically Minimal de Bruijn Sequence}
+      \field{year}{2014}
+      \field{pages}{202\bibrangedash 211}
+      \range{pages}{10}
     \endentry
     \entry{Sloane1995}{book}{}
       \name{author}{2}{}{%

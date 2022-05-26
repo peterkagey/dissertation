@@ -1,4 +1,4 @@
-\chapter{Generalized Spinning Switches}
+\chapter{Generalized spinning switches}
 \label{cha:SpinningSwitches}
 
 In this chapter, we explore puzzles about switches on the corners of a
@@ -203,9 +203,9 @@ Moreover, $A$ does not change the state within each diagonal.
     \item Switch \textbf{one} switch ($1$).
     \item Switch both switches on the left \textbf{s}ide ($S$).
   \end{enumerate}
-  Then the $15$ move strategy is \[
+  Then the $15$ move strategy is \begin{equation}
     S_1 \circledast S_2 = (A, S, A, D, A, S, A, 1, A, S, A, D, A, S, A)
-  \]
+  \end{equation}
 \end{proof}
 
 We will generalize this construct in
@@ -257,9 +257,9 @@ of the properties we would expect in a desirable switch.
  \begin{enumerate}
   \item (Closure) The group $(G, \cdot)$ is equipped with a binary operation,
   $\cdot \colon G \times G \rightarrow G$. That is, for all pairs of elements
-   $g_1, g_2 \in G$ their product is in $G$ \[
+   $g_1, g_2 \in G$ their product is in $G$ \begin{equation}
      g_1 \cdot g_2 \in G.
-  \]
+  \end{equation}
   In the context of switches, this
   means that if the switch is in some state $g_1 \in G$ and player B moves
   it with action $g_2 \in G$, then $g_1 \cdot g_2 \in G$ is a valid switch for
@@ -267,9 +267,9 @@ of the properties we would expect in a desirable switch.
   %
   %
   \item (Identity) There exists an element $\operatorname{id}_G \in G$ such that
-  for all $g \in G$, \[
+  for all $g \in G$, \begin{equation}
     \operatorname{id}_G \cdot g = g \cdot \operatorname{id}_G = g.
-  \]
+  \end{equation}
   This axiom is useful because it means that Player B can ``do nothing''
   to a switch and leave it in whatever state it is in.
   Because the identity is a distinguished element in $G$,
@@ -280,17 +280,17 @@ of the properties we would expect in a desirable switch.
   %
   %
   \item (Inverses) For each element $g \in G$ there exists an inverse element
-  $g^{-1} \in G$ such that \[
+  $g^{-1} \in G$ such that \begin{equation}
     g \cdot g^{-1} = g^{-1} \cdot g = \operatorname{id}_G.
-  \]
+  \end{equation}
   This axiom states that no matter what state a switch is in,
   there is a move that will transition it into the on state.
   %
   %
   \item (Associativity) Given three elements $g_1, g_2, g_3 \in G$,
-  \[
+  \begin{equation}
     (g_1 \cdot g_2) \cdot g_3 = g_1 \cdot (g_2 \cdot g_3)
-  \]
+  \end{equation}
   This is axiom is not strictly necessary for modeling switches,
   but as we will see in a later definition, it gives us a convenient way to
   describe the conditions for a winning strategy.
@@ -373,15 +373,15 @@ permute the switches.
     \item During the first turn,
     the puzzle-solver toggles the upper-left and lower-right switches, and
     the adversary rotates the table $90^\circ$ clockwise.
-    This is represented by the element \[
+    This is represented by the element \begin{equation}
       ((1,0,1,0), 90^\circ) \in \mathbb Z_2 \wr C_4.
-    \]
+    \end{equation}
     \item During the second turn,
     the puzzle-solver toggles the upper-left switch, and
     the adversary rotates the table $90^\circ$ clockwise.
-    This is represented by the element \[
+    This is represented by the element \begin{equation}
       ((1,0,0,0), 180^\circ) \in \mathbb Z_2 \wr C_4.
-    \]
+    \end{equation}
   \end{enumerate}
   %
   As illustrated in Figure \ref{fig:WreathProduct},
@@ -463,7 +463,7 @@ regardless of the initial (hidden) state of the switches.
   in the base $K$,
   $\{k_i \in K\}_{i=1}^N$,
   such that for every sequence of elements in $H$, ${\{h_i \in H\}_{i=1}^N}$,
-  \[
+  \begin{equation}
     p(\{
       \underbrace{e_{G \wr H}}_{m_0},
       \underbrace{(k_1, h_1)}_{m_1},
@@ -471,7 +471,7 @@ regardless of the initial (hidden) state of the switches.
       \cdots,
       \underbrace{(k_1, h_1)\cdot(k_2, h_2)\cdots(k_N, h_N)}_{m_N}
     \}) = K.
-  \]
+  \end{equation}
   where $p \colon G \wr H \rightarrow K$ is the projection map from the
   wreath product onto its base.
 \label{def:switchingStrategy}
@@ -494,10 +494,10 @@ must contain $k^{-1}k'$ .)
   $\mathrm{id}_K$.
   In the puzzle, we have an initial (hidden) state, $k$.
   Thus, after the $i$-th move, the wreath product
-  element that represents the state of the switches is \[
+  element that represents the state of the switches is \begin{equation}
     p\left((k, \mathrm{id}_H)\cdot(k_1, h_1)\cdot(k_2, h_2)\cdots(k_i, h_i)\right)
     = k \cdot p\left((k_1, h_1)\cdot(k_2, h_2)\cdots(k_i, h_i)\right),
-  \] by associativity. We can factor out the first term because
+  \end{equation} by associativity. We can factor out the first term because
   the ``spin'' is $\mathrm{id}_H$, which acts trivially:
   ${(k, \mathrm{id}_H) \cdot (k', h') = (kk', h')}$
 
@@ -522,11 +522,11 @@ has a simple lower bound.
   length at least ${|K| - 1}$.
 \end{proposition}
 \begin{proof}
-  This follows from an application of the Pigeonhole Principle. Because the set \[
+  This follows from an application of the Pigeonhole Principle. Because the set \begin{equation}
     \{e_{G \wr H}, (k_1, h_1), (k_1, h_1)\cdot(k_2, h_2), \cdots, (k_1, h_1)\cdot(k_2, h_2)\cdots(k_N, h_N)\}
-  \] has at most $N+1$ elements. In order for the projection to be equal to $K$, \[
+  \end{equation} has at most $N+1$ elements. In order for the projection to be equal to $K$, \begin{equation}
     p(\{e_{G \wr H}, (k_1, h_1), (k_1, h_1)\cdot(k_2, h_2), \cdots, (k_1, h_1)\cdot(k_2, h_2)\cdots(k_N, h_N)\}) = K,
-  \] it must be the case that $N+1 \geq |K|$. Therefore $N \geq |K| - 1$.
+  \end{equation} it must be the case that $N+1 \geq |K|$. Therefore $N \geq |K| - 1$.
 \end{proof}
 
 Minimal length switching strategies are common, so we give them a name.
@@ -664,9 +664,9 @@ either.
   Again we will prove the contrapositive.
   Assume that $G \wr H'$ does have a switching strategy,
   $\{k_i\}_{i=1}^N$. Then by definition, for any sequence
-  $\{h'_i\}_{i=1}^N$, the projection of the sequence \[
+  $\{h'_i\}_{i=1}^N$, the projection of the sequence \begin{equation}
     p(\{(k_1, h'_1)\cdot(k_2, h'_2)\cdots(k_i, h'_i)\}_{i=1}^N) = K,
-  \] and in particular this is true when $h'_i$ is restricted to be in the
+  \end{equation} and in particular this is true when $h'_i$ is restricted to be in the
   subgroup $H$. Thus a switching strategy for $G \wr H'$ is also a valid
   switching strategy for $G \wr H$.
 \end{proof}
@@ -698,9 +698,9 @@ strategy. The following theorem allows us to take that very shortcut.
 \begin{theorem}
   Suppose that $H'$ is a group with a subgroup $A \leq H'$ such that
   $A \cong H$,
-  and let \[
+  and let \begin{equation}
     \operatorname{Orb}(\omega) = \{\omega \cdot a : a \in A \} \subseteq \Omega
-  \]
+  \end{equation}
   be the (right) orbit of $\omega \in \Omega$ under $A$.
   If $G \wr_{\operatorname{Orb}(\omega)} H$ does not have a switching strategy,
   then $G \wr_\Omega H'$ does not have a switching strategy.
@@ -711,11 +711,11 @@ strategy. The following theorem allows us to take that very shortcut.
   has a switching strategy ${\{k_i \in K\}_{i=1}^N}$,
   and we consider the projection
   $p_\omega \colon K \rightarrow K_\omega$ where
-  \[
+  \begin{equation}
     K = \prod_{\omega' \in \Omega} G_{\omega'}
     \hspace{1cm}\text{and}\hspace{1cm}
     K_{\omega} = \prod_{\omega' \in \operatorname{Orb}(\omega)} G_{\omega'}.
-  \]
+  \end{equation}
 
   Then $\{p_\omega(k_i) \in K_\omega\}_{i=1}^N$ is a switching strategy for
   $G \wr_{\operatorname{Orb}(\omega)} H$, since the projection is a surjective
@@ -769,9 +769,9 @@ terms of a normal group and its corresponding quotient group.
 
   We ultimately would like to interleave these two strategies,
   but $k_i^{G/N} \not\in K_G$. To find the appropriate analog,
-  we partition $G$ into $[G : N] = m$ right cosets of $N$, \[
+  we partition $G$ into $[G : N] = m$ right cosets of $N$, \begin{equation}
     G = Ng_1 \sqcup Ng_2 \sqcup \dots \sqcup Ng_m,
-  \] each with a chosen representative in $G$.
+  \end{equation} each with a chosen representative in $G$.
   Now we define a map $r \colon G/N \rightarrow G$ that chooses the chosen
   representative of the coset, and extends coordinatewise. We use this map to
   define a sequence $S = \{r(k_i^{G/N}) \in K_G\}$.
@@ -877,14 +877,14 @@ $G \wr \mathbf{1} \cong G$ has not just one switching strategy, but many.
   Then we claim by induction that
   $(k'_1, \mathrm{id})\cdot(k'_2, \mathrm{id})\cdots(k'_j, \mathrm{id}) = (k_j, \mathrm{id})$.
   By construction, the base case is true when $j = 1$. If the claim holds up to
-  $j-1$, then \[
+  $j-1$, then \begin{equation}
     \underbrace{
       (k'_1, \mathrm{id})\cdot(k'_2, \mathrm{id})\cdots(k'_{j-1}, \mathrm{id})
     }_{(k_{j-1}, \mathrm{id})}
     (k'_j, \mathrm{id})
     = (k_{j-1}, \mathrm{id})(k_{j-1}^{-1}k_j, \mathrm{id})
     = (k_j, \mathrm{id}),
-  \] as desired.
+  \end{equation} as desired.
   Thus the projection of the partial products is
   \begin{align}
     &p(\{
@@ -944,9 +944,9 @@ to take on every possible value without changing the difference.
   $G = \langle t_1, t_2, \dots, t_N \rangle$, where $t_i^{-1} = t_i$.
   Because this is the generating set, there exists a finite sequence of
   transpositions $(t_{i_1}, t_{i_2}, \dots, t_{i_M})$
-  such that the partial products of the sequence generate $G$: \[
+  such that the partial products of the sequence generate $G$: \begin{equation}
     G = \{\mathrm{id}_G, t_{i_1}, t_{i_1}t_{i_2}, \dots, t_{i_1}t_{i_2}\cdots t_{i_M}\}.
-  \]
+  \end{equation}
 
   We develop the strategy in two parts. First, we provide a strategy
   $A = \{\alpha_i \in K\}$ such that for any adversarial sequence $\{h_i \in H\}$
@@ -958,9 +958,9 @@ to take on every possible value without changing the difference.
   To do this, we define $\alpha_j = (t_{i_j}, \mathrm{id}_G)$,
   and notice that the difference of the coordinates is the same whether we
   add $\alpha_j$ or $(180^\circ)\cdot \alpha_j$ to a element
-  $(g_1, g_2) \in K$: \[
+  $(g_1, g_2) \in K$: \begin{equation}
     g_1(g_2t_{i_j})^{-1} = g_1t_{i_j}^{-1}g_2^{-1} = (g_1t_{i_j})g_2^{-1}
-  \]
+  \end{equation}
 
   Because the partial products of $t_{i_j}$ cover $G$, there exists some
   $t_1 t_2\dots t_k = g_1{-1}gg^2$, so that $g_{i,1}g_{i,2}^{-1} = g$, as
@@ -1152,7 +1152,7 @@ $\mathcal{L} = (\{1, a, b, c, d\}, \ast)$,
 and describe via its multiplication table, a Latin square of order $5$.
 (Notice that $(ab)d = a \neq d = a(bd)$.)
 \begin{singlespace}
-\[
+\begin{equation}
   \begin{array}{c|ccccc}
     \ast & 1 & a & b & c & d \\
     \hline
@@ -1162,7 +1162,7 @@ and describe via its multiplication table, a Latin square of order $5$.
       c & c & b & d & 1 & a \\
       d & d & c & a & b & 1
   \end{array}
-\]
+\end{equation}
 \end{singlespace}
 
 \begin{conjecture}
@@ -1222,9 +1222,9 @@ uniformly random elements $h_j \in H$.
   then the distribution of the resulting state will be uniformly distributed
   among the $|K| - 1$ different states, the probability of the resulting state
   being the winning state is
-  \[
+  \begin{equation}
     \mathbb{P}(p((k_1, h_1)(k_2, h_2)\dots(k_j, h_j))=k^{-1}\ |\ p((k_1, h_1)(k_2, h_2)\dots(k_{j-1}, h_{j-1})\neq k^{-1})) = \frac{1}{|K| - 1},
-  \] and the expected number of moves is $|K| - 1$.
+  \end{equation} and the expected number of moves is $|K| - 1$.
 \label{prop:randomStrategy}
 \end{proposition}
 \begin{proof}
@@ -1254,9 +1254,9 @@ strategy, then the expected number of moves is $|K|/2$.
   If the initial hidden state $k$ is chosen uniformly at random, then
   $k^{-1}$ is equally likely to occur at any position in this permutation,
   so the index of the winning state is uniform on
-  ${\{1, 2, \dots, |K| - 1\}}$ and so the expected number of moves is \[
+  ${\{1, 2, \dots, |K| - 1\}}$ and so the expected number of moves is \begin{equation}
     \frac{1 + 2 + \dots + |K| - 1}{|K| - 1} = |K|/2.
-  \]
+  \end{equation}
 \end{proof}
 
 We can always come up with a strategy that does better than the strategy in
@@ -1430,9 +1430,9 @@ The analogous definition of a switching strategy becomes more complicated.
 
 \begin{proof}
   By the fundamental theorem of abelian groups, $\hat{G}$ is cyclic and is
-  generated by \[
+  generated by \begin{equation}
     \hat{G} = \langle(1_{C_{k_1}}, 1_{C_{k_2}}, \dots, 1_{C_{k_{|\Omega|}}})\rangle.
-  \]
+  \end{equation}
   Thus, the sequence $\{(1,1,\dots,1) \in K\}_{i=1}^{|K'|-1}$ is a switching
   strategy because it is a fixed point under $H$, and its image is a generator
   of $\hat{G}$.
@@ -1462,9 +1462,9 @@ sum instead of a direct product.
   A \textbf{infinite switching strategy} on an infinite wreath product $G \wr H$
   is a sequence $\{k_i \in K\}_{i=1}^\infty$ such that for all $k \in K$ and
   all infinite sequences ${\{h_i \in H\}_{i=1}^\infty}$,
-  there exists some $N \geq 0$ such that the projection \[
+  there exists some $N \geq 0$ such that the projection \begin{equation}
     p((k_1, h_1)\cdot(k_2, h_2)\cdots(k_N, h_N)) = k^{-1}.
-  \]
+  \end{equation}
 \end{definition}
 
 We claim, but do not prove that, $G \wr_\Omega C_2$ has a infinite switching

@@ -26,9 +26,11 @@
 \usepackage{amsmath, amssymb, amsthm}
 
 % Optional packages: graphics
-
+\usepackage{calrsfs} % For other scripts
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\SetMathAlphabet\pazocal{bold}{OMS}{zplm}{bx}{n}
 \usepackage{listings} % For code
-\usepackage{caption} % For captions of non-floating tables. (See \captionof)
+\usepackage{caption} % For captioning tables?
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,positioning} % For graphics in Permutation Statistics paper
@@ -36,7 +38,7 @@
 \usepackage{chessfss} % For chess pieces: \rook.
 \usepackage[subnum]{cases} % For labeling parts of cases in Permutation Statistics paper
 \usepackage[shortlabels]{enumitem} % For numbering enum
-\usepackage{multirow} % For multirow in Permutation Statistics paper
+\usepackage{multirow} % For \multirow in Permutation Statistics paper
 \newcommand{\n}[1]{\multicolumn{1}{|c|}{#1}} % For Permutation Statistics tables
 \newcommand{\nW}[2]{\tikz[remember picture,anchor=base, baseline,inner xsep=0pt]{\node[box](#2){\vphantom{$\int$}$\underline{#1}$};}}
 \newcommand{\nS}[1]{\tikz[remember picture,anchor=base, baseline,inner xsep=0pt]{\node[box](#1){\vphantom{$\int$}\textvisiblespace};}}

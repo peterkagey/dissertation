@@ -1,10 +1,190 @@
 \section{An algorithm for unranking m\'enage permutations}
 \label{apndx:haskell}
-\begin{singlespace}
-  \input{assets/haskellAlgorithm.tex}
-  \end{singlespace}
+In this section, we will provide Haskell implementations of the functions in
+Section \ref{cha:UnrankingMenage}. Each section of code will reference its
+precedent in that section. We start by importing some relevant libraries
+some naming conventions.
 
-\section{Unranking Combinatorial Objects}
+\begin{singlespace}\begin{verbatim}
+import Data.List (sort, nub, intersect)
+
+type Prefix = [Int]
+type Coefficients = [Integer]
+type PrefixCount = Prefix -> Integer
+\end{verbatim}\end{singlespace}
+
+\subsection{Unranking from prefix counts}
+
+We begin with the function \texttt{unrank}, which implements
+$\operatorname{unrank}_\mathcal{C}(i)$, as shown in Lemma
+\ref{lemma:unrankFromPrefix}. The internal function
+\texttt{recurse} corresponds to the recursive function $f_i^\mathcal{C}$.
+\begin{singlespace}\begin{verbatim}
+unrank :: Int ->                 -- Alphabet of n letters
+          Int ->                 -- Words of length k
+          (Prefix -> Integer) -> -- #prefix function
+          Integer ->             -- Unrank at i
+          Prefix                 -- Word at rank i
+unrank n k prefixCounter i = recurse (0, 0) 1 [] where
+  recurse :: (Integer, Integer) -> -- index range for prefix (a, b]
+              Int ->                -- candidate for current letter
+              Prefix ->             -- established prefix
+              Prefix                -- word at index
+  recurse (a, b) c prefix
+    | c > n              = error "Out of range!"
+    | length prefix == k = prefix
+    | a < i && i <= b    = recurse (a, b') 1 (prefix  ++ [c])
+    | otherwise          = recurse (b, b'') (c + 1) prefix where
+    b'      = a + prefixCounter (prefix ++ [c, 1])
+    b''     = b + prefixCounter (prefix  ++ [c + 1])
+\end{verbatim}\end{singlespace}
+
+\subsection{Counting derangements with prefixes}
+This part of the code contains three functions, each of them take a parameter
+$n$, which indicates the number of letters in the derangement.
+The first function, \texttt{invalidDerangementPrefix}, also takes a prefix
+$\alpha$ and checks to see if it includes duplicate values or has
+letters in forbidden positions.
+The function \texttt{derangementPrefixCount}
+is equivalent to the function $\#\operatorname{prefix}_\mathcal{D}$,
+as described in Corollary \ref{cor:derangementsWithPrefix}.
+The function \texttt{unrankDerangement} is equivalent to the function
+$\operatorname{unrank}_\mathcal{D}$ as described in
+Lemma \ref{lemma:unrankFromPrefix}.
+\begin{singlespace}\begin{verbatim}
+invalidDerangementPrefix :: Int -> Prefix -> Bool
+invalidDerangementPrefix _ prefix = containsDupes || invalidPosition where
+  containsDupes = prefix /= (nub prefix)
+  invalidPosition = any (id) $ zipWith (==) [1..] prefix
+
+derangementPrefixCount :: Int -> Prefix -> Integer
+derangementPrefixCount n prefix
+  | invalidDerangementPrefix n prefix = 0
+  | otherwise = sum $ map (\j -> term j) [0..squareCount] where
+    k = length prefix
+    squareCount = fromIntegral $ n - k - length (intersect [k+1..n] prefix)
+    n' = fromIntegral n
+    k' = fromIntegral k
+    term j = (-1)^j * binomial squareCount j * factorial (n' - k' - j)
+
+unrankDerangement :: Int -> Integer -> Prefix
+unrankDerangement n = unrank n n (derangementPrefixCount n)
+\end{verbatim}\end{singlespace}
+
+\subsection{Decompose complementary m\'enage}
+These next two function decompose a derived complementary board into
+staircase-shaped blocks.
+The first function, \texttt{getColGroups}, corresponds to the partition
+into contiguous parts refered to in Lemma \ref{lem:subBoardSizes}.
+The second function, \texttt{blockSizesFromPrefix} goes on to implement the
+sum in this lemma.
+\begin{singlespace}\begin{verbatim}
+getColGroups :: Int -> Prefix -> [[Int]]
+getColGroups n prefix = filter (not . null) $ colGroups where
+  cols = 0 : (sort prefix) ++ [n+1]
+  colGroups = zipWith (\a b ->  [a+1..b-1]) cols (tail cols)
+
+blockSizesFromPrefix :: Int -> Prefix -> [Int]
+blockSizesFromPrefix n prefix = map (sum . map colCells) colGroups where
+  colGroups = getColGroups n prefix
+  k = length prefix
+  colCells c
+    | c < k      = 0
+    | c == k     = 1
+    | c == n     = 1
+    | otherwise  = 2
+\end{verbatim}\end{singlespace}
+
+\subsection{Complementary polynomials}
+Since the functions above compute the size of the boards staircase-shaped
+sub-boards, the can hand these values to \texttt{fibonacciPoly}, which
+implements Fibonacci polynomials as described in
+Definition \ref{def:FibonacciPolynomial}. These match the rook polynomials of
+the disjoint staircase-shaped sub-boards, so in
+\texttt{complementaryRookPolynomial}, the appropriate polynomials are multiplied
+together and the coefficients are extracted to implement
+Lemma \ref{lemma:CountsFromComplementaryPolynomials}.
+\begin{singlespace}\begin{verbatim}
+fibonacciPoly :: Int -> Coefficients
+fibonacciPoly = (!!) fibonacciPolynomials where
+  fibonacciPolynomials = [1] : [1] : recurse [1] [1] where
+    recurse f g = h : recurse g h where
+      h = ([0,1] .*. f) .+. g
+
+complementaryRookPolynomial :: Int -> Prefix -> Coefficients
+complementaryRookPolynomial n prefix = foldr (.*.) [1] blockPolys where
+  blockPolys = map (\i -> fibonacciPoly (i + 1)) blockSizes where
+    blockSizes = blockSizesFromPrefix n prefix
+\end{verbatim}\end{singlespace}
+
+\subsection{Putting it together}
+This part of the code contains three functions, each of them take a parameter
+$n$, which indicates the number of letters in the m\'enage permutation.
+The first function, \texttt{invalidMenagePrefix}, also takes a prefix
+$\alpha$ and checks to see if it includes duplicate values or has
+letters in forbidden positions.
+The function \texttt{menagePrefixCount}
+is equivalent to the function $\#\operatorname{prefix}_\pazocal{M}$,
+as described in Corollary \ref{cor:derangementsWithPrefix}.
+The function \texttt{unrankDerangement} is equivalent to the function
+$\operatorname{unrank}_\pazocal{M}$ as described in
+Lemma \ref{lemma:unrankFromPrefix}.
+\begin{singlespace}\begin{verbatim}
+invalidMenagePrefix :: Int -> Prefix -> Bool
+invalidMenagePrefix n prefix = containsDuplicates || invalidPosition where
+  containsDuplicates = prefix /= (nub prefix)
+  invalidPosition = any inRestrictedPosition $ zip [0..] prefix where
+    inRestrictedPosition (i, x) = (x `mod` n == i) || (x == i + 1)
+
+menagePrefixCount :: Int -> Prefix -> Integer
+menagePrefixCount n prefix
+  | invalidMenagePrefix n prefix = 0
+  | otherwise      = recurse 0 crp where
+  n' = fromIntegral (n - length prefix)
+  crp = complementaryRookPolynomial n prefix
+  recurse k (c:cs) = (-1)^k * c * factorial (n'-k) + recurse (k+1) cs
+  recurse _ [] = 0
+
+unrankMenage :: Int -> Integer -> Prefix
+unrankMenage n = unrank n n (menagePrefixCount n)
+\end{verbatim}\end{singlespace}
+
+\subsection{Miscellanea}
+These are helper functions that are needed to be included in order for the
+code to compile. The first two functions add and multiply list representations
+of polynomials, and the third and fourth function implement the factorial
+function and the binomial coefficient.
+\begin{singlespace}\begin{verbatim}
+-- The polynomial a + bx + cx^2 ... is represented as
+-- [a, b, c, ...]
+-- These are helper functions for adding and multiplying polynomials
+(.+.) :: Coefficients -> Coefficients -> Coefficients
+(.+.) p1 [] = p1
+(.+.) [] p2 = p2
+(.+.) (a:p1) (b:p2) = (a + b) : (p1 .+. p2)
+
+(.*.) :: Coefficients -> Coefficients -> Coefficients
+(.*.) p1 [] = []
+(.*.) [] p2 = []
+(.*.) p1 p2 = foldr1 (.+.) termwiseProduct where
+  termwiseProduct = map f $ zip [0..] p1 where
+    f (i, x) = replicate i 0 ++ map (*x) p2
+
+factorial :: Integer -> Integer
+factorial n = factorial' n 1 where
+  factorial' 0 accum = accum
+  factorial' n accum = factorial' (n - 1) (accum * n)
+
+binomial :: Integer -> Integer -> Integer
+binomial _ 0 = 1
+binomial 0 _ = 0
+binomial n k
+  | n < k'    = 0
+  | otherwise = product [k' + 1..n] `div` factorial (n - k') where
+    k' = max k (n - k)
+\end{verbatim}\end{singlespace}
+
+\section{Unranking combinatorial objects}
 \label{apndx:unranking}
 \subsection{Compositions}
 \begin{definition}
@@ -21,12 +201,12 @@
   If $\alpha$ is a sequence of positive integers such that
   $\operatorname{sum}(\alpha) \leq n$, then
   the number of compositions of $n$ that start with the prefix $\alpha$
-  is \[
+  is \begin{equation}
     \#\operatorname{prefix}_{\pazocal{C}_n}(\alpha) = \begin{cases}
       1 & \alpha \in \pazocal{C}_n \\
       2^{n - \operatorname{sum}(\alpha) - 1} & \text{otherwise}.
     \end{cases}
-  \]
+  \end{equation}
 \end{proposition}
 
 \begin{definition}
@@ -44,12 +224,12 @@
   a sequence of positive integers of length $\ell < k$ such that
   ${\operatorname{sum}(\alpha) < n}$ or
   then the number of $k$-compositions of $n$ that start with the prefix $\alpha$
-  is \[
+  is \begin{equation}
     \#\operatorname{prefix}_{\pazocal{C}_n}(\alpha) = \begin{cases}
       1 & \alpha \in \pazocal{C}_n^{k} \\
       \binom{n - \operatorname{sum}(\alpha) - 1}{k - \ell - 1} & \text{otherwise}.
     \end{cases}
-  \]
+  \end{equation}
 \end{proposition}
 
 \subsection{Partitions}
@@ -63,23 +243,24 @@
 \end{definition}
 
 \begin{lemma}[\cite{Stanley2011EC1}]
-  The ordinary generating for the number of partitions of $n$ is \[
+  The ordinary generating for the number of partitions of $n$ is \begin{equation}
     \sum_{i=0}^\infty \#\pazocal P_n q^n = \prod_{i=1}^\infty \frac{1}{1-q^j},
-  \]
+  \end{equation}
   and the ordinary generating for the number of partitions of $n$ with largest part
-  as most $j$ is \[
+  as most $j$ is \begin{equation}
     \sum_{i=0}^\infty \#\pazocal P_n^{\leq j} q^n = \prod_{i=1}^k \frac{1}{1-q^j}.
-  \]
+  \end{equation}
 \end{lemma}
 
 \begin{proposition}
-  If $\alpha \in \pazocal{P}_n$ or if $\alpha$ is
-  a decreasing sequence of positive integers such that ${\operatorname{sum}(\alpha) < n}$ or
+  If either $\alpha \in \pazocal{P}_n$ or $\alpha$ is
+  a decreasing sequence of positive integers such that
+  ${\operatorname{sum}(\alpha) < n}$ or
   then the number of partitions of $n$ that start with the prefix $\alpha$
-  is \[
+  is \begin{equation}
     \#\operatorname{prefix}_{\pazocal{P}_n}(\alpha) = \begin{cases}
       1 & \alpha \in \pazocal{C}_n^{k} \\
       \#\pazocal P_{n-\operatorname{sum}(\alpha)}^{\leq \operatorname{min}(\alpha)} & \text{otherwise}.
     \end{cases}
-  \]
+  \end{equation}
 \end{proposition}

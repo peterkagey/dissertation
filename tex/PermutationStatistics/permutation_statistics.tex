@@ -134,7 +134,7 @@ sequence A000354 in the On-Line Encyclopedia of Integer Sequences (OEIS) \cite{o
 In other words, the denominators in the table appear to be related to
 the symmetries of the hypercube that move every facet.
 \begin{table}
-  \[
+  \begin{equation}
   \begin{array}{|ll|l|l|l|l|l|l|l|l|l|l|}
   \hline
   & & \multicolumn{7}{|c|}{m} \\ \cline{3-9}
@@ -154,7 +154,7 @@ the symmetries of the hypercube that move every facet.
   & \n{12} & 181669/27949 & 15138/2329 & 1515/233 & 188/29 & 33/5 & 6/1 & 7/1 \\ \cline{2-9}
   & \n{13} & 7/1          & 7/1        & 7/1      & 7/1    & 7/1  & 7/1 & 7/1 \\ \hline
   \end{array}
-  \]
+  \end{equation}
   \caption[The expected value of $\pi(1)$ for $\pi \in S_n$ with $m$ $2$-cycles.]{
     A table of the expected value of the first letter of $\pi \in S_n$ with
     exactly $m$ $2$-cycles,
@@ -454,9 +454,9 @@ what to add componentwise, and $S_n$ gives information about how to rearrange
 afterward.
 
 \begin{example}
-  Consider the generalized permutation \[
+  Consider the generalized permutation \begin{equation}
     (\underbrace{(1,3,0)}_{\in (\mathbb{Z}/4\mathbb{Z})^3}, \underbrace{(23)}_{\in S_3}) \in S(4,3).
-  \]
+  \end{equation}
   It acts on the sequence $(0,1,1) \in (\mathbb{Z}/2\mathbb{Z})^3$ first by adding
   element-wise, and then permuting: \begin{align}
     \underbrace{((1,3,0),(23))}_{\in S(k,n)} \cdot (0,1,1)
@@ -642,8 +642,8 @@ $i$-th letter of these permutations.
   $k > 1$,
   $1 \leq i \leq kn$, and
   $0 \leq m \leq n$, is
-  \[\mathbb{E}[\pi(i)\, |\, \pi \in S_{kn} \text{ has exactly } m\ k \text{-cycles}\,]
-  = \frac{kn+1}{2}+\frac{(-1)^{n-m}}{2D(k,n-m)}\frac{kn+1-2i}{kn-1}.\]
+  \begin{equation}\mathbb{E}[\pi(i)\, |\, \pi \in S_{kn} \text{ has exactly } m\ k \text{-cycles}\,]
+  = \frac{kn+1}{2}+\frac{(-1)^{n-m}}{2D(k,n-m)}\frac{kn+1-2i}{kn-1}.\end{equation}
 \end{corollary}
 \begin{proof}
   Denote by $N$ the number of permutations in $S_{kn}$
@@ -678,13 +678,13 @@ $i$-th letter of these permutations.
   $\mathbb{E}[\pi(i)\, |\, \pi \in S_{kn} \text{ has exactly } m\ k \text{-cycles}\,]$
   to a function $f(n,k,m,i)$ where $i \in \mathbb Q$ is not necessarily an integer.
   As can be seen in Equation \ref{eq:affineFunction}, $f$ is affine function in $i$.
-  By Theorem \ref{secondTheorem}, when $i = 1$, \[
+  By Theorem \ref{secondTheorem}, when $i = 1$, \begin{equation}
     f(n,k,m,1) =
     \frac{kn + 1}{2} + \frac{(-1)^{n-m}}{2 D(k, n - m)}.
-  \]
-  When $i = (kn+1)/2$ yields \[
+  \end{equation}
+  When $i = (kn+1)/2$ yields \begin{equation}
     f(n,k,m,(kn+1)/2) = \frac{kn+1}{2}.
-  \]
+  \end{equation}
   Because $f(n,k,m,i)$ is affine in $i$, it is enough to use linear
   interpolation and extrapolation to compute $f$ for arbitrary $i$.
   This can be done by scaling the
@@ -823,7 +823,7 @@ larger than $(kn+1)/2$ if and only if $n$ and $m$ have the same parity.
 \label{section:bijection}
 Motivated by Equation \ref{eq:bijectionDifference0}, this section describes a
 family of bijections,
-  \[\phi_k \colon S_{n-1} \times [n] \rightarrow S_n,\]
+  \begin{equation}\phi_k \colon S_{n-1} \times [n] \rightarrow S_n,\end{equation}
 each of which preserves the number of $k$-cycles when $k \nmid n$.
 Of course, there is no map that preserves the number of $k$-cycles when $k \mid n$. For example, a permutation in
 $S_n$ consisting entirely of $k$-cycles contains $n/k$ $k$-cycles, while a permutation
@@ -911,12 +911,12 @@ an example to give some sense of the overarching idea.
 
 \end{example}
 Again, it is worth reemphasizing that the following definitions will follow the
-convention that permutations are written in canonical cycle notation, \[
+convention that permutations are written in canonical cycle notation, \begin{equation}
   \pi =
     \underbrace{(c^{(t)}_1\cdots c^{(t)}_{\ell_t})}_{c^{(t)}}
     \cdots
     \underbrace{(c^{(1)}_1\cdots c^{(1)}_{\ell_1})}_{c^{(1)}},
-\] where cycle $c^{(i)} = (c^{(i)}_1 \cdots c^{(i)}_{\ell_i})$ has $\ell_i$ letters.
+\end{equation} where cycle $c^{(i)} = (c^{(i)}_1 \cdots c^{(i)}_{\ell_i})$ has $\ell_i$ letters.
 This means that the first letter in each cycle, $c^{(i)}_1$, is the largest letter in that cycle,
 and that the cycles are ordered in increasing order by first letter when read from right-to-left:
 $c^{(i+1)}_1 < c^{(i)}_1$ for all $i$.
@@ -1117,24 +1117,30 @@ $\operatorname{des}(\pi)$, and this chapter gave the expected value of
 $\pi(1)$ given the number of $k$-cycles of $\pi$. Of course, it would be
 interesting to do analogous analysis with other permutations. In particular,
 the FindStat permutation statistics database \cite{FindStat} contains over
-370 different permutation statistics, and many of these appear to have some
+380 different permutation statistics, and many of these appear to have some
 structure with respect to the expected value of the first letter of a
 permutation.
+
+Moreover, this database currently has a total of about $1800$ statistics on a
+variety of combinatorial objects: binary trees, Dyck paths, parking functions,
+posets, and standard tableaux, to name a few.
+By choosing two statistics on a given object, it may be interesting to ask how
+knowing one value of one statistic changes the expected value of the other.
 
 \subsection{Mahonian statistics}
 In particular, the family of Mahonian statistics may be fruitful to investigate.
 Below, we have given conjectures about two: the major index and the inversion number.
 Mahonian statistics are maps
 $\operatorname{mah} \colon S_n \rightarrow \mathbb{N}_{\geq0}$ that are
-equidistributed with the inversion number.\cite{Foata} That is, \[
+equidistributed with the inversion number.\cite{Foata} That is, \begin{equation}
   \#\{w \in S_n : \operatorname{mah}(w) = k\} =
   \#\{w \in S_n : \operatorname{inv}(w) = k\}.
-\]
-Naturally, all Mahonian statistics share the same generating function: \[
+\end{equation}
+Naturally, all Mahonian statistics share the same generating function: \begin{equation}
   \sum_{\sigma \in S_n} x^{\operatorname{mah}(\sigma)}
     = [n]_q!
     = \prod_{i=0}^{n-1}\sum_{j=0}^i(q^j).
-\]
+\end{equation}
 
 Because the expected value of the first letter is given by the weighted sum of
 the permutations with $\operatorname{mah}(w) = k$ divided by the number of such
@@ -1148,10 +1154,10 @@ degree $k$ and degree $k-1$ polynomials respectively.
 \begin{conjecture}
   For fixed $k$ and $n > k$, the expected value of the first letter of a
   permutation with a given number of inversions satisfies a rational function
-  in $n$ given by \[
+  in $n$ given by \begin{equation}
     \mathbb{E}[\pi(1)\, |\, \pi \in S_n, \operatorname{inv}(\pi) = k]
     = \frac{M(n+1,k)}{M(n,k)},
-  \] where $M(n,k)$, as above, is the number of permutations $w \in S_n$ such
+  \end{equation} where $M(n,k)$, as above, is the number of permutations $w \in S_n$ such
   that $\operatorname{inv}(w) = k$.
 \end{conjecture}
 

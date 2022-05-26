@@ -1,21 +1,36 @@
-\chapter{Unranking Restricted Permutations}
+\chapter{Unranking restricted permutations}
 \label{cha:UnrankingMenage}
+
+In this chapter we discuss efficient ways of unranking derangements and
+m\'enage permutations.
+That is, given a list of these restricted permutations in lexicographic order,
+we will provide an algorithm to efficiently extract the $k$-th permutation from
+the list.
+We will show that this problem can be reduced to the problem of computing the
+number of restricted permutations with a given prefix, and then we will
+use rook theory to solve this counting problem.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 1
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Overview and history}
-
 In January 2020, Richard Arratia sent out an email announcing a talk he was
-going to give on de-ranking derangements.
+going to give about ``unranking derangements''. He asked, if you list all
+derangements on some number of letters, listed as words in lexicographic
+order, we know how to enumerate them in both senses of the word: we can count
+them, and we list them out.
+However, he asked, what if we want to sample from a particular index somewhere
+in the middle of the list? Can you do this efficiently?
 
-By January 2021, he announced a \$100 prize for solving the analogous problem
-with m\'enage permutations. I solved that too.
+Having shown Richard a proof of concept for unranking derangements, he widened
+his next to a problem that I suspected was too hard.
+In January 2021, he announced a \$100 prize for solving the analogous problem
+with m\'enage permutations.
 
-Richard was interested in a more general question, which I found contagious:
-Given some family of combinatorial objects that can be quickly counted
-(say unlabelled simple graphs on $n$ vertices)
-and some total ordering on them,
+Richard was, of course, interested in the more general question:
+given some family of combinatorial objects $\mathcal{C}_n$ that can be counted
+efficiently (for example, derangements or Dyck paths or graphs on $n$ vertices)
+and some total ordering on them (for example, lexicographic order),
 when is it possible to \textbf{unrank} the collection in some computationally
 efficient way?
 
@@ -39,22 +54,17 @@ unranking from a given totally ordered set. After all, when these sets
 grow in exponential time or worse, explicitly constructing the sequence and
 doing a search is not computationally feasible.
 
-In Appendix \ref{apndx:unranking}, we will provide examples of total orders on combinatorial
-objects $\mathcal{C}$ for which constructing efficient
+In Appendix \ref{apndx:unranking}, we provide examples of totally ordered
+combinatorial objects $\mathcal{C}$ that have efficient ranking and unranking
+maps.
 
-% Of course, we can usually create an algorithm to give the $i$-th object without
-% simply enumerating all of the objects explicitly? We want to ``jump in'' to a
-% specific place on the list. Another interesting question:
-% what if you get to supply both the total order and the unranking algorithm?
-
-In this chapter we're going to explore that idea. We're going to show a general
-theory that allows us to de-rank
-permutations in lexicographic order,
-derangements in lexicographic order,
-partitions and compositions of $n$ in lexicographic order,
-labeled trees by lexicographic order of Pr\"ufer code,
-Lyndon words \cite{Kociumaka2014} (de Bruijn Sequences?),
-Dyck path in lexicographic order?
+In this chapter we're going to explore this idea in the context of combinatorial
+words in lexicographic order. In particular, we will focus on two families of
+restricted permutations: derangements and m\'enage permutations. We will show
+that the existence of an efficient way to count the number of such permutations
+with a given prefix implies that there is an efficient way to compute the
+ranking and unranking maps. Then we will develop some ideas from rook theory
+and apply them to the context of derangements and m\'enage permutations.
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 2
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -117,9 +127,9 @@ alphabetical order.
   be the function that counts the number of words in $\mathcal C$ that begin
   with a given prefix.
 
-  Then the unranking function can be computed recursively by \[
+  Then the unranking function can be computed recursively by \begin{equation}
     \operatorname{unrank}_\mathcal{C}(i) = f^{\mathcal C}_i((1), 0)
-  \] where
+  \end{equation} where
   \begin{numcases}{f^{\mathcal C}_i(\alpha, j) =}
   \alpha
     & $\alpha \in \mathcal{C}$ and $i = j + 1$
@@ -231,9 +241,9 @@ way that no two rooks are in the same row or column.
 
 \begin{definition}
   The \textbf{rook polynomial} associated with a board $B$,
-  \[
+  \begin{equation}
     p_B(x) = r_0 + r_1 x + r_2 x^2 + \dots + r_n x^n,
-  \]
+  \end{equation}
   is a generating polynomial where $r_k$ denotes the number of $k$-element subsets
   of $B$ such that no two elements share an $x$-coordinate or a $y$-coordinate.
 \end{definition}
@@ -251,16 +261,16 @@ permanent. (In fact, Shevelev \cite{Shevelev1992} claims that
 stimulated the development of the theory of the permanent.'')
 
 \begin{lemma}
-  Let $M_B = \{a_{ij}\}$ be an $n \times n$ matrix where \[
+  Let $M_B = \{a_{ij}\}$ be an $n \times n$ matrix where \begin{equation}
     a_{ij} = \begin{cases}
       1 & (i,j) \in B \\
       0 & (i,j) \not\in B
     \end{cases}.
-  \]
+  \end{equation}
   Then the coefficient of $x^n$ in $p_B(x)$ is given by the matrix permanent
-  \[
+  \begin{equation}
     \operatorname{perm}(M_B) = \sum_{\sigma \in S_n} \prod_{i=1}^n a_{i\sigma(i)}.
-  \]
+  \end{equation}
 \end{lemma}
 
 Now is an appropriate time to recall Valiant's Theorem.
@@ -290,9 +300,9 @@ to place one or more rooks.
     B_e &= B \setminus {(x,y)}.
   \end{align}
   Then we can write the rook polynomial for $B$ in terms of this decomposition.
-  \[
+  \begin{equation}
     p_B(x) = xp_{B_i}(x) + p_{B_e}(x).
-  \]
+  \end{equation}
   \label{lemma:rookPolynomialRecursion}
 \end{lemma}
 
@@ -313,6 +323,7 @@ place rooks in the resulting board.
 
 \section{Unranking derangements}
 
+\subsection{The answer to a \$100 question about derangements}
 In January 2020, Richard Arratia sent out an email proposing a seminar talk.
 The title describes the first ``\$100 problem'':
 \begin{problem}
@@ -322,14 +333,14 @@ The title describes the first ``\$100 problem'':
 \begin{answer}
 The computer program in Appendix \ref{apndx:haskell} computed the answer in less than ten
 milliseconds. When written as words in lexicographic order, the
-derangement in $S_{20}$ with rank $5 \times 10^{17}$ is \[
+derangement in $S_{20}$ with rank $5 \times 10^{17}$ is \begin{equation}
   12\ 14\ 2\ 9\ 13\ 20\ 6\ 3\ 1\ 17\ 5\ 11\ 19\ 15\ 10\ 18\ 8\ 7\ 4\ 16.
-\]
+\end{equation}
 \end{answer}
 
-Arratia's question focused on unranking derangements where the rank was
-based on the total ordering that comes from writing the
-permutations as words in lexicographic order.
+\subsection{Overview for unranking derangements}
+Arratia's question focused on unranking derangements written as words in
+lexicographic order.
 Other authors have looked at unranking derangements based on other total
 orderings. In particular, Mikawa and Tanaka \cite{Mikawa2014} give an algorithm
 to rank/unrank derangements
@@ -341,9 +352,9 @@ broadly be re-used in the next section.
 It is worthwhile to begin by recalling the definition of a derangement.
 \begin{definition}
   A \textbf{derangement} is a permutation $\pi \in S_n$ such that $\pi$ has no
-  fixed points. That is, the set of derangements on $n$ letters is \[
+  fixed points. That is, the set of derangements on $n$ letters is \begin{equation}
     \mathcal{D}_n = \{\pi \in S_n : \pi(i) \neq i\ \forall i \in [n]\}.
-  \]
+  \end{equation}
 \end{definition}
 
 \subsection{The complementary board}
@@ -374,9 +385,9 @@ equal to the number of words in $\mathcal{C}$ with prefix $\alpha$
 \begin{lemma}
   Given a valid $\ell$ letter prefix $(\alpha_1, \alpha_2, \dots, \alpha_\ell)$
   of a word on $n$ letters,
-  the number of squares in the derived complementary board is \[
+  the number of squares in the derived complementary board is \begin{equation}
     |B_\alpha^c| = n - \ell - |\{\ell+1, \ell+2, \dots, n\} \cap \{\alpha_1, \alpha_2, \dots, \alpha_\ell\}|,
-  \] and no two of these squares are in the same row or column.
+  \end{equation} and no two of these squares are in the same row or column.
   \label{lemma:derangementComplementSize}
 \end{lemma}
 \begin{proof}
@@ -433,9 +444,9 @@ $B_\alpha \subseteq [n - \ell] \times [n - \ell]$.
 
   Then the number of ways, $N_0$, of placing $n$ nonattacking rooks on $B$
   is given by the principle of inclusion/exclusion
-  \[
+  \begin{equation}
     N_0 = \sum_{k=0}^n (-1)^k r^c_k (n-k)!.
-  \]
+  \end{equation}
   \label{lemma:CountsFromComplementaryPolynomials}
 \end{lemma}
 
@@ -445,11 +456,12 @@ $\alpha$.
 \begin{corollary}
   The number of derangements with prefix
   $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$
-  is given by \[
+  is given by \begin{equation}
     \#\operatorname{prefix}_\mathcal{D}(\alpha)
     = \sum_{j=0}^{|B_\alpha^c|} (-1)^j \binom{|B_\alpha^c|}{j}(n-\ell-j)!,
-  \] which is $\operatorname{A047920}(n-\ell, |B_\alpha^c|)$ in
+  \end{equation} which is $\operatorname{A047920}(n-\ell, |B_\alpha^c|)$ in
   the On-Line Encyclopedia of Integer Sequences (OEIS) \cite{oeis}.
+\label{cor:derangementsWithPrefix}
 \end{corollary}
 
 Because we can compute $|B_\alpha^c|$ from $\alpha$ in linear time
@@ -462,9 +474,9 @@ in linear time with respect to $\ell$, the length of the prefix.
   For example, for $n = 14$, we wish to count the number of derangements that
   start with the prefix $\alpha = (6,1)$.
   Since the prefix has two letters, $\ell = 2$ and $n - \ell = 14 - 2 = 12$.
-  Number of squares in $B_\alpha^c$ is \[
+  Number of squares in $B_\alpha^c$ is \begin{equation}
     |B_\alpha^c| = 14 - 2 - \underbrace{|\{3,4,\dots,14\} \cap \{6, 1\}|}_1 = 11
-  \]
+  \end{equation}
   Thus there are $A047920(12,11) = 190\,899\,411$ derangements that start
   with $\alpha = (6,1)$.
 \end{example}
@@ -549,7 +561,7 @@ use the following definition for simplicity.
   The set of m\'enage permutations of length $n$ is denoted $\pazocal{M}_n$.
 \end{definition}
 
-\subsection{Proof of concept (the \$100 answer!)}
+\subsection{The answer to a \$100 question about m\'enage permutations}
 By February 2020, it appeared that the techniques for unranking derangements
 would not directly translate to the context of m\'enage permutations. In
 response, Richard Arratia upped the stakes, offering another prize for
@@ -612,9 +624,10 @@ its disjoint boards.
 \begin{theorem}[\cite{Kaplansky1946}]
   If $B$ can be partitioned into disjoint boards $b_1, b_2, \dots, b_m$,
   then the rook polynomial of $B$ is the product of the rook polynomials of
-  the $b_i$s \[
+  the $b_i$s \begin{equation}
     p_B(x) = \prod_{i=1}^m p_{b_i}(x).
-  \]
+  \end{equation}
+\label{thm:productOfDisjointBoards}
 \end{theorem}
 
 We will use this disjoint board decomposition repeatedly, because as
@@ -721,12 +734,13 @@ We will begin by defining a family of polynomials that, suggestively, will turn
 out to be the rook polynomials that we are looking for.
 This family is described by OEIS sequence A011973 \cite{oeis}.
 \begin{definition}
-  For $j \geq 0$, the $j$th \textbf{Fibonacci polynomial} $F_{j}(x)$ is defined recursively as:
+  For $j \geq 0$, the $j$-th \textbf{Fibonacci polynomial} $F_{j}(x)$ is defined recursively as:
   \begin{align}
     F_0(x) &= 1 \\
     F_1(x) &= 1 + x \\
     F_n(x) &= xF_{n-2}(x) + F_{n-1}(x).
   \end{align}
+\label{def:FibonacciPolynomial}
 \end{definition}
 
 The rook polynomials of the staircase-shaped boards agree with these Fibonacci
@@ -797,6 +811,23 @@ polynomials.
   \end{align}
 \end{proof}
 
+Therefore, we now have the ingredients to describe the rook polynomial of
+a derived complementary board.
+
+\begin{corollary}
+  Suppose that $B_\alpha^c$ can be partitioned into $m$ disjoint
+  staircase-shaped sub-boards of size $b_1, b_2, \dots, b_m$.
+  Then the rook polynomial of
+  $B_\alpha^c$ is \begin{equation}
+    p_{B_\alpha^c}(x) = \prod_{i=1}^m F_{b_i},
+  \end{equation} where $F_j$ is the $j$-th Fibonacci polynomial.
+  \label{cor:derivedComplementaryRookPolynomial}
+\end{corollary}
+\begin{proof}
+  This follows directly Theorem \ref{thm:productOfDisjointBoards} together
+  with Lemma \ref{lemma:staircaseIsFibonacci}.
+\end{proof}
+
 \subsection{Sub-boards from prefix}
 
 In this part, we discuss how to algorithmically compute the size of the
@@ -823,9 +854,9 @@ for a given prefix $\alpha$.
 \begin{proof}
   It is helpful to recall that the complementary board $B^c$ consists of squares
   on the diagonal, squares on the subdiagonal, and the square $(1, n)$:
-  \[
+  \begin{equation}
     B^c = \{(i, i) : i \in [n]\} \cup \{(i + 1, i) : i \in [n-1]\} \cup \{(1,n)\}.
-  \]
+  \end{equation}
 
   Now if $i < \ell$, then $(i,i)$ and $(i + 1, i)$ both have a first coordinate
   less than or equal to $\ell$.
@@ -844,24 +875,39 @@ Now we will go through each contiguous section of columns, and count the number
 of squares in each to build up the size of each of the blocks.
 
 \begin{lemma}
-  Partition $[n] \setminus \alpha$ into contiguous parts. Each part $P_i$
-  of the partition corresponds to a staircase-shaped sub-board of size
-  $\sum_{p \in P_i} c_p$.
+  Partition $[n] \setminus \alpha$ into contiguous parts, $\pazocal{P}$.
+  Each part $\pazocal{P}_i \in \pazocal{P}$ of the partition corresponds to a staircase-shaped
+  sub-board of size $\sum_{p \in \pazocal{P}_i} c_p$.
+
+  Therefore the size of the disjoint sub-boards in the derived complementary
+  board $B_\alpha^c$ is given by the multiset \begin{equation}
+    P_\alpha = \left\{ \sum_{p \in \pazocal{P}_i} c_p : \pazocal{P}_i \in \pazocal{P} \right\}.
+  \end{equation}
+\label{lem:subBoardSizes}
 \end{lemma}
 
 \begin{proof}
+  Once the first row of a complementary m\'enage board has been deleted,
+  the resulting board has the property that any two nonadjacent columns
+  do not have any squares in the same row, because column $i$ has
+  squares in $(i, i)$ and $(i+1, i)$.
+
+  Within each contiguous interval between the letters of $\alpha$,
+  the columns for a staircase-shaped sub-board because
+  each column with a square in position $(i + 1, i)$ has a square to its right,
+  in position $(i + 1, i + 1)$ whenever $i + 1 \not\in \alpha$.
 \end{proof}
 
 \begin{example}
   As illustrated in Figure \ref{fig:menageMultiplePlacement}, if $n = 12$
-  and $\alpha = (3,6,1,8)$, then the contiguous partition of \[
+  and $\alpha = (3,6,1,8)$, then the contiguous partition of \begin{equation}
     [12] \setminus \{3,6,1,8\} = \{
       \underbrace{2\vphantom{,}}_{P_1},
       \underbrace{4, 5}_{P_2},
       \underbrace{7\vphantom{,}}_{P_3},
       \underbrace{9, 10, 11, 12}_{P_4}
     \}
-  \] is $\{P_1, P_2, P_3, P_4\}$. The corresponding staircase-shaped sub-boards
+  \end{equation} is $\{P_1, P_2, P_3, P_4\}$. The corresponding staircase-shaped sub-boards
   have sizes
   \begin{alignat*}{3}
     k_1 &= c_2                            &&= 0             &&= 0 \\
@@ -870,9 +916,9 @@ of squares in each to build up the size of each of the blocks.
     k_4 &= c_9 + c_{10} + c_{11} + c_{12} &&= 2 + 2 + 2 + 1 &&= 7,
   \end{alignat*}
   which matches what we observe in the illustration:
-  \[
+  \begin{equation}
     B_\alpha^c = \mathcal{E}_0 \sqcup \mathcal{O}_3 \sqcup \mathcal{E}_2 \sqcup \mathcal{O}_7^\intercal,
-  \]
+  \end{equation}
   \label{ex:blocksFromPrefix}
 \end{example}
 
@@ -889,6 +935,23 @@ can finally compute the number of ways of placing $n - \ell$ rooks on
 $B_\alpha$ thus determining the number of derangements that begin with
 $\alpha$.
 
+% Now that we have shown in Lemma \ref{lem:ContiguousParts} how to get the
+\begin{theorem}
+  The number of m\'enage permutations that begin with a valid, nonempty
+  prefix $\alpha$ is
+  \begin{equation}
+    \#\operatorname{prefix}_\pazocal{M}(\alpha) = \sum_{k=0}^{n} (-1)^k r_k^c (n-k)!
+  \end{equation} where
+  $\sum_{k=0}^n r_k^c x^k = \prod_{p \in P_\alpha} F_p$,
+  $F_k$ is the $k$-th Fibonacci polynomial, and
+  $P_\alpha$ is the multiset corresponding to the size of the staircase-shaped
+  sub-boards in the disjoint partition of $B_\alpha^c$.
+\end{theorem}
+\begin{proof}
+  This follows directly from Corollary \ref{cor:derivedComplementaryRookPolynomial}
+  together with Lemma \ref{lem:subBoardSizes}
+\end{proof}
+
 This together with Lemma \ref{lemma:unrankFromPrefix} allows an efficient
 unranking algorithm.
 
@@ -902,9 +965,9 @@ permutations with a given prefix.
   in Example \ref{ex:blocksFromPrefix}.
 
   We've already seen that the for $n = 12$, the prefix $\alpha = (3,6,1,8)$
-  partitions the derived complimentary board into three nonempty sub-boards: \[
+  partitions the derived complimentary board into three nonempty sub-boards: \begin{equation}
     B_\alpha^c = \mathcal{E}_0 \sqcup \mathcal{O}_3 \sqcup \mathcal{E}_2 \sqcup \mathcal{O}_7^\intercal.
-  \] Lemma \ref{lemma:staircaseIsFibonacci} tells us that the rook polynomial of
+  \end{equation} Lemma \ref{lemma:staircaseIsFibonacci} tells us that the rook polynomial of
   $B_\alpha^c$ is \begin{align}
     p_{B_\alpha^c}(x)
     &= F_3(x)F_2(x)F_7(x) \\
@@ -932,9 +995,9 @@ Lemma \ref{lemma:unrankFromPrefix} to unrank derangements.
   There are $A000179(8) = 4738$ m\'enage permutations on $8$ letters.
   Table \ref{table:unrankMenage} shows the steps of the algorithm that
   determines that the $1000$th m\'enage permutation in lexicographic order is
-  \[
+  \begin{equation}
     w_{1000} = 3 \ 5 \ 4 \ 8 \ 2 \ 7 \ 1 \ 6.
-  \]
+  \end{equation}
 \end{example}
 
 \input{assets/Menage/table_menage1000}
@@ -953,16 +1016,16 @@ unranking other kinds of combinatorial objects
 unranking permutations with a different underlying total order.
 % Wreath product derangements
 %
-\subsection{Restricted permutations}
+\subsection{Other restricted permutations}
 In a 2014 paper about finding linear recurrences for derangements, m\'enage
 permutations and other kinds of permutations, Doron Zeilberger
 introduces a more general family of restricted permutations.
 \begin{definition}[\cite{Zeilberger2014}]
   Let $S \subset \mathbb Z$ be a finite collection of integers.
   A \textbf{$S$-avoiding permutation} is a permutation $\pi \in S_n$ such that
-  \[
+  \begin{equation}
     \pi(i) - i - s \not\equiv 0 \bmod n \text{ for all } i \in [n] \text{ and } s \in S.
-  \]
+  \end{equation}
 \end{definition}
 
 \begin{example}
@@ -995,46 +1058,83 @@ a rook and deleting a column does not necessarily cause the left and right
 sides of that column to be disjoint. As such, unranking $\{-1,1\}$-avoiding
 permutations appears to require a genuinely novel insight.
 
-\subsection{Unranking restricted words}
+\subsection{Permutation statistics}
+Another area for exploration, inspired by Chapter \ref{cha:PermutationStatistics},
+is unranking permutations with a given permutation statistic.
+
+\begin{openquestion}
+  Let $\operatorname{inv}\colon S_n \rightarrow \mathbb N_{\geq 0}$ be the map
+  that counts inversions of a permutation. Since $\operatorname{inv}$ is a
+  Mahonian statistic, the generating function for the number of permutations
+  $\pi \in S_n$ such that $\operatorname{inv}(\pi) = k$ is given by the
+  $q$ analog of $n!$, $n!_q$.
+
+  Does there exist an efficient unranking function on the set \begin{equation}
+    \mathcal{I}_n^k = \{\pi \in S_n | \operatorname{inv}(\pi) = k\},
+  \end{equation} and if so, how does one construct it?
+\end{openquestion}
+
+We can, of course, substitute $\operatorname{inv}$ with any other permutation
+statistic of interest.
+
+\subsection{Pattern avoidance}
+In the field of combinatorics on words, there exists a notion of patterns and
+instances of a pattern. At this level of informality, this is probably best
+illustrated with an example.
+
+\begin{example}
+  The word $1100010110$ is an instance of the pattern $ABA$ with $A = 110$ and
+  $B = 0010$.
+  The word $32123213212$ is said to match the pattern $CC$ with $C = 321$ because
+  it contains a substring of the form $321321$.
+\end{example}
+
+\begin{openquestion}
+  Given a pattern $P$, is it possible to unrank words of length $n$ over an
+  alphabet $\mathcal A$ that are not instances of the pattern $P$?
+  That match the pattern $P$? That don't match the pattern $P$?
+\end{openquestion}
+
+\subsection{Prefixes of Lyndon words}
 There are other collections of finite words that might be amenable to some of
 the above techniques. In particular, Kociumaka, Radoszewski, and Rytter
 \cite{Kociumaka2014} give polynomial time algorithms for unranking Lyndon
 words. We have some conjectures about prefixes of Lyndon words and open
 questions about other restricted words.
 \begin{definition}
-  A \textbf{Lyndon word} is a string that is the unique minimum with respect
-  to all of its rotations.
+  A \textbf{Lyndon word} is a string over an alphabet of letters
+  that is the unique minimum with respect to all of its rotations.
 \end{definition}
 \begin{example}
-  $00101$ is a Lyndon word because \[
+  $00101$ is a Lyndon word because \begin{equation}
     00101 = \min\{00101, 01010, 10100, 01001, 10010\}
-  \] is the unique minimum of all of its rotations.
+  \end{equation} is the unique minimum of all of its rotations.
 
-  $011011$ is not a Lyndon word because while \[
+  $011011$ is not a Lyndon word because while \begin{equation}
     011011 = \min\{011011, 110110, 101101, 011011, 110110, 101101\},
-  \]
+  \end{equation}
   it is not the \textbf{unique} minimum.
   (That is, rotating it three positions returns it to itself.)
 \end{example}
 
 \begin{definition}[\cite{Sloane1995}]
   Suppose that $\{a_i\}_{i=1}^\infty$ and $\{b_i\}_{i=1}^\infty$ are integer sequences
-  related by \[
+  related by \begin{equation}
     1 + \sum_{n=1}^\infty b_n x^n = \prod_{i=1}^\infty \frac{1}{(1-x^i)^{a_i}}.
-  \] Then $\{b_i\}_{i=1}^\infty$ is said to be the
+  \end{equation} Then $\{b_i\}_{i=1}^\infty$ is said to be the
   \textbf{Euler transform} of $\{a_i\}_{i=1}^\infty$, denoted
   $\pazocal{E}(\{a_i\}_{i=1}^\infty) = \{b_i\}_{i=1}^\infty$.
 \end{definition}
 
 \begin{definition}
   Let $\mathcal{L}_\alpha = \{\ell_n^\alpha\}_{n=1}^\infty$ where
-  $\ell_n^\alpha$ is the number of Lyndon words of length $n$ and prefix
-  $\alpha$.
+  $\ell_n^\alpha$ is the number of Lyndon words with prefix $\alpha$ and length $n$
+  over the alphabet $\{0,1\}$.
 \end{definition}
 
 \begin{conjecture}
   The Euler transform of the number of Lyndon words with prefix $\alpha$ and
-  length $n$,
+  length $n$ over the alphabet $\{0,1\}$,
   $\pazocal{E}(\mathcal{L_\alpha}) = \{t_{n}^\alpha\}_{n=1}^\infty$,
   follows a linear recurrence for all $n \geq N_\alpha$.
 \end{conjecture}
@@ -1047,7 +1147,7 @@ We start with two specific conjectures about two families of prefixes.
   For $k \geq 1$
   Let $\mathcal{L}_\alpha$ be the sequence of the
   number of Lyndon words of length $n$ with prefix
-  ${\alpha = (0, 0, \dots, 0)}$ of length $k$.
+  ${\alpha = (0, 0, \dots, 0)}$ of length $k$ over the alphabet $\{0,1\}$.
   Then the Euler transform
   $\pazocal{E}(\mathcal{L}_\alpha) = \{t_{n}^\alpha\}_{n=1}^\infty$
   follows the linear recurrence $t_{n+1}^\alpha = 2t_{n}^\alpha$ for all
@@ -1058,7 +1158,7 @@ We start with two specific conjectures about two families of prefixes.
   For $k \geq 2$
   Let $\mathcal{L}_\alpha$ be the sequence of the
   number of Lyndon words of length $n$ with prefix
-  ${\alpha = (1, 0, 0, \dots, 0)}$ of length $k$.
+  ${\alpha = (1, 0, 0, \dots, 0)}$ of length $k$ over the alphabet $\{0,1\}$.
   Then the Euler transform
   $\pazocal{E}(\mathcal{L}_\alpha) = \{t_{n}^\alpha\}_{n=1}^\infty$,
   follows the linear recurrence $t_{n+k}^\alpha = \sum_{i=0}^{k-1} t_{n+i}^\alpha$
@@ -1068,8 +1168,8 @@ We start with two specific conjectures about two families of prefixes.
 And more broadly, for all prefixes that are not the zero sequence.
 \begin{conjecture}
   Let $\mathcal{L}_\alpha$ be the sequence of the
-  number of Lyndon words of length $n$ with prefix $\alpha$ such that $\alpha$
-  contains at least one $1$.
+  number of Lyndon words of length $n$ with prefix $\alpha$ over the alphabet
+  $\{0,1\}$ such that $\alpha$ contains at least one $1$.
   Then the Euler transform of the sequence,
   $\pazocal{E}(\mathcal{L_\alpha}) = \{t_{n}^\alpha\}_{n=1}^\infty$,
   follows the linear recurrence where all terms have coefficients of $0$ or $1$.
@@ -1084,6 +1184,7 @@ And more broadly, for all prefixes that are not the zero sequence.
 \end{openquestion}
 
 \input{assets/Menage/table_lyndonConjectures.tex}
+
 
 % \begin{example}
 %   We'll provide some conjectured examples.
