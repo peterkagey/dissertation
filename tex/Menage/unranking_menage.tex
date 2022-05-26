@@ -1,13 +1,5 @@
 \chapter{Unranking Restricted Permutations}
 \label{cha:UnrankingMenage}
-% TODO:
-%   - Introduction
-%   - If we do a cyclic rotation of the rows of a chessboard, we get essentially the same thing.
-%   - Move code to Appendix.
-%   - Do we want to talk about parking functions?
-%   - Is it worthwhile to discuss prefix functions for compositions, etc.?
-%   - Gives a way of sampling uniformly at random.
-% \end{enumerate}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Section 1
@@ -47,7 +39,7 @@ unranking from a given totally ordered set. After all, when these sets
 grow in exponential time or worse, explicitly constructing the sequence and
 doing a search is not computationally feasible.
 
-In Appendix TODO, we will provide examples of total orders on combinatorial
+In Appendix \ref{apndx:unranking}, we will provide examples of total orders on combinatorial
 objects $\mathcal{C}$ for which constructing efficient
 
 % Of course, we can usually create an algorithm to give the $i$-th object without
@@ -74,26 +66,25 @@ Dyck path in lexicographic order?
 % then we can just walk down the possible letters until
 % we get to the right spot ($O(nkT(n,k))$).
 
-\begin{lemma}
+\begin{proposition}
   If we have
   an efficient way to compute the unranking map,
   an efficient way to compare two elements in the total order,
   and an efficient way of computing the number of objects at hand, $|\mathcal C|$,
   then we can efficiently compute the ranking map.
-  \label{lemma:unrankToRank}
-\end{lemma}
+  \label{prop:unrankToRank}
+\end{proposition}
 \begin{proof}
-  We can do a binary search. (TODO: write pseudo-code algorithm?)
+  The assumptions of the proposition are enough to perform a binary search
+  over $\mathcal C$, which will contribute a factor of at worst
+  $\log(|\mathcal C|)$ to the running time.
 \end{proof}
 
 \subsection{Counting words with a given prefix}
 In both the case of unranking derangements and menage permutations
 (and in many other applications) our combinatorial objects are
-words and our total order is lexicographic order.
-
-\begin{definition}
-  \textbf{Lexicographic order} is a total ordering on words where $w < v$ ... TODO
-\end{definition}
+words and our total order is lexicographic order, which is the extension of
+alphabetical order.
 
 \begin{definition}
   A finite \textbf{word} $w$ over an alphabet $\mathcal A$ is a finite sequence
@@ -110,6 +101,12 @@ words and our total order is lexicographic order.
   $M \leq N$ and $w_i = \alpha_i$ for all $i \leq M$.
 \end{definition}
 
+\begin{definition}
+  A word $w$ is said to be before $w'$ in lexicographic order
+  if either $w$ is a proper prefix of $w'$, or if at the first position, $i$,
+  where $w$ and $w'$ differ, $w_i < w'_i$.
+\end{definition}
+
 \begin{lemma}
   Let $\mathcal{W}$ be the set of words of any length on the alphabet $[n]$,
   and let $\mathcal C \subsetneq \mathcal{W}$ be a finite subset of words
@@ -123,16 +120,19 @@ words and our total order is lexicographic order.
   Then the unranking function can be computed recursively by \[
     \operatorname{unrank}_\mathcal{C}(i) = f^{\mathcal C}_i((1), 0)
   \] where
-  \begin{equation}
-  f^{\mathcal C}_i(\alpha, j) = \begin{cases}
-    \alpha
-      & i \in (j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)] \text{ and } \alpha \in \mathcal{C} \\
-    f^{\mathcal C}_i(\alpha', j)
-      & i \in (j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)] \text{ and } \alpha \not\in \mathcal{C} \\
-    f^{\mathcal C}_i(\alpha'', j + \#\operatorname{prefix}_\mathcal{C}(\alpha))
-      & \text{otherwise},
-  \end{cases}
-\end{equation}
+  \begin{numcases}{f^{\mathcal C}_i(\alpha, j) =}
+  \alpha
+    & $\alpha \in \mathcal{C}$ and $i = j + 1$
+  \label{case:unrankFinish}
+  \\
+  f^{\mathcal C}_i(\alpha', j)
+    & $\alpha \not\in \mathcal{C}$ and $i \in (j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)]$
+  \label{case:unrankAppend}
+  \\
+  f^{\mathcal C}_i(\alpha'', j + \#\operatorname{prefix}_\mathcal{C}(\alpha))
+    & otherwise,
+  \label{case:unrankIncrement}
+  \end{numcases}
 where
 $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$,
 $\alpha' = (\alpha_1, \alpha_2, \dots, \alpha_\ell, 1)$,
@@ -142,10 +142,34 @@ before $\alpha$.
 \label{lemma:unrankFromPrefix}
 \end{lemma}
 \begin{proof}
-  TODO (sketch)
-  The second line appends a letter, which can happen at most $n$ times.
-  The third line increments the last letter, which can happen at most $k$ times
-  per position.
+  We will start by inductively showing that $j$ the number of words in
+  $\mathcal{C}$ that occur strictly before $\alpha$.
+  The base case is clear: $0$ words occur strictly before $\alpha = (1)$,
+  because $1$ is the lexicographically earliest nonempty word.
+
+  In Equation \ref{case:unrankAppend}, $\alpha'$ is $\alpha$ with a $1$
+  appended. Since $1$ is a minimal element and $\alpha \not\in \mathcal{C}$,
+  there are the same number of words preceding $\alpha$ as there are preceding
+  $\alpha'$.
+
+  In Equation \ref{case:unrankIncrement}, the words that strictly precede
+  $\alpha''$ are the words that precede $\alpha$, plus the words that begin
+  with $\alpha$, namely $j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$ of
+  them.
+
+  Now, we go case by case in showing that the recursive behavior is correct.
+
+  To start, if $\alpha \not\in \mathcal{C}$, but
+  $i \in (j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)]$,
+  the range of indices of words that have prefix $\alpha$, then the known letters
+  of $\alpha$ are the prefix, and so we must add on more letters to determine
+  the rest of the $i$-th word.
+
+  Otherwise we know that $i$ is not in the range of indices with that starting
+  prefix so we must increment the last letter in the prefix.
+
+  Lastly, if $\alpha \in \mathcal{C}$ and $i = j + 1$, then there are
+  $j$ words preceding $\alpha$, so $\alpha$ is the $i$-th word, as desired.
 \end{proof}
 
 This shows that if we can construct a function
@@ -159,14 +183,14 @@ unrank the elements of $\mathcal{C}$ in lexicographic order.
 % a different technique must be used.
 
 \subsection{Ranking words}
-In Lemma \ref{lemma:unrankToRank}, we showed that given an efficient algorithm
+In Proposition \ref{prop:unrankToRank}, we showed that given an efficient algorithm
 to compute $\operatorname{unrank}_\mathcal{C}$, we can derive an efficient
-algorithm to compute $\operatorname{rank}_\mathcal{C}$, on the order of
-$O(\log(|\mathcal{C}|\operatorname{unrank}_\mathcal{C}(n)))$
-(TODO: make the size of the input explicit.)
+algorithm to compute $\operatorname{rank}_\mathcal{C}$.
 
-However, we can provide a faster algorithm via another recursive function:
-$\operatorname{rank}_\mathcal{C}(w) = g_w(1,1,0)$ where
+It is worth noting, however, that we can produce a more efficient algorithm,
+by ranking the given word recursively.
+In particular, we can say
+${\operatorname{rank}_\mathcal{C}(w) = g_w(1,1,0)}$ where
 \begin{equation}
   g_w(i, \ell, c) = \begin{cases}
     c + 1 & \ell = w_i \text{ and } i = |w| \\
@@ -177,7 +201,9 @@ $\operatorname{rank}_\mathcal{C}(w) = g_w(1,1,0)$ where
 where $w' = (w_1, w_2, \dots, w_{i-1}, \ell)$.
 
 \section{Basic notions of rook theory}
-Because we have showed that we can ... TODO
+Now that we have showed that we can unrank words if we can compute the number of
+words with a given prefix, we must develop techniques for this new counting
+problem.
 In the case of unranking derangements and permutations, it is useful to use
 ideas from rook theory, which provides a theory for understanding
 position-restricted permutations.
@@ -240,7 +266,7 @@ stimulated the development of the theory of the permanent.'')
 Now is an appropriate time to recall Valiant's Theorem.
 
 \begin{theorem}[Valiant's Theorem \cite{Valiant1979}]
-  Computing the permanent of a (0,1)-matrix is \#P-complete.
+  The counting problem of of computing the permanent of a (0,1)-matrix is \#P-complete.
 \end{theorem}
 
 \begin{corollary}
@@ -294,7 +320,7 @@ The title describes the first ``\$100 problem'':
 \end{problem}
 
 \begin{answer}
-The computer program in Appendix TODO computed the answer in less than ten
+The computer program in Appendix \ref{apndx:haskell} computed the answer in less than ten
 milliseconds. When written as words in lexicographic order, the
 derangement in $S_{20}$ with rank $5 \times 10^{17}$ is \[
   12\ 14\ 2\ 9\ 13\ 20\ 6\ 3\ 1\ 17\ 5\ 11\ 19\ 15\ 10\ 18\ 8\ 7\ 4\ 16.
@@ -390,7 +416,7 @@ the number of ways of placing $n - \ell$ rooks on the derived board $B_\alpha$.
 \begin{proof}
   Recall that no two squares of $B^c_\alpha$ are in the same row or column.
   Thus the number of ways to place $j$ rooks is equivalent to selecting any
-  $j$ cells from the collection of $|B^c_\alpha|$ cells.
+  $j$ squares from the collection of $|B^c_\alpha|$ squares.
 
   Therefore the coefficient of $x^j$ in the rook polynomial is
   $\binom{|B_\alpha^c|}{j}$.
@@ -459,7 +485,7 @@ Table \ref{table:unrankDerangement}.
     & $\operatorname{\#prefix}_\mathcal{D}(\alpha)$
     & index range
     & $|B_\alpha^c|$
-    & $f^{\mathcal{D}}_i(\alpha, \ell)$
+    & $\operatorname{unrank}_\mathcal{D}(1000)$
   \\ \hline
   $1       $ & $0$    & $(0,0]$           & $-$ & $f^{\mathcal{D}}_{1000}(1, 0)$          \\
   $2       $ & $2119$ & $(0,2119]$        & $6$ & $f^{\mathcal{D}}_{1000}(2, 0)$          \\
@@ -496,7 +522,8 @@ Table \ref{table:unrankDerangement}.
 \end{tabular}
 \caption[Steps for computing the $1000$th derangement in $S_8$]{
   There are $A000166(8) = 14833$ derangements on $8$ letters.
-  This algorithm finds the derangement at index $1000$.
+  The table shows the recursive steps to find that the derangement at index
+  $1000$ is $25487361$.
 }
 \label{table:unrankDerangement}
 \end{table}
@@ -510,7 +537,7 @@ After claiming a prize for unranking derangements, the conversation shifted to
 how this technique could be extended. A natural next step seemed to be to look
 at another family of restricted permutations, namely m\'enage permutations.
 
-A m\'enage permutation comes from the \textit{problème des ménages},
+A m\'enage permutation comes from the \textit{probl\`eme des m\'enages},
 introduced by \'Edouard Lucas in 1891.
 There are a few choices of how to define these permutations, but we will
 use the following definition for simplicity.
@@ -519,6 +546,7 @@ use the following definition for simplicity.
   all $i \in [n]$,
   $\pi(i) \neq i$ and
   $\pi(i) + 1 \not\equiv i \bmod n$.
+  The set of m\'enage permutations of length $n$ is denoted $\pazocal{M}_n$.
 \end{definition}
 
 \subsection{Proof of concept (the \$100 answer!)}
@@ -606,7 +634,7 @@ which are illustrated in Figure \ref{fig:blockShape}.
     \mathcal{E}_{2n-2}           &= \{(i,i) : i \in [n-1]\}\ &&\cup\ \{(i+1,i) : i \in [n-1]\} \\
     \mathcal{E}_{2n-2}^\intercal &= \{(i,i) : i \in [n-1]\}\ &&\cup\ \{(i,i+1) : i \in [n-1]\},
   \end{alignat*}
-  the subscripts represent the number of cells, and the names represent their
+  the subscripts represent the number of squares, and the names represent their
   parity.
   \label{def:staircaseShaped}
 \end{definition}
@@ -640,7 +668,7 @@ We now show that our resulting boards can be partitioned into boards of these sh
   shows the resulting sub-boards after placing a rook in
   $\ell$-th row of $B$,
   which may be in the top row or the $i$-th column of a given sub-board.
-
+  \captionsetup{type=table}
   \begin{tabular}{|l|l|l|l|l|}
   \hline
   Rook placement
@@ -778,7 +806,7 @@ for a given prefix $\alpha$.
 \begin{lemma}
   Given a nonempty prefix $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$
   and $i \not\in \alpha$,
-  the number of cells of $B^c$ in column $i$ that do not have
+  the number of squares of $B^c$ in column $i$ that do not have
   a first coordinate in $[\ell]$
   is given by the rule:
   \begin{singlespace}
@@ -812,7 +840,8 @@ for a given prefix $\alpha$.
   its first coordinate in $[\ell]$.
 \end{proof}
 
-% TODO: filler
+Now we will go through each contiguous section of columns, and count the number
+of squares in each to build up the size of each of the blocks.
 
 \begin{lemma}
   Partition $[n] \setminus \alpha$ into contiguous parts. Each part $P_i$
@@ -937,9 +966,11 @@ introduces a more general family of restricted permutations.
 \end{definition}
 
 \begin{example}
-  Ordinary permutations are $\emptyset$-avoiding permutations,
-  derangements are $\{0\}$-avoiding permutations,
-  and m\'enage permutations are $\{-1,0\}$-avoiding permutations.
+  In terms of $S$-avoiding permutations, \begin{itemize}
+    \item ordinary permutations are $\emptyset$-avoiding permutations,
+    \item derangements are $\{0\}$-avoiding permutations, and
+    \item m\'enage permutations are $\{-1,0\}$-avoiding permutations.
+  \end{itemize}
 \end{example}
 
 The results in the previous sections generalize quite easily to the case of
@@ -987,13 +1018,12 @@ questions about other restricted words.
 \end{example}
 
 \begin{definition}[\cite{Sloane1995}]
-  % TODO, use a different script.
   Suppose that $\{a_i\}_{i=1}^\infty$ and $\{b_i\}_{i=1}^\infty$ are integer sequences
   related by \[
     1 + \sum_{n=1}^\infty b_n x^n = \prod_{i=1}^\infty \frac{1}{(1-x^i)^{a_i}}.
   \] Then $\{b_i\}_{i=1}^\infty$ is said to be the
   \textbf{Euler transform} of $\{a_i\}_{i=1}^\infty$, denoted
-  $\mathcal{E}(\{a_i\}_{i=1}^\infty) = \{b_i\}_{i=1}^\infty$.
+  $\pazocal{E}(\{a_i\}_{i=1}^\infty) = \{b_i\}_{i=1}^\infty$.
 \end{definition}
 
 \begin{definition}
@@ -1005,7 +1035,7 @@ questions about other restricted words.
 \begin{conjecture}
   The Euler transform of the number of Lyndon words with prefix $\alpha$ and
   length $n$,
-  $\mathcal{E}(\mathcal{L_\alpha}) = \{t_{n}^\alpha\}_{n=1}^\infty$,
+  $\pazocal{E}(\mathcal{L_\alpha}) = \{t_{n}^\alpha\}_{n=1}^\infty$,
   follows a linear recurrence for all $n \geq N_\alpha$.
 \end{conjecture}
 
@@ -1018,8 +1048,8 @@ We start with two specific conjectures about two families of prefixes.
   Let $\mathcal{L}_\alpha$ be the sequence of the
   number of Lyndon words of length $n$ with prefix
   ${\alpha = (0, 0, \dots, 0)}$ of length $k$.
-  Then the Euler transform of ths sequence,
-  $\mathcal{E}(\mathcal{L_{(0, 0, \dots, 0)}}) = \{t_{n}^\alpha\}_{n=1}^\infty$,
+  Then the Euler transform
+  $\pazocal{E}(\mathcal{L}_\alpha) = \{t_{n}^\alpha\}_{n=1}^\infty$
   follows the linear recurrence $t_{n+1}^\alpha = 2t_{n}^\alpha$ for all
   $n \geq k + 2$.
 \end{conjecture}
@@ -1029,24 +1059,24 @@ We start with two specific conjectures about two families of prefixes.
   Let $\mathcal{L}_\alpha$ be the sequence of the
   number of Lyndon words of length $n$ with prefix
   ${\alpha = (1, 0, 0, \dots, 0)}$ of length $k$.
-  Then the Euler transform of ths sequence,
-  $\mathcal{E}(\mathcal{L_{(1, 0, 0, \dots, 0)}}) = \{t_{n}^\alpha\}_{n=1}^\infty$,
-  follows the linear recurrence $t_{n+k}^\alpha = \sum_{i=0}^{k-1} t_{i}^\alpha$
+  Then the Euler transform
+  $\pazocal{E}(\mathcal{L}_\alpha) = \{t_{n}^\alpha\}_{n=1}^\infty$,
+  follows the linear recurrence $t_{n+k}^\alpha = \sum_{i=0}^{k-1} t_{n+i}^\alpha$
   for all $n \geq 1$.
 \end{conjecture}
 
-And more broadly for all prefixes that are not the zero sequence.
+And more broadly, for all prefixes that are not the zero sequence.
 \begin{conjecture}
   Let $\mathcal{L}_\alpha$ be the sequence of the
   number of Lyndon words of length $n$ with prefix $\alpha$ such that $\alpha$
   contains at least one $1$.
-  Then the Euler transform of ths sequence,
-  $\mathcal{E}(\mathcal{L_\alpha}) = \{t_{n}^\alpha\}_{n=1}^\infty$,
+  Then the Euler transform of the sequence,
+  $\pazocal{E}(\mathcal{L_\alpha}) = \{t_{n}^\alpha\}_{n=1}^\infty$,
   follows the linear recurrence where all terms have coefficients of $0$ or $1$.
 \end{conjecture}
 
 \begin{openquestion}
-  If, as the evidence suggests, $\mathcal{E}(\mathcal{L_\alpha})$ follows a
+  If, as the evidence suggests, $\pazocal{E}(\mathcal{L_\alpha})$ follows a
   linear recurrence,
   what is the length of the recurrence and
   what are the coefficients of the recurrence

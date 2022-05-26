@@ -7,9 +7,6 @@
 % Use `report` class with `USCthesis` package (style file) by Brian P. Gerkey
 % Font size should be 11 or 12 points for regular paragraph text.
 \documentclass[letterpaper,12pt]{report}
-% [options] can be any of these default/alternative flag:
-%   dissertation/thesis, final/proposal, copyright/nocopyright,
-%   fussy/sloppy, flushbottom/raggedbottom, clref/opref.
 \usepackage[dissertation]{USCthesis}
 
 % Packages required by `USCthesis.sty`.
@@ -36,7 +33,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,positioning} % For graphics in Permutation Statistics paper
 \usetikzlibrary{decorations.pathreplacing} % For graphics in Spinning Switches
-\usepackage{skak} % For chess pieces: \symrook.
+\usepackage{chessfss} % For chess pieces: \rook.
 \usepackage[subnum]{cases} % For labeling parts of cases in Permutation Statistics paper
 \usepackage[shortlabels]{enumitem} % For numbering enum
 \usepackage{multirow} % For multirow in Permutation Statistics paper
@@ -91,7 +88,6 @@ box/.style={
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{todo}[theorem]{To Do}
 \newtheorem*{problem}{\$100 Problem}
 \newtheorem*{answer}{\$100 Answer}
 \begin{document}

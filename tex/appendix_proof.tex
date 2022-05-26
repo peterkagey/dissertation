@@ -1,9 +1,85 @@
-\section{A Long Proof}
-\label{app:long_proof}
-
-\subsection{Haskell Algorithm for M\'enage}
+\section{An algorithm for unranking m\'enage permutations}
+\label{apndx:haskell}
 \begin{singlespace}
-\input{assets/haskellAlgorithm.tex}
-\end{singlespace}
+  \input{assets/haskellAlgorithm.tex}
+  \end{singlespace}
 
-\Blindtext[1]
+\section{Unranking Combinatorial Objects}
+\label{apndx:unranking}
+\subsection{Compositions}
+\begin{definition}
+  A \textbf{composition} of $n \in \mathbb{N}_{>0}$ is a sequence of
+  strictly positive integers summing to $n$. We denote the set of compositions
+  of n by $\pazocal C_n$.
+\end{definition}
+
+\begin{lemma}[\cite{Stanley2011EC1}] % (p. 18)
+  The number of compositions of $n$ is $\#\pazocal C_n = 2^{n-1}$.
+\end{lemma}
+
+\begin{proposition}
+  If $\alpha$ is a sequence of positive integers such that
+  $\operatorname{sum}(\alpha) \leq n$, then
+  the number of compositions of $n$ that start with the prefix $\alpha$
+  is \[
+    \#\operatorname{prefix}_{\pazocal{C}_n}(\alpha) = \begin{cases}
+      1 & \alpha \in \pazocal{C}_n \\
+      2^{n - \operatorname{sum}(\alpha) - 1} & \text{otherwise}.
+    \end{cases}
+  \]
+\end{proposition}
+
+\begin{definition}
+  For $k > 0$, a $k$\textbf{-composition} of $n \in \mathbb{N}_{>0}$
+  is a sequence of length $k$ consisting of strictly positive integers that sum
+  to $n$. We denote the set of $k$-compositions of $n$ by $\pazocal C_n^{k}$.
+\end{definition}
+
+\begin{lemma}[\cite{Stanley2011EC1}]
+  The number of $k$-compositions of $n$ is $\#\pazocal C_n^{k} = \binom{n-1}{k-1}$.
+\end{lemma}
+
+\begin{proposition}
+  If $\alpha \in \pazocal{C}_n^{k}$ or if $\alpha$ is
+  a sequence of positive integers of length $\ell < k$ such that
+  ${\operatorname{sum}(\alpha) < n}$ or
+  then the number of $k$-compositions of $n$ that start with the prefix $\alpha$
+  is \[
+    \#\operatorname{prefix}_{\pazocal{C}_n}(\alpha) = \begin{cases}
+      1 & \alpha \in \pazocal{C}_n^{k} \\
+      \binom{n - \operatorname{sum}(\alpha) - 1}{k - \ell - 1} & \text{otherwise}.
+    \end{cases}
+  \]
+\end{proposition}
+
+\subsection{Partitions}
+\begin{definition}
+  A \textbf{partition} of $n \in \mathbb{N}_{>0}$ is a weakly decreasing
+  sequence of strictly positive integers summing to $n$. We denote the set of
+  partitions of $n$ by $\pazocal P_n$.
+
+  The set of partitions of $n$ with largest part at most
+  $j$ is denoted $\pazocal P_n^{\leq j}$.
+\end{definition}
+
+\begin{lemma}[\cite{Stanley2011EC1}]
+  The ordinary generating for the number of partitions of $n$ is \[
+    \sum_{i=0}^\infty \#\pazocal P_n q^n = \prod_{i=1}^\infty \frac{1}{1-q^j},
+  \]
+  and the ordinary generating for the number of partitions of $n$ with largest part
+  as most $j$ is \[
+    \sum_{i=0}^\infty \#\pazocal P_n^{\leq j} q^n = \prod_{i=1}^k \frac{1}{1-q^j}.
+  \]
+\end{lemma}
+
+\begin{proposition}
+  If $\alpha \in \pazocal{P}_n$ or if $\alpha$ is
+  a decreasing sequence of positive integers such that ${\operatorname{sum}(\alpha) < n}$ or
+  then the number of partitions of $n$ that start with the prefix $\alpha$
+  is \[
+    \#\operatorname{prefix}_{\pazocal{P}_n}(\alpha) = \begin{cases}
+      1 & \alpha \in \pazocal{C}_n^{k} \\
+      \#\pazocal P_{n-\operatorname{sum}(\alpha)}^{\leq \operatorname{min}(\alpha)} & \text{otherwise}.
+    \end{cases}
+  \]
+\end{proposition}

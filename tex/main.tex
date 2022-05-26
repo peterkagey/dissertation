@@ -7,9 +7,6 @@
 % Use `report` class with `USCthesis` package (style file) by Brian P. Gerkey
 % Font size should be 11 or 12 points for regular paragraph text.
 \documentclass[letterpaper,12pt]{report}
-% [options] can be any of these default/alternative flag:
-%   dissertation/thesis, final/proposal, copyright/nocopyright,
-%   fussy/sloppy, flushbottom/raggedbottom, clref/opref.
 \usepackage[dissertation]{USCthesis}
 
 % Packages required by `USCthesis.sty`.
@@ -29,17 +26,19 @@
 \usepackage{amsmath, amssymb, amsthm}
 
 % Optional packages: graphics
-
+\usepackage{calrsfs} % For other scripts
+\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+\SetMathAlphabet\pazocal{bold}{OMS}{zplm}{bx}{n}
 \usepackage{listings} % For code
 \usepackage{caption} % For captioning tables?
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{arrows,shapes,positioning} % For graphics in Permutation Statistics paper
 \usetikzlibrary{decorations.pathreplacing} % For graphics in Spinning Switches
-\usepackage{skak} % For chess pieces: \symrook.
+\usepackage{chessfss} % For chess pieces: \rook.
 \usepackage[subnum]{cases} % For labeling parts of cases in Permutation Statistics paper
 \usepackage[shortlabels]{enumitem} % For numbering enum
-\usepackage{multirow} % For multirow in Permutation Statistics paper
+\usepackage{multirow} % For \multirow in Permutation Statistics paper
 \newcommand{\n}[1]{\multicolumn{1}{|c|}{#1}} % For Permutation Statistics tables
 \newcommand{\nW}[2]{\tikz[remember picture,anchor=base, baseline,inner xsep=0pt]{\node[box](#2){\vphantom{$\int$}$\underline{#1}$};}}
 \newcommand{\nS}[1]{\tikz[remember picture,anchor=base, baseline,inner xsep=0pt]{\node[box](#1){\vphantom{$\int$}\textvisiblespace};}}
@@ -86,12 +85,11 @@ box/.style={
 \newtheorem{note}[theorem]{Note}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{openquestion}[theorem]{OpenQuestion}
+\newtheorem{openquestion}[theorem]{Open Question}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{todo}[theorem]{To Do}
 \newtheorem*{problem}{\$100 Problem}
 \newtheorem*{answer}{\$100 Answer}
 \begin{document}
@@ -103,14 +101,12 @@ box/.style={
 % Volume name could be added as option, e.g. `[Volume I]`.
 \title{\textbf{\Large{Permutations, Statistics, and Switches}}}
 
-\author{Peter O. Kagey}
+\author{Peter Kagey}
 
 % Committee list is only shown in `proposal` layout.
-\committee{A.~Adams & (Chair)\\*
-           B.~Bell\\*
-           C.~Clausius\\*
-           D.~Dirichlet\\*
-           E.~Emory & (Outside Member)}
+\committee{S.~Assaf & (Chair)\\*
+           R.~Arratia\\*
+           D.~Kempe & (Outside Member)}
 
 % Submission information is only shown in `final` layout.
 \majorfield{Mathematics}
@@ -127,23 +123,20 @@ box/.style={
 \begin{preface}
 
   % Dedication Page, which is truly unnecessary.
-  % % TODO: uncomment dedication
-  % \prefacesection[Dedication]{}
-  % \input{dedication}
+  \prefacesection[Dedication]{}
+  \input{dedication}
 
   % Acknowledgement Page, which is also unnecessary for proposals.
-  % % TODO: uncomment acknowledgements
-  % \prefacesection{Acknowledgements}
-  % \input{acknowledgements}
+  \prefacesection{Acknowledgements}
+  \input{acknowledgements}
 
   \tableofcontents
   \listoftables   % Comment this out if you don't have tables
   \listoffigures
 
   % Abstract Page
-  % % TODO: uncomment abstract
-  % \prefacesection{Abstract}
-  % \input{abstract}
+  \prefacesection{Abstract}
+  \input{abstract}
 \end{preface}
 
 %-----------------------------------------------------------------------------
@@ -151,8 +144,7 @@ box/.style={
 %-----------------------------------------------------------------------------
 
 % Better to separate LaTeX structure and content
-% TODO, uncomment introduction
-% \include{Introduction}
+\include{Introduction}
 
 \include{SpinningSwitches/spinning_switches}
 \include{PermutationStatistics/permutation_statistics}
@@ -162,8 +154,7 @@ box/.style={
 % \include{ClassifyingPolyhedra/classifying_polyhedra}
 
 % Conclusion and ongoing work
-% TODO, uncomment conclusion
-% \include{Conclusion}
+\include{Conclusion}
 
 % Using single-space for reference list.
 \begin{singlespace}
@@ -178,19 +169,18 @@ box/.style={
 % \bibliography{references}
 \end{singlespace}
 
-% TODO uncomment appendices
-% % Appendices
-% \phantomsection
-% \addcontentsline{toc}{chapter}{Appendices}%
-% \markboth{Appendices}{Appendices}%
-% \chapter*{Appendices}
-% \renewcommand\thesection{\Alph{section}}
-% \renewcommand*{\thesubsection}{\Alph{section}.\arabic{subsection}}
-% \begingroup
-% \numberwithin{equation}{section}
-% % Appendix source files
-% \input{appendix_proof}
-% \endgroup
+% Appendices
+\phantomsection
+\addcontentsline{toc}{chapter}{Appendices}%
+\markboth{Appendices}{Appendices}%
+\chapter*{Appendices}
+\renewcommand\thesection{\Alph{section}}
+\renewcommand*{\thesubsection}{\Alph{section}.\arabic{subsection}}
+\begingroup
+\numberwithin{equation}{section}
+% Appendix source files
+\input{appendix_proof}
+\endgroup
 
 % In case your dissertation has multiple volumes.
 % \addvolumecontents{thesis_part2}

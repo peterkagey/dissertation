@@ -604,10 +604,10 @@ group, $S(k,n)$.
   \begin{equation}
     \label{eq:main}
     \mathbb{E}[\pi(1)\, |\, \pi \in S_{kn} \text{ has exactly } m\ k \text{-cycles}\,] =
-    \frac{kn + 1}{2} + \frac{(-1)^{n-m}}{2 D(k, n - m)}
+    \frac{kn + 1}{2} + \frac{(-1)^{n-m}}{2 D(k, n - m)},
   \end{equation}
-  where $D(k, n)$ is the number of derangements of the generalized symmetric
-  group $S(k, n) = (\mathbb{Z}/m\mathbb{Z}) \wr S_n$.
+  where $D(k, n)$ denotes the number of derangements of the generalized symmetric
+  group, $S(k, n)$.
 \end{theorem}
 \begin{proof}
   Inverting the identity in Lemma \ref{lem:fixedPointsAndCycles}, yields \begin{equation}
@@ -853,15 +853,14 @@ The definition of the map can look complicated, so it's worthwhile to start with
 an example to give some sense of the overarching idea.
 
 \begin{example}
-  This example illustrates how the map $\phi_3$ inserts $I$ into
-  the permutation $(D76)(E)(F32)(G91C)(K54)(LJ8)(MB)(NAH)$ while preserving the
+  This example illustrates how the map $\phi_3$ inserts a letter into
+  a permutation while preserving the
   number of $3$-cycles.
   The maps $\phi_k$ and $\psi_k$ are the result of moving letters according
   to the arrows and are applied from right-to-left.
   (This example uses the convention that $1 < 2 < \dots < 9 < A < B < \dots < N$.)
 
   ~
-
   \begin{align*}
     &\phi_3(
       (D         7          6)
@@ -876,7 +875,6 @@ an example to give some sense of the overarching idea.
       \nW{I}{I}
     ) \\
     &\hspace{1cm} = (D76)(E3)(F29)(G1)(KC5)(L4J)(M8BA)(NHI)
-  \end{align*}
   \begin{tikzpicture}[remember picture,overlay]
     \draw[thick, ->]  (I) to[out=90, in=90, looseness=3.4] node[midway, above]{$\phi_3$} (hEnd);
     \draw[thick, ->]  (A) to[out=90, in=90, looseness=2] node[midway, above]{$\phi_3$} (bEnd);
@@ -885,7 +883,8 @@ an example to give some sense of the overarching idea.
     \draw[thick, ->]  (C) to[out=90, in=90, looseness=2] node[midway, above]{$\psi_3$} (k5);
     \draw[thick, ->]  (9) to[out=90, in=90, looseness=2] node[midway, above]{$\phi_3$} (2End);
     \draw[thick, ->]  (3) to[out=90, in=90, looseness=2] node[midway, above]{$\phi_3$} (eEnd);
-  \end{tikzpicture}
+  \end{tikzpicture}%
+  \end{align*}
 
   \begin{align*}
     &\psi_3(
@@ -899,7 +898,6 @@ an example to give some sense of the overarching idea.
       (N \nS{nh} H         \nW{I}{I})
     )\nS{outside}\\
     &\hspace{1cm} = ((D76)(E)(F32)(G91C)(K54)(LJ8)(MB)(NAH),I)
-  \end{align*}
   \begin{tikzpicture}[remember picture,overlay]
     \draw[thick, ->]  (3) to[out=90, in=90, looseness=2] node[midway, above]{$\psi_3$} (f2);
     \draw[thick, ->]  (9) to[out=90, in=90, looseness=2] node[midway, above]{$\psi_3$} (g1);
@@ -909,6 +907,8 @@ an example to give some sense of the overarching idea.
     \draw[thick, ->]  (A) to[out=90, in=90, looseness=2] node[midway, above]{$\psi_3$} (nh);
     \draw[thick, ->]  (I) to[out=90, in=90, looseness=3.4] node[midway, above]{$\psi_3$} (outside);
   \end{tikzpicture}
+  \end{align*}
+
 \end{example}
 Again, it is worth reemphasizing that the following definitions will follow the
 convention that permutations are written in canonical cycle notation, \[
@@ -1004,7 +1004,7 @@ $\phi_k$ and $\psi_k$ are written in canonical cycle notation.
   The output of $\phi_k$ is in canonical cycle notation.
 \end{lemma}
 \begin{proof}
-  % TODO: Strictly speaking, this should be an inductive argument similar to
+  % 2DO: Strictly speaking, this should be an inductive argument similar to
   % the previous.
   Canonical cycle notation is preserved by construction.
   In particular, $\phi_k$ moves the first letter in any cycle, and

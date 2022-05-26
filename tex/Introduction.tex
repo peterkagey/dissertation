@@ -1,10 +1,233 @@
 \chapter{Introduction}
 \label{cha:introduction}
 
-This chapter talks about motivation and applications of my work,
-and reviews previous research in the field.
+For me, the best problem is one that could be understood by a high school
+student, but whose solution cleverness, and techniques that one could only
+know by standing on the shoulders of centuries of mathematicians. Broadly
+speaking, my mathematical interests might be classified as recreational
+mathematics, and I hope that---at least at a high level---this dissertation
+is as inviting as that classification suggests.
 
-\section{Motivations}
-\label{sec:motivations}
+\section{Elevator pitches}
 
-TODO
+This first section of the Introduction is aimed at doing just that:
+describing the three main chapters of this dissertation in informal terms.
+My target audience for this section is a friend, a family member,
+a student, or a curious stranger.
+
+In this dissertation---as the title promises---we will look at
+permutations, sta\-tis\-tics, and switch\-es, although not in that order! Here we
+give a high-level overview of what all of this is about.
+
+\subsection{Spinning switches, informally}
+
+Chapter \ref{cha:SpinningSwitches} is about generalizing an old puzzle
+popularized by Marin Gardner in the 1970's. My favorite version of this
+puzzle comes from Peter Winkler and is described at the beginning of the
+chapter. (We will repeat it here for convenience.)
+
+\begin{quote}
+  Four identical, unlabeled switches are wired in series to a light bulb.
+  The switches are simple buttons whose state cannot be directly observed,
+  but can be changed by pushing; they are mounted on the corners of a
+  rotatable square. At any point, you may push, simultaneously, any subset
+  of the buttons, but then an adversary spins the square. Show that there
+  is a deterministic algorithm that will enable you to turn on the bulb in
+  at most some fixed number of steps. \cite{Winkler2004}
+\end{quote}
+
+(This is a fun puzzle to work out on your own, but you can also skip to
+the proof of Proposition \ref{prop:WinklersSolution} to see the solution.)
+
+We can generalize this puzzle in at least two ways.
+The first way we can generalize the puzzle is by asking about different kinds of
+switches, for instance one could imagine a dial with three states,
+and only one of them is on. On any turn we could rotate it one or two
+clicks to put it in one of the other states.
+(If we rotate it zero or three clicks, it will be in the same state as before.)
+We consider examples of two other types of switches,
+with $6$ states and with $8$ states, in Example \ref{ex:S3D8Schematics}.
+In general, we will want to solve the problem for switches that can behave like
+arbitrary \textit{finite groups}.
+
+The second way we can generalize the puzzle is by looking at the number of
+switches and how they ``spin''. For example, we could have six switches on
+the corners of a rotating hexagon. As another example, we could have three
+switches that can be scrambled however the adversary pleases.
+We can model the adversary's scrambling as a \textit{faithful group action}
+on a finite set.
+
+We want to know what combinations of ``switches'' and ``spinning''
+result in a puzzle that our puzzle-solver can solve within a finite number of
+steps.
+
+\subsection{Permutations with a given number of \texorpdfstring{$k$}{k}-cycles, informally}
+Chapter \ref{cha:PermutationStatistics} concerns permutations,
+which we can informally think of ways of
+scrambling the whole numbers from $1$ up to $n$. We're interested in certain
+kinds of permutations, for example, those where $i$ is never in the $i$-th
+position. Another kind of permutation we might be interested in is those with
+a certain number of \textit{transpositions}, which means the number of unordered
+pairs $\{i, j\}$ such that $i$ is in position $j$ and $j$ is in position $i$.
+(i.e. $i$ and $j$ ``swap places'').
+
+Now if we look at all of the permutations on $n$ letters with $k$ transpositions,
+and then we take a look at the average of all of the first letters, we see
+something unusual: this number is closely related to ways of rotating or
+reflecting a square, cube, or higher dimensional \textit{hypercube}
+in such a way that all of the sides of the square, faces of the cube, or
+\textit{facets} of the hypercube move to a new position.
+
+A priori, we should be surprised that permutations with a given number of
+transpositions have anything to do with moving the faces of high dimensional
+cubes. This chapter seeks to explore why these objects are connected, and
+to use this correspondence to understand both permutations and hypercubes a
+little bit better.
+
+\subsection{Unranking restricted permutations, informally}
+Chapter \ref{cha:UnrankingMenage} also explores permutations. Here we look at
+two kinds of permutations: \textit{derangements}, where the letter $i$ is never
+in position $i$, and \textit{m\'enage} permutations, where $i$ is never in
+position $i$ or in position $i - 1$.
+(This ``wraps around'', so that $1$ cannot be in the last position either.)
+
+Without too much trouble, we could start writing these down in
+\textit{lexicographic} order (essentially, alphabetical order). The
+problem is that the number of these permutations grows very quickly! For
+$n=20$ there are more than $895$ quadrillion derangements and
+$312$ quadrillion m\'enage permutations.
+
+In 2020 and 2021, Richard Arratia posed two problems, each with \$100 bounties
+attached. The first asking for the $500$ quadrillionth derangement. The
+second for the $100$ quadrillionth m\'enage permutation.
+With numbers this large, it's not feasible for a computer to
+write them all down and simply pick the permutation in the desired position.
+Instead I developed an algorithm that would allow me to compute these by hand in
+a few hours, with a handheld calculator in a few minutes, or with a computer
+program in a few milliseconds.
+
+This chapter explains these techniques that I developed. These techniques are
+described using \textit{rook theory}, which is a mathematical way of analyzing
+the number of ways rooks can be placed on a chessboard, subject to certain
+restrictions.
+
+\section{Motivations and overview}
+% ----------------------------------------------------------------------------
+This section is aimed at mathematicians who know some of the jargon, and want
+a more formal (but still high-level) preview of what comes next.
+
+\subsection{Overview of spinning switches}
+Chapter \ref{cha:SpinningSwitches}, we discuss a broad generalization of a
+puzzle popularized by Martin Gardner. The puzzles that I call
+``generalized spinning switches puzzles'' are variations on the following theme:
+a puzzle-solver has four indistinguishable switches (or coins, or pint glasses)
+on the corners of a rotatable square table. Without being able to see the state
+of the switches, the puzzle-solver attempts to get them all in a given state.
+However, an adversary spins the table between each move, which means that the
+puzzle-solver is playing with imperfect information.
+
+I first learned of this puzzle from William professor Steve Miller's
+``Math Riddles'' website.
+He had a variation of the puzzle listed under the name ``Don't Flip Out, Square!''
+I thought about the puzzle, solved it, brought this puzzle to the 2019 Graduate
+Student Combinatorics Colloquium to share it with other participants. There,
+we attempted to solve generalizations of the puzzle.
+
+In generalized spinning switches, we have switches that behave like arbitrary
+groups $G$, and spinning that allows the adversary to permute the switches in
+ways prescribed by an arbitrary group $H$. We use the abstraction of a wreath
+product to neatly package these two groups into a puzzle.
+Other authors have considered certain families of such switches, such as cyclic
+groups, but in this chapter we resolve the puzzle for all groups of prime order
+other kinds of groups, including for switches that behave like the monster
+group, the largest of the sporadic finite simple groups.
+
+Along the way, we provide reductions for proving that certain kinds of puzzles
+do not have solutions, and decompositions for constructing winning strategies
+from simpler puzzles.
+
+\subsection{Overview of permutations with a given number of \texorpdfstring{$k$}{k}-cycles}
+The topic in Chapter \ref{cha:PermutationStatistics}
+came out of a discussion that my advisor and I had about a delightful
+theorem of Mark Conger, where he proved that the expected value of $\pi(1)$
+over all permutations $\pi$ with $k$ descents is $k + 1$---and that this doesn't
+depend on the number of letters in the permutation.
+
+Curious, I generated pages of tables of numerical data about the expected value
+of the first letter of permutations $\pi \in S_n$ such that
+$\operatorname{stat}(\pi) = k$ for various permutation statistics.
+Most didn't appear to have much structure making conjectures hard to form,
+and others had \textit{too much} structure, making conjectures too easy to
+prove.
+But the permutation statistic that counted the number of transpositions in a
+permutation was in the Goldilocks zone: the denominators of these average
+values appeared to be consistent as I scanned diagonally across the table.
+When I looked these up in the On-Line Encyclopedia of Integer sequences,
+they were found to correspond to
+``$(n-1)$-dimensional facet derangements for the $n$-dimensional hypercube.''
+
+When I looked at the permutation statistic that counted $k$-cycles instead of
+transpositions, the tables presented a similar structure. This time, the
+denominators corresponded to the number of derangements of the generalized
+symmetric group. Ultimately I developed a full characterization of the four
+parameter family: the expected value of the $\ell$-th letter over all
+permutations $\pi \in S_n$ with exactly $m$ $k$-cycles.
+A formula for this expected value is given both inn terms of a sum,
+and---more satisfyingly---in terms of the number of derangements of the
+ generalized symmetric group.
+
+Along the way, I was distracted by a pairs of sets of equal cardinality,
+and I found that I couldn't resist searching for a bijection.
+In particular, the cardinality of sets implied that there was a
+family of reversible insertion algorithms that preserved the number of
+$k$-cycles in most cases. A simple bijection proved to be elusive, but
+the recursive insertion algorithm (and its inverse) are developed in
+Section \ref{section:bijection} of that chapter.
+
+\subsection{Overview of unranking restricted permutations}
+In chapter \ref{cha:UnrankingMenage}, we develop the solution of two related
+problems posed by Richard Arratia, each with a bounty attached.
+These problems are particular examples of a broader class of so called
+\textit{unranking} problems:
+given a total order on a set of combinatorial objects (that can be counted
+efficiently), when is it possible to efficiently compute the $k$-th smallest
+element?
+
+In this chapter, we look at two families of restricted permutations:
+derangements and m\'enage permutations on $n$ letters, both ordered
+lexicographically as words.
+We start by developing a more general theory that allows us to unrank a set
+of words whenever we can count the number of words with a given prefix.
+Then we use ideas from rook theory to develop methods for counting the number
+of permutations in each of these two families that have a given prefix.
+Finally, we put these techniques together and provide an explicit, efficient
+algorithms for unranking derangements and m\'enage permutations.
+
+% Imagine a square table that rotates about its center. At each corner is a deep
+% well, and at the bottom of each well is a drinking glass that is either upright
+% or inverted. You cannot see into the wells, but you can reach into them and feel
+% whether a glass is turned up or down. A move is defined as follows: Spin the
+% table, and when it stops, put each hand into a different well. You may adjust
+% the orientation of the glasses any way you like, that is, you may leave them as
+% they are or turn one glass or both. Now, spin the table again and repeat the
+% same procedure for your second move. When the table stops spinning, there is no
+% ay to distinguish its corners, and so you have only two choices: you may reach
+% into any diagonal pair of wells or into any adjacent pair. The object is to get
+% all four glasses turned in the same way, either all up or all down. When this
+% task is accomplished, a bell rings. At the start, the glasses in the four wells
+% are turned up or down at random. If they all happen to be turned in the same
+% direction at this point, the bell will ring at once and the task will have been
+% accomplished before any moves were made. Therefore it should be assumed that at
+% the start the glasses are not all turned the same way. It is also assumed that
+% you are not allowed to keep your hands in the wells and make experimental
+% turnings to see if the bell rings. Furthermore, you must announce in advance the
+% two wells to be probed at each step. You cannot probe one well, then decide
+% which other well to probe. Is there a procedure guaranteed to make the bell ring
+% in a finite number of moves? Many people, after thinking briefly about this
+% problem, conclude that there is no such procedure. It is a question of
+% probability, they reason. With bad luck one might continue to make moves
+% indefinitely. That is not the case, however. After no more than n correct moves
+% one can be certain of ringing the bell. What is the minimum value of n, and what
+% procedure is sure to make the bell ring in n or fewer moves?
+
+% My dissertation consists of three discrete topics that are could each stand on their own.

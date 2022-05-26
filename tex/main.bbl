@@ -19,47 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global}
-    \entry{Gardner1979Problem}{article}{}
-      \name{author}{1}{}{%
-        {{hash=3124882705abf7cca548c58eb9240b39}{%
-           family={Gardner},
-           familyi={G\bibinitperiod},
-           given={Martin},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Scientific American, a division of Nature America, Inc.}%
-      }
-      \strng{namehash}{3124882705abf7cca548c58eb9240b39}
-      \strng{fullhash}{3124882705abf7cca548c58eb9240b39}
-      \strng{bibnamehash}{3124882705abf7cca548c58eb9240b39}
-      \strng{authorbibnamehash}{3124882705abf7cca548c58eb9240b39}
-      \strng{authornamehash}{3124882705abf7cca548c58eb9240b39}
-      \strng{authorfullhash}{3124882705abf7cca548c58eb9240b39}
-      \field{extraname}{1}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{00368733, 19467087}
-      \field{journaltitle}{Scientific American}
-      \field{number}{2}
-      \field{title}{Mathematical Games}
-      \field{urlday}{20}
-      \field{urlmonth}{4}
-      \field{urlyear}{2022}
-      \field{volume}{240}
-      \field{year}{1979}
-      \field{urldateera}{ce}
-      \field{pages}{16\bibrangedash 27}
-      \range{pages}{12}
-      \verb{urlraw}
-      \verb http://www.jstor.org/stable/24965105
-      \endverb
-      \verb{url}
-      \verb http://www.jstor.org/stable/24965105
-      \endverb
-    \endentry
     \entry{Winkler2004}{book}{}
       \name{author}{1}{}{%
         {{hash=6fa0bd56ef1e47c0f7749a5650d86324}{%
@@ -81,13 +40,54 @@
       \strng{authornamehash}{6fa0bd56ef1e47c0f7749a5650d86324}
       \strng{authorfullhash}{6fa0bd56ef1e47c0f7749a5650d86324}
       \field{extraname}{1}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{978-1568812014}
       \field{title}{Mathematical Puzzles: A Connoisseur's Collection}
       \field{year}{2004}
+    \endentry
+    \entry{Gardner1979Problem}{article}{}
+      \name{author}{1}{}{%
+        {{hash=3124882705abf7cca548c58eb9240b39}{%
+           family={Gardner},
+           familyi={G\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Scientific American, a division of Nature America, Inc.}%
+      }
+      \strng{namehash}{3124882705abf7cca548c58eb9240b39}
+      \strng{fullhash}{3124882705abf7cca548c58eb9240b39}
+      \strng{bibnamehash}{3124882705abf7cca548c58eb9240b39}
+      \strng{authorbibnamehash}{3124882705abf7cca548c58eb9240b39}
+      \strng{authornamehash}{3124882705abf7cca548c58eb9240b39}
+      \strng{authorfullhash}{3124882705abf7cca548c58eb9240b39}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{00368733, 19467087}
+      \field{journaltitle}{Scientific American}
+      \field{number}{2}
+      \field{title}{Mathematical Games}
+      \field{urlday}{20}
+      \field{urlmonth}{4}
+      \field{urlyear}{2022}
+      \field{volume}{240}
+      \field{year}{1979}
+      \field{urldateera}{ce}
+      \field{pages}{16\bibrangedash 27}
+      \range{pages}{12}
+      \verb{urlraw}
+      \verb http://www.jstor.org/stable/24965105
+      \endverb
+      \verb{url}
+      \verb http://www.jstor.org/stable/24965105
+      \endverb
     \endentry
     \entry{Gardner1979Solution}{article}{}
       \name{author}{1}{}{%
@@ -107,8 +107,8 @@
       \strng{authornamehash}{3124882705abf7cca548c58eb9240b39}
       \strng{authorfullhash}{3124882705abf7cca548c58eb9240b39}
       \field{extraname}{2}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{00368733, 19467087}
@@ -154,8 +154,8 @@
       \strng{authorbibnamehash}{b0524d515ff23181bc222a4aca0a2dec}
       \strng{authornamehash}{b0524d515ff23181bc222a4aca0a2dec}
       \strng{authorfullhash}{b0524d515ff23181bc222a4aca0a2dec}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Theor. Comput. Sci.}
@@ -184,8 +184,8 @@
       \strng{authorbibnamehash}{0b3fed904e175cff0d3a329d6f1fee66}
       \strng{authornamehash}{0b3fed904e175cff0d3a329d6f1fee66}
       \strng{authorfullhash}{0b3fed904e175cff0d3a329d6f1fee66}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We present a two-player game with restricted information for one of the players. The game takes place on a transitive group action. The winning strategies depend on chains of structures in the group action. We also study a modification of the game with further restrictions on one of the players.}
@@ -224,8 +224,8 @@
       \strng{authorbibnamehash}{f8d387007936e063ba0c5efd7b5dede1}
       \strng{authornamehash}{f8d387007936e063ba0c5efd7b5dede1}
       \strng{authorfullhash}{f8d387007936e063ba0c5efd7b5dede1}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{FiveThirtyEight}
@@ -259,8 +259,8 @@
       \strng{authorbibnamehash}{bc2255ef7a61da8713e1321be8940c01}
       \strng{authornamehash}{bc2255ef7a61da8713e1321be8940c01}
       \strng{authorfullhash}{bc2255ef7a61da8713e1321be8940c01}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Constacyclic codes over finite commutative chain rings}
@@ -281,8 +281,8 @@
       \strng{authorbibnamehash}{be69a75eb5c416e6787856ef047fbe80}
       \strng{authornamehash}{be69a75eb5c416e6787856ef047fbe80}
       \strng{authorfullhash}{be69a75eb5c416e6787856ef047fbe80}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{We study a generalization of a well-known two player game with partial information. Using an approach different from those appearing in the literature, and introducing group-theoretic methods, a full characterization of the settings where a winning strategy exists is obtained.}
@@ -385,9 +385,6 @@
       \field{year}{2003}
       \field{pages}{160\bibrangedash 164}
       \range{pages}{5}
-      \verb{doi}
-      \verb 10.1023/A:1022028807652
-      \endverb
       \verb{urlraw}
       \verb https://doi.org/10.1023/A:1022028807652
       \endverb
@@ -448,8 +445,8 @@
       \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \field{extraname}{2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0373-9252}
@@ -485,8 +482,8 @@
       \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \field{extraname}{3}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0373-9252}
@@ -522,8 +519,8 @@
       \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \field{extraname}{4}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0373-9252}
@@ -735,14 +732,13 @@
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{howpublished}{\url{http://www.FindStat.org}}
       \field{note}{Accessed: \today}
       \field{title}{{FindStat} - {T}he combinatorial statistics database}
       \verb{urlraw}
-      \verb http://www.FindStat.org
+      \verb http://FindStat.org
       \endverb
       \verb{url}
-      \verb http://www.FindStat.org
+      \verb http://FindStat.org
       \endverb
     \endentry
     \entry{Foata}{inproceedings}{}
@@ -775,12 +771,12 @@
       \strng{editorbibnamehash}{ef95611aaa6551f2a39bf2efea6ee471}
       \strng{editornamehash}{ef95611aaa6551f2a39bf2efea6ee471}
       \strng{editorfullhash}{ef95611aaa6551f2a39bf2efea6ee471}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Les nombres eulériens An,k (n ≥ 1, 1 ≤ k ≤ n) sont définis par la relation de recurrence(1){\$}{\$}{\backslash}begin{\{}gathered{\}}{\{}A{\_}{\{}1,1{\}}{\}} = 1{\{}{\backslash}text{\{} {\}}{\}}{\{}A{\_}{\{}1,k{\}}{\}} = 0{\{}{\backslash}text{\{} pour k{\}}{\}} {\backslash}ne {\{}{\backslash}text{\{}1{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n,k{\}}{\}} = {\{}{\backslash}text{\{}k {\}}{\}}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n - 1,k{\}}{\}} + {\{}{\backslash}text{\{}(n - k + 1){\}}{\}}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n - 1,k - 1{\}}{\}}{\{}{\backslash}text{\{} pour n {\}}{\}} {\backslash}geqslant {\{}{\backslash}text{\{}2 et{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\{}{\backslash}text{\{}1{\}}{\}} {\backslash}leqslant {\{}{\backslash}text{\{}k{\}}{\}} {\backslash}leqslant {\{}{\backslash}text{\{}n{\}}{\}}{\{}{\backslash}text{\{}.{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\backslash}end{\{}gathered{\}} {\$}{\$}}
-      \field{booktitle}{Higher Combinatorics}
+      \field{booktitle}{High\-er Com\-bin\-a\-tor\-ics}
       \field{isbn}{978-94-010-1220-1}
       \field{title}{Distributions Euleriennes et Mahoniennes sur le Groupe des Permutations}
       \field{year}{1977}
@@ -1048,7 +1044,7 @@
       \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Séminaire Lotharingien de Combinatoire}
+      \field{journaltitle}{Séminaire Lo\-tha\-rin\-gien de Combinatoire}
       \field{number}{B71a}
       \field{title}{Automatic Enumeration of Generalized Ménage Numbers}
       \field{volume}{71}
