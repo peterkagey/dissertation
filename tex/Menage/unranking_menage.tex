@@ -102,7 +102,7 @@ alphabetical order.
 \end{definition}
 
 \begin{definition}
-  A word $w$ is said to be before $w'$ in lexicographic order
+  A word $w$ is said to be before $w'$ in \textbf{lexicographic order}
   if either $w$ is a proper prefix of $w'$, or if at the first position, $i$,
   where $w$ and $w'$ differ, $w_i < w'_i$.
 \end{definition}
@@ -218,7 +218,7 @@ placed on a chessboard.
 We begin by introducing some preliminary ideas from rook theory.
 
 \begin{definition}
-  A \textit{board} $B$ is a subset of $[n] \times [n]$ which represents the
+  A \textbf{board} $B$ is a subset of $[n] \times [n]$ which represents the
   squares of a $n \times n$ chessboard that rooks are allowed to be placed on.
   Every board $B$ has a \textit{complementary board}
   $B^c = ([n] \times [n]) \setminus B$, which consists of all of the
@@ -230,7 +230,7 @@ number of ways to place a given number of rooks on the valid squares in such a
 way that no two rooks are in the same row or column.
 
 \begin{definition}
-  The \textit{rook polynomial} associated with a board $B$,
+  The \textbf{rook polynomial} associated with a board $B$,
   \[
     p_B(x) = r_0 + r_1 x + r_2 x^2 + \dots + r_n x^n,
   \]
@@ -340,7 +340,7 @@ respect to their lexicographic ordering as words. The technique that we use will
 broadly be re-used in the next section.
 It is worthwhile to begin by recalling the definition of a derangement.
 \begin{definition}
-  A \textit{derangement} is a permutation $\pi \in S_n$ such that $\pi$ has no
+  A \textbf{derangement} is a permutation $\pi \in S_n$ such that $\pi$ has no
   fixed points. That is, the set of derangements on $n$ letters is \[
     \mathcal{D}_n = \{\pi \in S_n : \pi(i) \neq i\ \forall i \in [n]\}.
   \]
@@ -542,7 +542,7 @@ introduced by \'Edouard Lucas in 1891.
 There are a few choices of how to define these permutations, but we will
 use the following definition for simplicity.
 \begin{definition}
-  A \textit{m\'enage permutation} is a permutation $\pi \in S_n$ such that for
+  A \textbf{m\'enage permutation} is a permutation $\pi \in S_n$ such that for
   all $i \in [n]$,
   $\pi(i) \neq i$ and
   $\pi(i) + 1 \not\equiv i \bmod n$.
@@ -959,7 +959,7 @@ permutations and other kinds of permutations, Doron Zeilberger
 introduces a more general family of restricted permutations.
 \begin{definition}[\cite{Zeilberger2014}]
   Let $S \subset \mathbb Z$ be a finite collection of integers.
-  A \textit{$S$-avoiding permutation} is a permutation $\pi \in S_n$ such that
+  A \textbf{$S$-avoiding permutation} is a permutation $\pi \in S_n$ such that
   \[
     \pi(i) - i - s \not\equiv 0 \bmod n \text{ for all } i \in [n] \text{ and } s \in S.
   \]
@@ -1002,7 +1002,7 @@ the above techniques. In particular, Kociumaka, Radoszewski, and Rytter
 words. We have some conjectures about prefixes of Lyndon words and open
 questions about other restricted words.
 \begin{definition}
-  A \textit{Lyndon word} is a string that is the unique minimum with respect
+  A \textbf{Lyndon word} is a string that is the unique minimum with respect
   to all of its rotations.
 \end{definition}
 \begin{example}
