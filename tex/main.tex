@@ -90,6 +90,7 @@ box/.style={
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{claim}[theorem]{Claim}
 \newtheorem*{problem}{\$100 Problem}
 \newtheorem*{answer}{\$100 Answer}
 \begin{document}
@@ -149,12 +150,6 @@ box/.style={
 \include{SpinningSwitches/spinning_switches}
 \include{PermutationStatistics/permutation_statistics}
 \include{Menage/unranking_menage}
-% \include{TrianglesInTriangles/triangles_in_triangles}
-% \include{RonGraham/ron_grahams_sequence}
-% \include{ClassifyingPolyhedra/classifying_polyhedra}
-
-% % Conclusion and ongoing work
-% \include{Conclusion}
 
 % Using single-space for reference list.
 \begin{singlespace}
@@ -170,6 +165,7 @@ box/.style={
 \end{singlespace}
 
 % Appendices
+\setcounter{section}{0} % Work around for weird Appendix numbering.
 \phantomsection
 \addcontentsline{toc}{chapter}{Appendices}%
 \markboth{Appendices}{Appendices}%
@@ -181,6 +177,7 @@ box/.style={
 % Appendix source files
 \input{appendix_proof}
 \endgroup
+
 
 % In case your dissertation has multiple volumes.
 % \addvolumecontents{thesis_part2}

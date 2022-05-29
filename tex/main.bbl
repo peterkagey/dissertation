@@ -445,8 +445,8 @@
       \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \field{extraname}{2}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0373-9252}
@@ -482,8 +482,8 @@
       \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \field{extraname}{3}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0373-9252}
@@ -519,8 +519,8 @@
       \strng{authornamehash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \strng{authorfullhash}{f49e41575eedfaa0b93fc98e3fe1ebc9}
       \field{extraname}{4}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0373-9252}
@@ -771,8 +771,8 @@
       \strng{editorbibnamehash}{ef95611aaa6551f2a39bf2efea6ee471}
       \strng{editornamehash}{ef95611aaa6551f2a39bf2efea6ee471}
       \strng{editorfullhash}{ef95611aaa6551f2a39bf2efea6ee471}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Les nombres eulériens An,k (n ≥ 1, 1 ≤ k ≤ n) sont définis par la relation de recurrence(1){\$}{\$}{\backslash}begin{\{}gathered{\}}{\{}A{\_}{\{}1,1{\}}{\}} = 1{\{}{\backslash}text{\{} {\}}{\}}{\{}A{\_}{\{}1,k{\}}{\}} = 0{\{}{\backslash}text{\{} pour k{\}}{\}} {\backslash}ne {\{}{\backslash}text{\{}1{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n,k{\}}{\}} = {\{}{\backslash}text{\{}k {\}}{\}}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n - 1,k{\}}{\}} + {\{}{\backslash}text{\{}(n - k + 1){\}}{\}}{\{}{\{}{\backslash}text{\{}A{\}}{\}}{\_}{\{}n - 1,k - 1{\}}{\}}{\{}{\backslash}text{\{} pour n {\}}{\}} {\backslash}geqslant {\{}{\backslash}text{\{}2 et{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\{}{\backslash}text{\{}1{\}}{\}} {\backslash}leqslant {\{}{\backslash}text{\{}k{\}}{\}} {\backslash}leqslant {\{}{\backslash}text{\{}n{\}}{\}}{\{}{\backslash}text{\{}.{\}}{\}} {\backslash}hfill {\backslash}{\backslash}{\backslash}end{\{}gathered{\}} {\$}{\$}}

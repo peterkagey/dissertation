@@ -26,16 +26,16 @@ Lastly,
 Section \ref{sec:OpenQuestions} provides further generalizations, and contains dozens of conjectures, open questions, and further directions.
 
 \subsection{History}
-Spinning Switches puzzles are a family of closely related puzzles
-that were first popularized by Martin Gardner in the form of pint glasses
-on a lazy susan.
-In the February 1979 edition of his column ``Mathematical Games.'' \cite{Gardner1979Problem}
+Generalized spinning switches puzzles are a family of closely related puzzles
+that were first popularized by Martin Gardner  in a puzzle called
+``The Rotating Table''
+in the February 1979 edition of his column ``Mathematical Games.'' \cite{Gardner1979Problem}
 Gardner writes that he learned of the puzzle from Robert Tappay of Toronto who
 ``believes it comes from the U.S.S.R.,'' a history that is not especially
 forthcoming.
 
 My preferred version of the puzzle appears in Peter Winkler's 2004 book
-\textit{Mathematical Puzzles A Connoisseur's Collection}
+\textit{Mathematical Puzzles A Connoisseur's Collection} \cite{Winkler2004}
 \begin{quote}
   Four identical, unlabeled switches are wired in series to a light bulb.
   The switches are simple buttons whose state cannot be directly observed,
@@ -43,7 +43,7 @@ My preferred version of the puzzle appears in Peter Winkler's 2004 book
   rotatable square. At any point, you may push, simultaneously, any subset
   of the buttons, but then an adversary spins the square. Show that there
   is a deterministic algorithm that will enable you to turn on the bulb in
-  at most some fixed number of steps. \cite{Winkler2004}
+  at most some fixed number of steps.
 \end{quote}
 
 (Winkler's version will be a working example in many parts of the paper, so it
@@ -53,7 +53,8 @@ An illustration can be found in Figure \ref{fig:twoSwitches}.)
 Over the last three decades, various authors have consider generalizations of
 this puzzle. Here, we build on those results and go further.
 The first place authors looked to generalize was suggested by Gardner himself.
-In his March 1979 column, he provided the answer to the original puzzle and wrote
+In his March 1979 column the following month, he provided the answer to the
+original puzzle and wrote
 \begin{quote}
 The problem can also be generalized by replacing glasses with objects that
 have more than two positions. Hence the rotating table leads into deep
@@ -77,12 +78,12 @@ same context.
 This puzzle was re-popularized in 2019 when it appeared in ``The Riddler''
 column from the publication FiveThirtyEight \cite{FiveThirtyEight}.
 Shortly after this, in 2022, Yuri Rabinovich synthesized Bar Yehuda and Ehrenborg's
-results in a a paper that modeled the collection of switches as a vector space
+results in a paper that modeled the collection of switches as a vector space
 over a finite field, and modeled the ``spinning'' or ``scrambling'' as a
-faithful, linear group action.
+faithful, linear group action on this vector space.
 
-Sidana \cite{Sidana2020} provides a detailed overview of the history of this
-and related problems.
+For more background, see Sidana's \cite{Sidana2020} detailed overview of the
+history of this and related problems.
 
 \subsection{A solution to Winkler's Spinning Switches puzzle}
 
@@ -95,11 +96,13 @@ we will make Peter Winkler proud by beginning with a simpler, two-switch version
   Suppose that we have two identical unlabeled switches on opposite corners
   of a square table, as in Figure \ref{fig:twoSwitches}
 
-  Then we have a three-step solution for solving the problem. We start by
-  toggling both switches simultaneously. If this does not turn on the light,
+  Then we have a three-step solution for solving the problem.
+  We start by toggling both switches simultaneously, and allow the adversary
+  to spin the table.
+  If this does not turn on the light,
   this means that the switches were (and still) are in different states.
 
-  Then, the adversary spins the table. Next, we toggle one of the two switches
+  Next, we toggle one of the two switches
   to ensure that the switches are both in the same state. If the light hasn't
   turned on, both must be in the off state.
 
@@ -123,21 +126,20 @@ we will make Peter Winkler proud by beginning with a simpler, two-switch version
 
     % Four switches
     % ---------------------
-    \draw[xshift=18em] (0,0) rectangle (4,4);
-    \draw[xshift=18em] (2.1,1.9)--(1.9,2.1);
-    \draw[xshift=18em] (2.1,2.1)--(1.9,1.9);
-    \draw[xshift=18em] (1,1) circle (0.5);
-    \draw[xshift=18em] (1,3) circle (0.5);
-    \draw[xshift=18em] (3,1) circle (0.5);
-    \draw[xshift=18em] (3,3) circle (0.5);
-    \draw[xshift=18em, ultra thick, ->] (0.3, 4.3) to[out=45, looseness=0.9, in=135] (3.7,4.3);
-    \draw[xshift=18em, ultra thick, ->] (4.3,3.7) to[out=-45, looseness=0.9, in=45] (4.3,0.3);
-    \draw[xshift=18em, ultra thick, ->] (3.7, -0.3) to[out=-135, looseness=0.9, in=-45] (0.3,-0.3);
-    \draw[xshift=18em, ultra thick, ->] (-0.3, 0.3) to[out=-225, looseness=0.9, in=-135] (-0.3,3.7);
+    \draw[xshift=-18em] (0,0) rectangle (4,4);
+    \draw[xshift=-18em] (2.1,1.9)--(1.9,2.1);
+    \draw[xshift=-18em] (2.1,2.1)--(1.9,1.9);
+    \draw[xshift=-18em] (1,1) circle (0.5);
+    \draw[xshift=-18em] (1,3) circle (0.5);
+    \draw[xshift=-18em] (3,1) circle (0.5);
+    \draw[xshift=-18em] (3,3) circle (0.5);
+    \draw[xshift=-18em, ultra thick, ->] (0.3, 4.3) to[out=45, looseness=0.9, in=135] (3.7,4.3);
+    \draw[xshift=-18em, ultra thick, ->] (4.3,3.7) to[out=-45, looseness=0.9, in=45] (4.3,0.3);
+    \draw[xshift=-18em, ultra thick, ->] (3.7, -0.3) to[out=-135, looseness=0.9, in=-45] (0.3,-0.3);
+    \draw[xshift=-18em, ultra thick, ->] (-0.3, 0.3) to[out=-225, looseness=0.9, in=-135] (-0.3,3.7);
   \end{tikzpicture}
-  \caption[Illustration of a two-switch and original version of Winkler's ``Spinning Switches''.]{
-    Illustration of both the two-switch and Winkler's original four-switch
-    version of the puzzle, both on a spinning square table.
+  \caption[Illustration of Winkler's Spinning Switches and a two-switch analog.]{
+    An illustration of Winkler's Spinning Switches puzzle and a two-switch analog.
   }
   \label{fig:twoSwitches}
 \end{figure}
@@ -146,13 +148,16 @@ In order to bootstrap the two-switch solution into a four-switch solution,
 we must notice two things: \begin{enumerate}
   \item First, if we can get two switches along each diagonal into the same state
   respectively, then we can solve the puzzle by toggling both diagonals
-  (all four switches), both switches in a single diagonal, and both diagonals
-  again. In this (sub-)strategy, toggling both switches along a diagonal is
-  equivalent to toggling a single single switch in the above example.
-  \item Second, we can indeed get both diagonals into the same state by toggling a
-  switch from each diagonal (two switches on any side of square),
-  then a single switch from one diagonal,
-  followed by a switch from each switch.
+  (all four switches),
+  followed both switches in a single diagonal,
+  and lastly both diagonals again.
+  In this (sub-)strategy, toggling both switches along a diagonal is
+  equivalent to toggling a single single switch in the two-switch analog.
+
+  \item Second, we can get both diagonals into the same state at some point
+  by toggling a switch from each diagonal (two switches on any side of square),
+  followed by a single switch from one diagonal,
+  followed by again toggling a switch from each diagonal.
 \end{enumerate}
 
 We will interleave these strategies in a particular way, following the notation
@@ -177,11 +182,11 @@ of Rabinovich \cite{Rabinovich2022}.
 Typically it is useful to interleave two strategies when
 $A$ solves the puzzle given that the switches are in a particular state, and
 $B$ gets the switches into that particular state.
-Usually, we also need $A$ not to ``interrupt'' what $B$ is doing.
+We also need $A$ not to ``interrupt'' what $B$ is doing.
 In the problem of four switches on a square table,
 $B$ will ensure that the switches are in the same state within each diagonal,
 and $A$ will turn on the light when that's the case.
-Moreover, $A$ does not change the state within each diagonal.
+Moreover, $A$ does not change the state \textit{within} either diagonal.
 
 \begin{proposition}
   There exists a fifteen-move strategy that guarantees that the light in
@@ -212,9 +217,9 @@ We will generalize this construct in
 Theorem \ref{thm:switchingStrategyDecomposition},
 which offers a formal proof that this strategy works.
 
-It is worth briefly noting that $S_1 \circledast S_2$ is the fourth
+(It is worth briefly noting that $S_1 \circledast S_2$ is the fourth
 \textit{Zimin word} (also called a \textit{sequipower}),
-an idea that comes up in the study of combinatorics on words.
+an idea that comes up in the study of combinatorics on words.)
 
 \subsection{Generalizing switches}
 \label{sec:GeneralizingSwitches}
@@ -222,9 +227,6 @@ Two kinds of switches are considered by Bar Yehuda, Etzion, and Moran in 1993
 \cite{BarYehuda1993}: switches with a single ``on'' position that behave like
 $n$-state roulettes ($\mathbb Z_n$) and switches that behave like
 the finite field $\mathbb F_q$, both on a rotating $k$-gonal table.
-Yuri Rabinovich \cite{Rabinovich2022} goes further by considering collections
-of switches that behave like arbitrary finite dimensional vector spaces over
-finite fields that are acted on by a linear, faithful group action.
 We generalize this notion further by considering switches that behave like
 arbitrary finite groups.
 
@@ -235,18 +237,21 @@ It consists of three identical-looking parts that need to be
 arranged in a particular order in order for the switch to be on.
 
 We could also construct a switch that behaves like the dihedral group of the
-square, $D_8$. This switch a flat, square prism that can slot into a square hole,
-and only one of the $|D_8| = 8$ rotations of the prism completes the circuit.
+square, $D_8$.
+This switch might look like a flat, square prism that can slot into a square hole,
+such that only one of the $|D_8| = 8$ rotations of the prism completes the circuit.
 \label{ex:S3D8Schematics}
 \end{example}
 
 \input{assets/fig_S3Switch.tex}
 
-One subtlety of using a group $G$ to model a switch is that
-both the ``internal state'' of a switch itself and
-the set of ``moves'' or changes are modeled by $G$.
-Perhaps we think of the state as the underlying set of $G$
-and the moves act via right group action of $G$ on itself.
+\begin{note}
+  One subtlety of using a group $G$ to model a switch is that
+  both the ``internal state'' of a switch itself and
+  the set of ``moves'' or changes are modeled by $G$.
+  Therefore it may be useful to think of the state as the underlying set of $G$
+  where the moves act via a right group action of $G$ on itself.
+\end{note}
 
 The reason that using a group to model a switch is because groups have many
 of the properties we would expect in a desirable switch.
@@ -261,21 +266,22 @@ of the properties we would expect in a desirable switch.
      g_1 \cdot g_2 \in G.
   \end{equation}
   In the context of switches, this
-  means that if the switch is in some state $g_1 \in G$ and player B moves
-  it with action $g_2 \in G$, then $g_1 \cdot g_2 \in G$ is a valid switch for
-  the state.
+  means that if the switch is in some state $g_1 \in G$ and the puzzle-solver
+  applies the move $g_2 \in G$ to it,
+  then the resulting state $g_1 \cdot g_2 \in G$ is in the set of possible
+  states.
   %
   %
   \item (Identity) There exists an element $\operatorname{id}_G \in G$ such that
   for all $g \in G$, \begin{equation}
     \operatorname{id}_G \cdot g = g \cdot \operatorname{id}_G = g.
   \end{equation}
-  This axiom is useful because it means that Player B can ``do nothing''
+  This axiom is useful because it means that the puzzle-solver can ``do nothing''
   to a switch and leave it in whatever state it is in.
   Because the identity is a distinguished element in $G$,
   we will also use the convention that
   $\operatorname{id}_G$ is the ``on'' or ``winning'' state for a given switch.
-  (It is worth noting that all of the arguments work with small modification
+  (It is worth noting that all of the arguments work basically the same way
   regardless of which element is designated as the on state.)
   %
   %
@@ -307,7 +313,7 @@ of the properties we would expect in a desirable switch.
 % Or one could imagine a switch that behaves like the dihedral group of the square,
 % $D_8$ where the square has a single, unique orientation that completes the circuit.
 % Or abstractly, one could think of each switch as an abstract group element,
-% where Player B can multiply by anything they like.
+% where the puzzle-solver can multiply by anything they like.
 
 \subsection{Generalizing spinning}
 We can also consider generalizations of ``spinning'' the switches.
@@ -324,12 +330,13 @@ We build on this result in the context of more general switches.
 
 \section{A wreath product model}
 \label{sec:WreathModel}
-Peter Winkler's version of the puzzle consists of four two-way switches on the
-corners of a rotating square table.
+Recall that Peter Winkler's Spinning Switches puzzle consists of four two-way
+switches on the corners of a rotating square table.
 The behavior of the switches are naturally modeled as $\mathbb Z_2$, and
-the rotating table is modeled as the cyclic group $C_4$. We will take the
-wreath product of $\mathbb Z_2$ by $C_4$ in order to get a mathematical model
-of the generalized spinning switches puzzle.
+the rotating table is modeled as the cyclic group $C_4$.
+The abstraction that takes these two groups and creates a model for the
+underlying puzzle is the wreath product: that is Winkler's puzzle behaves like
+the wreath product of $\mathbb Z_2$ by $C_4$.
 
 \subsection{Modeling generalized spinning switches puzzles}
 We don't evoke wreath products arbitrarily: we use them because they are the
@@ -345,8 +352,8 @@ the action of $H$ on $\Omega$ models the ways the adversary can permute the swit
   for all $\omega \in \Omega$.
   Then the \textbf{wreath product} of $G$ by $H$ denoted by $G \wr H$,
   is the semidirect product of $K$ by $H$,
-  where $H$ acts on $K$ by $h \cdot (d_\omega) = d_{h^{-1}\omega}$ for $g \in H$ and
-  $(g_\omega) \in \prod_{\omega \in \Omega} G_\omega$.
+  where $H$ acts on $K$ by $h \cdot (g_\omega) = g_{h^{-1}\omega}$ for $h \in H$
+  and $g_\omega \in G_\omega$.
   The normal subgroup $K$ of $G \wr H$ is called
   the \textbf{base} of the wreath product.
 
@@ -360,12 +367,13 @@ and then their adversary chooses $h \in H$ and acts with $h$ on $\Omega$ to
 permute the switches.
 
 \begin{example}
-  Consider the setup in the Winkler's version of the puzzle that consists of
-  two-way switches ($\mathbb Z_2$) on the corners of a rotating square
-  ($C_4 \cong \langle 0^\circ, 90^\circ, 180^\circ, 270^\circ \rangle$).
+  Consider the setup in the Winkler's Spinning Switches the puzzle, which
+  consists of two-way switches ($\mathbb Z_2$) on the corners of a rotating
+  square,
+  $C_4 \cong \langle 0^\circ, 90^\circ, 180^\circ, 270^\circ \rangle$.
   The game itself corresponds to the wreath product $\mathbb Z_2 \wr C_4$.
-  We will use the convention that the base of the wreath product, $K$ is
-  ordered upper-left, upper-right, lower-right, lower-left; the group
+  We will use the convention that the base of the wreath product, $K$, is
+  ordered upper-left, upper-right, lower-right, lower-left, and that the group
   action is specified by degrees in the clockwise direction.
 
   Consider the following two turns:
@@ -427,7 +435,7 @@ permute the switches.
       \node[circle,draw,fill=gray] at (17/2,1/2) {$s_1$};
     \end{tikzpicture}
     \caption[A wreath product interpretation of a spinning switches puzzle.]{
-      An illustration of two turns each in the Spinning Switches puzzle,
+      An illustration of two turns each in Winkler's Spinning Switches puzzle,
       modeled as elements of a wreath product.
     }
     \label{fig:WreathProduct}
@@ -440,22 +448,22 @@ permute the switches.
   \end{align*}
 \end{example}
 
-Occasionally it is useful to designate a particular state of the switches as the
-``on'' state or the winning state. We will use the convention that the lightbulb
-turns on when all of the switches are equal to the identity, that is
-$\mathrm{id}_K \in K$.
+As suggested earlier, it is occasionally useful to designate a particular state
+of the switches as the winning state. We will use the
+convention that the lightbulb turns on when all of the switches are equal to the
+identity, that is $\mathrm{id}_K \in K$.
 It is worth noting, however, that the existence of a winning strategy does not
 depend on a particular choice in the winning state.
-Instead, a winning strategy is equivalent to a choice of moves that will walk
-over all of the possible configuration states, regardless of the choice of the
-adversaries spin.
+Instead, we will see that a winning strategy is equivalent to a choice of moves
+that will walk over all of the possible configuration states, regardless of the
+choice of the adversaries spin.
 
 \subsection{Switching strategy}
 
 We will begin by formalizing the notation of a winning strategy in a
-generalized spinning switches puzzle. Informally, a switching strategy is
+generalized spinning switches puzzle. Informally, this is
 a sequence of moves that the puzzle-solver can make that will put the switches
-into every possible state, which ensures the the ``on'' state is reached
+into every possible state, which ensures the the winning state is reached
 regardless of the initial (hidden) state of the switches.
 
 \begin{definition}
@@ -482,15 +490,15 @@ terms. It is also useful because it abstracts away the initial state of the
 switches: regardless of the initial state $k \in K$, a existence of a switching strategy
 means that its inverse $k^{-1} \in K$ appears in the sequence.
 (This follows the convention that $\mathrm{id}_K \in K$ is designated as the
-``on'' state. If $k'$ is chosen to the ``on`` state, then the sequence
+winning state. If $k'$ is chosen to be the winning state, then the sequence
 must contain $k^{-1}k'$ .)
 
 \begin{proposition}
-  A finite sequence of moves is guaranteed to reach the ``on''
+  A finite sequence of moves is guaranteed to reach the winning
   state if and only if it is a switching strategy.
 \end{proposition}
 \begin{proof}
-  Without loss of generality, say that the ``on'' state for the switches is
+  Without loss of generality, say that the winning state for the switches is
   $\mathrm{id}_K$.
   In the puzzle, we have an initial (hidden) state, $k$.
   Thus, after the $i$-th move, the wreath product
@@ -501,16 +509,20 @@ must contain $k^{-1}k'$ .)
   the ``spin'' is $\mathrm{id}_H$, which acts trivially:
   ${(k, \mathrm{id}_H) \cdot (k', h') = (kk', h')}$
 
+  Since $k$ is arbitrary the projection map must surject onto $K$ for every
+  adversarial sequence to ensure that it contains $k^{-1}$.
+
   The initial state can be any $k \in K \setminus \{\mathrm{id}_K\}$,
   and this isn't known to the puzzle-solver.
-  In order to reach the ``on'' state, there must exist some $i$, such that
+  In order to reach the winning state, there must exist some $i$, such that
   $p\left((k_1, h_1)\cdot(k_2, h_2)\cdots(k_i, h_i)\right) = k^{-1}$.
-  $k$ and adversarial sequences $\{h_i\}_{i=1}^N$.
+  For any choice of $k$ and adversarial sequence $\{h_i \in H\}_{i=1}^N$.
 \end{proof}
 
 It's also worth noting that this model can be thought of as a random model or an
-adversarial model: the sequence $\{h_i \in H\}$ can be chosen after the sequence
-$\{k_i \in K\}$ in a deterministic way or randomly.
+adversarial model: the sequence $\{h_i \in H\}$ can be chosen
+randomly at any point, or it can be chosen deterministically
+after the sequence $\{k_i \in K\}$ is specified.
 
 \subsection{Bounds on the length of switching strategies}
 
@@ -522,11 +534,15 @@ has a simple lower bound.
   length at least ${|K| - 1}$.
 \end{proposition}
 \begin{proof}
-  This follows from an application of the Pigeonhole Principle. Because the set \begin{equation}
+  This follows from an application of the Pigeonhole Principle. Because the set
+  \begin{equation}
     \{e_{G \wr H}, (k_1, h_1), (k_1, h_1)\cdot(k_2, h_2), \cdots, (k_1, h_1)\cdot(k_2, h_2)\cdots(k_N, h_N)\}
-  \end{equation} has at most $N+1$ elements. In order for the projection to be equal to $K$, \begin{equation}
+  \end{equation}
+  has at most $N+1$ elements. In order for the projection to be equal to $K$,
+  \begin{equation}
     p(\{e_{G \wr H}, (k_1, h_1), (k_1, h_1)\cdot(k_2, h_2), \cdots, (k_1, h_1)\cdot(k_2, h_2)\cdots(k_N, h_N)\}) = K,
-  \end{equation} it must be the case that $N+1 \geq |K|$. Therefore $N \geq |K| - 1$.
+  \end{equation} it must be the case that $N+1 \geq |K|$.
+  Therefore $N \geq |K| - 1$.
 \end{proof}
 
 Minimal length switching strategies are common, so we give them a name.
@@ -585,7 +601,8 @@ the switches, the group action might add linear combinations of them as well.
   By the theorem of Rabinovich \cite{Rabinovich2022},
   the game $\mathbb Z_2 \wr C_3$ does not have a
   switching strategy. In Rabinovich's notation, the vector space of switches
-  is $\mathbb Z_2^3$ over the field $\mathbb F_2 = \mathbb Z_2$.
+  is $\mathbb Z_2^3$ over the field $\mathbb F_2 = \mathbb Z_2$, and
+  $C_3$ has $3$ elements and therefore is not a $2$-group.
   \label{ex:NoSolutionZ2C3}
 \end{example}
 
@@ -595,12 +612,13 @@ so we will continue to use it as a basis of future examples.
 
 \subsection{Reductions on switches}
 With Theorem \ref{thm:Rabinovich} providing a family of wreath products without
-spinning switches to reduce to, we now introduce a theorem that allows us to
-prove that large families of wreath products also do not have a switching
-strategy.
+switching strategies, we now introduce a theorem that allows us to
+describe large families of wreath products that also do not have switching
+strategies.
 \begin{theorem}
-  If $G \wr H$ does not have a switching strategy and $G'$ is a group with
-  a quotient $G'/N \cong G$, then ${G'} \wr H$ does not have a switching
+  If $G \wr H$ does not have a switching strategy and there exists a group $G'$
+  and a surjective homomorphism $\varphi \colon G' \rightarrow G$,
+  then ${G'} \wr H$ does not have a switching
   strategy.
   \label{thm:SwitchReduction}
 \end{theorem}
@@ -608,7 +626,7 @@ strategy.
   We will prove the contrapositive, and suppose that $G' \wr H$ has base $K'$
   and a switching strategy $\{k'_i \in K'\}_{i=1}^N$.
 
-  The quotient map
+  The homomorphism
   $\varphi\colon G' \mapsto G$
   extends coordinatewise to
   $\varphi \colon K' \mapsto K$,
@@ -655,9 +673,9 @@ switching strategy, then a similar wreath product $G \wr H'$ with a
 ``more complicated'' spinning group $H'$ will not have a switching strategy
 either.
 \begin{theorem}
-  If $G \wr H$ does not have a switching strategy and $H'$ is a group with
-  a subgroup $A \leq H'$ such that $A \cong H$, then
-  $G \wr H'$ does not have a switching strategy.
+  If $G \wr H$ does not have a switching strategy,
+  and $\varphi \colon H \hookrightarrow H'$ is an embedding of $H$ into $H'$,
+  then $G \wr H'$ does not have a switching strategy.
   \label{thm:SpinReduction}
 \end{theorem}
 \begin{proof}
@@ -666,44 +684,51 @@ either.
   $\{k_i\}_{i=1}^N$. Then by definition, for any sequence
   $\{h'_i\}_{i=1}^N$, the projection of the sequence \begin{equation}
     p(\{(k_1, h'_1)\cdot(k_2, h'_2)\cdots(k_i, h'_i)\}_{i=1}^N) = K,
-  \end{equation} and in particular this is true when $h'_i$ is restricted to be in the
-  subgroup $H$. Thus a switching strategy for $G \wr H'$ is also a valid
-  switching strategy for $G \wr H$.
+  \end{equation} and in particular this is true when $h'_i$ is restricted to be
+  in the subgroup $\operatorname{Im}(\varphi) \leq H'$.
+  Thus a switching strategy for $G \wr H'$ is also a valid switching strategy
+  for $G \wr H$.
 \end{proof}
 
 \begin{example}
   Consider the wreath product $\mathbb Z_2 \wr_{\Omega_6} C_3$ where
   $\Omega'$ consists of six switches on the corners of a hexagon as
-  illustrated in Figure \ref{fig:Z2C6}. While the group action of $C_3$ on
-  $\Omega'$ is not transitive, we know that $\mathbb Z_2 \wr_{\Omega_6} C_3$ does
-  not have a switching strategy, because in particular there is no way to
-  ensure that the  top, bottom-right, and bottom-left switches hit every state.
-
-  Since $\mathbb Z_2 \wr_{\Omega_6} C_3$ doesn't have a switching strategy,
-  $\mathbb Z_2 \wr_{\Omega_6} C_6$ cannot not have a switching strategy either.
-  \begin{figure}
-    \center
-    \includegraphics{assets/tikz_Z2C6.pdf}
-    \caption{If there were a solution to $\mathbb Z_2 \wr_{\Omega_6} C_6$,
-    then there would be a solution to $\mathbb Z_2 \wr_{\Omega_6} C_3$.}
-  \end{figure}
-  \label{fig:Z2C6}
+  illustrated in Figure \ref{fig:Z2C6}.
+  We know that $\mathbb Z_2 \wr_{\Omega_6} C_3$ does not have a switching
+  strategy, by Theorem \ref{thm:Rabinovich}, therefore
+  $\mathbb Z_2 \wr_{\Omega_6} C_3$ cannot have a switching strategy either, by
+  Theorem \ref{thm:SpinReduction}.
 \end{example}
 
-In the above example, we noted that $\mathbb Z_2 \wr_{\Omega_6} C_3$ does
-not have a switching strategy by focusing on a triangle of switches and
-using the knowledge that $\mathbb Z_2 \wr C_3$
-(two-way switches on a rotating triangular board) does not have a switching
-strategy. The following theorem allows us to take that very shortcut.
+\begin{figure}
+  \center
+  \includegraphics{assets/tikz_Z2C6.pdf}
+  \caption[A reduction from $60^\circ$ rotations to $120^\circ$ rotations.]{
+    If there were a solution to $\mathbb Z_2 \wr_{\Omega_6} C_6$,
+  then there would be a solution to $\mathbb Z_2 \wr_{\Omega_6} C_3$.
+  }
+\label{fig:Z2C6}
+\end{figure}
+
+In the above example, we noted that $\mathbb Z_2 \wr_{\Omega_6} C_6$ does
+not have a switching strategy because $\mathbb Z_2 \wr_{\Omega_6} C_3$ is
+known not to have one. However, there is another obstruction: the fact that
+the generalized spinning switches puzzle $\mathbb Z_2 \wr C_3$ on a triangle
+is known not to have a switching strategy. That is, we cannot guarantee that
+the triangle that is embedded in the hexagon as ``every other'' switch
+is ever in the all ``on'' state.
+
+The following theorem abstracts this idea.
 \begin{theorem}
-  Suppose that $H'$ is a group with a subgroup $A \leq H'$ such that
-  $A \cong H$,
-  and let \begin{equation}
-    \operatorname{Orb}(\omega) = \{\omega \cdot a : a \in A \} \subseteq \Omega
+  Suppose that $H$ and $H'$ are groups,
+  $\varphi \colon H \hookrightarrow H'$ is an embedding of $H$ into $H'$,
+  \begin{equation}
+    \operatorname{Orb}(\omega)
+      = \{\omega \cdot a : a \in \operatorname{Im}(\varphi) \} \subseteq \Omega
   \end{equation}
-  be the (right) orbit of $\omega \in \Omega$ under $A$.
+  be the (right) orbit of $\omega \in \Omega$ under $\operatorname{Im}(\varphi)$.
   If $G \wr_{\operatorname{Orb}(\omega)} H$ does not have a switching strategy,
-  then $G \wr_\Omega H'$ does not have a switching strategy.
+  then $G \wr_\Omega H'$ cannot have a switching strategy either.
   \label{thm:SpinReduction2}
 \end{theorem}
 \begin{proof}
@@ -763,9 +788,12 @@ terms of a normal group and its corresponding quotient group.
 \label{thm:switchingStrategyDecomposition}
 \end{theorem}
 \begin{proof}
-  Let $S_{G/N} = \{k_i^{G/N} \in K_{G/N}\}$ denote the switching strategy for
-  $G/N \wr H$, and
-  let $S_{N} = \{k_i^N \in K_{N}\}$ denote the switching strategy for $N \wr H$.
+  Let \[
+    S_{G/N} = \{k_i^{G/N} \in K_{G/N}\}
+    \hspace{1cm}\text{and}\hspace{1cm}
+    S_{N} = \{k_i^N \in K_{N}\}
+  \] denote the switching strategies for ${G/N \wr H}$ and ${N \wr H}$
+  respectively.
 
   We ultimately would like to interleave these two strategies,
   but $k_i^{G/N} \not\in K_G$. To find the appropriate analog,
@@ -788,32 +816,34 @@ terms of a normal group and its corresponding quotient group.
 \end{proof}
 
 \subsection{Construction of switching strategies on \texorpdfstring{$p$}{p}-groups}
-We start with a corollary of Theorem \ref{thm:Rabinovich}.
-\begin{corollary}
+With the decomposition from Theorem \ref{thm:switchingStrategyDecomposition}
+established, we can now construct a switching strategy on all finite $p$-groups.
+
+\begin{theorem}
   If $H$ is a finite $p$-group that acts faithfully on $\Omega$,
   then the wreath product
   $G \wr H$ has a switching strategy whenever $|G| = p^n$ for some $n$.
-\end{corollary}
+\end{theorem}
 \begin{proof}
-  A group generated by permutation matrices will act faithfully and linearly on
-  a vector space $V$, so it is sufficient to groups $H$ that act faithfully
-  by permuting $\Omega$.
+  We will use the fact that if $|G| = p^n$,
+  then either $G \cong \mathbb{Z}_p$ or $G$ is not simple.
 
-  If $|G| = p^n$, then either $G \cong \mathbb{Z}_p$ or $G$ is not simple.
-
-  If $n = 1$, $G \cong \mathbb{Z}_p \cong \mathbb F_p$, then there exists a
+  If $n = 1$, then $G \cong \mathbb{Z}_p \cong \mathbb F_p$, so there exists a
   switching strategy by Theorem \ref{thm:Rabinovich}. This is because $H$
-  permutes the coordinates of $V = \mathbb F_p^{|\Omega|}$, and so it is a
-  linear action on the vector space.
+  permutes the coordinates of $V = \mathbb F_p^{|\Omega|} \cong K$, and so it is a
+  linear action on the vector space, and so it has a switching strategy by
+  Theorem \ref{thm:Rabinovich}.
 
-  Otherwise, $G$ is not simple. This means that $G$ has a normal subgroup $N$
-  of order $|N| = p^t$ (with $t \geq 1$) and a quotient $G/N$ with order $|G/N| = p^{n-t}$.
-  Because $t < n$ and $n - t < n$, we eventually end up at the $n=1$ case by
-  induction.
+  Otherwise, $G$ is not simple. This means that $G$ has a proper normal subgroup
+  $N$ of order $|N| = p^t$ (with $0 < t < n$)
+  and a quotient $G/N$ with order $|G/N| = p^{n-t}$.
+  Therefore, by induction on the exponent,
+  whenever $G$ and $H$ (and thus $G \wr H$) are $p$-groups,
+  then $G \wr H$ has a switching strategy.
 \end{proof}
 
-This means that whenever $G$ and $H$ (and thus $G \wr H$) are $p$-groups,
-then $G \wr H$ has a switching strategy.
+Thus this resolves the situation for switches that behave like $p$-groups on
+spinning groups that act faithfully and behave like $p$-groups.
 
 \subsection{A folklore conjecture}
 Here we note a conjecture from folklore, which---if true---implies that we have
@@ -822,8 +852,8 @@ Here we note a conjecture from folklore, which---if true---implies that we have
   Almost all groups are $2$-groups.
 \end{conjecture}
 
-One reason for this conjecture is computational. According to the
-On-Line Encyclopedia of Integer Sequences \cite{oeis},
+There are both computational and theoretical bases for this conjecture.
+According to the On-Line Encyclopedia of Integer Sequences \cite{oeis},
 there are $A000001(2^{10}) = 49487367289$ groups of order $2^{10}$ and there are
 $A063756(2^{11}-1) = 49910536613$ groups of order less than $2^{11}$.
 This means that more than $99.15\%$ of the groups of order less than $2^{11}$
@@ -832,7 +862,7 @@ are of order $2^{10}$.
 If this conjecture is true, then most types of switches have switching
 strategies on most kinds of faithful finite group actions.
 Of course, while most finite groups may be $2$-groups, most mathematicians
-are more interested in groups that \textit{aren't}.
+are more interested in the other finite groups.
 This next section develops two families of examples of switching strategies
 where the switches do not behave like $p$-groups.
 
@@ -846,8 +876,8 @@ where the switches do not behave like $p$-groups.
 
 Other authors have given switching strategies for various configurations of
 generalized spinning switches strategies, but in all of these examples,
-the wreath products themselves $p$-groups:
-$|G \wr_\Omega H| = |G|^{|\Omega|} \cdot |H|$, where $H$ acts faithfully.
+the wreath products themselves are $p$-groups: that is,
+${|G \wr_\Omega H| = |G|^{|\Omega|} \cdot |H|}$, where $H$ acts faithfully.
 In this section we introduce two families of wreath products that have switching
 strategies, but are not $p$-groups.
 
@@ -892,7 +922,7 @@ $G \wr \mathbf{1} \cong G$ has not just one switching strategy, but many.
       \underbrace{(k'_1, h_1)}_{m_1},
       \underbrace{(k'_1, h_1)\cdot(k'_2, h_2)}_{m_2},
       \cdots,
-      \underbrace{(k'_1, h_1)\cdot(k'_2, h_2)\cdots(k'_N, h_N)}_{m_N}
+      \underbrace{(k'_1, h_1)\cdot(k'_2, h_2)\cdots(k'_{|G|-1}, h_{|G|-1})}_{m_{|G|-1}}
     \}) \\
     & \hspace{1cm} =
     p(\{
@@ -900,7 +930,7 @@ $G \wr \mathbf{1} \cong G$ has not just one switching strategy, but many.
       (k_1, \mathrm{id}),
       (k_2, \mathrm{id}),
       \cdots,
-      (k'_N, \mathrm{id})
+      (k'_{|G|-1}, \mathrm{id})
     \}) \\
     & \hspace{1cm} = \{e_{G \wr \mathbf{1}}, k_1, k_2, \cdots,k_{|G|-1}\} = K,
   \end{align}
@@ -917,26 +947,26 @@ puzzle-solver.
 \subsection{Two interchangeable groups generated by involutions}
 
 In this section, we will construct a switching strategy for the generalized
-spinning switches puzzle that consists of two switches that behave like
-a group $G$ that can be generated by involutions, which the adversary can
-swap.
+spinning switches puzzle $G \wr H$
+that consists of two switches each behaving like
+a group $G$, generated by involutions, together with a nontrivial spinning
+action $H$.
 (See, for example, Figure \ref{fig:S3Switch} which illustrates switches that
 behave like $S_3 = \langle (12), (13)\rangle$)
 
-This strategy relies on the fact that because these generators are their own
+This strategy relies on the fact that because each generator is its own
 inverse, applying a generator to the first switch or the second switch
-has no effects on the difference.
+has no effect on their difference.
 
 This switching strategy has two parts.
 The first part ensures that the two switches have every possible difference.
-The second part show that we can get the first switch
-(with respect to the projection onto $K$)
-to take on every possible value without changing the difference.
+The second part shows that we can get the first switch
+(with respect to the projection onto $K$) to take on every possible value
+without changing the difference between the switches.
 \begin{theorem}
-  Suppose that $G$ is a group that can be generated by involutions.
-  Then the generalized spinning switches puzzle consisting of two,
-  interchangeable copies of $G$, namely $G \wr C_2$,
-  has a switching strategy.
+  Suppose that $G$ is a finite group that can be generated by involutions.
+  Then the generalized spinning switches puzzle $G \wr C_2$ consisting of two,
+  interchangeable copies of $G$ has a switching strategy.
   \label{thm:involutionGeneratedGroups}
 \end{theorem}
 \begin{proof}
@@ -955,7 +985,7 @@ to take on every possible value without changing the difference.
   $(g_{i,1}, g_{i,2}) = p((\mathrm{id}_K, \mathrm{id}_H)\cdot(\alpha_1, h_1)\cdot(\alpha_2, h_2)\dots(\alpha_i, h_i))$,
   has a difference of $g$. That is, $g_{i,1}g_{i,2}^{-1} = g$.
 
-  To do this, we define $\alpha_j = (t_{i_j}, \mathrm{id}_G)$,
+  To do this, we define $\alpha_j = (t_{i_j}, \mathrm{id}_G) \in K$,
   and notice that the difference of the coordinates is the same whether we
   add $\alpha_j$ or $(180^\circ)\cdot \alpha_j$ to a element
   $(g_1, g_2) \in K$: \begin{equation}
@@ -963,19 +993,28 @@ to take on every possible value without changing the difference.
   \end{equation}
 
   Because the partial products of $t_{i_j}$ cover $G$, there exists some
-  $t_1 t_2\dots t_k = g_1{-1}gg^2$, so that $g_{i,1}g_{i,2}^{-1} = g$, as
-  desired.
+  $t_{i_1} t_{i_2}\dots t_{i_k} = g_1^{-1}gg_2$, so that
+  \begin{equation}
+    g_1(t_{i_1} t_{i_2}\dots t_{i_k})g_2^{-1}
+    = g_1(g_1^{-1}gg_2)g_2^{-1}
+    = g,
+  \end{equation}
+  as desired.
 
   Next, we give a strategy $B = \{\beta_i\}$ such that for any adversarial
   sequence $\{h_i \in H\}$ and element $g \in G$, there exists an $i \geq 0$
   such that the {$i$-th} partial product,
-  $(g_{i,1}, g_{i,2}) = p((\mathrm{id}_K, \mathrm{id}_H)\cdot(\alpha_1, h_1)\cdot(\alpha_2, h_2)\dots(\alpha_i, h_i))$
-  has a first coordinate $g_{i,1} = g$.
+  \begin{equation}
+    p((\mathrm{id}_K, \mathrm{id}_H)\cdot(\alpha_1, h_1)\cdot(\alpha_2, h_2)\dots(\alpha_i, h_i))
+  \end{equation}
+  has a first coordinate equal to $g$.
 
   To do this, we define $\beta_j = (t_{i_j}, t_{i_j})$. This strategy is
   invariant up to actions of $H$, so we can see that regardless of the initial
-  state $(g_1, g_2) \in K$, there exists some $j$ such that
-   $\beta_1 \beta_2 \cdots \beta_j = g_1^{-1}g$ and therefore
+  state $(g_1, g_2) \in K$, there exists some $k$ such that
+  \begin{equation}
+    \beta_1 \beta_2 \cdots \beta_k = (g_1^{-1}g, g_1^{-1}g)
+  \end{equation} and therefore
    $(g_1, g_2) \beta_1 \beta_2 \cdots \beta_j = (g, g_2g_1^{-1}g)$, as desired.
 
    It is important to note that applying $\beta_j$ does not affect the
@@ -1021,9 +1060,10 @@ isomorphic to the dihedral group of the triangle, $D_6$.
   \end{singlespace}
   \label{ex:TwoSymmetricGroups}
 \end{example}
-It is natural to ask which generalized spinning switches puzzles with
-switches that symmetric groups have switching strategies. We can use a
-reduction on switches to rule out a large amount of these.
+It is natural to ask which
+spinning groups $H$ correspond to to a generalized spinning switches puzzle
+$S_n \wr H$ with a switching strategies.
+We can use a reduction on switches to rule out a large amount of these.
 \begin{proposition}
   For $n > 1$, $S_n \wr H$ does not have a switching strategy whenever
   $|H|$ is not a power of $2$.
@@ -1038,7 +1078,7 @@ reduction on switches to rule out a large amount of these.
 \end{proof}
 
 Many groups are generated by transpositions, including $22$ of the $26$
-sporadic simple groups and the alternating group $A_5$ and $A_n$ for $n > 9$,
+sporadic simple groups and the alternating groups $A_5$ and $A_n$ for $n > 9$,
 as shown by Mazurov and Nuzhin respectively.
 \begin{theorem}\cite{Mazurov2003}
   Let $G$ be one of the 26 sporadic simple groups.
@@ -1072,7 +1112,7 @@ more specific questions.
 In this section, we provide conjectures and suggest open questions about
 the structure of switching strategies when they exist,
 further generalizations of spinning switches puzzles,
-and finally introduce a notion of an infinite switching strategy for infinite
+and, lastly, introduce a notion of an infinite switching strategy for infinite
 wreath products.
 
 The ultimate open question is a full classification
@@ -1128,15 +1168,16 @@ case of the trivial wreath product, $G \wr \mathrm{1} \equiv G$.
 \label{sub:quasigroupSwitches}
 In Section \ref{sec:GeneralizingSwitches}, we argued for modeling switches as
 finite groups because of some desirable properties: \begin{enumerate}
-  \item Closure. Regardless of which state a switch is in, modifying the state is the set of states.
-  \item Identity. We don't have to toggle a switch on a given turn.
+  \item Closure. Regardless of which state a switch is in, every move results
+    in a valid state.
+  \item Identity. We don't have to move a switch on a given turn.
   \item Inverses. If a switch is off, we can always turn it on.
 \end{enumerate}
 
 In the list, we also included the axiom of associativity for three reasons:
 switches in practice typically have associativity,
 groups are easier to model than quasigroups with identity, and
-it makes the definition of a ``switching strategy'' less fussy.
+associativity makes defining a ``switching strategy'' simpler.
 
 However, one could design a switch that does not have associativity
 because, and the puzzle would still be coherent. This is because the process of
@@ -1167,7 +1208,7 @@ and describe via its multiplication table, a Latin square of order $5$.
 
 \begin{conjecture}
   There exists a nontrivial adversarial group $H$ such that the generalized
-  spinning switches puzzle with switches that look like $\mathcal{L}$ has
+  spinning switches puzzle with switches that behave like $\mathcal{L}$ has
   a winning strategy for the puzzle-solver.
 \end{conjecture}
 
@@ -1177,12 +1218,13 @@ and describe via its multiplication table, a Latin square of order $5$.
 % That if the original state of
 % the puzzle is $k \in K$,
 % we ``win'' on move $i$ if $k^{-1} = p((k_1, h_1)(k_2, h_2)\dots(k_i, h_i))$.
-In practice, a puzzle-solver can ``win'' by playing randomly,
-which will \textit{eventually} turn on the lightbulb with probability 1,
-thanks to the finite number of configurations and the law of large numbers.
+In practice, a puzzle-solver can get the switches into the winning state by
+playing randomly.
+Random play will \textit{eventually} turn on the lightbulb with probability $1$,
+due to the finite number of configurations and the law of large numbers.
 
-While the puzzle asks for a solution in finite time,
-it is natural to ask about the expected value of the number of turns given
+Thus we drop the requirement of a finite strategy and
+ask about the expected value of the number of turns given
 various sequences of moves.
 Notice that this is an interesting question even (perhaps especially)
 in the context of generalized spinning switches puzzles that do not have a
@@ -1219,22 +1261,24 @@ uniformly random elements $h_j \in H$.
 \begin{proposition}
   If the puzzle-solver chooses $k_j \in K \setminus \{\mathrm{id}_K\}$ uniformly
   at random (that is, never choosing the ``do nothing'' move)
-  then the distribution of the resulting state will be uniformly distributed
+  then the distribution of the resulting state after each turn will be uniformly
+  distributed
   among the $|K| - 1$ different states, the probability of the resulting state
   being the winning state is
   \begin{equation}
-    \mathbb{P}(p((k_1, h_1)(k_2, h_2)\dots(k_j, h_j))=k^{-1}\ |\ p((k_1, h_1)(k_2, h_2)\dots(k_{j-1}, h_{j-1})\neq k^{-1})) = \frac{1}{|K| - 1},
+    \mathbb{P}(p((k_1, h_1)(k_2, h_2)\dots(k_j, h_j))=k^{-1}\ \mid\ p((k_1, h_1)(k_2, h_2)\dots(k_{j-1}, h_{j-1})\neq k^{-1})) = \frac{1}{|K| - 1},
   \end{equation} and the expected number of moves is $|K| - 1$.
 \label{prop:randomStrategy}
 \end{proposition}
 \begin{proof}
   Because the new states are in $1$-to-$1$ correspondence with the elements of
-  $K \setminus \{\mathrm{id}_K\}$, since $k_j \in \setminus \{\mathrm{id}_K\}$
+  $K \setminus \{\mathrm{id}_K\}$, and since
+  $k_j \in \setminus \{\mathrm{id}_K\}$
   is chosen uniformly at random, $p((k_1, h_1)(k_2, h_2)\dots(k_j, h_j))$
   is uniformly distributed among all elements of $K$ besides the projection of
   the first $j-1$ elements.
   The expected value is $|K| - 1$ because the number of turns follows a
-  geometric distribution with parameter {$(|K| - 1)^{-1}$}.
+  geometric distribution with parameter ${(|K| - 1)^{-1}}$.
 \end{proof}
 
 When a generalized spinning switches puzzle has a \textit{minimal} switching
@@ -1254,13 +1298,14 @@ strategy, then the expected number of moves is $|K|/2$.
   If the initial hidden state $k$ is chosen uniformly at random, then
   $k^{-1}$ is equally likely to occur at any position in this permutation,
   so the index of the winning state is uniform on
-  ${\{1, 2, \dots, |K| - 1\}}$ and so the expected number of moves is \begin{equation}
+  ${\{1, 2, \dots, |K| - 1\}}$ and the expected number of moves is
+  \begin{equation}
     \frac{1 + 2 + \dots + |K| - 1}{|K| - 1} = |K|/2.
   \end{equation}
 \end{proof}
 
-We can always come up with a strategy that does better than the strategy in
-Proposition \ref{prop:randomStrategy}.
+As this proposition suggests, we can always come up with a strategy that does
+better than the uniformly random strategy in Proposition \ref{prop:randomStrategy}.
 
 \begin{proposition}
   For every generalized spinning switches puzzle, $G \wr H$ such that
@@ -1284,7 +1329,7 @@ can always do asymptotically better than randomly guessing.
   the expected number of moves is less than $c|K|$.
 \end{conjecture}
 
-\subsection{Bounds on the length of shortest switching strategies}
+\subsection{Shortest switching strategies}
 Based on all of the examples that we know of, we conjecture that we can find
 minimal switching strategies whenever we can find one at all.
 \begin{conjecture}
@@ -1308,7 +1353,8 @@ The counting problem analog to the decision problem
 combinatorialist. It is interesting to count both the number of switching
 strategies of length $N$, and the number of such switching strategies
 \textit{up to the action of} $H$. We might also be interested in the number of
-palindromic switching strategies or any other modifier.
+palindromic switching strategies, or the number of switching strategies
+satisfying another desirable criterion.
 
 In the case of the trivial wreath product, $G \wr \mathbf{1}$, we saw in
 Proposition \ref{prop:countingTrivialSS} that there are $(|G| - 1)!$
@@ -1322,6 +1368,7 @@ this many strategies up to group action.)
 
 \begin{proposition}
   The wreath product $S_3 \wr \bf{1}$ has $12$ palindromic switching sequences:
+  \captionsetup{type=table}
   \begin{singlespace}
   \begin{alignat*}{5}
     (1~2), && (1~3), && (1~2), && (1~3), && (1~2). \\
@@ -1338,17 +1385,18 @@ this many strategies up to group action.)
     (2~3), && (1~3), && (2~3), && (1~3), && (2~3).
   \end{alignat*}
   \end{singlespace}
+  \captionof{table}[Palindromic walks on $S_3$.]{
+    The 12 palindromic switching sequences on $S_3 \wr \mathbf{1}$.
+  }
 \end{proposition}
 \begin{proof}
   The search space is small here, so this was computed naively by brute force.
 \end{proof}
-\subsection{Multiple moves between each turn}
-Another way that we could generalize a spinning switches puzzle to provide
-winning strategies for the puzzle-solver is by restricting the adversary's
-moves.
-For instance, we could modify the puzzle so that the adversary's spinning
-sequence in such a way that the adversary can only permute the switches
-every $k$ turns.
+\subsection{Restricted spinning}
+Another way that we could generalize a spinning switches puzzle
+is by restricting the adversary's moves.
+For instance, we could modify the puzzle in such a way that the adversary can
+only spin the switches every $k$ turns.
 For every finite setup $G \wr H$, there exists $k \in \mathbb N$ such that the
 puzzle-solver can win.
 (For example, we can always take $k > |K|$ so that the puzzle-solver can
@@ -1357,13 +1405,26 @@ do a walk of $K$.)
 \begin{openquestion}
   How does one compute the minimum $k$ such that the puzzle solver has a
   switching strategy of $G \wr H$ given that the adversary's sequence
-  $\{h_i \in H\}$ is constrained so that $h_i = e_H$ whenever ${i \ncong 0 \bmod k}$?
+  $\{h_i \in H\}$ is constrained so that $h_i = e_H$ whenever ${i \not\equiv 0 \bmod k}$?
+\end{openquestion}
+
+\subsection{Multiple winning states}
+One assumption that we made about our switches is that they have a single
+``on'' state. Of course, we might conceive of a switch that has $m$ possible
+states and $k \leq m$ ``on'' states.
+
+\begin{openquestion}
+  Given a generalized spinning switches puzzle $G \wr H$ where each switch has
+  a set of ``on'' states $\mathcal{O}_G \subseteq G$, when is it possible for
+  the puzzle-solver to have a finite strategy that guarantees the switches will
+  get to a winning state?
 \end{openquestion}
 
 \subsection{Nonhomogeneous switches}
 
-Another generalization of the spinning switches puzzle is by allowing different
-sorts of switches. For instance, we could imagine a square board
+Another way to generalize the spinning switches puzzle is by allowing different
+sorts of switches together in the same puzzle.
+For instance, we could imagine a square board
 containing four buttons: two 2-way switches, a 3-way switch, and a 5-way switch.
 Can a puzzle like this be solved?
 It is important that all of these buttons have the same ``shape'', that is
@@ -1396,13 +1457,13 @@ One way to formalize this generalization is as follows:
     \item a corresponding sequence of evaluation maps
     $e_\omega \colon \mathbb F_{k,\omega} \rightarrow G_\omega$,
     that send generators in $F_{k,\omega}$ to the corresponding generators in
-    $G_\omega$, and
-    can be induced coordinatewise to a map $e_\Omega \colon K \rightarrow \hat{G}$.
+    $G_\omega$. This can be induced coordinatewise to a map
+    $e_\Omega \colon K \rightarrow \hat{G}$.
   \end{itemize}
 \end{definition}
 
-When all of the $G_\omega$s are isomorphic, this essentially simplifies to the
-original definition.
+When all of the copies of $G_\omega$ are isomorphic, this essentially simplifies
+to the original definition.
 
 The analogous definition of a switching strategy becomes more complicated.
 
@@ -1413,7 +1474,7 @@ The analogous definition of a switching strategy becomes more complicated.
   % Then consider the induced evaluation map $e \colon K \rightarrow G$
   Then a \textbf{nonhomogeneous switching strategy} is a sequence
   $\{k_i \in K\}_{i=1}^{N}$
-  such that for each adversarial sequence $\{h_i \in H\}_{i=1}^{N}$
+  such that for each adversarial sequence ${\{h_i \in H\}_{i=1}^{N}}$
   the induced projection/evaluation map
   $e_\Omega \circ p \colon \mathbb F_k \wr_\Omega H \rightarrow \hat{G}$
   on the partial products of $\{(k_i, h_i) \in \mathbb F_k\}$

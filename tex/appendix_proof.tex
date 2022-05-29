@@ -1,8 +1,11 @@
 \section{An algorithm for unranking m\'enage permutations}
 \label{apndx:haskell}
 In this section, we will provide Haskell implementations of the functions in
-Section \ref{cha:UnrankingMenage}. Each section of code will reference its
-precedent in that section. We start by importing some relevant libraries
+Section \ref{cha:UnrankingMenage} that were used to compute the permutations
+requested by Richard Arratia's bounties.
+Each code sample will reference its
+precedent in Section \ref{cha:UnrankingMenage}. We start by importing some
+relevant libraries
 some naming conventions.
 
 \begin{singlespace}\begin{verbatim}
@@ -16,8 +19,8 @@ type PrefixCount = Prefix -> Integer
 \subsection{Unranking from prefix counts}
 
 We begin with the function \texttt{unrank}, which implements
-$\operatorname{unrank}_\mathcal{C}(i)$, as shown in Lemma
-\ref{lemma:unrankFromPrefix}. The internal function
+$\operatorname{unrank}_\mathcal{C}(i)$, as shown in
+Theorem \ref{theorem:unrankFromPrefix}. The internal function
 \texttt{recurse} corresponds to the recursive function $f_i^\mathcal{C}$.
 \begin{singlespace}\begin{verbatim}
 unrank :: Int ->                 -- Alphabet of n letters
@@ -50,7 +53,7 @@ is equivalent to the function $\#\operatorname{prefix}_\mathcal{D}$,
 as described in Corollary \ref{cor:derangementsWithPrefix}.
 The function \texttt{unrankDerangement} is equivalent to the function
 $\operatorname{unrank}_\mathcal{D}$ as described in
-Lemma \ref{lemma:unrankFromPrefix}.
+Theorem \ref{theorem:unrankFromPrefix}.
 \begin{singlespace}\begin{verbatim}
 invalidDerangementPrefix :: Int -> Prefix -> Bool
 invalidDerangementPrefix _ prefix = containsDupes || invalidPosition where
@@ -71,7 +74,7 @@ unrankDerangement :: Int -> Integer -> Prefix
 unrankDerangement n = unrank n n (derangementPrefixCount n)
 \end{verbatim}\end{singlespace}
 
-\subsection{Decompose complementary m\'enage}
+\subsection{Decomposition of derived complementary boards}
 These next two function decompose a derived complementary board into
 staircase-shaped blocks.
 The first function, \texttt{getColGroups}, corresponds to the partition
@@ -128,7 +131,7 @@ is equivalent to the function $\#\operatorname{prefix}_\pazocal{M}$,
 as described in Corollary \ref{cor:derangementsWithPrefix}.
 The function \texttt{unrankDerangement} is equivalent to the function
 $\operatorname{unrank}_\pazocal{M}$ as described in
-Lemma \ref{lemma:unrankFromPrefix}.
+Theorem \ref{theorem:unrankFromPrefix}.
 \begin{singlespace}\begin{verbatim}
 invalidMenagePrefix :: Int -> Prefix -> Bool
 invalidMenagePrefix n prefix = containsDuplicates || invalidPosition where
