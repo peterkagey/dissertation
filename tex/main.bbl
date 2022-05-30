@@ -333,18 +333,16 @@
     \endentry
     \entry{oeis}{misc}{}
       \name{author}{1}{}{%
-        {{hash=6393f998c5344ccb18062c696cecd966}{%
-           family={Inc.},
-           familyi={I\bibinitperiod},
-           given={OEIS\bibnamedelima Foundation},
-           giveni={O\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=d15e73d058a3f9fe1be220f9200b671a}{%
+           family={{OEIS Foundation Inc.}},
+           familyi={O\bibinitperiod}}}%
       }
-      \strng{namehash}{6393f998c5344ccb18062c696cecd966}
-      \strng{fullhash}{6393f998c5344ccb18062c696cecd966}
-      \strng{bibnamehash}{6393f998c5344ccb18062c696cecd966}
-      \strng{authorbibnamehash}{6393f998c5344ccb18062c696cecd966}
-      \strng{authornamehash}{6393f998c5344ccb18062c696cecd966}
-      \strng{authorfullhash}{6393f998c5344ccb18062c696cecd966}
+      \strng{namehash}{d15e73d058a3f9fe1be220f9200b671a}
+      \strng{fullhash}{d15e73d058a3f9fe1be220f9200b671a}
+      \strng{bibnamehash}{d15e73d058a3f9fe1be220f9200b671a}
+      \strng{authorbibnamehash}{d15e73d058a3f9fe1be220f9200b671a}
+      \strng{authornamehash}{d15e73d058a3f9fe1be220f9200b671a}
+      \strng{authorfullhash}{d15e73d058a3f9fe1be220f9200b671a}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
@@ -534,18 +532,18 @@
     \endentry
     \entry{MSELoop}{misc}{}
       \name{author}{1}{}{%
-        {{hash=b1547f40a38197ddef6b651bd57b956f}{%
-           family={(https://math.stackexchange.com/users/155629/travis-willse)},
-           familyi={(\bibinithyphendelim w\bibinitperiod},
-           given={Travis\bibnamedelima Willse},
-           giveni={T\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+        {{hash=f16d6eea1607a6043fb676414d92f033}{%
+           family={Willse},
+           familyi={W\bibinitperiod},
+           given={Travis},
+           giveni={T\bibinitperiod}}}%
       }
-      \strng{namehash}{b1547f40a38197ddef6b651bd57b956f}
-      \strng{fullhash}{b1547f40a38197ddef6b651bd57b956f}
-      \strng{bibnamehash}{b1547f40a38197ddef6b651bd57b956f}
-      \strng{authorbibnamehash}{b1547f40a38197ddef6b651bd57b956f}
-      \strng{authornamehash}{b1547f40a38197ddef6b651bd57b956f}
-      \strng{authorfullhash}{b1547f40a38197ddef6b651bd57b956f}
+      \strng{namehash}{f16d6eea1607a6043fb676414d92f033}
+      \strng{fullhash}{f16d6eea1607a6043fb676414d92f033}
+      \strng{bibnamehash}{f16d6eea1607a6043fb676414d92f033}
+      \strng{authorbibnamehash}{f16d6eea1607a6043fb676414d92f033}
+      \strng{authornamehash}{f16d6eea1607a6043fb676414d92f033}
+      \strng{authorfullhash}{f16d6eea1607a6043fb676414d92f033}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
@@ -611,36 +609,6 @@
       \field{title}{A refinement of the {E}ulerian numbers, and the joint distribution of $\pi(1)$ and $\operatorname{Des}(\pi)$ in ${S}_n$.}
       \field{volume}{95}
       \field{year}{2010}
-    \endentry
-    \entry{goncharov}{article}{}
-      \name{author}{1}{}{%
-        {{hash=06dac6cbaeb0eb5542335bdf472ea180}{%
-           family={V.\bibnamedelimi Goncharov},
-           familyi={V\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
-      }
-      \strng{namehash}{06dac6cbaeb0eb5542335bdf472ea180}
-      \strng{fullhash}{06dac6cbaeb0eb5542335bdf472ea180}
-      \strng{bibnamehash}{06dac6cbaeb0eb5542335bdf472ea180}
-      \strng{authorbibnamehash}{06dac6cbaeb0eb5542335bdf472ea180}
-      \strng{authornamehash}{06dac6cbaeb0eb5542335bdf472ea180}
-      \strng{authorfullhash}{06dac6cbaeb0eb5542335bdf472ea180}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issue}{1}
-      \field{journaltitle}{Izv. Akad. Nauk SSSR Ser. Mat.}
-      \field{title}{Du domaine de l'analyse combinatoire}
-      \field{volume}{8}
-      \field{year}{1944}
-      \field{pages}{3\bibrangedash 48}
-      \range{pages}{46}
-      \verb{urlraw}
-      \verb http://mi.mathnet.ru/izv3716
-      \endverb
-      \verb{url}
-      \verb http://mi.mathnet.ru/izv3716
-      \endverb
     \endentry
     \entry{arratia}{article}{}
       \name{author}{2}{}{%
@@ -1052,15 +1020,15 @@
     \endentry
     \entry{Sloane1995}{book}{}
       \name{author}{2}{}{%
-        {{hash=adf65a690d5b6aa0aea1f34fe6da7869}{%
+        {{hash=f37ed451e694e30a11d54cb6bfc22894}{%
            family={Sloane},
            familyi={S\bibinitperiod},
-           given={N.\bibnamedelimi J.\bibnamedelimi A.\bibnamedelimi (Neil\bibnamedelimb James\bibnamedelima Alexander)},
-           giveni={N\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim A\bibinitperiod\bibinitdelim (\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+           given={Neil\bibnamedelimb James\bibnamedelima Alexander},
+           giveni={N\bibinitperiod\bibinitdelim J\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
         {{hash=49ab69cf8d7fe557da93a1aebf1f9212}{%
            family={Plouffe},
            familyi={P\bibinitperiod},
-           given={Simon.},
+           given={Simon},
            giveni={S\bibinitperiod}}}%
       }
       \list{location}{1}{%
@@ -1069,12 +1037,12 @@
       \list{publisher}{1}{%
         {Academic Press}%
       }
-      \strng{namehash}{41531fa7f9e27b2955b0ce13b9554044}
-      \strng{fullhash}{41531fa7f9e27b2955b0ce13b9554044}
-      \strng{bibnamehash}{41531fa7f9e27b2955b0ce13b9554044}
-      \strng{authorbibnamehash}{41531fa7f9e27b2955b0ce13b9554044}
-      \strng{authornamehash}{41531fa7f9e27b2955b0ce13b9554044}
-      \strng{authorfullhash}{41531fa7f9e27b2955b0ce13b9554044}
+      \strng{namehash}{656abc649f209ddc5c54a4ddbb824ef3}
+      \strng{fullhash}{656abc649f209ddc5c54a4ddbb824ef3}
+      \strng{bibnamehash}{656abc649f209ddc5c54a4ddbb824ef3}
+      \strng{authorbibnamehash}{656abc649f209ddc5c54a4ddbb824ef3}
+      \strng{authornamehash}{656abc649f209ddc5c54a4ddbb824ef3}
+      \strng{authorfullhash}{656abc649f209ddc5c54a4ddbb824ef3}
       \field{sortinit}{4}
       \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
@@ -1083,6 +1051,7 @@
       \field{year}{1995}
     \endentry
   \enddatalist
+  \missing{goncharov}
 \endrefsection
 \endinput
 
