@@ -7,9 +7,11 @@ were first popularized by Martin Gardner.
 In this chapter, we provide perhaps the fullest generalization yet, modeling
 both the switches and the spinning table as a wreath product of two arbitrary
 finite groups. We classify large families of wreath products depending on
-whether or not they correspond to a solvable puzzle, completely resolving the
-problem for $p$-groups, and providing novel examples for other families of
-groups, including two interchangeable copies of the monster group $M$.
+whether or not they correspond to a solvable puzzle,
+completely classifying the puzzle in the case when the switches behave like abelian groups,
+constructing winning strategies for all wreath product that are $p$-groups,
+and providing novel examples for other puzzles where the switches behave like nonabelian groups,
+including the puzzle consisting of two interchangeable copies of the monster group $M$.
 Lastly, we provide a number of open questions and conjectures, and
 provide other suggestions of how to generalize some of these ideas further.
 
@@ -823,6 +825,7 @@ established, we can now construct a switching strategy on all finite $p$-groups.
   If $H$ is a finite $p$-group that acts faithfully on $\Omega$,
   then the wreath product
   $G \wr H$ has a switching strategy whenever $|G| = p^n$ for some $n$.
+  \label{thm:pGroupStrategy}
 \end{theorem}
 \begin{proof}
   We will use the fact that if $|G| = p^n$,
@@ -843,7 +846,48 @@ established, we can now construct a switching strategy on all finite $p$-groups.
 \end{proof}
 
 Thus this resolves the situation for switches that behave like $p$-groups on
-spinning groups that act faithfully and behave like $p$-groups.
+spinning groups that act faithfully and behave like $p$-groups. This allows us
+to fully classify the case of abelian switches.
+
+\subsection{A classification of puzzles with abelian switches}
+
+\begin{theorem}
+  If $G$ is an abelian group, and $H$ acts faithfully on $\Omega$, then
+  $G \wr_\Omega H$ has a switching strategy if and only if $G$ and $H$ are
+  both $p$ groups for the same prime $p$.
+\label{thm:classifyAbelianSwitches}
+\end{theorem}
+\begin{proof}
+  One direction is clear: if $G$ and $H$ are both $p$ groups for the same prime
+  $p$, then $G \wr H$ has a switching strategy by Theorem \ref{thm:pGroupStrategy}.
+
+  For the other direction, we will consider the contrapositive assumption,
+  split into three cases, each time assuming that
+  $G$ and $H$ are not both $p$-groups for the same prime $p$.
+
+  First, assume that $G$ is a $p$-group, but $H$ is not a $p$-group. Then by
+  Sylow's first theorem, there exists a subgroup $\hat{H} \leq H$ that is a $q$-group
+  for some prime $q \neq p$. By Theorem \ref{thm:Rabinovich}, since $q \neq p$,
+  $G \wr \hat{H}$ does not have a switching strategy, thus it follows from
+  the reduction on spinning given in Theorem \ref{thm:SpinReduction} that
+  $G \wr H$ does not have a switching strategy either.
+
+  Second, assume that $H$ is a $p$-group, but $G$ is not a $p$-group. Similarly,
+  by Sylow's first theorem, there exists a subgroup $\hat{G} \leq G$ that is
+  a $q$-group for some prime $q \neq p$. Since $G$ is abelian, $\hat{G}$ is a
+  normal subgroup. By Theorem \ref{thm:Rabinovich}, since $q \neq p$,
+  $\hat G \wr H$ does not have a switching strategy, thus it follows from
+  the reduction on switches given in Theorem \ref{thm:SwitchReduction} that
+  $G \wr H$ does not have a switching strategy either.
+
+  Lastly, assume that there does not exist any $p$ such that $G$ is a $p$-group
+  or $H$ is a $p$-group. Then $|G|$ and $|H|$ must have multiple prime divisors,
+  so $G$ has a normal subgroup, $\overline G$, that is a $q$-group for some prime $q$, and
+  $H$ has a normal subgroup $\overline H$ that is a $r$-group for some prime $r \neq q$.
+  $\overline G \wr \overline H$ does not have a switching strategy by Theorem \ref{thm:Rabinovich},
+  so $G \wr \overline H$ does not have a switching strategy by Theorem \ref{thm:SwitchReduction},
+  so $G \wr H$ does not have a switching strategy by Theorem \ref{thm:SpinReduction}.
+\end{proof}
 
 \subsection{A folklore conjecture}
 Here we note a conjecture from folklore, which---if true---implies that we have
