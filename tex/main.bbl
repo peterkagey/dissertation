@@ -610,6 +610,38 @@
       \field{volume}{95}
       \field{year}{2010}
     \endentry
+    \entry{goncharov}{article}{}
+      \name{author}{1}{}{%
+        {{hash=b3709b59a43a24e897553cd4e617cd66}{%
+           family={Goncharov},
+           familyi={G\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{b3709b59a43a24e897553cd4e617cd66}
+      \strng{fullhash}{b3709b59a43a24e897553cd4e617cd66}
+      \strng{bibnamehash}{b3709b59a43a24e897553cd4e617cd66}
+      \strng{authorbibnamehash}{b3709b59a43a24e897553cd4e617cd66}
+      \strng{authornamehash}{b3709b59a43a24e897553cd4e617cd66}
+      \strng{authorfullhash}{b3709b59a43a24e897553cd4e617cd66}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issue}{1}
+      \field{journaltitle}{Izv. Akad. Nauk SSSR Ser. Mat.}
+      \field{title}{Du domaine de l'analyse combinatoire}
+      \field{volume}{8}
+      \field{year}{1944}
+      \field{pages}{3\bibrangedash 48}
+      \range{pages}{46}
+      \verb{urlraw}
+      \verb http://mi.mathnet.ru/izv3716
+      \endverb
+      \verb{url}
+      \verb http://mi.mathnet.ru/izv3716
+      \endverb
+    \endentry
     \entry{arratia}{article}{}
       \name{author}{2}{}{%
         {{hash=896e3efc5c43352481a1bec00538f504}{%
@@ -1051,7 +1083,6 @@
       \field{year}{1995}
     \endentry
   \enddatalist
-  \missing{goncharov}
 \endrefsection
 \endinput
 
