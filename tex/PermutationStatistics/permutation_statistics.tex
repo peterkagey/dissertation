@@ -27,8 +27,8 @@ independent of $n$.
 This chapter has the same premise, but with a different permutation statistic:
 the number of $k$-cycles of a permutation.
 
-This section, (Section \ref{section:background}) provides an overview of where
-we're headed, and includes an critical example that will hopefully spark the
+This section (Section \ref{section:background}) provides an overview of where
+we're headed, and includes a critical example that will hopefully spark the
 reader's curiosity and motivate the remainder of the chapter.
 
 Section \ref{section:recursiveStructure} establishes some recurrence relations for
@@ -62,8 +62,9 @@ In support of the first examples, we start by defining the first bit of notation
   $\pi$ has exactly $m$ $k$-cycles.
 \end{definition}
 
-These theorems---and many of the following lemmas---were discovered by looking
-at examples such as the following, written in both one-line and cycle notation:
+The ideas in this chapter---and many of the following lemmas and theorems---were
+motivated by looking at examples such as the following, written in both
+one-line and cycle notation:
 
 \begin{example}
 \label{ex:fourLettersTwoCycles}
@@ -121,7 +122,7 @@ at examples such as the following, written in both one-line and cycle notation:
       &&= 3.
   \end{alignat*}
 \end{example}
-The table in Figure \ref{fig:twoCyclesTable} gives the expected value of $\pi(1)$ given that
+Table \ref{table:twoCycles} gives the expected value of $\pi(1)$ given that
 $\pi \in S_n$ and has exactly $m$ $2$-cycles in its cycle decomposition.
 Notice that when $i$ is odd, row $i$ has a constant value of $(i+1)/2$. Also
 notice that the number in position $(i,j)$ has the same denominator as the
@@ -160,7 +161,7 @@ the symmetries of the hypercube that move every facet.
     exactly $m$ $2$-cycles,
     ${\mathbb{E}[\pi(1)\, |\, \pi \in S_n \text{ has exactly } m\ 2 \text{-cycles}\,]}$.
   }
-  \label{fig:twoCyclesTable}
+  \label{table:twoCycles}
 \end{table}
 \section{Structure of permutations with \texorpdfstring{$m$}{m} \texorpdfstring{$k$}{k}-cycles}
 \label{section:recursiveStructure}
@@ -173,7 +174,7 @@ permutations.
 \begin{theorem}[\cite{goncharov}, \cite{arratia}]
   \label{GoncharovTheorem}
   The number of permutations in $S_n$ with exactly $m$ $k$-cycles is given by
-  the following sum, via the principle inclusion/exclusion:
+  the following sum, via the principle of inclusion/exclusion:
   \begin{equation}
     C_k(n,m)
     = \frac{n!}{m!k^m}\sum_{i=0}^{\lfloor n/k \rfloor - m} \frac{(-1)^i}{i!\,k^i}.
@@ -183,7 +184,7 @@ permutations.
 
 \begin{corollary}
   For $k \nmid n$, there are exactly $n$ times as many permutations in $S_n$
-  with exactly $m$ $k$-cycles than there are in $S_{n-1}$.
+  with exactly $m$ $k$-cycles as there are in $S_{n-1}$.
   When $k \mid n$, there is an explicit formula for the difference.
   \label{cor:bijectionDifference}
   \begin{numcases}{C_k(n, m) - nC_k(n-1,m) = }
@@ -197,7 +198,8 @@ permutations.
 \begin{proof}
   When $k \nmid n$,
   $\displaystyle \left\lfloor \frac{n}{k}\right\rfloor = \left\lfloor \frac{n-1}{k}\right\rfloor$,
-  so the bounds on the sums are identical and the result follows directly \begin{align}
+  so the bounds on the sums are identical and the result follows directly:
+  \begin{align}
     \frac{n!}{m!k^m}\sum_{i=0}^{\lfloor n/k \rfloor - m} \frac{(-1)^i}{i!\,k^i}
     - n\left(\frac{(n-1)!}{m!k^m}\sum_{i=0}^{\lfloor (n-1)/k \rfloor - m} \frac{(-1)^i}{i!\,k^i}\right)
     = 0.
@@ -216,7 +218,7 @@ permutations.
   \end{align}
 \end{proof}
 See Section \ref{section:bijection} for a bijective proof of Equation
-\ref{eq:bijectionDifference0}.
+\eqref{eq:bijectionDifference0}.
 
 \subsection{Permutations by first letter}
 In order to compute the expected value of the first letter of a permutation,
@@ -255,8 +257,8 @@ The following three lemmas compute $C_k^{(a)}(n,m)$ from $C_k(n,m)$.
 \end{proof}
 \begin{proposition}
   \label{allSame}
-  For all $a, b \geq 2$, the number of permutations having $k$-cycles
-  and starting with $a$ are the same as the number of those starting with $b$:
+  For all $a, b \geq 2$, the number of permutations having $m$ $k$-cycles
+  and starting with $a$ is the same as the number of those starting with $b$:
   \begin{equation}
     C_k^{(2)}(n,m) = \cdots = C_k^{(a)}(n,m) = \cdots = C_k^{(b)}(n,m) = \cdots = C_k^{(n)}(n,m).
   \end{equation}
@@ -275,7 +277,7 @@ The following three lemmas compute $C_k^{(a)}(n,m)$ from $C_k(n,m)$.
 \begin{proof}
   Since \begin{equation}
     C_k(n, m) = C_k^{(1)}(n, m) + C_k^{(2)}(n, m) + \dots + C_k^{(n)}(n, m),
-  \end{equation} using Proposition \ref{allSame}, for the last $(n-1)$ terms,
+  \end{equation} using Proposition \ref{allSame} for the last $(n-1)$ terms,
   this can be rewritten as \begin{equation}
     C_k(n, m) = C_k^{(1)}(n, m) + (n-1)C_k^{(a)}(n, m).
   \end{equation}
@@ -289,48 +291,39 @@ $k$-cycles.
 \begin{theorem}
   \label{firstTheorem}
   For $k > 1$, the expected value of the first letter of a permutation
-  $\pi \in S_n$ with $m$ $k$-cycles is given by \begin{align}
-    &\mathbb E[\pi(1)\ \mid\ \pi \in S_n \text{ has exactly } m\ k\text{-cycles}\,]
-    \nonumber
-    \\
-    & \hspace{4cm} = \frac n2\left(1 - \frac{C_k(n-1,m)}{C_k(n,m)}\right) + 1.
-  \end{align}
+  \begin{equation}
+    \mathbb E[\pi(1)\ \mid\ \pi \in S_n \text{ has exactly } m\ k\text{-cycles}\,]
+    = \frac n2\left(1 - \frac{C_k(n-1,m)}{C_k(n,m)}\right) + 1.
+  \end{equation}
 \end{theorem}
 \begin{proof}
-  % Recall Equation \ref{eq:weightedAverage}, \begin{equation}
+  % Recall Equation \eqref{eq:weightedAverage}, \begin{equation}
   %   \mathbb E[\pi(1)\ \mid\ \pi \in S_n \text{ has exactly } m\ k\text{-cycles}\,] =
   %   \frac{1}{C_k(n, m)}\sum_{a = 1}^n aC_k^{(a)}(n, m).
   % \end{equation}
   Using Proposition \ref{allSame}, we can consolidate all but the first term of
-  the sum in Equation \ref{eq:weightedAverage} \begin{align}
-    &\sum_{a = 1}^n aC_k^{(a)}(n, m) \\
-    &\hspace{1cm}= C_k^{(1)}(n,m) + \sum_{a = 2}^n aC_k^{(n)}(n, m) \\
-    % &\hspace{1cm}= C_k^{(1)}(n,m) + C_k^{(n)}(n, m)\sum_{a = 2}^n a \\
-    &\hspace{1cm}= C_k^{(1)}(n,m) + \frac{(n-1)(n+2)}{2} C_k^{(n)}(n, m) \\
-  % \end{align}
-  % Now using the formulas in Proposition \ref{cyc1Recurrence} and Lemma
-  % \ref{cycRecurrenceWithFixedBeginning} \begin{align}
-    % &\sum_{a = 1}^n aC_k^{(a)}(n, m)
-    % \nonumber
-    % \\
-    &\hspace{1cm}=
+  the sum in Equation \eqref{eq:weightedAverage} \begin{align}
+    \sum_{a = 1}^n aC_k^{(a)}(n, m)
+      &= C_k^{(1)}(n,m) + \sum_{a = 2}^n aC_k^{(n)}(n, m) \\
+      &= C_k^{(1)}(n,m) + \frac{(n-1)(n+2)}{2} C_k^{(n)}(n, m) \\
+      &=
     C_k(n-1,m) + \frac{(n-1)(n+2)}{2}\left(
       \frac{C_k(n, m) - C_k(n-1, m)}{n - 1}
     \right) \\
-    &\hspace{1cm}= \left(\frac{n}{2} + 1\right) C_k(n,m) - \frac n2C_k(n-1,m).
+      &= \left(\frac{n}{2} + 1\right) C_k(n,m) - \frac n2C_k(n-1,m).
   \end{align}
   Dividing by $C_k(n,m)$ yields the result.
 \end{proof}
 \begin{corollary}
   \label{cor:kNotDivideN}
-  When $k \nmid n$, $C_k(n,m) = nC_k(n-1,m)$ by Equation \ref{eq:bijectionDifference0},
+  When $k \nmid n$, $C_k(n,m) = nC_k(n-1,m)$ by Equation \eqref{eq:bijectionDifference0},
   so \begin{equation}
     \mathbb E[\pi(1)\ \mid\ \pi \in S_n \text{ has exactly } m\ k\text{-cycles}\,] = \frac{n}{2}\left(1 - \frac{1}{n}\right) + 1 = \frac{n+1}{2}.
   \end{equation}
 \end{corollary}
 Together with Theorem \ref{GoncharovTheorem}, this theorem and its corollary
-provides our first formula for the expected value of $\pi(1)$ that
-performs exponentially better than brute force.
+provides our first formula for the expected value of $\pi(1)$ with an associated
+algorithm that performs exponentially better than brute force.
 
 \subsection{Identities for counting permutations with given cycle conditions}
 Both in practical terms (if computing the expected value of $\pi(1)$ by hand or
@@ -351,7 +344,7 @@ included here because it is natural and may be of interest.
   Let \begin{equation}
   \mathcal C_k(n, m) = \{ \pi \in S_n\,\mid\,\pi \text{ has exactly } m\ k \text{-cycles}\}.
   \end{equation}
-  Then consider the two sets, whose cardinalities match the left- and
+  Then consider the following two sets, whose cardinalities match the left- and
   right-hand sides of the equation above:
   \begin{align}
     X^{L}_{n,m,k} &= \{ (\pi, c) \mid \pi \in \mathcal C_k(n, m), c \text{ a distinguished } k\text{-cycle of } \pi \}. \\
@@ -384,7 +377,7 @@ included here because it is natural and may be of interest.
   Suppose $\pi = (423)\mathbf{(61)}(75)$ in cycle notation with $(61)$ distinguished.
   Then \begin{align}
     \varphi((423)(61)(75), (61)) = ((312)(54), (61))
-  \end{align} under the bijection $\varphi$, described in the proof of
+  \end{align} under the bijection $\varphi$ described in the proof of
   Lemma \ref{cycleRecursion}.
 \end{example}
 % As the above lemma suggests, we find particular interest in the case
@@ -421,7 +414,7 @@ show up again in a different guise.
 
 This section allowed for the practical computation of the expected value of
 $\pi(1)$ with a given number of $k$-cycles, but leaves the observation about
-Figure \ref{fig:twoCyclesTable} unexplained. The following section will
+Table \ref{table:twoCycles} unexplained. The following section will
 explain the connection between the expected values of $\pi(1)$ and the
 facet-derangements of the hypercube.
 
@@ -469,7 +462,7 @@ afterward.
 When $k = 1$, the sequence $(\mathbb{Z}/1\mathbb{Z})^n$ is trivially the zero
 sequence, so $S(1,n) \cong S_n$.
 When $k = 2$, $S(2,n)$ is the hyperoctahedral group that we brushed up against
-in Figure \ref{fig:twoCyclesTable}:
+in Table \ref{table:twoCycles}:
 the group of symmetries of the $n$-dimensional hypercube.
 When $k \geq 3$, $S(k,n)$ does not have such an immediate geometric interpretation,
 but it is precisely the right analog for the expected value of $\pi(1)$ when
@@ -537,8 +530,8 @@ generalized symmetric group.
     &= \frac{(kn+km)!}{km(kn+km-k)!}C_k(k(n+m-1), m-1).
     \label{eq:inductionStep2}
   \end{align}
-  Now, notice there is a $(kn + km - k)!$ term in the numerator of Equation \ref{eq:inductionStep1} and
-  the denominator of Equation \ref{eq:inductionStep2}, so substituting and simplifying yields \begin{equation}
+  Now, notice there is a $(kn + km - k)!$ term in the numerator of Equation \eqref{eq:inductionStep1} and
+  the denominator of Equation \eqref{eq:inductionStep2}, so substituting and simplifying yields \begin{equation}
     C_k(k(n + m), m)
     = \frac{(kn+km)!}{k^m m!(kn)!}C_k(kn, 0),
   \end{equation}
@@ -546,13 +539,13 @@ generalized symmetric group.
 \end{proof}
 \begin{proof}[Combinatorial proof]
   This lemma lends itself to a combinatorial proof.
-  The left hand side of the equation counts the number of permutations in
+  The left-hand side of the equation counts the number of permutations in
   $S_{kn+km}$ with exactly $m$ $k$-cycles.
-  The right hand side of the equation says that this is the number of ways to
+  The right-hand side of the equation says that this is the number of ways to
   choose $kn$ letters in the permutation that will not be in $k$-cycles,
   and for each of these, there are $C_k(kn,0)$ ways to arrange these such that
   they have no $k$-cycles.
-  This leaves over $km$ letters, of which there are
+  This leaves over $km$ letters, for which there are
   $(km)!/(k^mm!)$ ways to write them as products of $m$
   disjoint $k$-cycles.
 \end{proof}
@@ -572,7 +565,7 @@ with exactly $m$ fixed points.
   \end{equation}
 \end{lemma}
 \begin{proof}
-  By solving for $D(k,n-m)$ on the right hand side and substituting $n + m$ for $n$, it is
+  By solving for $D(k,n-m)$ on the right-hand side and substituting $n + m$ for $n$, it is
   enough to show that the exponential generating function for $D(k,n)$
   (as shown in Theorem \ref{derangementEGF}) is also
   the exponential generating function for \begin{equation}
@@ -590,9 +583,10 @@ with exactly $m$ fixed points.
 
 \subsection{Expected value of letters of permutations}
 We now have the ingredients we need to prove the pattern that we observed in
-Figure \ref{fig:twoCyclesTable} that purported to show a relationship between
-permutations given number of $2$-cycles and derangements of the hyperoctahedral
-group. These ingredients come together in the following theorem, which
+Table \ref{table:twoCycles} that purported to show a relationship between
+permutations with a given number of $2$-cycles and derangements of the
+hyperoctahedral group.
+These ingredients come together in the following theorem, which
 establishes the more general relationship between permutations with a given
 number of $k$-cycles and derangements of the generalized symmetric
 group, $S(k,n)$.
@@ -614,21 +608,19 @@ group, $S(k,n)$.
     \frac{\frac{(kn)!}{n!k^n}\binom n m}{C_k(kn, m)}
     = \frac{1}{D(k, n - m)}.
   \end{equation}
-  Multiplying through by $(-1)^{n - m}$ to match the right hand side of Equation
-  \ref{eq:main}, together with some small manipulations yields \begin{equation}
+  Multiplying through by $(-1)^{n - m}$ to match the right-hand side of Equation
+  \eqref{eq:main} together with some small manipulations yields \begin{equation}
     1 - \frac{C_k(kn, m) - (-1)^{n - m}\frac{(kn)!}{n!k^n}\binom n m}{C_k(kn, m)}
     = \frac{(-1)^{n-m}}{D(k, n - m)}.
   \end{equation}
-  Now adding $kn + 1$ and dividing by $2$ yields \begin{align}
-    &\frac{kn}{2}\left(1 - \frac{C_k(kn, m) - (-1)^{n - m}\frac{(kn)!}{n!k^n}\binom n m}{knC_k(kn, m)}\right) + 1
-    \nonumber
-    \\
-    & \hspace{2cm} = \frac{kn+1}{2} + \frac{(-1)^{n-m}}{2 D(k, n - m)},
-  \end{align}
-  which gives the right hand side as desired.
-  Since the numerator on the left hand
-  side is equal to ${kn C_k(kn - 1, m)}$ by Equation \ref{eq:bijectionDifference},
-  the proof then follows from by Theorem \ref{firstTheorem}.
+  Now adding $kn + 1$ and dividing by $2$ yields \begin{equation}
+    \frac{kn}{2}\left(1 - \frac{C_k(kn, m) - (-1)^{n - m}\frac{(kn)!}{n!k^n}\binom n m}{knC_k(kn, m)}\right) + 1
+    = \frac{kn+1}{2} + \frac{(-1)^{n-m}}{2 D(k, n - m)},
+  \end{equation}
+  which gives the right-hand side as desired.
+  Since the numerator on the left-hand
+  side is equal to ${kn C_k(kn - 1, m)}$ by Equation \eqref{eq:bijectionDifference},
+  the proof then follows from Theorem \ref{firstTheorem}.
 \end{proof}
 
 With the expected value of the first letter found,
@@ -677,12 +669,12 @@ $i$-th letter of these permutations.
   We can extend the function
   $\mathbb{E}[\pi(i)\, |\, \pi \in S_{kn} \text{ has exactly } m\ k \text{-cycles}\,]$
   to a function $f(n,k,m,i)$ where $i \in \mathbb Q$ is not necessarily an integer.
-  As can be seen in Equation \ref{eq:affineFunction}, $f$ is affine function in $i$.
+  As can be seen in Equation \eqref{eq:affineFunction}, $f$ is an affine function in $i$.
   By Theorem \ref{secondTheorem}, when $i = 1$, \begin{equation}
     f(n,k,m,1) =
     \frac{kn + 1}{2} + \frac{(-1)^{n-m}}{2 D(k, n - m)}.
   \end{equation}
-  When $i = (kn+1)/2$ yields \begin{equation}
+  When $i = (kn+1)/2$, this implies that \begin{equation}
     f(n,k,m,(kn+1)/2) = \frac{kn+1}{2}.
   \end{equation}
   Because $f(n,k,m,i)$ is affine in $i$, it is enough to use linear
@@ -801,19 +793,19 @@ so $\mathbb{E}[\pi(1) \mid \pi \in S_{kn}] = (kn+1)/2$.
 % which stated that for $a \neq 1 \neq b$, there are the number of permutations with
 % $m$ $k$-cycles starting with $a$ as there are starting with $b$.
 The first insight given by Theorem \ref{secondTheorem}
-is that the expected value of $\pi(1)$ given some
-number of $k$ cycles differs from $(kn+1)/2$ by at most $1/2$,
-because $D(k,N) \geq 1$ for $k \geq 2$.
+is that the expected value of $\pi(1)$ with a given
+number of $k$-cycles differs from $(kn+1)/2$ by at most $1/2$,
+because $D(k,N) \geq 1$ for all $N \geq 0$ and $k \geq 2$.
 %
 Secondly, since $D(k, N)$ increases as a function of $N$, the expected value
 gets closer to $(kn+1)/2$ as the number of $k$-cycles decreases.
 %
 Lastly, the numerator of $(-1)^{n-m}$ in the second summand of
-Equation \ref{eq:main} shows that the expected value of the first letter is
+Equation \eqref{eq:main} shows that the expected value of the first letter is
 larger than $(kn+1)/2$ if and only if $n$ and $m$ have the same parity.
 % Together, Corollary \ref{cor:kNotDivideN} and Theorem \ref{secondTheorem} fully
 % explain both the even- and odd-indexed rows in the table in
-% Figure \ref{fig:twoCyclesTable}. Corollary \ref{cor:kNotDivideN} states that if
+% Table \ref{table:twoCycles}. Corollary \ref{cor:kNotDivideN} states that if
 % $k \nmid n$, then $\pi(1)$ is equally likely to be any value between $1$ and $n$;
 % Theorem \ref{secondTheorem} states that when $k \mid n$, then $\pi(1)$ is
 % slightly more or less likely to be $1$, in an amount that relates to the number
@@ -821,7 +813,7 @@ larger than $(kn+1)/2$ if and only if $n$ and $m$ have the same parity.
 
 \section{A \texorpdfstring{$k$}{k}-cycle preserving bijection}
 \label{section:bijection}
-Motivated by Equation \ref{eq:bijectionDifference0}, this section describes a
+Motivated by Equation \eqref{eq:bijectionDifference0}, this section describes a
 family of bijections,
   \begin{equation}\phi_k \colon S_{n-1} \times [n] \rightarrow S_n,\end{equation}
 each of which preserves the number of $k$-cycles when $k \nmid n$.
@@ -857,7 +849,7 @@ an example to give some sense of the overarching idea.
   a permutation while preserving the
   number of $3$-cycles.
   The maps $\phi_k$ and $\psi_k$ are the result of moving letters according
-  to the arrows and are applied from right-to-left.
+  to the arrows and are applied from right to left.
   (This example uses the convention that $1 < 2 < \dots < 9 < A < B < \dots < N$.)
 
   ~
@@ -918,11 +910,14 @@ convention that permutations are written in canonical cycle notation, \begin{equ
     \underbrace{(c^{(1)}_1\cdots c^{(1)}_{\ell_1})}_{c^{(1)}},
 \end{equation} where cycle $c^{(i)} = (c^{(i)}_1 \cdots c^{(i)}_{\ell_i})$ has $\ell_i$ letters.
 This means that the first letter in each cycle, $c^{(i)}_1$, is the largest letter in that cycle,
-and that the cycles are ordered in increasing order by first letter when read from right-to-left:
+and that the cycles are ordered in decreasing order by first letter when read from right to left:
 $c^{(i+1)}_1 < c^{(i)}_1$ for all $i$.
 \subsection{Formal definition and properties}
+We will start by defining two functions, $\phi_k$ and $\psi_k$ which allow us
+to insert a letter and extract a letter respectively. We will later see in
+Lemma \ref{lem:bijection} that these functions are inverse to each other.
 \begin{definition}
-  Let $\phi_k \colon S_{n-1} \times [n] \mapsto S_{n}$ be defined recursively as
+  Let $\phi_k \colon S_{n-1} \times [n] \rightarrow S_{n}$ be defined recursively as
   follows:
   \begin{equation}
     \phi_k(\emptyset, 1) = (1),
@@ -939,28 +934,28 @@ $c^{(i+1)}_1 < c^{(i)}_1$ for all $i$.
     c^{(t)} \cdots c^{(2)} (c^{(1)}_1 \cdots c^{(1)}_{\ell_1} x)                        & otherwise.
   \end{numcases}
   Here, $\phi_k$ depends on the auxillary function
-  $\psi_k \colon S_{n} \mapsto S_{n-1} \times [n]$,
+  $\psi_k \colon S_{n} \rightarrow S_{n-1} \times [n]$,
   \begin{numcases}{\psi_k(\pi) =}
     \label{eq:psi_a}
     \left(c^{(t)} \dots c^{(2)}, c^{(1)}_1\right)                                                              & $\ell_1 = 1$             \\[10pt]
     \label{eq:psi_b}
-    \left(\phi_k(c^{(t)} \cdots c^{(2)}, a_2^{(1)})(c^{(1)}_1 c^{(1)}_3 \dots c^{(1)}_k), c^{(1)}_{k+1}\right) & $\ell_1 = k + 1$         \\[10pt]
+    \left(\phi_k(c^{(t)} \cdots c^{(2)}, c^{(1)}_2)(c^{(1)}_1 c^{(1)}_3 \dots c^{(1)}_k), c^{(1)}_{k+1}\right) & $\ell_1 = k + 1$         \\[10pt]
     \label{eq:psi_c}
     \left(\pi'(c^{(1)}_1 x' c^{(1)}_2 \dots c^{(1)}_{k-1}), c^{(1)}_k\right)                                   & $\ell_1 = k, t > 1$ \\[10pt]
     \label{eq:psi_d}
     \left(c^{(t)} \cdots c^{(2)}(c^{(1)}_1\cdots c^{(1)}_{\ell_1-1}),c^{(1)}_{\ell_1}\right)                   & otherwise,
   \end{numcases}
-  and in both functions, $(\pi', x') = \psi(c^{(t)}\dots c^{(2)})$.
+  and in both functions, $(\pi', x') = \psi(c^{(t)}\cdots c^{(2)})$.
 \end{definition}
 
 \begin{note}
   Strictly speaking, $\phi_k$ and $\psi_k$ have an additional implicit
   parameter $n$, which indicates the size of permutation that these functions
-  act on. Since the construction of these functions do not depend on $n$, this
+  act on. Since the constructions of these functions do not depend on $n$, this
   is suppressed in the notation.
 \end{note}
 The following theorem motivates this map,
-and together with Lemma \ref{lem:bijection}, it implies Equation \ref{eq:bijectionDifference0}.
+and together with Lemma \ref{lem:bijection}, it implies Equation \eqref{eq:bijectionDifference0}.
 \begin{theorem}
   If $k \nmid n$, the number of $k$-cycles of $\pi \in S_{n-1}$ is equal to the number of $k$-cycles in
   $\phi_k(\pi,x)$.
@@ -975,26 +970,27 @@ and together with Lemma \ref{lem:bijection}, it implies Equation \ref{eq:bijecti
 \end{proof}
 \begin{lemma}
   The number of letters in $\pi$ in (recursive) applications of $\phi_k$ and
-  $\psi_k$ are of congruent to $n - 1 \bmod k$ and $n \bmod k$, respectively.
+  $\psi_k$ are congruent to $n - 1\ (\mathrm{mod}\ k)$ and $n\ (\mathrm{mod}\ k)$,
+  respectively.
   Therefore, the only time that the input to $\phi_k$ can be a single cycle of
   length $k-1$ or the input to $\psi_k$ can be a single cycle of length $k$ is
-  when $n \equiv 0\ (\bmod\ k)$.
+  when ${n \equiv 0\ (\mathrm{mod}\ k)}$.
 \end{lemma}
 \begin{proof}
   The proof proceeds by induction on the number of recursive iterations of
-  $\phi_k$ and $\psi_k$. The base case is clear: on the first application of a
-  map is always
-  $\phi_k \colon S_{n-1} \times [n] \rightarrow S_n$, and the input permutation
+  $\phi_k$ and $\psi_k$. The base case is clear: on the first application
+  of the map
+  $\phi_k \colon S_{n-1} \times [n] \rightarrow S_n$, the input permutation
   has $n-1$ letters by definition.
 
   Now, either we're finished, or we recurse
-  (Equations \ref{eq:phi_b}, \ref{eq:phi_c}, \ref{eq:psi_b}, or \ref{eq:psi_c}),
+  (Equations \eqref{eq:phi_b}, \eqref{eq:phi_c}, \eqref{eq:psi_b}, or \eqref{eq:psi_c}),
   which we look at case-by-case.
   \begin{enumerate}[leftmargin=*, label={\textbf{Case \arabic*.}}]
-    \item In Equation \ref{eq:phi_b}, the map $\phi_k$ sets aside $k$ letters from the input, so the number of letters in the recursive input to $\phi_k$ is also congruent to $n - 1 \bmod k$.
-    \item In Equation \ref{eq:phi_c}, the map $\phi_k$ sets aside $k - 1$ letters from the leftmost cycle of the input. Since the number of letters in the original permutation was congruent to $n-1 \bmod k$, the number of letters in the permutation being input to $\psi_k$ is congruent to $n   \bmod k$.
-    \item In Equation \ref{eq:psi_b}, the map $\psi_k$ sets aside $k + 1$ letters from the leftmost cycle of the input. Since the number of letters in the original permutation was congruent to $n   \bmod k$, the number of letters in the permutation being input to $\phi_k$ is congruent to $n-1 \bmod k$.
-    \item In Equation \ref{eq:psi_c}, the map $\psi_k$ sets aside $k$ letters from the input, so the number of letters in the recursive input to $\psi_k$ is also congruent to $n \bmod k$.
+    \item In Equation \eqref{eq:phi_b}, the map $\phi_k$ sets aside $k$ letters from the input, so the number of letters in the recursive input to $\phi_k$ is also congruent to $n - 1 \ (\mathrm{mod}\ k)$.
+    \item In Equation \eqref{eq:phi_c}, the map $\phi_k$ sets aside $k - 1$ letters from the leftmost cycle of the input. Since the number of letters in the original permutation was congruent to $n-1 \ (\mathrm{mod}\ k)$, the number of letters in the permutation being input to $\psi_k$ is congruent to $n   \ (\mathrm{mod}\ k)$.
+    \item In Equation \eqref{eq:psi_b}, the map $\psi_k$ sets aside $k + 1$ letters from the leftmost cycle of the input. Since the number of letters in the original permutation was congruent to $n   \ (\mathrm{mod}\ k)$, the number of letters in the permutation being input to $\phi_k$ is congruent to $n-1 \ (\mathrm{mod}\ k)$.
+    \item In Equation \eqref{eq:psi_c}, the map $\psi_k$ sets aside $k$ letters from the input, so the number of letters in the recursive input to $\psi_k$ is also congruent to $n \ (\mathrm{mod}\ k)$.
   \end{enumerate}
 \end{proof}
 The following lemma provides a certain ``niceness'' property of the map,
@@ -1008,10 +1004,10 @@ $\phi_k$ and $\psi_k$ are written in canonical cycle notation.
   % the previous.
   Canonical cycle notation is preserved by construction.
   In particular, $\phi_k$ moves the first letter in any cycle, and
-  Equation \ref{eq:phi_a} guards against inserting a number into a cycle that
+  Equation \eqref{eq:phi_a} guards against inserting a number into a cycle that
   is bigger than the largest number already in the cycle.
   Similarly, $\psi_k$ only moves the first letter in the case of Equation
-  \ref{eq:psi_a}, but in this case, the cycle only has one letter, so this is
+  \eqref{eq:psi_a}, but in this case, the cycle only has one letter, so this is
   equivalent to deleting the cycle.
 \end{proof}
 \subsection{Inverting the bijection}
@@ -1031,15 +1027,15 @@ $\phi_k$ and $\psi_k$ are written in canonical cycle notation.
   $\psi_k(\phi_k(\emptyset, x)) = \psi_k((x)) = (\emptyset, x)$.
 
   Now there are five remaining cases to check, corresponding to each of the
-  cases in the definition of $\phi_k(\pi, x)$
+  cases in the definition of $\phi_k(\pi, x)$:
    \begin{enumerate}[leftmargin=*, label={\textbf{Case \arabic*.}}]
-    \item Assume $x > c_1^{(1)}$, so that $\phi_k(\pi,x)$ is evaluated via Equation \ref{eq:phi_a}: \begin{align}
+    \item Assume $x > c_1^{(1)}$, so that $\phi_k(\pi,x)$ is evaluated via Equation \eqref{eq:phi_a}: \begin{align}
       \psi_k(\phi_k(\pi, x))
       &= \psi_k(c^{(t)}\cdots c^{(1)}(x)) \\
       &= (c^{(t)}\cdots c^{(1)},x) \\
       &= (\pi, x).
     \end{align}
-    \item Assume $\ell_1 = k$, so that $\phi_k(\pi,x)$ is evaluated via Equation \ref{eq:phi_b}:\begin{align}
+    \item Assume $\ell_1 = k$, so that $\phi_k(\pi,x)$ is evaluated via Equation \eqref{eq:phi_b}:\begin{align}
       \psi_k(\phi_k(\pi, x))
       &= \psi_k(\phi_k(c^{(t)} \cdots c^{(2)}, c^{(1)}_2)
       \underbrace{
@@ -1047,7 +1043,7 @@ $\phi_k$ and $\psi_k$ are written in canonical cycle notation.
       }_{\text{length } k}) \\
       &= (\pi'(c^{(1)}_1x'c^{(1)}_3 \dots c^{(1)}_k), x)
     \end{align}
-    \item Assume $\ell_1 = k - 1$ and $t > 1$, so that $\phi_k(\pi,x)$ is evaluated via Equation \ref{eq:phi_c}:  \begin{align}
+    \item Assume $\ell_1 = k - 1$ and $t > 1$, so that $\phi_k(\pi,x)$ is evaluated via Equation \eqref{eq:phi_c}:  \begin{align}
       \psi_k(\phi_k(\pi, x))
       &= \psi_k(\pi'
         \underbrace{
@@ -1055,7 +1051,7 @@ $\phi_k$ and $\psi_k$ are written in canonical cycle notation.
         }_{\text{length } k + 1}
       )
     \end{align} where $(\pi', x') = \psi_k(c^{(t)} \dots c^{(2)})$.
-    Therefore, this simplifies by Equation \ref{eq:psi_c}: \begin{align}
+    Therefore, this simplifies by Equation \eqref{eq:psi_c}: \begin{align}
       \psi_k(\phi_k(\pi, x)) &= \left(
         \phi_k(\pi', x')
         (c^{(1)}_1 \cdots c^{(1)}_{k-1}),
@@ -1073,13 +1069,13 @@ $\phi_k$ and $\psi_k$ are written in canonical cycle notation.
       &= (\pi, x),
     \end{align} because $\phi_k(\psi_k(c^{(t)} \dots c^{(2)})) = c^{(t)} \dots c^{(2)}$
     by the induction hypothesis on $t-1$ letters.
-    \item Assume that $x > c_1^{(1)}$ and $\ell_1 \not\in \{k-1,k\}$, so that $\phi_k(\pi,x)$ is evaluated via Equation \ref{eq:phi_d}: \begin{align}
+    \item Assume that $x > c_1^{(1)}$ and $\ell_1 \not\in \{k-1,k\}$, so that $\phi_k(\pi,x)$ is evaluated via Equation \eqref{eq:phi_d}: \begin{align}
       \psi_k(\phi_k(\pi, x))
       &= \psi_k(c^{(t)} \cdots c^{(2)} (c^{(1)}_1 \cdots c^{(1)}_{\ell_1} x)) \\
       &= (c^{(t)}\cdots c^{(1)},x) \\
       &= (\pi, x).
     \end{align}
-    \item Assume that $\ell_1 = k-1$ and $t = 1$, so that $\phi_k(\pi,x)$ is evaluated via Equation \ref{eq:phi_d}: \begin{align}
+    \item Assume that $\ell_1 = k-1$ and $t = 1$, so that $\phi_k(\pi,x)$ is evaluated via Equation \eqref{eq:phi_d}: \begin{align}
       \psi_k(\phi_k(\pi, x))
       &= \psi_k((c^{(1)}_1 \cdots c^{(1)}_{k-1  } x)) \\
       &= (c^{(1)},x) \\
@@ -1087,7 +1083,7 @@ $\phi_k$ and $\psi_k$ are written in canonical cycle notation.
     \end{align}
   \end{enumerate}
 \end{proof}
-In this section we constructed a recursively-defined map and its inverse to
+In this section we constructed a recursively defined map and its inverse to
 give a bijective proof that $C_k(n,m) = nC_k(n-1,m)$ when $k \nmid n$. This
 is a novel, reversible algorithm for inserting a letters into a permutation
 that preserves the number of $k$-cycles whenever possible.
@@ -1104,8 +1100,8 @@ does the map \begin{equation}
   f(n,m) = \mathbb E[\pi(i) \mid \pi \in S_n, \operatorname{stat}(\pi)=m]
 \end{equation} have any interesting structure?
 
-But notice that the first letter of a permutation is itself a statistic, so
-we can play a more general game. Given pairs of statistics
+Notice that the first letter of a permutation is itself a statistic, so
+we can ask a more general question. Given pairs of statistics
 $(\operatorname{stat}_1, \operatorname{stat}_2)$, does the map
 \begin{equation}
   g(n,m) = \mathbb E[\operatorname{stat}_1(\pi) \mid \pi \in S_n, \operatorname{stat}_2(\pi)=m]
@@ -1115,7 +1111,8 @@ $(\operatorname{stat}_1, \operatorname{stat}_2)$, does the map
 The result by Conger gives the expected value of $\pi(1)$ given
 $\operatorname{des}(\pi)$, and this chapter gave the expected value of
 $\pi(1)$ given the number of $k$-cycles of $\pi$. Of course, it would be
-interesting to do analogous analysis with other permutations. In particular,
+interesting to do analogous analysis with other statistics.
+In particular,
 the FindStat permutation statistics database \cite{FindStat} contains over
 380 different permutation statistics, and many of these appear to have some
 structure with respect to the expected value of the first letter of a
@@ -1125,7 +1122,7 @@ Moreover, this database currently has a total of about $1800$ statistics on a
 variety of combinatorial objects: binary trees, Dyck paths, parking functions,
 posets, and standard tableaux, to name a few.
 By choosing two statistics on a given object, it may be interesting to ask how
-knowing one value of one statistic changes the expected value of the other.
+knowing the value of one statistic changes the expected value of the other.
 
 \subsection{Mahonian statistics}
 In particular, the family of Mahonian statistics may be fruitful to investigate.
@@ -1147,13 +1144,13 @@ the permutations with $\operatorname{mah}(w) = k$ divided by the number of such
 permutations, $\mathbb{E}[\pi(1)\, |\, \pi \in S_n, \operatorname{mah}(\pi) = k]$
 has a denominator that is (a factor of) $M(n,k)$, the number of permutations
 of $w \in S_n$ such that $\operatorname{inv}(w) = k$. For fixed $k$, these
-satisfy a degree $k$ polynomial for all $n > k$. Notably, in the cases of
+satisfy a degree-$k$ polynomial for all $n > k$. Notably, in the cases of
 the major index and the inversion number, the numerators appear to satisfy
-degree $k$ and degree $k-1$ polynomials respectively.
+degree-$k$ and {degree-$k-1$} polynomials respectively.
 
 \begin{conjecture}
   For fixed $k$ and $n > k$, the expected value of the first letter of a
-  permutation with a given number of inversions satisfies a rational function
+  permutation with a given number of inversions is equal to a rational function
   in $n$ given by \begin{equation}
     \mathbb{E}[\pi(1)\, |\, \pi \in S_n, \operatorname{inv}(\pi) = k]
     = \frac{M(n+1,k)}{M(n,k)},
@@ -1179,7 +1176,7 @@ degree $k$ and degree $k-1$ polynomials respectively.
     % % \mathbb{E}[\pi(1)\, |\, \pi \in S_n, \operatorname{maj}(\pi) = 5] &= \frac{1}{6}\left(\frac{n^6 + 51 n^5 + 85 n^4 - 195 n^3 - 806 n^2 - 1296 n}{n^5 + 10 n^4 + 15 n^3 - 70 n^2 - 196 n}\right).
   \end{align}
   Note that the denominator is given by an integer multiple of $M(n,k)$,
-  a degree $k$ polynomial.
+  a degree-$k$ polynomial.
 \end{conjecture}
 
 \subsection{An elusive bijection}
@@ -1187,17 +1184,17 @@ degree $k$ and degree $k-1$ polynomials respectively.
   Let $F_k(n, m)$ be the number of elements of the generalized symmetric group
   $S(k,n) = (\mathbb{Z}/k\mathbb{Z}) \wr S_n$ with $m$ fixed points,
   and recall that $C_k(n,m)$ is the number of elements of $S_{kn}$ with $m$ $k$-cycles.
-  Then for each pair of nonnegative integers $(\alpha, \beta)$
-  with $\alpha, \beta \leq n$, then as Lemma \ref{lem:fixedPointsAndCycles} suggests,
+  For each pair of nonnegative integers $(\alpha, \beta)$
+  with $\alpha, \beta \leq n$, Lemma \ref{lem:fixedPointsAndCycles} suggests that
   there exists a bijection of sets \begin{equation}
     C_k(n, \alpha) \times F_k(n, \beta) \rightarrow C_k(n, \beta) \times F_k(n, \alpha).
   \end{equation}
   This bijection has proven to be elusive to construct outside of the special
   cases where $n=1$ or $k=1$.
-  Note that, the map cannot be a group automorphism of $S_{kn} \times S(k,n)$,
+  Note that the map cannot be a group automorphism of $S_{kn} \times S(k,n)$,
   because the identity of this group is in $C_k(n,0) \times F_k(n,n)$, so it
   cannot be preserved under this map.
 
   It would be especially interesting if there's a way to use the embedding of
   $(\mathbb{Z}/k\mathbb{Z}) \wr S_n$ into $S_{kn}$ as the centralizer of an
-  element that is the product of $n$ disjoint $k$ cycles.
+  element that is the product of $n$ disjoint $k$-cycles.
