@@ -4,14 +4,14 @@
 For me, the best problem is one that could be understood by a high school
 student, but which requires ideas from the last few centuries of mathematics to
 solve. Broadly speaking, the problems in the following chapters have their
-roots in recreational mathematics and and reinforced and made richer by ideas
+roots in recreational mathematics and are reinforced and made richer by ideas
 in algebra, geometry, probability and combinatorics.
 It is my goal that this dissertation, informed by its roots, is more interesting
 and accessible to a broad audience than a typical dissertation in mathematics.
 
 \section{Elevator pitches}
 
-This first section of the Introduction is aimed at doing just that:
+This first section of the introduction is aimed at doing just that:
 describing the three main chapters of this dissertation in informal, accessible
 terms, aimed at general audiences.
 My target audience for this section is a friend, a family member,
@@ -23,7 +23,7 @@ we give three elevator pitches, one for each of the three subsequent chapters.
 
 \subsection{Generalized spinning switches, informally}
 
-Chapter \ref{cha:SpinningSwitches}, titled ``Generalized spinning switches'',
+Chapter \ref{cha:SpinningSwitches}, titled ``Generalized spinning switches,''
 is about generalizing an old puzzle popularized by Marin Gardner in the late
 1970's. My favorite version of this puzzle comes from Peter Winkler.
 We include it here, but repeat it at the beginning of the next chapter for
@@ -45,7 +45,7 @@ the proof of Proposition \ref{prop:WinklersSolution} to see the solution.)
 We can generalize this puzzle in at least two ways.
 The first way we can generalize the puzzle is by asking about different kinds of
 switches. For instance, one could imagine a dial with three states,
-and only one of them is ``on''.
+and only one of them is ``on.''
 On any turn we could rotate it one or two
 clicks to put it in one of the other states.
 (If we rotate it zero or three clicks, it will be in the same state as before.)
@@ -55,7 +55,7 @@ In general, we will want to solve the problem any switch imaginable, which
 we claim can be modeled by arbitrary \textit{finite groups}.
 
 The second way we can generalize the puzzle is by looking at the number of
-switches and how they ``spin''.
+switches and how they ``spin.''
 For example, instead of having four switches on the corners of a square table,
 we could have six switches on the corners of a rotating hexagon, or perhaps
 we could have three switches that can be scrambled however the adversary pleases.
@@ -78,25 +78,25 @@ restrictions, such as those scrambles where no number stays in its same place.
 One kind of permutation we focus on in this chapter are permutations with
 a certain number of \textit{transpositions}, which means the number of unordered
 pairs $\{i, j\}$ such that $i$ moves to position $j$ and $j$ moves to position $i$
-(i.e. $i$ and $j$ ``swap places''.)
+(i.e., $i$ and $j$ ``swap places.'')
 
 If we look at all of the permutations on $n$ letters with $k$ transpositions,
-and we average of all of the first letters, we see
-something unusual: this number is closely related
-squares, cubes, and higher dimensional \textit{hypercubes}.
+and we average over all of the first letters, we see
+something unusual: this number is closely related to
+squares, cubes, and higher-dimensional \textit{hypercubes}.
 In particular, it relates to the number of ways of rotating or reflecting
-these objects in such a ways that each of their sides, faces, or \textit{facets}
+these objects in such a way that each of their sides, faces, or \textit{facets}
 move to new positions.
 
 A priori, we should be surprised that permutations with a given number of
-transpositions have anything to do with moving the facets of high dimensional
+transpositions have anything to do with moving the facets of high-dimensional
 cubes. This chapter seeks to explore why these objects are connected, and
 to use this correspondence to understand both permutations and hypercubes a
 little bit better.
 
 \subsection{Triangles in triangles, informally}
 The following chapter, Chapter \ref{cha:TrianglesInTriangles}, is a very short
-chapter that demonstrates a proof technique called ``a proof without words'',
+chapter that demonstrates a proof technique called ``a proof without words,''
 where a concept is proven using only an illustration.
 
 In this case, the proof without words illustrates the correspondence between
@@ -107,7 +107,7 @@ vice versa.
 
 \subsection{Unranking restricted permutations, informally}
 The final chapter, Chapter \ref{cha:UnrankingMenage},
-titled ``Unranking restricted permutations''
+titled ``Unranking restricted permutations,''
 also explores permutations.
 Here we look at
 two kinds of restricted permutations: \textit{derangements}, where the letter $i$ is never
@@ -122,16 +122,16 @@ $312$ quadrillion m\'enage permutations.
 
 In 2020 and 2021, Richard Arratia
 was wondering if there was a quick way of determining which derangement or
-menage permutation was at a particular position in this list.
+m\'enage permutation was at a particular position in this list.
 As such, he posed two problems, each with \$100 bounties attached:
 the first asking for the $500$ quadrillionth derangement, and
 the second for the $100$ quadrillionth m\'enage permutation.
 With numbers this large, it's not feasible for a computer to simply
 write them all down and pick the permutation in the desired position.
-Ultimately finding these restricted permutations in a reasonable amount of time
+Ultimately, finding these restricted permutations in a reasonable amount of time
 requires some insight into their structure.
 
-This chapter explains these techniques that I developed in order to develop
+This chapter explains the techniques that I developed in order to develop
 an algorithm that can find these desired permutations in a few milliseconds.
 These techniques are
 described using \textit{rook theory}, which is a mathematical way of analyzing
@@ -192,14 +192,14 @@ they were found to correspond to OEIS sequence A000354, which describes
 When I looked at the permutation statistic that counted $k$-cycles instead of
 transpositions, the tables presented a similar structure. This time, the
 denominators corresponded to the number of derangements of the generalized
-symmetric group. Ultimately I developed a full characterization of the four
-parameter family: the expected value of the $\ell$-th letter over all
+symmetric group. Ultimately I developed a full characterization of the
+four-parameter family: the expected value of the $\ell$-th letter over all
 permutations $\pi \in S_n$ with exactly $m$ $k$-cycles.
 A formula for this expected value is given both in terms of a sum,
 and---more satisfyingly---in terms of the number of derangements of the
  generalized symmetric group.
 
-Along the way, I found two pairs of sets that we begging for a bijection.
+Along the way, I found two pairs of sets that were begging for a bijection.
 In particular, the cardinality of sets implied that there was a
 family of reversible insertion algorithms that preserved the number of
 $k$-cycles in most cases. A simple bijection proved to be elusive, but
@@ -215,7 +215,7 @@ triangular grid and $4$-element subsets of $[n + 2]$.
 \subsection{Overview of unranking restricted permutations}
 In Chapter \ref{cha:UnrankingMenage}, we develop the solution of two related
 problems posed by Richard Arratia, each with a bounty attached.
-These problems are particular examples of a broader class of so called
+These problems are particular examples of a broader class of so-called
 \textit{unranking} problems:
 given a total order on a set of combinatorial objects (that can be counted
 efficiently), when is it possible to efficiently compute the $k$-th smallest
