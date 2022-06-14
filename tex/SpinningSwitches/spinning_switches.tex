@@ -261,7 +261,7 @@ of the properties we would expect in a desirable switch.
   The axioms for a group $(G, \cdot)$ closely follow what we would expect from
   a switch.
 \end{note}
- \begin{enumerate}
+\begin{enumerate}
   \item (Closure) The group $(G, \cdot)$ is equipped with a binary operation,
   $\cdot \colon G \times G \rightarrow G$. That is, for all pairs of elements
    $g_1, g_2 \in G$ their product is in $G$ \begin{equation}
@@ -478,7 +478,7 @@ regardless of the initial (hidden) state of the switches.
       \underbrace{e_{G \wr H}}_{m_0},
       \underbrace{(k_1, h_1)}_{m_1},
       \underbrace{(k_1, h_1)\cdot(k_2, h_2)}_{m_2},
-      \cdots,
+      \dots,
       \underbrace{(k_1, h_1)\cdot(k_2, h_2)\cdots(k_N, h_N)}_{m_N}
     \}) = K.
   \end{equation}
@@ -511,8 +511,8 @@ must contain $k^{-1}k'$ .)
   the ``spin'' is $\mathrm{id}_H$, which acts trivially:
   ${(k, \mathrm{id}_H) \cdot (k', h') = (kk', h')}$
 
-  Since $k$ is arbitrary the projection map must surject onto $K$ for every
-  adversarial sequence to ensure that it contains $k^{-1}$.
+  Since $k$ is arbitrary the projection map must be a surjection onto $K$ for
+  every adversarial sequence to ensure that it contains $k^{-1}$.
 
   The initial state can be any $k \in K \setminus \{\mathrm{id}_K\}$,
   and this isn't known to the puzzle-solver.
@@ -854,11 +854,11 @@ to fully classify the case of abelian switches.
 \begin{theorem}
   If $G$ is an abelian group, and $H$ acts faithfully on $\Omega$, then
   $G \wr_\Omega H$ has a switching strategy if and only if $G$ and $H$ are
-  both $p$ groups for the same prime $p$.
+  both $p$-groups for the same prime $p$.
 \label{thm:classifyAbelianSwitches}
 \end{theorem}
 \begin{proof}
-  One direction is clear: if $G$ and $H$ are both $p$ groups for the same prime
+  One direction is clear: if $G$ and $H$ are both $p$-groups for the same prime
   $p$, then $G \wr H$ has a switching strategy by Theorem \ref{thm:pGroupStrategy}.
 
   For the other direction, we will consider the contrapositive assumption,
