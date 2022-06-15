@@ -501,25 +501,39 @@ must contain $k^{-1}k'$ .)
   state if and only if it is a switching strategy.
 \end{proposition}
 \begin{proof}
-  Without loss of generality, say that the winning state for the switches is
+  Without loss of generality, we will say that the winning state for the switches is
   $\mathrm{id}_K$.
-  In the puzzle, we have an initial (hidden) state, $k$.
-  Thus, after the $i$-th move, the wreath product
-  element that represents the state of the switches is \begin{equation}
+
+  We will begin by assuming that $\{k_i \in K\}_{i=1}^N$ sequence of moves is
+  guaranteed to reach the winning state, $\mathrm{id}_K$.
+  In the puzzle, we have an initial (hidden) state, $k \neq \mathrm{id}_K$.
+  Therefore, after the $i$-th move,
+  the wreath product element that represents the state of the switches is
+  \begin{equation}
     p\left((k, \mathrm{id}_H)\cdot(k_1, h_1)\cdot(k_2, h_2)\cdots(k_i, h_i)\right)
     = k \cdot p\left((k_1, h_1)\cdot(k_2, h_2)\cdots(k_i, h_i)\right),
-  \end{equation} by associativity. We can factor out the first term because
-  the ``spin'' is $\mathrm{id}_H$, which acts trivially:
-  ${(k, \mathrm{id}_H) \cdot (k', h') = (kk', h')}$
+  \end{equation}
+  where the equality is due to associativity of the wreath product.
+  We can factor out the first term because the ``spin'' is $\mathrm{id}_H$,
+  which acts trivially:
+  ${(k, \mathrm{id}_H) \cdot (k', h') = (kk', h')}$.
 
-  Since $k$ is arbitrary the projection map must be a surjection onto $K$ for
-  every adversarial sequence to ensure that it contains $k^{-1}$.
+  Say that $j$ is the index at which the puzzle-solver gets the switches into
+  the winning state. Then \begin{align}
+    k \cdot p\left((k_1, h_1)\cdot(k_2, h_2)\cdots(k_j, h_j)\right) &= \mathrm{id}_K
+    \\
+            p\left((k_1, h_1)\cdot(k_2, h_2)\cdots(k_j, h_j)\right) &= k^{-1}.
+    \label{eq:winningState}
+  \end{align}
+  Since $k \neq$ is arbitrary, there must exist such a $j$ for every $k \in K$
+  and adversarial sequence $\{h_i \in H\}_{i=1}^N$. This means that the
+  projection of the sequence of partial products of $\{k_i \in K\}_{i=1}^N$ is
+  a surjection onto $K$ and therefore is a switching strategy.
 
-  The initial state can be any $k \in K \setminus \{\mathrm{id}_K\}$,
-  and this is not known to the puzzle-solver.
-  In order to reach the winning state, there must exist some $i$, such that
-  $p\left((k_1, h_1)\cdot(k_2, h_2)\cdots(k_i, h_i)\right) = k^{-1}$.
-  For any choice of $k$ and adversarial sequence $\{h_i \in H\}_{i=1}^N$.
+  Conversely, if $K$ is a switching strategy, then for any initial state $k$ and sequence of
+  adversarial moves $\{h_i \in H\}_{i=1}^N$, there exists some $j$ that
+  satisfies Equation \eqref{eq:winningState}, and therefore reaches a winning
+  state.
 \end{proof}
 
 It is also worth noting that this model can be thought of as a random model or an
