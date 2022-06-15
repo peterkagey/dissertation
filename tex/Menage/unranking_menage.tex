@@ -22,15 +22,15 @@ we want to list derangements in lexicographic order and then sample from a
 particular index somewhere in the middle of the list? Can one do this
 efficiently---in particular without writing out the entire list?
 
-Having shown Richard a proof of concept for unranking derangements, he widened
-his next to a problem that I (wrongly) suspected was out of reach.
+After showing him a proof of concept for unranking derangements, Richard
+suggested a related problem that I (wrongly) suspected was out of reach.
 In January 2021, he announced a \$100 prize for solving the analogous problem
 with m\'enage permutations.
 
 In the spirit of Richard's bounties, we offer a \$100 bounty of our own in the
 final section of this chapter. Our bounty asks for an efficient way to
-derank the set of permutations where letters do not exactly one space to the
-left or the right.
+derank the set of permutations where letters do not move exactly one space to
+the left or the right.
 
 Richard was, of course, interested in an even more general question too:
 given some family of combinatorial objects $\mathcal{C}_n$ that can be counted
@@ -39,11 +39,10 @@ and some total ordering on them (for example, lexicographic order),
 when is it possible to unrank the collection in some computationally
 efficient way?
 
-An efficient way to unrank a collection of objects together with an efficient
-way to count the number of objects in the collection implies an efficient
-algorithm from sampling from the collection uniformly at random. This can
+An efficient way to unrank a collection of objects implies an efficient
+algorithm for sampling from the collection uniformly at random. This can
 potentially be of use in the case of Monte Carlo simulations and other
-instances where it is useful to be able to perform and unbiased sample.
+instances where it is useful to be able to perform an unbiased sample.
 
 \begin{definition}
   Let $\mathcal C$ be a totally ordered finite set, and
@@ -59,15 +58,14 @@ instances where it is useful to be able to perform and unbiased sample.
   which sends $i \mapsto c_i$.
 \end{definition}
 
-In abstract terms, these maps are not particularly interesting, but in practical
-terms it can be quite difficult to efficiently compute a given ranking or
-unranking from a given totally ordered set. After all, when these sets
-grow in exponential time or worse, explicitly constructing the sequence and
-doing a search is not computationally feasible.
+In practical terms it can be quite difficult to efficiently compute a given
+ranking or unranking from a given totally ordered set. After all, when the size
+of these sets grows in exponential time or worse, explicitly constructing the
+sequence and doing a search is not computationally feasible.
 
 In Appendix \ref{apndx:unranking}, we provide examples of totally ordered
 combinatorial objects $\mathcal{C}$ that have efficient ranking and unranking
-maps.
+maps
 
 In this chapter we're going to explore this idea in the context of combinatorial
 words in lexicographic order. In particular, we will focus on two families of
@@ -102,8 +100,7 @@ and apply them to the context of derangements and m\'enage permutations.
 % \end{proof}
 In both the case of unranking derangements and menage permutations
 (and in many other applications) our combinatorial objects are
-words and our total order is lexicographic order, which is the extension of
-alphabetical order.
+words in lexicographic order, which is a generalization of alphabetical order.
 
 We begin by developing a general theory for unranking collections of words in
 lexicographic order by counting the number of words with a given prefix.
@@ -231,8 +228,8 @@ recursively find  a position corresponding to a given word.
 \end{claim}
 
 \section{Basic notions of rook theory}
-Now that we have showed that we can unrank words whenever we can compute the
-number of words with a given prefix, we must develop techniques for this new
+Now that we have shown that we can unrank words whenever we can compute the
+number of words with a given prefix, we want to develop techniques for this new
 counting problem.
 In the case of unranking derangements and permutations, it is useful to use
 ideas from rook theory, which provides a theory for understanding
@@ -249,7 +246,7 @@ We begin by introducing some preliminary ideas from rook theory.
 
 \begin{definition}
   A \textbf{board} $B$ is a subset of $[n] \times [n]$ which represents the
-  squares of a $n \times n$ chessboard that rooks are allowed to be placed on.
+  squares of an $n \times n$ chessboard that rooks are allowed to be placed on.
   Every board $B$ has a \textit{complementary board}
   $B^c = ([n] \times [n]) \setminus B$, which consists of all of the
   squares of $B$ that a rook cannot be placed on.
@@ -271,12 +268,13 @@ way that no two rooks are in the same row or column.
 In the context of permutations, we're typically interested in $r_n$, the number
 of ways to place $n$ rooks on a restricted $n \times n$ board.
 However, it turns out that a naive application of the techniques from
-rook theory do not immediately allow us to count the number of
+rook theory does not immediately allow us to count the number of
 restricted permutations with a given prefix.
-Computing the number of such permutations is known to be computationally hard
+Computing the number of such permutations is known to be \#P-hard
 for a board with arbitrary restrictions.
 We can see this by encoding a board $B$ as a $(0,1)$-matrix and computing the matrix
-permanent. (In fact, Shevelev \cite{Shevelev1992} claims that
+permanent, since there is a bijection between boards and $(0,1)$-matrices.
+(In fact, Shevelev \cite{Shevelev1992} claims that
 ``the theory of enumerating the permutations with restricted positions
 stimulated the development of the theory of the permanent.'')
 
@@ -296,7 +294,7 @@ stimulated the development of the theory of the permanent.'')
 Now is an appropriate time to recall Valiant's Theorem.
 
 \begin{theorem}[Valiant's Theorem \cite{Valiant1979}]
-  The counting problem of of computing the permanent of a (0,1)-matrix is \#P-complete.
+  The counting problem of computing the permanent of a (0,1)-matrix is \#P-complete.
 \end{theorem}
 
 \begin{corollary}
@@ -313,8 +311,8 @@ for an empty board $B = \emptyset$, the corresponding rook polynomial is
 $p_\emptyset(x) = 1$, because there is one way to place no rooks, and no way
 to place one or more rooks.
 \begin{lemma}[\cite{Riordan1980}]
-  Given a board, $B$, then for any square $(x,y) \in B$, we can define
-  the resulting boards if we include or exclude the square respectively
+  Given a board $B$ and a square $(x,y) \in B$, we can define
+  two resulting boards from including or excluding the given square:
   \begin{align}
     B_i &= \{(x',y') \in B : x \neq x' \text{ and } y \neq y'\} \\
     B_e &= B \setminus {(x,y)}.
@@ -329,7 +327,7 @@ to place one or more rooks.
 If we want to compute a rook polynomial using this construction, we can end
 up adding up lots of smaller rook polynomials---a number that is exponential in
 the size of $B$.
-However, when the number of squares that are missing from $B$ is small,
+When the number of squares that are missing from $B$ is small,
 it can be easier to compute the rook polynomial of the complementary board,
 $p_{B^c}$, and use the principle of
 inclusion/exclusion on its coefficients to determine the rook polynomial for
@@ -380,7 +378,7 @@ It is worthwhile to begin by recalling the definition of a derangement.
 
 \subsection{The complementary board}
 In order to compute the number of derangements with a given prefix, it is
-useful to look at the board that results after placing $k$ rooks according to
+useful to look at the board that results after placing $\ell$ rooks according to
 these positions, as illustrated in Figure \ref{fig:derangementPrefix}.
 
 \input{assets/fig_derangementPrefix.tex}
@@ -388,11 +386,11 @@ these positions, as illustrated in Figure \ref{fig:derangementPrefix}.
 \begin{definition}
   If $B$ is an $n \times n$ board, and
   $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$ is a valid prefix of length
-  $\ell$, then \textbf{derived board} of $B$ from $\alpha$,
+  $\ell$, the \textbf{derived board} of $B$ from $\alpha$,
   denoted $B_\alpha$,
   is constructed by removing
   rows $1, 2, \dots, \ell$ and
-  columns $\alpha_1, \alpha_2, \dots, \alpha_ell$ from $B$,
+  columns $\alpha_1, \alpha_2, \dots, \alpha_\ell$ from $B$,
   reindexing in such a way that both the row and column indexes are in
   $[n - \ell]$.
 
@@ -404,7 +402,7 @@ Given a prefix of length $\ell$, the number of ways of placing $n - \ell$ rooks
 on the derived board $B_\alpha$ is, by construction,
 equal to the number of words in $\mathcal{C}$ with prefix $\alpha$
 \begin{lemma}
-  Given a valid $\ell$ letter prefix $(\alpha_1, \alpha_2, \dots, \alpha_\ell)$
+  Given a valid $\ell$-letter prefix $(\alpha_1, \alpha_2, \dots, \alpha_\ell)$
   of a word on $n$ letters,
   the number of squares in the derived complementary board is \begin{equation}
     |B_\alpha^c| = n - \ell - |\{\ell+1, \ell+2, \dots, n\} \cap \{\alpha_1, \alpha_2, \dots, \alpha_\ell\}|,
@@ -415,7 +413,7 @@ equal to the number of words in $\mathcal{C}$ with prefix $\alpha$
   Notice that the derived complementary board can be constructed in a different
   order: by first taking the complement, then deleting rows and columns, and
   finally reindexing the squares.
-  Because, the complementary board has no two squares in the same row or column,
+  Because the complementary board has no two squares in the same row or column,
   deleting and reindexing results in a derived complementary board with the same
   property.
 
@@ -496,8 +494,8 @@ in linear time with respect to $\ell$, the length of the prefix.
   start with the prefix $\alpha = (6,1)$, as illustrated in Figure
   \ref{fig:derangementPrefix}.
   Since the prefix has two letters, $\ell = 2$ and $n - \ell = 12 - 2 = 10$.
-  Number of squares in $B_\alpha^c$ is \begin{equation}
-    |B_\alpha^c| = 12 - 2 - \underbrace{|\{3,4,\dots,12\} \cap \{6, 1\}|}_1 = 9
+  The number of squares in $B_\alpha^c$ is \begin{equation}
+    |B_\alpha^c| = 12 - 2 - \underbrace{|\{3,4,\dots,12\} \cap \{6, 1\}|}_1 = 9.
   \end{equation}
   Thus there are $A047920(10,9) = 1\,468\,457$ derangements in $S_{12}$
   that start with the prefix $\alpha = (6,1)$.
@@ -580,7 +578,7 @@ use the following definition for simplicity.
   all $i \in [n]$,
   $\pi(i) \neq i$ and
   $\pi(i) + 1 \not\equiv i \bmod n$.
-  The set of m\'enage permutations of length $n$ is denoted $\pazocal{M}_n$.
+  The set of m\'enage permutations of length $n$ is denoted by $\pazocal{M}_n$.
 \end{definition}
 
 \subsection{The answer to a \$100 question about m\'enage permutations}
@@ -608,7 +606,7 @@ with the same program takes about $7$ seconds.)
 
 As in the section about unranking derangements, we will use the insight from
 Theorem \ref{theorem:unrankFromPrefix} that if we can efficiently count the number
-of words with a give prefix, then we can efficiently unrank the words.
+of words with a given prefix, then we can efficiently unrank the words.
 
 The technique exploits the following observations:
 after placing rooks on a board corresponding to our
@@ -624,8 +622,7 @@ This gives us the number of m\'enage permutations with a given prefix.
 
 \subsection{Disjoint board decomposition}
 Figure \ref{fig:menageMultiplePlacement}
-suggestively show a placement of
-rooks according to a prefix that
+suggestively shows a placement of rooks according to a prefix that
 results in a board whose complement can be partitioned into
 sub-boards whose squares don't share any rows or columns.
 We will see that this property indeed holds in general,
@@ -669,9 +666,9 @@ which are illustrated in Figure \ref{fig:blockShape}.
     \mathcal{O}_{2n-1}           &= \{(i,i) : i \in [n]\}    &&\cup\ \{(i,i+1) : i \in [n-1]\} \\
     \mathcal{O}_{2n-1}^\intercal &= \{(i,i) : i \in [n]\}    &&\cup\ \{(i+1,i) : i \in [n-1]\} \\
     \mathcal{E}_{2n-2}           &= \{(i,i) : i \in [n-1]\}\ &&\cup\ \{(i+1,i) : i \in [n-1]\} \\
-    \mathcal{E}_{2n-2}^\intercal &= \{(i,i) : i \in [n-1]\}\ &&\cup\ \{(i,i+1) : i \in [n-1]\},
+    \mathcal{E}_{2n-2}^\intercal &= \{(i,i) : i \in [n-1]\}\ &&\cup\ \{(i,i+1) : i \in [n-1]\}.
   \end{alignat*}
-  the subscripts represent the number of squares, and the names represent their
+  The subscripts represent the number of squares, and the names represent their
   parity.
   \label{def:staircaseShaped}
 \end{definition}
@@ -698,44 +695,44 @@ We now show that our resulting boards can be partitioned into boards of these sh
   Figure \ref{fig:menageSinglePlacement}.)
 
   The inductive hypothesis is that the derived complementary board for
-  a prefix of length $\ell - 1$ consists of sub-boards with shape
-  $\mathcal{O}_{2n - 1}$,
-  $\mathcal{O}^\intercal_{2n - 1}$,
-  $\mathcal{E}_{2n - 2}$, or
-  $\mathcal{E}^\intercal_{2n - 2}$.
+  a prefix of length ${\ell - 1}$ consists of sub-boards with shape
+  $\mathcal{O}_{2m - 1}$,
+  $\mathcal{O}^\intercal_{2m - 1}$,
+  $\mathcal{E}_{2m - 2}$, or
+  $\mathcal{E}^\intercal_{2m - 2}$.
   Placing a rook in row $\ell$ can remove a top row or a column or both in a
   given sub-board.
   Table \ref{table:rooksInBlocks} below
   shows the resulting sub-boards after placing a rook in
   $\ell$-th row of $B$,
-  which may be in the top row or the $i$-th column of a given sub-board.
+  which may be in the top row, the $i$-th column, or both.
   \\ ~ \\
   \captionsetup{type=table}
   \begin{tabular}{|l|l|l|l|l|}
   \hline
   Rook placement
-    & $\mathcal{O}_{2n-1}$
-    & $\mathcal{O}_{2n-1}^\intercal$
-    & $\mathcal{E}_{2n-2}$
-    & $\mathcal{E}_{2n-2}$
+    & $\mathcal{O}_{2m-1}$
+    & $\mathcal{O}_{2m-1}^\intercal$
+    & $\mathcal{E}_{2m-2}$
+    & $\mathcal{E}_{2m-2}$
   \\ \hline
   Row $1$
-    & $\mathcal{O}_{2n-3}$
-    & $\mathcal{E}_{2n-2}^\intercal$
-    & $\mathcal{O}_{2n-3}$
-    & $\mathcal{E}_{2n-4}^\intercal$
+    & $\mathcal{O}_{2m-3}$
+    & $\mathcal{E}_{2m-2}^\intercal$
+    & $\mathcal{O}_{2m-3}$
+    & $\mathcal{E}_{2m-4}^\intercal$
   \\
   Column $i$
-    & $\mathcal{O}_{2i-3}$, $\mathcal{E}_{2n-2i}$
-    & $\mathcal{E}_{2i-2}$, $\mathcal{O}_{2n-2i-1}^\intercal$
-    & $\mathcal{E}_{2i-2}$, $\mathcal{E}_{2n-2i-2}$
-    & $\mathcal{O}_{2i-3}$, $\mathcal{O}_{2n-2i-1}^\intercal$
+    & $\mathcal{O}_{2i-3}$, $\mathcal{E}_{2m-2i}$
+    & $\mathcal{E}_{2i-2}$, $\mathcal{O}_{2m-2i-1}^\intercal$
+    & $\mathcal{E}_{2i-2}$, $\mathcal{E}_{2m-2i-2}$
+    & $\mathcal{O}_{2i-3}$, $\mathcal{O}_{2m-2i-1}^\intercal$
   \\
   Row $1$, column $i$
-    & $\mathcal{O}_{2i-5}$, $\mathcal{E}_{2n-2i}$
-    & $\mathcal{O}_{2i-3}$, $\mathcal{O}_{2n-2i-1}^\intercal$
-    & $\mathcal{O}_{2i-3}$, $\mathcal{E}_{2n-2i-2}$
-    & $\mathcal{O}_{2i-5}$, $\mathcal{O}_{2n-2i-1}^\intercal$
+    & $\mathcal{O}_{2i-5}$, $\mathcal{E}_{2m-2i}$
+    & $\mathcal{O}_{2i-3}$, $\mathcal{O}_{2m-2i-1}^\intercal$
+    & $\mathcal{O}_{2i-3}$, $\mathcal{E}_{2m-2i-2}$
+    & $\mathcal{O}_{2i-5}$, $\mathcal{O}_{2m-2i-1}^\intercal$
   \\ \hline
   \end{tabular}
   \captionof{table}[Rook placements on staircase-shaped boards]{
@@ -743,8 +740,9 @@ We now show that our resulting boards can be partitioned into boards of these sh
     for all staircase-shaped boards.
   }
   \label{table:rooksInBlocks}
-  Therefore placing any number of rooks in the first $\ell$ results in a board
-  of one of the four previously described shapes.
+  Therefore placing any number of rooks in the first $\ell$ rows results in a
+  board whose complementary derived board is composed of disjoint
+  staircase-shaped sub-boards.
 \end{proof}
 
 \input{assets/Menage/fig_menageSinglePlacement.tex}
@@ -777,7 +775,7 @@ polynomials.
 
 \begin{lemma}
   If $B$ is a staircase-shaped board with $k$ squares, then
-  $B$ has rook polynomial $p_{B}(x) = F_{k}(x)$, equal to the $k$-th
+  $B$ has rook polynomial ${p_{B}(x) = F_{k}(x)}$, equal to the $k$-th
   Fibonacci polynomial.
   \label{lemma:staircaseIsFibonacci}
 \end{lemma}
@@ -787,10 +785,10 @@ polynomials.
   induction on the number of squares, always choosing to include or exclude
   the upper-left square.
 
-  Since the reflections of board has the same rook polynomial as the
+  Since the reflections of board have the same rook polynomial as the
   unreflected board, without loss of generality, we
   will compute the rook polynomials for
-  $\mathcal{O}_{2n-1}$ and $\mathcal{E}_{2n-2}$ respectively.
+  $\mathcal{O}_{2m-1}$ and $\mathcal{E}_{2m-2}$, respectively.
 
   To establish a base case, consider the rook polynomials when $n = 1$, so
   the even board has $|\mathcal{E}_{0}| = 0$ squares and
@@ -799,16 +797,15 @@ polynomials.
   place $0$ rooks on $\mathcal{E}_{0}$ and no ways to place more rooks;
   similarly there is
   $1$ way to place $0$ rooks on $\mathcal{O}_{1}$,
-  $1$ way to place $1$ rooks on $\mathcal{O}_{1}$, and
-  no ways to place more than one rook. Thus \begin{alignat}{2}
+  $1$ way to place $1$ rook on $\mathcal{O}_{1}$, and
+  no way to place more than one rook. Thus \begin{alignat}{2}
     p_{\mathcal{E}_{0}}(x) &= 1     &&= F_0(x), \text{ and} \\
     p_{\mathcal{O}_{1}}(x) &= 1 + x &&= F_1(x).
   \end{alignat}
 
   With the base case established, our inductive hypothesis is that
-  $p_{B}(x) = F_{h}(x)$ for
-  whenever $B$ is a
-  staircase-shaped boards with $h < k$ squares.
+  $p_{B}(x) = F_{h}(x)$ whenever $B$ is a
+  staircase-shaped board with $h < k$ squares.
 
   % Even case
   Assume that we have $k$ squares where $k$ is even, so our board looks like
@@ -845,7 +842,7 @@ a derived complementary board.
 
 \begin{corollary}
   Suppose that $B_\alpha^c$ can be partitioned into $m$ disjoint
-  staircase-shaped sub-boards of size $b_1, b_2, \dots, b_m$.
+  staircase-shaped sub-boards of sizes $b_1, b_2, \dots, b_m$.
   Then the rook polynomial of
   $B_\alpha^c$ is \begin{equation}
     p_{B_\alpha^c}(x) = \prod_{i=1}^m F_{b_i},
@@ -853,7 +850,7 @@ a derived complementary board.
   \label{cor:derivedComplementaryRookPolynomial}
 \end{corollary}
 \begin{proof}
-  This follows directly Theorem \ref{thm:productOfDisjointBoards} together
+  This follows directly from Theorem \ref{thm:productOfDisjointBoards} together
   with Lemma \ref{lemma:staircaseIsFibonacci}.
 \end{proof}
 
@@ -960,8 +957,8 @@ We have now established a method taking a prefix $\alpha$
 and partitioning $B_\alpha^c$ into disjoint staircase-shaped sub-boards,
 which allow us to determine the rook polynomial of $B_\alpha^c$.
 Using Lemma \ref{lemma:CountsFromComplementaryPolynomials}, this allows us
-can finally compute the number of ways of placing $n - \ell$ rooks on
-$B_\alpha$ thus determining the number of derangements that begin with
+to finally compute the number of ways of placing $n - \ell$ rooks on
+$B_\alpha$, thus determining the number of derangements that begin with
 $\alpha$.
 
 % Now that we have shown in Lemma \ref{lem:ContiguousParts} how to get the
@@ -1033,7 +1030,7 @@ Theorem \ref{theorem:unrankFromPrefix} to unrank derangements.
 \section{Generalizations and open questions}
 
 In this final section we explore several possible future directions for
-applying these ideas to new contexts. We can potentially apply these unranking
+applying these ideas in new contexts. We can potentially apply these unranking
 techniques to position-restricted permutations, permutations that satisfy
 certain inequalities with respect to a permutation statistic, or words that
 avoid or match certain patterns.
@@ -1056,7 +1053,7 @@ permutations and other restricted permutations, Doron Zeilberger
 introduces a more general family of restricted permutations.
 \begin{definition}[\cite{Zeilberger2014}]
   Let $S \subset \mathbb Z$ be a finite collection of integers.
-  A \textbf{$S$-avoiding permutation} is a permutation $\pi \in S_n$ such that
+  An $S$-\textbf{avoiding permutation} is a permutation $\pi \in S_n$ such that
   \begin{equation}
     \pi(i) - i - s \not\equiv 0 \bmod n
     \hspace{0.25cm}\text{for all}\hspace{0.25cm}
@@ -1183,8 +1180,8 @@ in Table \ref{table:lyndonConjectures}.
 
 We start with two specific conjectures about two families of prefixes.
 \begin{conjecture}
-  For $k \geq 1$
-  Let $\mathcal{L}_\alpha$ be the sequence of the
+  For $k \geq 1$,
+  let $\mathcal{L}_\alpha$ be the sequence of the
   number of Lyndon words of length $n$ with prefix
   ${\alpha = (0, 0, \dots, 0)}$ of length $k$ over the alphabet $\{0,1\}$.
   Then the Euler transform
@@ -1195,11 +1192,11 @@ We start with two specific conjectures about two families of prefixes.
 
 \begin{conjecture}
   For $k \geq 2$
-  Let $\mathcal{L}_\alpha$ be the sequence of the
+  let $\mathcal{L}_\alpha$ be the sequence of the
   number of Lyndon words of length $n$ with prefix
   ${\alpha = (1, 0, 0, \dots, 0)}$ of length $k$ over the alphabet $\{0,1\}$.
   Then the Euler transform
-  $\pazocal{E}(\mathcal{L}_\alpha) = \{t_{n}^\alpha\}_{n=1}^\infty$,
+  $\pazocal{E}(\mathcal{L}_\alpha) = \{t_{n}^\alpha\}_{n=1}^\infty$
   follows the linear recurrence $t_{n+k}^\alpha = \sum_{i=0}^{k-1} t_{n+i}^\alpha$
   for all $n \geq 1$.
 \end{conjecture}

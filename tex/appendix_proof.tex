@@ -1,12 +1,12 @@
 \section{An algorithm for unranking m\'enage permutations}
 \label{apndx:haskell}
 In this section, we will provide Haskell implementations of the functions in
-Section \ref{cha:UnrankingMenage} that were used to compute the permutations
+Chapter \ref{cha:UnrankingMenage} that were used to compute the permutations
 requested by Richard Arratia's bounties.
 Each code sample will reference its
-precedent in Section \ref{cha:UnrankingMenage}. We start by importing some
+precedent in Chapter \ref{cha:UnrankingMenage}. We start by importing some
 relevant libraries
-some naming conventions.
+and establishing some naming conventions.
 
 \begin{singlespace}\begin{verbatim}
 import Data.List (sort, nub, intersect)
@@ -43,7 +43,7 @@ unrank n k prefixCounter i = recurse (0, 0) 1 [] where
 \end{verbatim}\end{singlespace}
 
 \subsection{Counting derangements with prefixes}
-This part of the code contains three functions, each of them take a parameter
+This part of the code contains three functions. Each of them takes a parameter
 $n$, which indicates the number of letters in the derangement.
 The first function, \texttt{invalidDerangementPrefix}, also takes a prefix
 $\alpha$ and checks to see if it includes duplicate values or has
@@ -75,10 +75,10 @@ unrankDerangement n = unrank n n (derangementPrefixCount n)
 \end{verbatim}\end{singlespace}
 
 \subsection{Decomposition of derived complementary boards}
-These next two function decompose a derived complementary board into
+These next two functions decompose a derived complementary board into
 staircase-shaped blocks.
 The first function, \texttt{getColGroups}, corresponds to the partition
-into contiguous parts refered to in Lemma \ref{lem:subBoardSizes}.
+into contiguous parts referred to in Lemma \ref{lem:subBoardSizes}.
 The second function, \texttt{blockSizesFromPrefix} goes on to implement the
 sum in this lemma.
 \begin{singlespace}\begin{verbatim}
@@ -99,8 +99,8 @@ blockSizesFromPrefix n prefix = map (sum . map colCells) colGroups where
 \end{verbatim}\end{singlespace}
 
 \subsection{Complementary polynomials}
-Since the functions above compute the size of the boards staircase-shaped
-sub-boards, the can hand these values to \texttt{fibonacciPoly}, which
+Since the functions above compute the size of the staircase-shaped
+sub-boards, they can hand these values to \texttt{fibonacciPoly}, which
 implements Fibonacci polynomials as described in
 Definition \ref{def:FibonacciPolynomial}. These match the rook polynomials of
 the disjoint staircase-shaped sub-boards, so in
@@ -121,8 +121,9 @@ complementaryRookPolynomial n prefix = foldr (.*.) [1] blockPolys where
 \end{verbatim}\end{singlespace}
 
 \subsection{Putting it together}
-This part of the code contains three functions, each of them take a parameter
-$n$, which indicates the number of letters in the m\'enage permutation.
+This part of the code contains three functions.
+Each takes a parameter $n$, which indicates the number of letters in the
+m\'enage permutation.
 The first function, \texttt{invalidMenagePrefix}, also takes a prefix
 $\alpha$ and checks to see if it includes duplicate values or has
 letters in forbidden positions.
@@ -153,7 +154,7 @@ unrankMenage n = unrank n n (menagePrefixCount n)
 \end{verbatim}\end{singlespace}
 
 \subsection{Miscellanea}
-These are helper functions that are needed to be included in order for the
+These are helper functions that need to be included in order for the
 code to compile. The first two functions add and multiply list representations
 of polynomials, and the third and fourth function implement the factorial
 function and the binomial coefficient.
@@ -225,8 +226,8 @@ binomial n k
 \begin{proposition}
   If $\alpha \in \pazocal{C}_n^{k}$ or if $\alpha$ is
   a sequence of positive integers of length $\ell < k$ such that
-  ${\operatorname{sum}(\alpha) < n}$ or
-  then the number of $k$-compositions of $n$ that start with the prefix $\alpha$
+  ${\operatorname{sum}(\alpha) < n}$,
+  the number of $k$-compositions of $n$ that start with the prefix $\alpha$
   is \begin{equation}
     \#\operatorname{prefix}_{\pazocal{C}_n}(\alpha) = \begin{cases}
       1 & \alpha \in \pazocal{C}_n^{k} \\
@@ -242,16 +243,16 @@ binomial n k
   partitions of $n$ by $\pazocal P_n$.
 
   The set of partitions of $n$ with largest part at most
-  $j$ is denoted $\pazocal P_n^{\leq j}$.
+  $k$ is denoted $\pazocal P_n^{\leq k}$.
 \end{definition}
 
 \begin{lemma}[\cite{Stanley2011EC1}]
-  The ordinary generating for the number of partitions of $n$ is \begin{equation}
-    \sum_{i=0}^\infty \#\pazocal P_n q^n = \prod_{i=1}^\infty \frac{1}{1-q^j},
+  The ordinary generating function for the number of partitions of $n$ is \begin{equation}
+    \sum_{n=0}^\infty \#\pazocal P_n q^n = \prod_{j=1}^\infty \frac{1}{1-q^j},
   \end{equation}
-  and the ordinary generating for the number of partitions of $n$ with largest part
-  as most $j$ is \begin{equation}
-    \sum_{i=0}^\infty \#\pazocal P_n^{\leq j} q^n = \prod_{i=1}^k \frac{1}{1-q^j}.
+  and the ordinary generating function for the number of partitions of $n$ with largest part
+  as most $k$ is \begin{equation}
+    \sum_{n=0}^\infty \#\pazocal P_n^{\leq j} q^n = \prod_{j=1}^k \frac{1}{1-q^j}.
   \end{equation}
 \end{lemma}
 
