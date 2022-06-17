@@ -128,14 +128,15 @@ and to formalize the notion of lexicographic order.
   A word $w$ is said to be before $w'$ in \textbf{lexicographic order}
   if either $w$ is a proper prefix of $w'$, or if at the first position, $i$,
   where $w$ and $w'$ differ, $w_i < w'_i$.
+  \label{def:lexicographicOrder}
 \end{definition}
 
 With these definitions established, we can turn the problem of unranking words
 into a problem about counting words with specified prefixes.
 
 \begin{theorem}
-  Let $\pazocal{W}$ be the set of words of any length on the alphabet $[n]$,
-  and let $\mathcal C \subsetneq \pazocal{W}$ be a finite subset of words
+  For $k > 0$, let $\pazocal{W}$ be a set of nonempty words on the alphabet
+  $[n]$, and let $\mathcal C \subsetneq \pazocal{W}$ be a finite subset of words
   on this alphabet, with a total order given by its lexicographic order.
 
   Let
@@ -147,84 +148,124 @@ into a problem about counting words with specified prefixes.
     \operatorname{unrank}_\mathcal{C}(i) = f^{\mathcal C}_i((1), 0)
   \end{equation} where
   \begin{numcases}{f^{\mathcal C}_i(\alpha, j) =}
-  \alpha
-    & $\alpha \in \mathcal{C}$ and $i = j + 1$
-  \label{case:unrankFinish}
+    f^{\mathcal C}_i(\alpha', j + \#\operatorname{prefix}_\mathcal{C}(\alpha))
+    & $i > j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$
+  \label{case:unrankIncrement}
   \\
-  f^{\mathcal C}_i(\alpha', j)
-    & $\alpha \not\in \mathcal{C}$ and $i \in (j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)]$
+  f^{\mathcal C}_i(\alpha'', j)
+    & $\alpha \not\in \mathcal{C}$ and $i \leq j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$
   \label{case:unrankAppend}
   \\
-  f^{\mathcal C}_i(\alpha'', j + \#\operatorname{prefix}_\mathcal{C}(\alpha))
-    & otherwise,
-  \label{case:unrankIncrement}
+  f^{\mathcal C}_i(\alpha'', j + 1)
+    & $\alpha \in \mathcal{C}$, $i \leq j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$, and $i \neq j + 1$
+  \label{case:unrankPrefix}
+  \\
+  \alpha
+    & $\alpha \in \mathcal{C}$ and $i = j + 1$,
+  \label{case:unrankFinish}
   \end{numcases}
 where
 $\alpha = (\alpha_1, \alpha_2, \dots, \alpha_\ell)$,
-$\alpha' = (\alpha_1, \alpha_2, \dots, \alpha_\ell, 1)$,
-$\alpha'' = (\alpha_1, \alpha_2, \dots, \alpha_{\ell-1}, 1 + \alpha_\ell)$,
+$\alpha' = (\alpha_1, \alpha_2, \dots, \alpha_{\ell-1}, 1 + \alpha_\ell)$,
+$\alpha'' = (\alpha_1, \alpha_2, \dots, \alpha_\ell, 1)$,
 and $j$ denotes the number of words in $\mathcal{C}$ that occur strictly
 before $\alpha$.
 \label{theorem:unrankFromPrefix}
 \end{theorem}
+
 \begin{proof}
-  We will start by inductively showing that $j$ the number of words in
-  $\mathcal{C}$ that occur strictly before $\alpha$.
-  The base case is clear: $0$ words occur strictly before $\alpha = (1)$,
-  because $1$ is the lexicographically earliest nonempty word, and the empty
-  word is not in $\mathcal{C}$.
+  We make four claims that we will prove using
+  induction on the recursive applications of $f_i^\mathcal{C}(\alpha, j)$:
+  that $j$ is the number of words in $\mathcal{C}$ that occur strictly before $\alpha$,
+  that $\alpha \leq w_i$,
+  and that the sequence of $\alpha$s is strictly increasing.
 
-  In Equation \ref{case:unrankAppend}, $\alpha'$ is $\alpha$ with a $1$
-  appended. Since $1$ is a minimal element and $\alpha \not\in \mathcal{C}$,
-  there are the same number of words preceding $\alpha$ as there are preceding
-  $\alpha'$.
+  This final claim (that the sequence of $\alpha$s is strictly increasing)
+  follows from the observation that ${\alpha < \alpha'' < \alpha'}$ in
+  lexicographic order.
 
-  In Equation \ref{case:unrankIncrement}, the words that strictly precede
-  $\alpha''$ are the words that precede $\alpha$, plus the words that begin
-  with $\alpha$, namely there are
-  $j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$ words that precede
-  $\alpha''$.
+  Because each iteration increases either $j$ or $\ell$ or both,
+  the number of recursive applications of $f_i^\mathcal{C}$ required to
+  determine $w_i$ is at most $i + \max_{w \in \pazocal W} |w|$, which is
+  finite because $\pazocal W$ only contains of finite words.
 
-  Now, we go case by case in showing that the recursive behavior is correct.
+  The base case is clear: We start with $f_i^\mathcal{C}((1), 0)$ because
+  $(1)$ is the lexicographically earliest word, so $0$ nonempty words strictly
+  precede it, and $(1) \leq w_i$.
 
-  To start, if $\alpha \not\in \mathcal{C}$, but
-  $i \in (j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)]$,
-  the range of indices of words that have prefix $\alpha$, then $\alpha$
-  is a proper prefix, and so we must add on more letters to determine
-  the rest of the $i$-th word.
+  We will repeatedly use the observation that if $j$ words precede $\alpha$,
+  then a word has prefix $\alpha$ if and only if its index is in
+  $(j, j + \#\operatorname{prefix}_\mathcal{C}(\alpha)]$. Note that this
+  range is empty whenever there are no words prefixed by $\alpha$.
 
-  Otherwise we know that $i$ is not in the range of indices with that starting
-  prefix so we must increment the last letter in the prefix, to consider a
-  prefix of the same length that is lexicographically later.
+  \textit{Case \eqref{case:unrankIncrement}.}
+  Because $j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$ is the index
+  of the last word that begins with $\alpha$,
+  if $i > j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$, then $w_i$ must
+  begin with a length-$\ell$ prefix that is lexicographically later than $\alpha$.
 
-  Lastly, if $\alpha \in \mathcal{C}$ and $i = j + 1$, then there are
-  $j$ words preceding $\alpha$, so $\alpha$ is the $i$-th word, as desired.
+  By construction, $\alpha'$ is the lexicographically earliest word of length
+  $\ell$ that comes after $\alpha$, therefore $\alpha' \leq w_i$.
+  As such, the number of words that strictly precede
+  $\alpha'$ is ${j + \#\operatorname{prefix}_\mathcal{C}(\alpha)}$,
+  which is the sum of the number of words that occur strictly before $\alpha$
+  and the number of words that have prefix $\alpha$.
+
+  \textit{Case \eqref{case:unrankAppend}.}
+  If $\alpha \not\in \mathcal C$ and $i \leq j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$,
+  then $\alpha$ is a \textit{proper} prefix of $w_i$, and $w_i$ is of length at
+  least $\ell + 1$.
+  By construction, $\alpha''$ is the lexicographically earliest word of length
+  $\ell + 1$ that has a prefix of $\alpha$,
+  so $\alpha'' \leq w_i$,
+  and the number of words in $\mathcal{C}$ that precede
+  $\alpha''$ is equal to $j$, the number of words that precede $\alpha$.
+
+  \textit{Case \eqref{case:unrankPrefix}.}
+  If $\alpha \in \mathcal C$,
+  $i \leq j + \#\operatorname{prefix}_\mathcal{C}(\alpha)$, and
+  $i \neq j + 1$ then $\alpha$ must be the word at index $j + 1 < i$,
+  because $\alpha$ itself is the lexicographically earliest word with the prefix
+  $\alpha$. Because words cannot appear multiple times in $\mathcal{C}$, $w_i$
+  must have $\alpha$ as a \textit{proper} prefix.
+  Therefore $\alpha'' \leq w_i$ and
+  the number of words that strictly precede $\alpha''$ is $j + 1$:
+  the number of words that strictly precede $\alpha$ plus $\alpha$ itself.
+
+  \textit{Case \eqref{case:unrankFinish}.}
+  If $\alpha \in \mathcal{C}$ and $i = j + 1$, then
+  $w_i = \alpha$ because $\alpha$ itself is the lexicographically earliest word
+  with the prefix $\alpha$, so it must occur at index $i = j + 1$.
 \end{proof}
 
-This shows that if we can construct a function
-$\#\operatorname{prefix}_\mathcal{C}$ that efficiently counts the number of
-elements of $\mathcal{C}$ with a given prefix, then we can efficiently rank and
-unrank the elements of $\mathcal{C}$ in lexicographic order.
-% This technique works when we can write our objects as a word in $[n]^k$, and
-% we order the objects
-% by the lexicographic order of the words. In the case that our objects cannot be
-% written as words, or we are interested in an order other than lexicographic order,
-% a different technique must be used.
+Notice that each recursive call of $f_i^\mathcal{C}$ increases the sum of the
+letters of $\alpha$. If we suppose that
+$\mathcal{C}^{(\leq k)} \subsetneq \pazocal{W}_{[n]}$
+is a finite set of words on the alphabet $[n]$ of length at most $k$, then unranking
+a word from $\mathcal{C}^{(\leq k)}$ requires at most $nk$ recursive
+applications of $f_i^{\mathcal{C}^{(\leq k)}}$.
+
+Therefore
+% if there exists a sequence of collections of valid words
+% $\{C_i \subsetneq \pazocal{W}_{[n]}\}_{i \geq 1}$ such that the size of the
+% alphabet and the length of the longest word is at most polynomial in $i$,
+% and
+if there exists a polynomial time algorithm for computing
+$\#\operatorname{prefix}_{\mathcal{C}}$, then there exists an unranking
+algorithm that is polynomial in the size of the alphabet $\mathcal A$ and the
+length of the longest word. In the case of restricted permutations, each of
+these grow linearly with the number of letters in the m\'enage permutations.
 
 \subsection{Ranking words}
-Just as we can recursively find a word at a given position, we can also
-recursively find  a position corresponding to a given word.
+Just as we can recursively find a word at a given index, we can also
+recursively find a index corresponding to a given word.
 
-\begin{claim}
-  ${\operatorname{rank}_\mathcal{C}(w) = g_w(1,1,0)}$ where
-  \begin{equation}
-    g_w(i, \ell, c) = \begin{cases}
-      c + 1 & \ell = w_i \text{ and } i = |w| \\
-      g_w(i + 1, 1, c) & \ell = w_i \text{ and } i < |w| \\
-      g_w(i, \ell + 1, c + \#\operatorname{prefix}_\mathcal{C}(w')) & \ell < w_i,
-    \end{cases}
-  \end{equation}
-  where $w' = (w_1, w_2, \dots, w_{i-1}, \ell)$.
+\begin{claim} If $\mathcal{C}$ is a collection of words such that no word is a
+  prefix of another, then the rank of the word $w \in \mathcal{C}$ can
+  be computed as the sum \[
+    1 + \sum_{i=1}^{|w|} \sum_{i = 1}^{w_i - 1} \#\operatorname{prefix}_\mathcal{C}(w_{(i)}^x)
+  \]
+  where $w = (w_1, w_2, \dots, w_{|w|})$ and $w_{(i)}^x = (w_1, w_2, \dots, w_{i-1}, x)$.
 \end{claim}
 
 \section{Basic notions of rook theory}
